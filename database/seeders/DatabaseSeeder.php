@@ -519,8 +519,8 @@ class DatabaseSeeder extends Seeder
         DB::table('schedule_shuttles')->insert([
             [
                 'from_type'      => 'airport',
-                'from_id'        => 1,
-                'to_id'          => 7,
+                'from_id'        => '1|master_areas',
+                'to_id'          => '7|master_sub_areas',
                 'vehicle_name'   => 'Avanza 1',
                 'vehicle_number' => 'B 1234 CCD',
                 'time_departure' => '07:00:00',
@@ -537,8 +537,8 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'from_type'      => 'airport',
-                'from_id'        => 1,
-                'to_id'          => 8,
+                'from_id'        => '1|master_areas',
+                'to_id'          => '8|master_sub_areas',
                 'vehicle_name'   => 'Avanza 2',
                 'vehicle_number' => 'B 5678 CCD',
                 'time_departure' => '08:00:00',

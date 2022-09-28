@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('schedule_id');
             $table->string('from_master_area_name');
-            $table->string('from_master_sub_area_name');
+            $table->string('from_master_sub_area_name')->nullable();
             $table->string('to_master_area_name');
-            $table->string('to_master_sub_area_name');
+            $table->string('to_master_sub_area_name')->nullable();
             $table->string('vehicle_name');
             $table->string('vehicle_number');
             $table->dateTime('datetime_departure');
@@ -35,6 +35,7 @@ return new class extends Migration
             $table->decimal('extra_price', 19, 2);
             $table->foreignId('voucher_id')->nullable(true)->constrained('vouchers')->nullOnDelete()->cascadeOnUpdate();
             $table->decimal('promo_price', 19, 2);
+            $table->decimal('base_price', 19, 2);
             $table->decimal('total_price', 19, 2);
             $table->enum('booking_status', ['pending', 'active', 'expired']);
             $table->enum('payment_status', ['waiting', 'paid', 'failed']);

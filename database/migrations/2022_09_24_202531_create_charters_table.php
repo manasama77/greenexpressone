@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('charters', function (Blueprint $table) {
             $table->id();
             $table->enum('from_type', ['airport', 'district']);
-            $table->integer('from_id');
-            $table->integer('to_id');
+            $table->string('from_id');
+            $table->string('to_id');
             $table->string('vehicle_name');
             $table->string('vehicle_number');
             $table->boolean('is_available')->default(false);

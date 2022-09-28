@@ -24,5 +24,11 @@ class ScheduleShuttle extends Model
         'notes',
         'total_seat',
         'luggage_price',
+        'created_at',
+    ];
+
+    protected $hidden = [
+        'updated_at',
+        'deleted_at',
     ];
 }

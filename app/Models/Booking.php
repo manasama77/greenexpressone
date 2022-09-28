@@ -38,6 +38,7 @@ class Booking extends Model
         'extra_price',
         'voucher_id',
         'promo_price',
+        'base_price',
         'total_price',
         'booking_status',
         'payment_status',
