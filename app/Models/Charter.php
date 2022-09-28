@@ -22,4 +22,10 @@ class Charter extends Model
         'driver_contact',
         'notes',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 }
