@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Models\User;
 use App\Models\Booking;
@@ -14,7 +14,7 @@ use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Api\BaseController;
+use App\Http\Controllers\API\BaseController;
 
 class BookingController extends BaseController
 {
