@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\Voucher;
 use App\Models\Schedule;
+use App\Models\MasterArea;
+use App\Models\LuggagePrice;
 use Illuminate\Http\Request;
+use App\Models\MasterSubArea;
+use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use App\Models\LuggagePrice;
-use App\Models\MasterArea;
-use App\Models\MasterSpecialArea;
-use App\Models\MasterSubArea;
-use App\Models\Voucher;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Api\BaseController;
 
 class BookingController extends BaseController
 {

@@ -6,7 +6,7 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\API\BaseController;
+use App\Http\Controllers\Api\BaseController;
 
 class BannerController extends BaseController
 {
