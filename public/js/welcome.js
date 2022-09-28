@@ -15,6 +15,10 @@ $(document).ready(function () {
         }
     });
 
+    $('#from_id').on('click', e => {
+        $('#modal_from').modal('show')
+    })
+
 
     // video popup
     const videoSrc = $('#player-1').attr('src');

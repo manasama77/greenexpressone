@@ -2,7 +2,7 @@
 <html lang="en" translate="no">
 
 <head>
-    <title>Travel X</title>
+    <title>{{ $title }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- owl carousel css -->
@@ -24,9 +24,9 @@
 
 <body>
     <!-- preloader start -->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <span></span>
-    </div>
+    </div> --}}
     <!-- preloader end -->
 
     <!-- navbar start -->
@@ -35,7 +35,8 @@
             <!-- Brand -->
             <a class="navbar-brand" href="#">
                 <div class="navbar-brand-img">
-                    <img src="img/logo putih.png" alt="Logo">
+                    <img src="img/logo-green-express-one.png" alt="Logo {{ $app_name }}" class="img-logo">
+                    GreenExpress
                 </div>
             </a>
 
@@ -48,7 +49,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/" data-scroll-nav="0">Home</a>
+                        <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/outlet">Outlet</a>
@@ -57,12 +58,12 @@
                         <a class="nav-link" href="/how-to-pay">How to Pay</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold btn btn-danger px-2" href="/check-booking">
+                        <a class="nav-link font-weight-bold btn btn-dark text-white px-2" href="/check-booking">
                             <i class="fas fa-search fa-fw"></i> Check Booking
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-weight-bold btn btn-light text-dark px-2" href="/sign-in">
+                        <a class="nav-link font-weight-bold btn btn-danger text-white px-2" href="/sign-in">
                             <i class="fas fa-sign-in-alt fa-fw"></i> Sign In
                         </a>
                     </li>
@@ -77,7 +78,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div id="slick_slider">
+                    <div id="slick_slider" class="shadow">
                         <div>
                             <img src="img/slider/1.jpg" alt="" loading="eager">
                         </div>
@@ -89,84 +90,95 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <p class="text-white mb-2">Pesan Tiket Anda Sekarang !</p>
-                    <div class="card shadow mb-3" style="border-bottom-right-radius: 100px;">
+            </div>
+        </div>
+    </section>
+    <!-- home section end -->
+
+    <!-- booking section start -->
+    <section id="booking" class="booking section-padding" data-scroll-index="1">
+        <img src="img/8493.jpg" class="bg" loading="lazy" />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 mb-5">
+                    <div class="card shadow-lg">
                         <div class="card-body">
-                            <form action="#">
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="dari" class="text-muted pb-0 mb-0 font-weight-bold">Dari</label>
-                                        <select id="dari" class="form-control">
-                                            <option value="Test 1">Test 1</option>
-                                            <option value="Test 2">Test 2</option>
-                                            <option value="Test 3">Test 3</option>
-                                        </select>
+                            <h5 class="text-center font-weight-bold mb-4">Airport Shuttle & Charter Booking</h5>
+                            <form id="form_booking">
+                                <div class="form-group">
+                                    <label for="from_id" class="form-text font-weight-bold">From/Departure</label>
+                                    <input type="text" class="form-control" id="from_id" name="from_id"
+                                        placeholder="Choose From/Departure" required readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="to_id" class="form-text font-weight-bold">To/Arrival</label>
+                                    <input type="text" class="form-control" id="to_id" name="to_id"
+                                        placeholder="Choose To/Arrival" required readonly />
+                                </div>
+                                <div class="form-group text-center">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_type"
+                                            id="one_way" value="one way" checked>
+                                        <label class="form-check-label" for="one_way">One Way</label>
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="ke" class="text-muted pb-0 mb-0 font-weight-bold">Ke</label>
-                                        <select id="ke" class="form-control">
-                                            <option value="Test 1">Test 1</option>
-                                            <option value="Test 2">Test 2</option>
-                                            <option value="Test 3">Test 3</option>
-                                        </select>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="booking_type"
+                                            id="charter" value="charter">
+                                        <label class="form-check-label" for="charter">Charter</label>
                                     </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="tanggal_berangkat"
-                                            class="text-muted pb-0 mb-0 font-weight-bold">Tanggal Berangkat</label>
-                                        <input type="text" id="tanggal_berangkat" class="form-control"
-                                            value="<?= date('Y-m-d') ?>" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_departure" class="form-text font-weight-bold">Outward
+                                        journey</label>
+                                    <input type="date" class="form-control" id="date_departure"
+                                        name="date_departure" placeholder="Outward Journey" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_return" class="form-text font-weight-bold">Return journey</label>
+                                    <input type="date" class="form-control" id="date_return" name="date_return"
+                                        placeholder="Return journey" required readonly />
+                                </div>
+                                <div class="form-group">
+                                    <label for="passanger_adult" class="form-text font-weight-bold">Adult
+                                        Passangers</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="passanger_adult"
+                                            name="passanger_adult" placeholder="Adult Passangers" min="1"
+                                            max="9" value="1" required />
+                                        <div class="input-group-append bg-light">
+                                            <span class="input-group-text">Adult
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="penumpang"
-                                            class="text-muted pb-0 mb-0 font-weight-bold">Penumpang</label>
-                                        <select id="penumpang" class="form-control">
-                                            <option value="1">1 Orang</option>
-                                            <option value="2">2 Orang</option>
-                                            <option value="3">3 Orang</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-2 mt-auto">
-                                        <p class="text-center mb-0 pb-0">
-                                            <button class="btn btn-danger bg-red btn-radius" type="submit">
-                                                <i class="fas fa-angle-right px-4"></i>
-                                            </button>
-                                        </p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passanger_baby" class="form-text font-weight-bold">Baby
+                                        Passangers</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="passanger_baby"
+                                            name="passanger_baby" placeholder="Adult Passangers" min="1"
+                                            max="9" value="1" required />
+                                        <div class="input-group-append bg-light">
+                                            <span class="input-group-text">Baby
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- home section end -->
-
-    <!-- about us section start -->
-    <section id="about-us" class="about-us section-padding" data-scroll-index="1">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-lg-6 d-flex align-items-center justify-content-center">
-                    <div class="about-us-img">
-                        <img src="img/bus.png" alt="" loading="lazy" />
-                    </div>
-                </div>
-                <div class="col-md-7 col-lg-6">
+                <div class="col-sm-12 col-md-8">
                     <div class="section-title">
-                        <h1>Berpergian bersama DayTrans Shuttle</h1>
+                        <h1>Shuttle bus to and from the main America airports</h1>
                     </div>
-                    <div class="about-us-text">
-                        <p>
-                            rasakan pengalaman perjalanan yang menyenangkan dengan DayTrans Shuttle, dapatkan fasilitas
-                            - fasilitas berikut ini
-                        </p>
+                    <div class="booking-text">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est totam impedit reprehenderit
+                            unde nobis deserunt quasi commodi quam quibusdam maxime.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- about us section end -->
+    <!-- booking section end -->
 
     <!-- profile section start -->
     <section id="profile" class="profile section-padding" data-scroll-index="2">
@@ -189,12 +201,12 @@
     </section>
     <!-- profile section end -->
 
-    <!-- stacking section start -->
-    <section id="stacking" class="stacking section-padding" data-scroll-index="3">
+    <!-- android section start -->
+    <section id="android" class="android section-padding" data-scroll-index="3">
         <div class="container py-5">
             <div class="row py-5">
                 <div class="col-sm-6 text-white">
-                    <p><img src="img/logo putih.png" class="img-fluid" width="200px"></p>
+                    <p><img src="img/logo-green-express-one.png" class="img-fluid" width="200px"></p>
                     <h3 class="font-weight-bold">Instal juga aplikasi DayTrans di smartphone android kamu sekarang !
                     </h3>
                     <p>dapatkan kemudahan saat memesan tiket dimanapun kamu berada.</p>
@@ -411,8 +423,8 @@
                     <div class="float-right d-none d-sm-block">
                         version 123
                     </div>
-                    <strong>Copyright &copy; 2021 <a href=" #" class="footer_link">Travel
-                            Online</a></strong>
+                    <strong>Copyright &copy; 2022 <a href=" #"
+                            class="footer_link">{{ $app_name }}</a></strong>
                     </p>
                 </div>
             </div>
@@ -421,9 +433,9 @@
     <!-- footer section end -->
 
     <!-- toggle theme start -->
-    <div class="toggle-theme">
+    {{-- <div class="toggle-theme">
         <i class="fas"></i>
-    </div>
+    </div> --}}
     <!-- toggle theme end -->
 
 
@@ -438,124 +450,19 @@
     </div>
     <!-- video popup end -->
 
-    <!-- Poincoin token detail start -->
-    <div class="modal fade" id="poincoin_token_detail" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+    <!-- Modal -->
+    <div class="modal fade" id="modal_from" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Poincoin Token Detail</h5>
+                    <h5 class="modal-title">From/Departure</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover" style="font-size: 12px;">
-                            <thead>
-                                <tr>
-                                    <th>Token Name</th>
-                                    <th>:</th>
-                                    <th>Poincoin</th>
-                                </tr>
-                                <tr>
-                                    <th>Ticker Name</th>
-                                    <th>:</th>
-                                    <th>PC</th>
-                                </tr>
-                                <tr>
-                                    <th>Mainnet</th>
-                                    <th>:</th>
-                                    <th>Tron Blockchain</th>
-                                </tr>
-                                <tr>
-                                    <th>Precision</th>
-                                    <th>:</th>
-                                    <th>4</th>
-                                </tr>
-                                <tr>
-                                    <th>Total Supply</th>
-                                    <th>:</th>
-                                    <th>100,000,000 PC</th>
-                                </tr>
-                                <tr>
-                                    <th>Circulating Supply</th>
-                                    <th>:</th>
-                                    <th>100,000,000 PC</th>
-                                </tr>
-                                <tr>
-                                    <th>Reputation</th>
-                                    <th>:</th>
-                                    <th>Neutral</th>
-                                </tr>
-                                <tr>
-                                    <th>Smart Contract Type</th>
-                                    <th>:</th>
-                                    <th>Smart Contract TRC-20 Proof of Stake Currencies</th>
-                                </tr>
-                                <tr>
-                                    <th>Contract</th>
-                                    <th>:</th>
-                                    <th>
-                                        <a href="https://tronscan.io/#/token20/TU9PmX8ivxMScQSWq67xHMHL8KBUTSyFwV"
-                                            target="_blank">
-                                            TU9PmX8ivxMScQSWq67xHMHL8KBUTSyFwV
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Compiler Version</th>
-                                    <th>:</th>
-                                    <th>solidity 0.5.10</th>
-                                </tr>
-                                <tr>
-                                    <th>Issuing Time</th>
-                                    <th>:</th>
-                                    <th>2021-01-29 16:17:56 (UTC)</th>
-                                </tr>
-                                <tr>
-                                    <th>Issuer</th>
-                                    <th>:</th>
-                                    <th>
-                                        <a href="https://tronscan.io/#/address/TGvYiVbMzczALgf7YmjYoxGP3bLkqMTATH"
-                                            target="_blank">
-                                            TGvYiVbMzczALgf7YmjYoxGP3bLkqMTATH
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Official Website</th>
-                                    <th>:</th>
-                                    <th>
-                                        <a href="https://Poincoin.online">
-                                            https://Poincoin.online
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>White Paper</th>
-                                    <th>:</th>
-                                    <th>
-                                        <a href="https://Poincoin.online/public/pdf/white_paper_Poincoin.pdf"
-                                            target="_blank">
-                                            https://Poincoin.online/public/pdf/white_paper_Poincoin.pdf
-                                        </a>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>Social Profiles</th>
-                                    <th>:</th>
-                                    <th>
-                                        <a href="https://web.facebook.com/Poincoincoin" target="_blank">
-                                            <i class="fab fa-facebook fa-2x"></i>
-                                        </a>
-                                        <a href="https://t.me/joinchat/1cIjWvGCyjI0ODdl" target="_blank">
-                                            <i class="fab fa-telegram fa-2x"></i>
-                                        </a>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    ...
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -563,7 +470,6 @@
             </div>
         </div>
     </div>
-    <!-- Poincoin token detail end -->
 
     <input type="hidden" id="site_url" value="#" />
 
@@ -598,14 +504,14 @@
 </html>
 <script>
     $(document).ready(() => {
-        const dari = document.querySelector('#dari')
-        const dariChoice = new Choices(dari)
+        // const dari = document.querySelector('#dari')
+        // const dariChoice = new Choices(dari)
 
-        const ke = document.querySelector('#ke')
-        const keChoice = new Choices(ke)
+        // const ke = document.querySelector('#ke')
+        // const keChoice = new Choices(ke)
 
-        const penumpang = document.querySelector('#penumpang')
-        const penumpangChoice = new Choices(penumpang)
+        // const penumpang = document.querySelector('#penumpang')
+        // const penumpangChoice = new Choices(penumpang)
 
         $("#tanggal_berangkat").flatpickr();
 

@@ -1,16 +1,17 @@
 /* fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,700;1,400;1,700&display=swap");
 
 /* global css */
 :root {
-    --main-color: #ff3700;
-    --secondary-color: #cdd5ff;
-    --color-1: #ff3700;
-    --color-2: #f5ae10;
-    --color-3: #09d69c;
+    --main-color: #1efd1e;
+    --secondary-color: #61e861;
+    --color-1: #1efd1e;
+    --color-2: #15b015;
+    --color-3: #2a632a;
     --bg-dark: #2b2c2f;
     --main-to-dark-color: var(--main-color);
-    --dark-to-main-color: var(--bg-dark);
+    --dark-to-main-color: var(--color-2);
     --shadow-black-100: 0 5px 15px rgba(0, 0, 0, 0.1);
     --shadow-black-300: 0 5px 15px rgba(0, 0, 0, 0.3);
     --black-900: #000;
@@ -19,10 +20,11 @@
     --black-000: #fff;
     --black-alpha-100: rgba(0, 0, 0, 0.05);
     --footer-text-color: #f7f7f7;
+    --text-color: #000;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Mulish", sans-serif;
     font-size: 16px;
     font-weight: 400;
     overflow-x: hidden;
@@ -32,7 +34,7 @@ body {
 
 body.dark {
     background-color: var(--bg-dark);
-    --black-900: #fff;
+    --text-color: #fff;
     --black-400: var(--bg-dark);
     --black-100: var(--bg-dark);
     --black-000: var(--bg-dark);
@@ -74,6 +76,8 @@ ul {
     width: 100%;
     max-width: 170px;
     margin: 0;
+    color: var(--black-900);
+    text-shadow: 0px 3px rgba(255, 255, 255, 0.5);
 }
 
 .btn-download {
@@ -294,7 +298,7 @@ ul {
 
 .navbar.navbar-shrink {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    background-color: var(--main-color);
+    background: var(--color-2);
     padding: 10px 0;
 }
 
@@ -307,17 +311,19 @@ ul {
     color: #fff;
     font-weight: 500;
     text-transform: capitalize;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
 }
 
 .navbar .nav-item {
-    margin-left: 40px;
+    margin-left: 33px;
 }
 
 .navbar .nav-item .nav-link {
-    color: #fff;
+    color: var(--black-900);
     font-size: 16px;
-    font-weight: 400;
-    padding: 5px 0;
+    font-weight: 700;
+    padding: 3px 0;
     position: relative;
 }
 
@@ -342,12 +348,38 @@ ul {
 
 .home {
     min-height: 5vh;
-    padding: 150px 0 70px 0;
-    background-color: var(--main-to-dark-color);
-    border-radius: 0 0 200px 0;
+    padding: 100px 0 20px 0;
+    background: var(--black-000);
+    border-radius: 0 0 140px 140px;
     position: relative;
     z-index: 1;
     overflow-x: hidden;
+
+    background-color: #ffffff;
+    background: radial-gradient(
+            circle,
+            transparent 20%,
+            #ffffff 20%,
+            #ffffff 80%,
+            transparent 80%,
+            transparent
+        ),
+        radial-gradient(
+                circle,
+                transparent 20%,
+                #ffffff 20%,
+                #ffffff 80%,
+                transparent 80%,
+                transparent
+            )
+            10px 10px,
+        linear-gradient(rgba(30, 253, 30, 0.2) 0.8px, transparent 0.8px) 0 -0.4px,
+        linear-gradient(
+                90deg,
+                rgb(30, 253, 30, 0.2) 0.8px,
+                rgba(255, 255, 255, 0) 0.8px
+            ) -0.4px 0;
+    background-size: 20px 20px, 20px 20px, 10px 10px, 10px 10px;
 
     .home-btn {
         margin-top: 40px;
@@ -483,9 +515,25 @@ ul {
     visibility: visible;
 }
 
-/* about us section */
-.about-us {
-    background-color: var(--black-000);
+/* booking section */
+.booking {
+    .bg {
+        position: absolute;
+        top: 660px;
+        right: 0px;
+        z-index: -1;
+        opacity: 0.4;
+        width: 80vw;
+    }
+    // background-color: var(--black-000);
+    // background-image: url("../img/8493.jpg");
+    // background-position: center;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+
+    // .img {
+    //     opacity: 0.6;
+    // }
 
     .section-title {
         margin-bottom: 20px;
@@ -499,7 +547,7 @@ ul {
             font-size: 30px;
             text-align: left;
             text-transform: capitalize;
-            color: var(--black-900);
+            color: var(--color-2);
         }
     }
 }
@@ -515,9 +563,9 @@ ul {
 .about-us-text p {
     font-size: 16px;
     line-height: 26px;
-    color: var(--black-400);
+    color: var(--text-color);
     margin: 0 0 15px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* profile section */
@@ -557,11 +605,11 @@ ul {
     font-weight: 300;
 }
 
-/* stacking section */
-.stacking {
-    background: linear-gradient(63deg, #ff0000, #ff5e00);
+/* android section */
+.android {
+    background: linear-gradient(63deg, var(--color-2), var(--color-3));
 
-    .stacking-text {
+    .android-text {
         h2 {
             color: var(--black-900);
         }
@@ -572,7 +620,7 @@ ul {
     }
 }
 
-.stacking-img img {
+.android-img img {
     max-width: 350px;
     width: 100%;
     // box-shadow: var(--shadow-black-100);
@@ -886,7 +934,7 @@ ul {
 @media (max-width: 991px) {
     .navbar.navbar-shrink .navbar-toggler,
     .navbar.navbar-shrink .navbar-nav {
-        background-color: var(--main-color);
+        background-color: var(--color-2);
     }
 
     .navbar-toggler {
@@ -901,7 +949,8 @@ ul {
 
     .navbar-nav {
         background-color: var(--dark-to-main-color);
-        box-shadow: var(--shadow-black-300);
+        padding-bottom: 15px;
+        // box-shadow: var(--shadow-black-300);
     }
 
     .navbar .nav-item {
@@ -989,7 +1038,7 @@ ul {
         margin-top: -50px;
     }
 
-    .stacking-img {
+    .android-img {
         margin-bottom: 10px;
     }
 }
@@ -1042,4 +1091,17 @@ ul {
     color: #fff;
     background-color: #2b2c2f;
     border-color: #2b2c2f;
+}
+
+.img-logo {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.input-group-text {
+    background-color: white;
+}
+
+.navbar-collapse {
+    padding-top: 15px;
 }
