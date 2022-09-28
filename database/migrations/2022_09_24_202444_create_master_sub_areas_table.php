@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('master_area_id')->constrained();
             $table->string('name');
-            $table->enum('is_active', ['yes', 'no']);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

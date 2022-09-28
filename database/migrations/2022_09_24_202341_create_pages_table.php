@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('luggage_prices', function (Blueprint $table) {
-            $table->decimal('price', 19, 2)->primary()->default(0.00);
+        Schema::create('pages', function (Blueprint $table) {
+            $table->id();
+            $table->string('page_title')->default('');
+            $table->string('page_content')->default('');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('luggage_price');
+        Schema::dropIfExists('pages');
     }
 };

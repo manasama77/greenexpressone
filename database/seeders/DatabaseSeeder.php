@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Charter;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -36,7 +37,7 @@ class DatabaseSeeder extends Seeder
             [
                 'picture'    => env('APP_URL') . '1.png',
                 'url'        => '#',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -44,7 +45,7 @@ class DatabaseSeeder extends Seeder
             [
                 'picture'    => env('APP_URL') . '2.png',
                 'url'        => '#',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -52,7 +53,7 @@ class DatabaseSeeder extends Seeder
             [
                 'picture'    => env('APP_URL') . '3.png',
                 'url'        => '#',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -63,7 +64,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta - Bandara Internasional Soekarno-Hatta',
                 'area_type'  => 'departure',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta Utara',
                 'area_type'  => 'arrival',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -79,7 +80,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta Timur',
                 'area_type'  => 'arrival',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -87,7 +88,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta Selatan',
                 'area_type'  => 'arrival',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -95,7 +96,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta Barat',
                 'area_type'  => 'arrival',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -103,7 +104,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'       => 'Jakarta Pusat',
                 'area_type'  => 'arrival',
-                'is_active'  => 'yes',
+                'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -114,7 +115,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 1A',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -122,7 +123,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 1B',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -130,7 +131,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 2D',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -138,7 +139,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 2E',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -146,7 +147,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 2F',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -154,7 +155,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 1,
                 'name'           => 'Terminal 3',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -162,7 +163,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Cilincing',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -170,7 +171,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Kelapa Gading',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -178,7 +179,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Koja',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -186,7 +187,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Pademangan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -194,7 +195,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Penjaringan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -202,7 +203,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 2,
                 'name'           => 'Tanjung Priok',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -210,7 +211,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Cakung',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -218,7 +219,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Cipayung',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -226,7 +227,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Ciracas',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -234,7 +235,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Duren Sawit',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -242,7 +243,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Jatinegara',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -250,7 +251,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Kramat Jati',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -258,7 +259,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Makasar',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -266,7 +267,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Pasar Rebo',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -274,7 +275,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 3,
                 'name'           => 'Pulo Gadung',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -282,7 +283,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Cilandak',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -290,7 +291,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Jagakarsa',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -298,7 +299,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Kebayoran baru',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -306,7 +307,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Kebayoran Lama',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -314,7 +315,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Mampang Prapatan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -322,7 +323,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Pancoran',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -330,7 +331,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Pasar Minggu',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -338,7 +339,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Pesanggrahan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -346,7 +347,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Setiabudi',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -354,7 +355,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 4,
                 'name'           => 'Tebet',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -362,7 +363,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Cengkareng',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -370,7 +371,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Grogol Petamburan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at' => null,
@@ -378,7 +379,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Taman Sari',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -386,7 +387,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Tambora',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -394,7 +395,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Kebon Jeruk',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -402,7 +403,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Kalideres',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -410,7 +411,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Palmerah',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -418,7 +419,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 5,
                 'name'           => 'Kembangan',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -426,7 +427,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Cempaka Putih',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -434,7 +435,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Gambir',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -442,7 +443,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Johar Baru',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -450,7 +451,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Kemayoran',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -458,7 +459,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Menteng',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -466,7 +467,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Sawah Besar',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -474,7 +475,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Senen',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -482,7 +483,7 @@ class DatabaseSeeder extends Seeder
             [
                 'master_area_id' => 6,
                 'name'           => 'Tanah Abang',
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -495,7 +496,7 @@ class DatabaseSeeder extends Seeder
                     'master_sub_area_id' => $i,
                     'first_person_price' => 10,
                     'extra_person_price' => 5,
-                    'is_active'          => 'yes',
+                    'is_active'          => true,
                     'notes'              => null,
                     'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
@@ -504,69 +505,89 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        DB::table('vehicles')->insert([
+        DB::table('pages')->insert([
             [
-                'name'       => 'Car 1',
-                'number'     => 'B 1234 CCD',
-                'total_seat' => 15,
-                'photo'      => null,
-                'is_active'  => 'yes',
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at' => null,
+                'page_title'   => 'Privacy',
+                'page_content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, provident.'
             ],
             [
-                'name'       => 'Car 2',
-                'number'     => 'B 5678 CCD',
-                'total_seat' => 19,
-                'photo'      => null,
-                'is_active'  => 'yes',
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at' => null,
-            ],
+                'page_title'   => 'Term and Condition',
+                'page_content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores recusandae exercitationem ipsa ab amet! Sed tempore maxime officiis possimus molestiae!'
+            ]
         ]);
 
-        DB::table('luggage_prices')->insert(['price' => 1]);
-        DB::table('privacies')->insert(['notes' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, architecto!']);
-        DB::table('term_and_conditions')->insert(['notes' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis similique sapiente autem dolorem amet fugit numquam repellendus voluptas fugiat tempore?']);
-
-        DB::table('schedules')->insert([
+        DB::table('schedule_shuttles')->insert([
             [
-                'from_id'            => 1,
-                'from_table'         => 'master_sub_areas',
-                'to_id'              => 7,
-                'to_table'           => 'master_sub_areas',
-                'vehicle_id'         => 1,
-                'datetime_departure' => Carbon::now()->format('Y-m-d H:i:s'),
-                'datetime_arrival'   => Carbon::now()->addHours(4)->format('Y-m-d H:i:s'),
-                'schedule_type'      => 'one way',
-                'is_active'          => 'yes',
-                'photo'              => null,
-                'normal_price'       => 25,
-                'driver_contact'     => '+62123456789',
-                'notes'              => 'Lorem ipsum dolor sit amet.',
-                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'         => null,
+                'from_type'      => 'airport',
+                'from_id'        => 1,
+                'to_id'          => 7,
+                'vehicle_name'   => 'Avanza 1',
+                'vehicle_number' => 'B 1234 CCD',
+                'time_departure' => '07:00:00',
+                'is_active'      => true,
+                'photo'          => null,
+                'price'          => 25,
+                'driver_contact' => '+62123456789',
+                'notes'          => 'Lorem ipsum dolor sit amet.',
+                'total_seat'     => 20,
+                'luggage_price'  => 5,
+                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'     => null,
             ],
             [
-                'from_id'            => 1,
-                'from_table'         => 'master_sub_areas',
-                'to_id'              => 7,
-                'to_table'           => 'master_sub_areas',
-                'vehicle_id'         => 1,
-                'datetime_departure' => Carbon::now()->format('Y-m-d H:i:s'),
-                'datetime_arrival'   => Carbon::now()->addHours(4)->format('Y-m-d H:i:s'),
-                'schedule_type'      => 'charter',
-                'is_active'          => 'yes',
-                'photo'              => null,
-                'normal_price'       => 25,
-                'driver_contact'     => '+62123456789',
-                'notes'              => 'Lorem ipsum dolor sit amet.',
-                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'         => null,
+                'from_type'      => 'airport',
+                'from_id'        => 1,
+                'to_id'          => 8,
+                'vehicle_name'   => 'Avanza 2',
+                'vehicle_number' => 'B 5678 CCD',
+                'time_departure' => '08:00:00',
+                'is_active'      => true,
+                'photo'          => null,
+                'price'          => 25,
+                'driver_contact' => '+62123456789',
+                'notes'          => 'Lorem ipsum dolor sit amet.',
+                'total_seat'     => 20,
+                'luggage_price'  => 5,
+                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'     => null,
+            ],
+            [
+                'from_type'      => 'district',
+                'from_id'        => 7,
+                'to_id'          => 1,
+                'vehicle_name'   => 'Avanza 1',
+                'vehicle_number' => 'B 5678 CCD',
+                'time_departure' => '13:00:00',
+                'is_active'      => true,
+                'photo'          => null,
+                'price'          => 25,
+                'driver_contact' => '+62123456789',
+                'notes'          => 'Lorem ipsum dolor sit amet.',
+                'total_seat'     => 20,
+                'luggage_price'  => 5,
+                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'     => null,
+            ],
+            [
+                'from_type'      => 'district',
+                'from_id'        => 8,
+                'to_id'          => 1,
+                'vehicle_name'   => 'Avanza 2',
+                'vehicle_number' => 'B 1234 CCD',
+                'time_departure' => '14:00:00',
+                'is_active'      => true,
+                'photo'          => null,
+                'price'          => 25,
+                'driver_contact' => '+62123456789',
+                'notes'          => 'Lorem ipsum dolor sit amet.',
+                'total_seat'     => 20,
+                'luggage_price'  => 5,
+                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'     => null,
             ],
         ]);
 
@@ -578,7 +599,7 @@ class DatabaseSeeder extends Seeder
                 'date_expired'   => '2022-10-31',
                 'discount_type'  => 'percentage',
                 'discount_value' => 10,
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
@@ -590,11 +611,63 @@ class DatabaseSeeder extends Seeder
                 'date_expired'   => '2022-10-31',
                 'discount_type'  => 'value',
                 'discount_value' => 5,
-                'is_active'      => 'yes',
+                'is_active'      => true,
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
             ],
         ]);
+
+        $charter                 = new Charter();
+        $charter->from_type      = 'airport';
+        $charter->from_id        = 1;
+        $charter->to_id          = 7;
+        $charter->vehicle_name   = 'Avanza 1';
+        $charter->vehicle_number = 'B 1234 CCD';
+        $charter->photo          = null;
+        $charter->price          = 100;
+        $charter->is_available   = true;
+        $charter->driver_contact = '+62123456789';
+        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter->save();
+
+        $charter                 = new Charter();
+        $charter->from_type      = 'airport';
+        $charter->from_id        = 1;
+        $charter->to_id          = 8;
+        $charter->vehicle_name   = 'Avanza 2';
+        $charter->vehicle_number = 'B 5678 CCD';
+        $charter->photo          = null;
+        $charter->price          = 100;
+        $charter->is_available   = true;
+        $charter->driver_contact = '+62123456789';
+        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter->save();
+
+        $charter                 = new Charter();
+        $charter->from_type      = 'district';
+        $charter->from_id        = 7;
+        $charter->to_id          = 1;
+        $charter->vehicle_name   = 'Avanza 1';
+        $charter->vehicle_number = 'B 1234 CCD';
+        $charter->photo          = null;
+        $charter->price          = 100;
+        $charter->is_available   = true;
+        $charter->driver_contact = '+62123456789';
+        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter->save();
+
+        $charter                 = new Charter();
+        $charter->from_type      = 'district';
+        $charter->from_id        = 8;
+        $charter->to_id          = 1;
+        $charter->vehicle_name   = 'Avanza 1';
+        $charter->vehicle_number = 'B 5678 CCD';
+        $charter->photo          = null;
+        $charter->price          = 100;
+        $charter->is_available   = true;
+        $charter->driver_contact = '+62123456789';
+        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter->save();
     }
 }

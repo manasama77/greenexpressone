@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('date_expired');
             $table->enum('discount_type', ['percentage', 'value']);
             $table->decimal('discount_value', 19, 2, true);
-            $table->enum('is_active', ['yes', 'no']);
+            $table->boolean('is_active');
             $table->timestamps();
             $table->softDeletes();
         });

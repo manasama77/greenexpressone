@@ -14,19 +14,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('charters', function (Blueprint $table) {
             $table->id();
+            $table->enum('from_type', ['airport', 'district']);
             $table->integer('from_id');
-            $table->string('from_table');
             $table->integer('to_id');
-            $table->string('to_table');
-            $table->foreignIdFor(Vehicle::class)->constrained();
-            $table->dateTime('datetime_departure');
-            $table->dateTime('datetime_arrival');
-            $table->enum('schedule_type', ['one way', 'charter']);
-            $table->enum('is_active', ['yes', 'no']);
+            $table->string('vehicle_name');
+            $table->string('vehicle_number');
+            $table->boolean('is_available')->default(false);
             $table->string('photo')->nullable();
-            $table->decimal('normal_price', 19, 2);
+            $table->decimal('price', 19, 2);
             $table->string('driver_contact')->nullable();
             $table->longText('notes')->nullable();
             $table->timestamps();

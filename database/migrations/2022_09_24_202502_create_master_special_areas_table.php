@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('master_sub_area_id')->constrained();
             $table->decimal('first_person_price', 19, 2, true);
             $table->decimal('extra_person_price', 19, 2, true);
-            $table->enum('is_active', ['yes', 'no']);
+            $table->boolean('is_active')->default(false);
             $table->longText('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
