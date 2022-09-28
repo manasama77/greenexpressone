@@ -39,6 +39,7 @@ Route::get('/banner', [BannerController::class, 'index']);
 Route::controller(BookingController::class)->group(function () {
     Route::get('/get_list_from_destination', 'get_list_from_destination');
     Route::get('/get_list_to_destination', 'get_list_to_destination');
+    Route::post('/get_schedule_shuttles', 'get_schedule_shuttles');
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/booking', 'index');
