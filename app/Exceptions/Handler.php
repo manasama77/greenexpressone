@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -41,10 +43,28 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
+    // public function register()
+    // {
+    //     $this->reportable(function (Throwable $e) {
+    //         //
+    //     });
+    // }
+
+    /**
+     * Register the exception handling callbacks for the application.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'success' => false,
+                    'data'    => null,
+                    'message' => 'Unauthenticated.'
+                ], 200);
+            }
         });
     }
 }

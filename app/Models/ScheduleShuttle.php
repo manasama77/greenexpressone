@@ -11,9 +11,10 @@ class ScheduleShuttle extends Model
 
     protected $fillable = [
         'id',
-        'from_type',
-        'from_id',
-        'to_id',
+        'from_master_area_id',
+        'from_master_sub_area_id',
+        'to_master_area_id',
+        'to_master_sub_area_id',
         'vehicle_name',
         'vehicle_number',
         'time_departure',

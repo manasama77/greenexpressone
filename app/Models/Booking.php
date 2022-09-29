@@ -18,10 +18,15 @@ class Booking extends Model
      */
     protected $fillable = [
         'id',
+        'booking_number',
         'schedule_id',
+        'from_master_area_id',
         'from_master_area_name',
+        'from_master_sub_area_id',
         'from_master_sub_area_name',
+        'to_master_area_id',
         'to_master_area_name',
+        'to_master_sub_area_id',
         'to_master_sub_area_name',
         'vehicle_name',
         'vehicle_number',

@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('booking_number');
             $table->integer('schedule_id');
+            $table->integer('from_master_area_id');
             $table->string('from_master_area_name');
+            $table->integer('from_master_sub_area_id')->nullable();
             $table->string('from_master_sub_area_name')->nullable();
+            $table->integer('to_master_area_id');
             $table->string('to_master_area_name');
+            $table->integer('to_master_sub_area_id')->nullable();
             $table->string('to_master_sub_area_name')->nullable();
             $table->string('vehicle_name');
             $table->string('vehicle_number');

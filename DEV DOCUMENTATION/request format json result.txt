@@ -1,0 +1,17 @@
+{
+    "success": true,
+    "data": {
+        "name": "adam",
+        "phone": "+6282114578976",
+        "photo": "",
+        "email": "adam.pm77@gmail.com",
+        "token": "1|JAuJ2jplhctMQ8f1j0OADXZFOY2nyZoRqnFmzkWX"
+    },
+    "message": "User register successfully."
+}
+
+{
+    "success": false,
+    "data": null,
+    "message": "Pesan Error"
+}

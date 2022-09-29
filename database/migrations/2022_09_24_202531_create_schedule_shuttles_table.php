@@ -16,9 +16,10 @@ return new class extends Migration
     {
         Schema::create('schedule_shuttles', function (Blueprint $table) {
             $table->id();
-            $table->enum('from_type', ['airport', 'district']);
-            $table->string('from_id');
-            $table->string('to_id');
+            $table->string('from_master_area_id');
+            $table->string('from_master_sub_area_id')->nullable(true);
+            $table->string('to_master_area_id');
+            $table->string('to_master_sub_area_id')->nullable(true);
             $table->string('vehicle_name');
             $table->string('vehicle_number');
             $table->time('time_departure');

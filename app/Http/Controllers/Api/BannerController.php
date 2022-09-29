@@ -14,22 +14,12 @@ class BannerController extends BaseController
     {
         $result = [];
 
-        $arr_banner = Banner::where('is_active', 'yes')->get();
+        $arr_banner = Banner::where('is_active', true)->get();
 
-        if ($arr_banner->count() > 0) {
-            foreach ($arr_banner->result() as $key) {
-                $picture = $key->picture;
-                $url = $key->url;
-                $nested = [
-                    'picture' => $picture,
-                    'url'     => $url,
-                ];
-                array_push($result, $nested);
-            }
-        } else {
-            return $this->sendError('Data empty', $result, 404);
+        if ($arr_banner->count() == 0) {
+            return $this->sendError('Data empty', $result);
         }
 
-        return $this->sendResponse($result, 'success');
+        return $this->sendResponse($arr_banner, 'success');
     }
 }

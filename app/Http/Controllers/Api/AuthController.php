@@ -16,14 +16,21 @@ class AuthController extends BaseController
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'phone'    => 'required|unique:users',
-            'password' => 'required|min:8',
+            'name'     => 'required|min:3|max:100',
+            'phone'    => 'required|min:8|max:20|unique:users',
+            'password' => 'required|min:8|max:50',
             'email'    => 'required|email:rfc,dns',
         ]);
 
-        if ($validator->stopOnFirstFailure()->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 400);
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
         }
 
         $input = $request->all();
@@ -47,8 +54,8 @@ class AuthController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'phone'    => 'required|exists:users,phone',
-                'password' => 'required|min:8',
+                'phone'    => 'required|min:8|max:20|exists:users,phone',
+                'password' => 'required|min:8|max:50',
             ],
             [
                 'exists' => ':attribute not found'
@@ -56,13 +63,20 @@ class AuthController extends BaseController
         );
 
         if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors(), 400);
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
         }
 
         $user = User::where('phone', $request->phone)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return $this->sendError('Unauthorized', null, 401);
+            return $this->sendError('Unauthorized', null);
         }
 
         $token = $user->createToken($user->phone)->plainTextToken;
@@ -81,7 +95,9 @@ class AuthController extends BaseController
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        if (!$request->user()->currentAccessToken()->delete()) {
+            return $this->sendError('Unauthorized', null);
+        }
         return $this->sendResponse(null, 'logout success');
     }
 }

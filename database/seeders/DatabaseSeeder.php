@@ -520,22 +520,23 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 23; $i += 3) {
             $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
             $data = [
-                'from_type'      => 'airport',
-                'from_id'        => 1,
-                'to_id'          => 7,
-                'vehicle_name'   => 'Avanza 1',
-                'vehicle_number' => 'B 1234 CCD',
-                'time_departure' => $dt->format("H:00:00"),
-                'is_active'      => true,
-                'photo'          => null,
-                'price'          => 25,
-                'driver_contact' => '+62123456789',
-                'notes'          => 'Lorem ipsum dolor sit amet.',
-                'total_seat'     => 20,
-                'luggage_price'  => 5,
-                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'     => null,
+                'from_master_area_id'     => 1,
+                'from_master_sub_area_id' => null,
+                'to_master_area_id'       => 2,
+                'to_master_sub_area_id'   => 7,
+                'vehicle_name'            => 'Avanza 1',
+                'vehicle_number'          => 'B 1234 CCD',
+                'time_departure'          => $dt->format("H:00:00"),
+                'is_active'               => true,
+                'photo'                   => null,
+                'price'                   => 25,
+                'driver_contact'          => '+62123456789',
+                'notes'                   => 'Lorem ipsum dolor sit amet.',
+                'total_seat'              => 20,
+                'luggage_price'           => 5,
+                'created_at'              => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'              => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'              => null,
             ];
             DB::table('schedule_shuttles')->insert($data);
         }
@@ -543,22 +544,23 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 23; $i += 3) {
             $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
             $data = [
-                'from_type'      => 'district',
-                'from_id'        => 7,
-                'to_id'          => 1,
-                'vehicle_name'   => 'Avanza 2',
-                'vehicle_number' => 'B 9876 CCD',
-                'time_departure' => $dt->format("H:00:00"),
-                'is_active'      => true,
-                'photo'          => null,
-                'price'          => 25,
-                'driver_contact' => '+62123456789',
-                'notes'          => 'Lorem ipsum dolor sit amet.',
-                'total_seat'     => 20,
-                'luggage_price'  => 5,
-                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'     => null,
+                'from_master_area_id'     => 2,
+                'from_master_sub_area_id' => 7,
+                'to_master_area_id'       => 1,
+                'to_master_sub_area_id'   => null,
+                'vehicle_name'            => 'Avanza 2',
+                'vehicle_number'          => 'B 9876 CCD',
+                'time_departure'          => $dt->format("H:00:00"),
+                'is_active'               => true,
+                'photo'                   => null,
+                'price'                   => 25,
+                'driver_contact'          => '+62123456789',
+                'notes'                   => 'Lorem ipsum dolor sit amet.',
+                'total_seat'              => 20,
+                'luggage_price'           => 5,
+                'created_at'              => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'              => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'              => null,
             ];
             DB::table('schedule_shuttles')->insert($data);
         }
@@ -590,56 +592,60 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        $charter                 = new Charter();
-        $charter->from_type      = 'airport';
-        $charter->from_id        = 1;
-        $charter->to_id          = 7;
-        $charter->vehicle_name   = 'Avanza 1';
-        $charter->vehicle_number = 'B 1234 CCD';
-        $charter->photo          = null;
-        $charter->price          = 100;
-        $charter->is_available   = true;
-        $charter->driver_contact = '+62123456789';
-        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter                          = new Charter();
+        $charter->from_master_area_id     = 1;
+        $charter->from_master_sub_area_id = null;
+        $charter->to_master_area_id       = 2;
+        $charter->to_master_sub_area_id   = 7;
+        $charter->vehicle_name            = 'Avanza 1';
+        $charter->vehicle_number          = 'B 1234 CCD';
+        $charter->photo                   = null;
+        $charter->price                   = 100;
+        $charter->is_available            = true;
+        $charter->driver_contact          = '+62123456789';
+        $charter->notes                   = 'Lorem ipsum dolor sit amet.';
         $charter->save();
 
-        $charter                 = new Charter();
-        $charter->from_type      = 'airport';
-        $charter->from_id        = 1;
-        $charter->to_id          = 8;
-        $charter->vehicle_name   = 'Avanza 2';
-        $charter->vehicle_number = 'B 5678 CCD';
-        $charter->photo          = null;
-        $charter->price          = 100;
-        $charter->is_available   = true;
-        $charter->driver_contact = '+62123456789';
-        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter                          = new Charter();
+        $charter->from_master_area_id     = 1;
+        $charter->from_master_sub_area_id = null;
+        $charter->to_master_area_id       = 2;
+        $charter->to_master_sub_area_id   = 8;
+        $charter->vehicle_name            = 'Avanza 2';
+        $charter->vehicle_number          = 'B 9876 CCD';
+        $charter->photo                   = null;
+        $charter->price                   = 100;
+        $charter->is_available            = true;
+        $charter->driver_contact          = '+62123456789';
+        $charter->notes                   = 'Lorem ipsum dolor sit amet.';
         $charter->save();
 
-        $charter                 = new Charter();
-        $charter->from_type      = 'district';
-        $charter->from_id        = 7;
-        $charter->to_id          = 1;
-        $charter->vehicle_name   = 'Avanza 1';
-        $charter->vehicle_number = 'B 1234 CCD';
-        $charter->photo          = null;
-        $charter->price          = 100;
-        $charter->is_available   = true;
-        $charter->driver_contact = '+62123456789';
-        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter                          = new Charter();
+        $charter->from_master_area_id     = 7;
+        $charter->from_master_sub_area_id = 2;
+        $charter->to_master_area_id       = 1;
+        $charter->to_master_sub_area_id   = null;
+        $charter->vehicle_name            = 'Avanza 1';
+        $charter->vehicle_number          = 'B 1234 CCD';
+        $charter->photo                   = null;
+        $charter->price                   = 100;
+        $charter->is_available            = true;
+        $charter->driver_contact          = '+62123456789';
+        $charter->notes                   = 'Lorem ipsum dolor sit amet.';
         $charter->save();
 
-        $charter                 = new Charter();
-        $charter->from_type      = 'district';
-        $charter->from_id        = 8;
-        $charter->to_id          = 1;
-        $charter->vehicle_name   = 'Avanza 1';
-        $charter->vehicle_number = 'B 5678 CCD';
-        $charter->photo          = null;
-        $charter->price          = 100;
-        $charter->is_available   = true;
-        $charter->driver_contact = '+62123456789';
-        $charter->notes          = 'Lorem ipsum dolor sit amet.';
+        $charter                          = new Charter();
+        $charter->from_master_area_id     = 8;
+        $charter->from_master_sub_area_id = 2;
+        $charter->to_master_area_id       = 1;
+        $charter->to_master_sub_area_id   = null;
+        $charter->vehicle_name            = 'Avanza 2';
+        $charter->vehicle_number          = 'B 9876 CCD';
+        $charter->photo                   = null;
+        $charter->price                   = 100;
+        $charter->is_available            = true;
+        $charter->driver_contact          = '+62123456789';
+        $charter->notes                   = 'Lorem ipsum dolor sit amet.';
         $charter->save();
     }
 }
