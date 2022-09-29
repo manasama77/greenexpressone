@@ -505,6 +505,49 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get avail charter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to_id",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "from_type",
+									"value": "airport",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/get_avail_charter",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_avail_charter"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

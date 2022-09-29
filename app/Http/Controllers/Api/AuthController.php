@@ -22,7 +22,7 @@ class AuthController extends BaseController
             'email'    => 'required|email:rfc,dns',
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->stopOnFirstFailure()->fails()) {
             return $this->sendError('Validation Error.', $validator->errors(), 400);
         }
 
@@ -51,9 +51,7 @@ class AuthController extends BaseController
                 'password' => 'required|min:8',
             ],
             [
-                'phone' => [
-                    'exists' => 'Phone not found'
-                ],
+                'exists' => ':attribute not found'
             ]
         );
 
