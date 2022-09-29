@@ -19,4 +19,10 @@ class Banner extends Model
         'url',
         'is_active',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 }

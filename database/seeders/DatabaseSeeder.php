@@ -516,14 +516,16 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        DB::table('schedule_shuttles')->insert([
-            [
+
+        for ($i = 1; $i <= 23; $i += 3) {
+            $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
+            $data = [
                 'from_type'      => 'airport',
                 'from_id'        => 1,
                 'to_id'          => 7,
                 'vehicle_name'   => 'Avanza 1',
                 'vehicle_number' => 'B 1234 CCD',
-                'time_departure' => '07:00:00',
+                'time_departure' => $dt->format("H:00:00"),
                 'is_active'      => true,
                 'photo'          => null,
                 'price'          => 25,
@@ -534,50 +536,19 @@ class DatabaseSeeder extends Seeder
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
-            ],
-            [
-                'from_type'      => 'airport',
-                'from_id'        => 1,
-                'to_id'          => 8,
-                'vehicle_name'   => 'Avanza 2',
-                'vehicle_number' => 'B 5678 CCD',
-                'time_departure' => '08:00:00',
-                'is_active'      => true,
-                'photo'          => null,
-                'price'          => 25,
-                'driver_contact' => '+62123456789',
-                'notes'          => 'Lorem ipsum dolor sit amet.',
-                'total_seat'     => 20,
-                'luggage_price'  => 5,
-                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'     => null,
-            ],
-            [
+            ];
+            DB::table('schedule_shuttles')->insert($data);
+        }
+
+        for ($i = 1; $i <= 23; $i += 3) {
+            $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
+            $data = [
                 'from_type'      => 'district',
                 'from_id'        => 7,
                 'to_id'          => 1,
-                'vehicle_name'   => 'Avanza 1',
-                'vehicle_number' => 'B 5678 CCD',
-                'time_departure' => '13:00:00',
-                'is_active'      => true,
-                'photo'          => null,
-                'price'          => 25,
-                'driver_contact' => '+62123456789',
-                'notes'          => 'Lorem ipsum dolor sit amet.',
-                'total_seat'     => 20,
-                'luggage_price'  => 5,
-                'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
-                'deleted_at'     => null,
-            ],
-            [
-                'from_type'      => 'district',
-                'from_id'        => 8,
-                'to_id'          => 1,
                 'vehicle_name'   => 'Avanza 2',
-                'vehicle_number' => 'B 1234 CCD',
-                'time_departure' => '14:00:00',
+                'vehicle_number' => 'B 9876 CCD',
+                'time_departure' => $dt->format("H:00:00"),
                 'is_active'      => true,
                 'photo'          => null,
                 'price'          => 25,
@@ -588,8 +559,9 @@ class DatabaseSeeder extends Seeder
                 'created_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at'     => Carbon::now()->format('Y-m-d H:i:s'),
                 'deleted_at'     => null,
-            ],
-        ]);
+            ];
+            DB::table('schedule_shuttles')->insert($data);
+        }
 
         DB::table('vouchers')->insert([
             [

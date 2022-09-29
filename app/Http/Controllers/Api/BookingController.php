@@ -363,8 +363,8 @@ class BookingController extends BaseController
             $request->all(),
             [
                 'from_type' => 'required|in:airport,district',
-                'from_id'  => 'required',
-                'to_id'  => 'required',
+                'from_id'   => 'required',
+                'to_id'     => 'required',
             ],
             [
                 'in' => ':attribute only accept value :values'

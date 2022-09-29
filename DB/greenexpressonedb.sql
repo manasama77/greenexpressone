@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 29/09/2022 06:36:08
+ Date: 29/09/2022 08:54:17
 */
 
 SET NAMES utf8mb4;
@@ -40,7 +40,7 @@ CREATE TABLE `admins`  (
 -- ----------------------------
 -- Records of admins
 -- ----------------------------
-INSERT INTO `admins` VALUES (1, 'Admin', 'admin', '$2y$10$vKzS39oLsMUUpwq039hpm.trDRYSTk678adbklzULw8RDS.U5GCPe', NULL, 'irAF4Derz1@gmail.com', 'super admin', NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `admins` VALUES (1, 'Admin', 'admin', '$2y$10$loeWh6Ein9yiOPo2mEHaa.fxB0l2JQNe/A8XAya4eo0rvUZ35HiFK', NULL, 'FWR2g6Q4HS@gmail.com', 'super admin', NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for banners
@@ -60,9 +60,9 @@ CREATE TABLE `banners`  (
 -- ----------------------------
 -- Records of banners
 -- ----------------------------
-INSERT INTO `banners` VALUES (1, 'http://greenexpressone.my.id/1.png', '#', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `banners` VALUES (2, 'http://greenexpressone.my.id/2.png', '#', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `banners` VALUES (3, 'http://greenexpressone.my.id/3.png', '#', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `banners` VALUES (1, 'http://greenexpressone.my.id/1.png', '#', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `banners` VALUES (2, 'http://greenexpressone.my.id/2.png', '#', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `banners` VALUES (3, 'http://greenexpressone.my.id/3.png', '#', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for bookings
@@ -136,10 +136,10 @@ CREATE TABLE `charters`  (
 -- ----------------------------
 -- Records of charters
 -- ----------------------------
-INSERT INTO `charters` VALUES (1, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `charters` VALUES (2, 'airport', '1', '8', 'Avanza 2', 'B 5678 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `charters` VALUES (3, 'district', '7', '1', 'Avanza 1', 'B 1234 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `charters` VALUES (4, 'district', '8', '1', 'Avanza 1', 'B 5678 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `charters` VALUES (1, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `charters` VALUES (2, 'airport', '1', '8', 'Avanza 2', 'B 5678 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `charters` VALUES (3, 'district', '7', '1', 'Avanza 1', 'B 1234 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `charters` VALUES (4, 'district', '8', '1', 'Avanza 1', 'B 5678 CCD', 1, NULL, 100.00, '+62123456789', 'Lorem ipsum dolor sit amet.', '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for failed_jobs
@@ -179,12 +179,12 @@ CREATE TABLE `master_areas`  (
 -- ----------------------------
 -- Records of master_areas
 -- ----------------------------
-INSERT INTO `master_areas` VALUES (1, 'Jakarta - Bandara Internasional Soekarno-Hatta', 'departure', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_areas` VALUES (2, 'Jakarta Utara', 'arrival', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_areas` VALUES (3, 'Jakarta Timur', 'arrival', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_areas` VALUES (4, 'Jakarta Selatan', 'arrival', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_areas` VALUES (5, 'Jakarta Barat', 'arrival', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_areas` VALUES (6, 'Jakarta Pusat', 'arrival', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `master_areas` VALUES (1, 'Jakarta - Bandara Internasional Soekarno-Hatta', 'departure', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_areas` VALUES (2, 'Jakarta Utara', 'arrival', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_areas` VALUES (3, 'Jakarta Timur', 'arrival', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_areas` VALUES (4, 'Jakarta Selatan', 'arrival', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_areas` VALUES (5, 'Jakarta Barat', 'arrival', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_areas` VALUES (6, 'Jakarta Pusat', 'arrival', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for master_special_areas
@@ -208,47 +208,47 @@ CREATE TABLE `master_special_areas`  (
 -- ----------------------------
 -- Records of master_special_areas
 -- ----------------------------
-INSERT INTO `master_special_areas` VALUES (1, 7, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (2, 8, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (3, 9, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (4, 10, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (5, 11, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (6, 12, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (7, 13, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (8, 14, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (9, 15, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (10, 16, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (11, 17, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (12, 18, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (13, 19, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (14, 20, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (15, 21, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (16, 22, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (17, 23, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (18, 24, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (19, 25, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (20, 26, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (21, 27, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (22, 28, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (23, 29, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (24, 30, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (25, 31, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (26, 32, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (27, 33, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (28, 34, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (29, 35, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (30, 36, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (31, 37, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (32, 38, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (33, 39, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (34, 40, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (35, 41, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (36, 42, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (37, 43, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (38, 44, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (39, 45, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (40, 46, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_special_areas` VALUES (41, 47, 10.00, 5.00, 1, NULL, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `master_special_areas` VALUES (1, 7, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (2, 8, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (3, 9, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (4, 10, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (5, 11, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (6, 12, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (7, 13, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (8, 14, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (9, 15, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (10, 16, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (11, 17, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (12, 18, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (13, 19, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (14, 20, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (15, 21, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (16, 22, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (17, 23, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (18, 24, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (19, 25, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (20, 26, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (21, 27, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (22, 28, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (23, 29, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (24, 30, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (25, 31, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (26, 32, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (27, 33, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (28, 34, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (29, 35, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (30, 36, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (31, 37, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (32, 38, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (33, 39, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (34, 40, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (35, 41, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (36, 42, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (37, 43, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (38, 44, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (39, 45, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (40, 46, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_special_areas` VALUES (41, 47, 10.00, 5.00, 1, NULL, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for master_sub_areas
@@ -270,53 +270,53 @@ CREATE TABLE `master_sub_areas`  (
 -- ----------------------------
 -- Records of master_sub_areas
 -- ----------------------------
-INSERT INTO `master_sub_areas` VALUES (1, 1, 'Terminal 1A', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (2, 1, 'Terminal 1B', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (3, 1, 'Terminal 2D', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (4, 1, 'Terminal 2E', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (5, 1, 'Terminal 2F', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (6, 1, 'Terminal 3', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (7, 2, 'Cilincing', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (8, 2, 'Kelapa Gading', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (9, 2, 'Koja', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (10, 2, 'Pademangan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (11, 2, 'Penjaringan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (12, 2, 'Tanjung Priok', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (13, 3, 'Cakung', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (14, 3, 'Cipayung', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (15, 3, 'Ciracas', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (16, 3, 'Duren Sawit', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (17, 3, 'Jatinegara', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (18, 3, 'Kramat Jati', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (19, 3, 'Makasar', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (20, 3, 'Pasar Rebo', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (21, 3, 'Pulo Gadung', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (22, 4, 'Cilandak', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (23, 4, 'Jagakarsa', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (24, 4, 'Kebayoran baru', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (25, 4, 'Kebayoran Lama', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (26, 4, 'Mampang Prapatan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (27, 4, 'Pancoran', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (28, 4, 'Pasar Minggu', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (29, 4, 'Pesanggrahan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (30, 4, 'Setiabudi', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (31, 4, 'Tebet', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (32, 5, 'Cengkareng', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (33, 5, 'Grogol Petamburan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (34, 5, 'Taman Sari', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (35, 5, 'Tambora', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (36, 5, 'Kebon Jeruk', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (37, 5, 'Kalideres', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (38, 5, 'Palmerah', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (39, 5, 'Kembangan', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (40, 6, 'Cempaka Putih', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (41, 6, 'Gambir', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (42, 6, 'Johar Baru', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (43, 6, 'Kemayoran', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (44, 6, 'Menteng', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (45, 6, 'Sawah Besar', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (46, 6, 'Senen', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `master_sub_areas` VALUES (47, 6, 'Tanah Abang', 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `master_sub_areas` VALUES (1, 1, 'Terminal 1A', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (2, 1, 'Terminal 1B', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (3, 1, 'Terminal 2D', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (4, 1, 'Terminal 2E', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (5, 1, 'Terminal 2F', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (6, 1, 'Terminal 3', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (7, 2, 'Cilincing', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (8, 2, 'Kelapa Gading', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (9, 2, 'Koja', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (10, 2, 'Pademangan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (11, 2, 'Penjaringan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (12, 2, 'Tanjung Priok', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (13, 3, 'Cakung', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (14, 3, 'Cipayung', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (15, 3, 'Ciracas', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (16, 3, 'Duren Sawit', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (17, 3, 'Jatinegara', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (18, 3, 'Kramat Jati', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (19, 3, 'Makasar', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (20, 3, 'Pasar Rebo', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (21, 3, 'Pulo Gadung', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (22, 4, 'Cilandak', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (23, 4, 'Jagakarsa', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (24, 4, 'Kebayoran baru', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (25, 4, 'Kebayoran Lama', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (26, 4, 'Mampang Prapatan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (27, 4, 'Pancoran', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (28, 4, 'Pasar Minggu', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (29, 4, 'Pesanggrahan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (30, 4, 'Setiabudi', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (31, 4, 'Tebet', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (32, 5, 'Cengkareng', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (33, 5, 'Grogol Petamburan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (34, 5, 'Taman Sari', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (35, 5, 'Tambora', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (36, 5, 'Kebon Jeruk', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (37, 5, 'Kalideres', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (38, 5, 'Palmerah', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (39, 5, 'Kembangan', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (40, 6, 'Cempaka Putih', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (41, 6, 'Gambir', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (42, 6, 'Johar Baru', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (43, 6, 'Kemayoran', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (44, 6, 'Menteng', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (45, 6, 'Sawah Besar', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (46, 6, 'Senen', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `master_sub_areas` VALUES (47, 6, 'Tanah Abang', 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for migrations
@@ -426,15 +426,27 @@ CREATE TABLE `schedule_shuttles`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of schedule_shuttles
 -- ----------------------------
-INSERT INTO `schedule_shuttles` VALUES (1, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '07:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `schedule_shuttles` VALUES (2, 'airport', '1', '8', 'Avanza 2', 'B 5678 CCD', '08:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `schedule_shuttles` VALUES (3, 'district', '7', '1', 'Avanza 1', 'B 5678 CCD', '13:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `schedule_shuttles` VALUES (4, 'district', '8', '1', 'Avanza 2', 'B 1234 CCD', '14:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `schedule_shuttles` VALUES (1, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '01:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (2, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '04:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (3, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '07:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (4, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '10:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (5, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '13:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (6, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '16:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (7, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '19:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (8, 'airport', '1', '7', 'Avanza 1', 'B 1234 CCD', '22:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (9, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '01:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (10, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '04:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (11, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '07:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (12, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '10:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (13, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '13:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (14, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '16:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (15, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '19:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `schedule_shuttles` VALUES (16, 'district', '7', '1', 'Avanza 2', 'B 9876 CCD', '22:00:00', 1, NULL, 25.00, '+62123456789', 'Lorem ipsum dolor sit amet.', 20, 5.00, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 -- ----------------------------
 -- Table structure for users
@@ -481,7 +493,7 @@ CREATE TABLE `vouchers`  (
 -- ----------------------------
 -- Records of vouchers
 -- ----------------------------
-INSERT INTO `vouchers` VALUES (1, 'Discount 10%', 'promo10%', '2022-09-01', '2022-10-31', 'percentage', 10.00, 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
-INSERT INTO `vouchers` VALUES (2, 'Media Social Promo', 'medsos', '2022-09-01', '2022-10-31', 'value', 5.00, 1, '2022-09-28 23:28:10', '2022-09-28 23:28:10', NULL);
+INSERT INTO `vouchers` VALUES (1, 'Discount 10%', 'promo10%', '2022-09-01', '2022-10-31', 'percentage', 10.00, 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
+INSERT INTO `vouchers` VALUES (2, 'Media Social Promo', 'medsos', '2022-09-01', '2022-10-31', 'value', 5.00, 1, '2022-09-29 08:53:48', '2022-09-29 08:53:48', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
