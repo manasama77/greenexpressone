@@ -238,12 +238,15 @@ class BookingController extends BaseController
             return $this->sendError($error_message, null);
         }
 
+        $user_id        = Auth::user()->id;
         $from_date      = $request->from_date;
         $to_date        = $request->to_date;
         $booking_status = $request->booking_status;
 
-        $bookings = Booking::whereRaw("booking_status = ? AND DATE(datetime_departure) >= ? AND DATE(datetime_departure) <= ?", [$booking_status, $from_date, $to_date])
-            ->get();
+        $bookings = Booking::whereRaw(
+            "user_id = ? AND booking_status = ? AND DATE(datetime_departure) >= ? AND DATE(datetime_departure) <= ?",
+            [$user_id, $booking_status, $from_date, $to_date]
+        )->get();
 
         return $this->sendResponse($bookings, 'success');
     }
