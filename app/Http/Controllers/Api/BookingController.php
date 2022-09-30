@@ -455,7 +455,7 @@ class BookingController extends BaseController
             ])->where('time_departure', '>=', Carbon::now()->format('H:i:s'))->get();
 
         if ($schedules->count() == 0) {
-            return $this->sendError('Data Empty', null);
+            return $this->sendError('Data Empty', null, 200);
         }
 
         $data = [];
