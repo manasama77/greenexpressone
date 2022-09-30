@@ -28,7 +28,7 @@ class BookingController extends BaseController
                 'schedule_type'           => 'required|in:shuttle,charter',
                 'from_type'               => 'required|in:airport,district',
                 'schedule_id'             => 'required|integer',
-                'date_departure'          => 'required|date',
+                'date_departure'          => 'required|date|after_or_equal:today|date_format:Y-m-d',
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id'       => 'required',
@@ -56,6 +56,22 @@ class BookingController extends BaseController
                 }
             }
             return $this->sendError($error_message, null);
+        }
+
+        if ($request->schedule_type == "shuttle") {
+            if ($request->qty_adult == 0) {
+                return $this->sendError("qty adult minimum 1", null);
+            }
+
+            if ($request->from_type == "airport") {
+                if (!$request->to_master_sub_area_id) {
+                    return $this->sendError("to_master_sub_area_id is required", null);
+                }
+            } else {
+                if (!$request->from_master_sub_area_id) {
+                    return $this->sendError("from_master_sub_area_id is required", null);
+                }
+            }
         }
 
         $user_id        = Auth::user()->id;
@@ -88,11 +104,8 @@ class BookingController extends BaseController
         if ($request->schedule_type == "shuttle") {
             // jika jenis pemberangkatan adalah shuttle
             $schedules = ScheduleShuttle::select([
-                'schedule_shuttles.id',
                 'from_master_area.name as from_master_area_name',
-                'from_master_sub_area.name as from_master_sub_area_name',
                 'to_master_area.name as to_master_area_name',
-                'to_master_sub_area.name as to_master_sub_area_name',
                 'schedule_shuttles.*',
             ])
                 ->where([
@@ -100,9 +113,7 @@ class BookingController extends BaseController
                     'schedule_shuttles.id'        => $request->schedule_id,
                 ])
                 ->leftJoin('master_areas as from_master_area', 'from_master_area.id', '=', 'schedule_shuttles.from_master_area_id')
-                ->leftJoin('master_sub_areas as from_master_sub_area', 'from_master_sub_area.id', '=', 'schedule_shuttles.from_master_sub_area_id')
                 ->leftJoin('master_areas as to_master_area', 'to_master_area.id', '=', 'schedule_shuttles.to_master_area_id')
-                ->leftJoin('master_sub_areas as to_master_sub_area', 'to_master_sub_area.id', '=', 'schedule_shuttles.to_master_sub_area_id')
                 ->first();
 
             if (!$schedules) {
@@ -147,65 +158,191 @@ class BookingController extends BaseController
 
             if ($voucher_id) {
                 if ($discount_type == "percentage") {
-                    (float) $promo_price = ($total_price * $discount_value) / 100;
+                    $promo_price = ($total_price * $discount_value) / 100;
                 } else {
-                    (float) $promo_price = $total_price - $discount_value;
+                    $promo_price = $total_price - $discount_value;
                 }
 
-                (float) $total_price = $total_price - $promo_price;
+                $total_price = $total_price - $promo_price;
             }
 
-            $booking_number = $this->generate_booking_number();
-
-            $booking                            = new Booking();
-            $booking->booking_number            = $booking_number;
-            $booking->schedule_id               = $request->schedule_id;
-            $booking->from_master_area_id       = $schedules->from_master_area_id;
-            $booking->from_master_area_name     = $schedules->from_master_area_name;
-            $booking->from_master_sub_area_id   = $schedules->from_master_sub_area_id;
-            $booking->from_master_sub_area_name = ($schedules->from_master_sub_area_name) ?? null;
-            $booking->to_master_area_id         = $schedules->to_master_area_id;
-            $booking->to_master_area_name       = $schedules->to_master_area_name;
-            $booking->to_master_sub_area_id     = $schedules->to_master_sub_area_id;
-            $booking->to_master_sub_area_name   = ($schedules->to_master_sub_area_name) ?? null;
-            $booking->vehicle_name              = $schedules->vehicle_name;
-            $booking->vehicle_number            = $schedules->vehicle_number;
-            $booking->datetime_departure        = $request->date_departure . " " . $schedules->time_departure;
-            $booking->schedule_type             = $request->schedule_type;
-            $booking->user_id                   = $user_id;
-            $booking->qty_adult                 = $request->qty_adult;
-            $booking->qty_baby                  = $request->qty_baby;
-            $booking->special_request           = $request->special_request;
-            $booking->flight_number             = ($request->flight_number) ?? null;
-            $booking->notes                     = ($request->notes) ?? null;
-            $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
-            $booking->luggage_price             = $luggage_price;
-            $booking->extra_price               = $extra_price;
-            $booking->voucher_id                = $voucher_id;
-            $booking->promo_price               = $promo_price;
-            $booking->base_price                = $base_price;
-            $booking->total_price               = $total_price;
-            $booking->booking_status            = 'pending';
-            $booking->payment_status            = 'waiting';
-            $booking->payment_method            = null;
-            $booking->payment_token             = null;
-            $booking->total_payment             = $total_price;
-            $booking->save();
-
-            return $this->sendResponse($booking, 'success');
+            $qty_adult = $request->qty_adult;
+            $qty_baby  = $request->qty_baby;
         } else {
             // jika jenis pemberangkatan adalah charter
-            return response()->json("charter");
+            $total_person = 1;
 
-            $schedules = Charter::where([
-                'is_available' => true,
-                'from_type'    => $request->from_type,
-                'id'           => $request->schedule_id,
-            ])->first();
+            $schedules = Charter::select([
+                'from_master_area.name as from_master_area_name',
+                'to_master_area.name as to_master_area_name',
+                'charters.*',
+            ])
+                ->where([
+                    'charters.is_available' => true,
+                    'charters.id'           => $request->schedule_id,
+                ])
+                ->leftJoin('master_areas as from_master_area', 'from_master_area.id', '=', 'charters.from_master_area_id')
+                ->leftJoin('master_areas as to_master_area', 'to_master_area.id', '=', 'charters.to_master_area_id')
+                ->first();
             if (!$schedules) {
-                return $this->sendError('Charter data not found, please try again', []);
+                return $this->sendError('Charter data not found, please try again', null);
             }
+
+            $luggage_price = 0;
+            $extra_price   = 0;
+            $base_price    = $schedules->price;
+            $total_price   = $base_price;
+
+            if ($voucher_id) {
+                if ($discount_type == "percentage") {
+                    $promo_price = ($total_price * $discount_value) / 100;
+                } else {
+                    $promo_price = $total_price - $discount_value;
+                }
+
+                $total_price = $total_price - $promo_price;
+            }
+
+            $qty_adult = 0;
+            $qty_baby  = 0;
         }
+
+        $from_master_sub_area_name = null;
+        $to_master_sub_area_name   = null;
+
+        if ($schedules->from_master_area_id != $request->from_master_area_id) {
+            return $this->sendError('from_master_area_id schedule did not match', null);
+        }
+
+        if ($schedules->to_master_area_id != $request->to_master_area_id) {
+            return $this->sendError('to_master_area_id schedule did not match', null);
+        }
+
+        if ($request->from_type == "airport") {
+            if ($request->from_master_sub_area_id) {
+                $from_sub = MasterSubArea::where('id', $request->from_master_sub_area_id)->where('master_area_id', $schedules->from_master_area_id)->first();
+                if (!$from_sub) {
+                    return $this->sendError('from sub area not found', null);
+                }
+                $from_master_sub_area_name = $from_sub->name;
+            }
+
+            if ($request->to_master_sub_area_id != $schedules->to_master_sub_area_id) {
+                return $this->sendError('to sub area schedule did not match', null);
+            }
+
+            $to_sub = MasterSubArea::where('id', $request->to_master_sub_area_id)->where('master_area_id', $schedules->to_master_area_id)->first();
+            if (!$to_sub) {
+                return $this->sendError('to sub area not found', null);
+            }
+            $to_master_sub_area_name = $to_sub->name;
+        } else {
+            if ($request->to_master_sub_area_id) {
+                $to_sub = MasterSubArea::where('id', $request->to_master_sub_area_id)->where('master_area_id', $schedules->to_master_area_id)->first();
+                if (!$to_sub) {
+                    return $this->sendError('to sub area not found', null);
+                }
+                $to_master_sub_area_name = $to_sub->name;
+            }
+
+            if ($request->from_master_sub_area_id != $schedules->from_master_sub_area_id) {
+                return $this->sendError('from sub area schedule did not match', null);
+            }
+
+            $from_sub = MasterSubArea::where('id', $request->from_master_sub_area_id)->where('master_area_id', $schedules->from_master_area_id)->first();
+            if (!$from_sub) {
+                return $this->sendError('from sub area not found', null);
+            }
+            $from_master_sub_area_name = $from_sub->name;
+        }
+
+        $booking_number = $this->generate_booking_number();
+
+        $booking                            = new Booking();
+        $booking->booking_number            = $booking_number;
+        $booking->schedule_id               = $request->schedule_id;
+        $booking->from_master_area_id       = $schedules->from_master_area_id;
+        $booking->from_master_area_name     = $schedules->from_master_area_name;
+        $booking->from_master_sub_area_id   = $request->from_master_sub_area_id;
+        $booking->from_master_sub_area_name = $from_master_sub_area_name;
+        $booking->to_master_area_id         = $schedules->to_master_area_id;
+        $booking->to_master_area_name       = $schedules->to_master_area_name;
+        $booking->to_master_sub_area_id     = $request->to_master_sub_area_id;
+        $booking->to_master_sub_area_name   = $to_master_sub_area_name;
+        $booking->vehicle_name              = $schedules->vehicle_name;
+        $booking->vehicle_number            = $schedules->vehicle_number;
+        $booking->datetime_departure        = $request->date_departure . " " . $schedules->time_departure;
+        $booking->schedule_type             = $request->schedule_type;
+        $booking->user_id                   = $user_id;
+        $booking->qty_adult                 = $qty_adult;
+        $booking->qty_baby                  = $qty_baby;
+        $booking->special_request           = $request->special_request;
+        $booking->flight_number             = ($request->flight_number) ?? null;
+        $booking->notes                     = ($request->notes) ?? null;
+        $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
+        $booking->luggage_price             = $luggage_price;
+        $booking->extra_price               = $extra_price;
+        $booking->voucher_id                = $voucher_id;
+        $booking->promo_price               = $promo_price;
+        $booking->base_price                = $base_price;
+        $booking->total_price               = $total_price;
+        $booking->booking_status            = 'pending';
+        $booking->payment_status            = 'waiting';
+        $booking->payment_method            = null;
+        $booking->payment_token             = null;
+        $booking->total_payment             = $total_price;
+        $booking->save();
+
+        $booking_id = $booking->id;
+        $res = Booking::where('id', $booking_id)->first();
+
+        $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
+        if ($request->schedule_type == "charter") {
+            $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
+
+            $charters               = Charter::find($request->schedule_id);
+            $charters->is_available = false;
+            $charters->save();
+        }
+
+        $result = [
+            'id'                        => $res->id,
+            'booking_number'            => $res->booking_number,
+            'schedule_id'               => $res->schedule_id,
+            'from_master_area_id'       => $res->from_master_area_id,
+            'from_master_area_name'     => $res->from_master_area_name,
+            'from_master_sub_area_id'   => $res->from_master_sub_area_id,
+            'from_master_sub_area_name' => $res->from_master_sub_area_name,
+            'to_master_area_id'         => $res->to_master_area_id,
+            'to_master_area_name'       => $res->to_master_area_name,
+            'to_master_sub_area_id'     => $res->to_master_sub_area_id,
+            'to_master_sub_area_name'   => $res->to_master_sub_area_name,
+            'vehicle_name'              => $res->vehicle_name,
+            'vehicle_number'            => $res->vehicle_number,
+            'datetime_departure'        => $datetime_departure,
+            'schedule_type'             => $res->schedule_type,
+            'user_id'                   => $res->user_id,
+            'qty_adult'                 => (int) $res->qty_adult,
+            'qty_baby'                  => (int) $res->qty_baby,
+            'special_request'           => $res->special_request,
+            'flight_number'             => $res->flight_number,
+            'notes'                     => $res->notes,
+            'luggage_qty'               => (int) $res->luggage_qty,
+            'luggage_price'             => (float) $res->luggage_price,
+            'extra_price'               => (float) $res->extra_price,
+            'voucher_id'                => $res->voucher_id,
+            'promo_price'               => (float) $res->promo_price,
+            'base_price'                => (float) $res->base_price,
+            'total_price'               => (float) $res->total_price,
+            'booking_status'            => $res->booking_status,
+            'payment_status'            => $res->payment_status,
+            'payment_method'            => $res->payment_method,
+            'payment_token'             => $res->payment_token,
+            'total_payment'             => (float) $res->total_payment,
+            'created_at'                => Carbon::createFromFormat('Y-m-d H:i:s', $res->created_at)->format('Y-m-d H:i:s'),
+        ];
+
+        return $this->sendResponse($result, 'success');
     }
 
     public function show(Request $request)
