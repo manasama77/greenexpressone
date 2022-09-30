@@ -213,6 +213,70 @@ class BookingController extends BaseController
         }
     }
 
+    public function show(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'from_date'      => 'required|date',
+                'to_date'        => 'required|date',
+                'booking_status' => 'required|in:pending,active,expired',
+            ],
+            [
+                'in' => ':attribute only accept value :values'
+            ]
+        );
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $from_date      = $request->from_date;
+        $to_date        = $request->to_date;
+        $booking_status = $request->booking_status;
+
+        $bookings = Booking::whereRaw("booking_status = ? AND DATE(datetime_departure) >= ? AND DATE(datetime_departure) <= ?", [$booking_status, $from_date, $to_date])
+            ->get();
+
+        return $this->sendResponse($bookings, 'success');
+    }
+
+    public function check_booking_number(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'booking_number' => 'required|exists:bookings,booking_number',
+            ],
+            [
+                'exists' => ':attribute ' . $request->booking_number . ' not found'
+            ]
+        );
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $booking_number = $request->booking_number;
+
+        $bookings = Booking::where('booking_number', $booking_number)->get();
+        return $this->sendResponse($bookings, 'success');
+    }
+
     public function get_list_from_departure(Request $request)
     {
         $validator = Validator::make(

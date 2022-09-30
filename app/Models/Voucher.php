@@ -23,4 +23,10 @@ class Voucher extends Model
         'discount_value',
         'is_active',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 }

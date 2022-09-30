@@ -8,12 +8,12 @@ List API DONE
 - get_list_to_destination
 - get_schedule_shuttles
 - get_avail_charter
-
-List API ON PROGRESS
 - Check voucher code
 - Get History
+- check code booking
+
+List API ON PROGRESS
 - Update profile
 - Update password
-- check code booking
 
 https://stripe.com/ untuk payment gateway

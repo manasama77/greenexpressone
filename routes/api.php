@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\BookingController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,5 +45,17 @@ Route::controller(BookingController::class)->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/booking', 'index');
+        Route::post('/booking_history', 'show');
+    });
+});
+
+Route::controller(VoucherController::class)->group(function () {
+    Route::get('/check_voucher', 'show');
+});
+
+Route::controller(ProfileController::class)->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/profile', 'index');
+        Route::post('/profile', 'update');
     });
 });
