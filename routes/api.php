@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\BannerController;
-use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\BannerController;
+use App\Http\Controllers\API\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
