@@ -38,6 +38,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/banner', [BannerController::class, 'index']);
 
 Route::controller(BookingController::class)->group(function () {
+    Route::get('/check_booking_number', 'check_booking_number');
     Route::get('/get_list_from_departure', 'get_list_from_departure');
     Route::get('/get_list_to_destination', 'get_list_to_destination');
     Route::post('/get_schedule_shuttles', 'get_schedule_shuttles');
