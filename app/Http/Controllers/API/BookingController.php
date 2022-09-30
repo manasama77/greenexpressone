@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\User;
 use App\Models\Booking;
 use App\Models\Voucher;
 use App\Models\MasterArea;
-use App\Models\LuggagePrice;
 use Illuminate\Http\Request;
 use App\Models\MasterSubArea;
 use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
 use App\Models\BookingSequence;
 use App\Models\Charter;
 use App\Models\ScheduleShuttle;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +33,6 @@ class BookingController extends BaseController
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id'       => 'required',
                 'to_master_sub_area_id'   => 'nullable',
-                'user_id'                 => 'required|exists:users,id',
                 'qty_adult'               => 'required|integer|min_digits:0',
                 'qty_baby'                => 'required|integer|min_digits:0',
                 'special_request'         => 'required|boolean',
