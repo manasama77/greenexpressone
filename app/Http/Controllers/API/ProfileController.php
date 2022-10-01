@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
+use Hash;
 
 class ProfileController extends BaseController
 {
@@ -58,5 +59,36 @@ class ProfileController extends BaseController
         ];
 
         return $this->sendResponse($data, "success");
+    }
+
+    public function update_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password'     => 'required|min:8|max:50',
+            'new_password'     => 'required|min:8|max:50',
+            'confirm_password' => 'required|min:8|max:50|same:new_password',
+        ]);
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return $this->sendError("Current password does not match", null);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return $this->sendResponse(null, "Update password success");
     }
 }

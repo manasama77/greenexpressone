@@ -13,8 +13,9 @@ List API DONE
 - check code booking
 - Get profile
 - Update profile
+- Update password
 
 List API ON PROGRESS
-- Update password
+-
 
 https://stripe.com/ untuk payment gateway

@@ -54,5 +54,6 @@ Route::controller(ProfileController::class)->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/profile', 'index');
         Route::post('/profile', 'update');
+        Route::post('/update_password', 'update_password');
     });
 });
