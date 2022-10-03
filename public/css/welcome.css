@@ -470,7 +470,6 @@ ul {
   top: 660px;
   right: 0px;
   z-index: -1;
-  opacity: 0.4;
   width: 80vw;
 }
 .booking .section-title {
@@ -511,13 +510,16 @@ ul {
 }
 .profile .section-title h2 {
   font-size: 20px;
-  text-align: left;
+  text-align: center;
 }
 .profile .section-title h1 {
   font-size: 30px;
-  text-align: left;
+  text-align: center;
   text-transform: capitalize;
   color: var(--black-900);
+}
+.profile .card {
+  min-height: 500px;
 }
 
 .profile-img img {
@@ -976,6 +978,10 @@ ul {
 
 .navbar-collapse {
   padding-top: 15px;
+}
+
+.card-semi {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 /*# sourceMappingURL=welcome.css.map */

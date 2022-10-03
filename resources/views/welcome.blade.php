@@ -79,15 +79,12 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div id="slick_slider" class="shadow">
-                        <div>
-                            <img src="img/slider/1.jpg" alt="" loading="eager">
-                        </div>
-                        <div>
-                            <img src="img/slider/2.jpg" alt="" loading="eager">
-                        </div>
-                        <div>
-                            <img src="img/slider/3.jpg" alt="" loading="eager">
-                        </div>
+                        @foreach ($banners as $banner)
+                            <div>
+                                <img src="{{ $banner->picture }}" alt="" loading="eager"
+                                    onClick="window.location.replace('{{ $banner->url }}')">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -167,12 +164,47 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-8">
-                    <div class="section-title">
-                        <h1>Shuttle bus to and from the main America airports</h1>
-                    </div>
-                    <div class="booking-text">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est totam impedit reprehenderit
-                            unde nobis deserunt quasi commodi quam quibusdam maxime.</p>
+                    <div class="card card-semi shadow">
+                        <div class="card-body">
+                            <div class="section-title">
+                                <h1>Shuttle bus to and from the main America airports</h1>
+                            </div>
+                            <div class="booking-text">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium mollitia eum
+                                    ducimus
+                                    accusamus, nisi repellat distinctio iusto deleniti, saepe, nobis ex reprehenderit?
+                                    Pariatur
+                                    cupiditate consequatur unde exercitationem, sit a adipisci molestias labore,
+                                    officiis
+                                    repudiandae esse voluptate eveniet magni laborum vel. Labore magni modi sit fugiat
+                                    neque!
+                                    Quo eligendi corporis in, repudiandae molestias dignissimos eum recusandae officiis,
+                                    atque
+                                    incidunt hic? Optio possimus ut laudantium accusamus reprehenderit dolorem mollitia
+                                    sed
+                                    aliquam explicabo corrupti? Quisquam nisi vitae, quod quibusdam libero quas quidem
+                                    molestiae. Aspernatur ad fuga itaque. Amet enim recusandae blanditiis aliquid
+                                    tenetur natus
+                                    fugiat, distinctio quae! Sit sapiente a corrupti praesentium ea in ipsam cupiditate
+                                    dolor
+                                    atque, at saepe soluta reiciendis vel qui eligendi dignissimos repudiandae nemo
+                                    ipsa, modi,
+                                    exercitationem ullam quasi? Architecto similique, quasi, tempore placeat, laudantium
+                                    minus
+                                    sapiente vel laborum tempora fuga eligendi alias velit qui maxime molestiae labore
+                                    omnis
+                                    quia! Alias corporis pariatur quae minima? Iste, ex tempore nulla perferendis nisi
+                                    explicabo
+                                    incidunt illo aliquam accusantium unde dolorem possimus harum est ipsam tenetur
+                                    corporis
+                                    neque, magnam laudantium obcaecati atque suscipit. Ea obcaecati cumque deserunt
+                                    alias
+                                    officiis, esse ipsum quibusdam accusantium suscipit nihil saepe aliquam eaque maxime
+                                    veniam
+                                    magni minus soluta ullam aliquid? Iure aperiam, itaque dolores consectetur qui
+                                    saepe.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -183,19 +215,43 @@
     <!-- profile section start -->
     <section id="profile" class="profile section-padding" data-scroll-index="2">
         <div class="container">
+            <div class="section-title">
+                <h1>Our Services</h1>
+            </div>
             <div class="row">
-                @for ($i = 0; $i < 6; $i++)
-                    <div class="col-md-4 mb-3">
-                        <div class="card card-shadow">
-                            <div class="card-body">
-                                <h5 class="card-title">Ergonomis</h5>
-                                <p>Selain memilih nomor kursi sesuai privasi, bentuk kursi yang ergonomis, sandaran
-                                    tangan
-                                    dan ruang kaki yang luas, Anda dapat mengatur sendiri sandaran kursi.</p>
-                            </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card card-shadow">
+                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/Picture2.png"
+                            class="card-img-top" alt="">
+                        <div class="card-body">
+                            <p class="card-text">Whether you’re a business traveller, a couple, a big group of friends
+                                or family
+                                travelling with lots of luggage, by reserving your airport shuttle or private car you
+                                can have the reassurance and security that you’ll be picked up on time and taken
+                                straight to your home, hotel or attraction</p>
                         </div>
                     </div>
-                @endfor
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card card-shadow">
+                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/green.jpg"
+                            class="card-img-top" alt="">
+                        <div class="card-body">
+                            <p class="card-text">We drive safely and follow all rules of the road to ensure you have a
+                                safe and
+                                pleasurable trip</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card card-shadow">
+                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/istockphoto-1206670377-640x640-1-300x169.jpg"
+                            class="card-img-top" alt="">
+                        <div class="card-body">
+                            <p class="card-text">Passenger Pick Up And Drop Off Services</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

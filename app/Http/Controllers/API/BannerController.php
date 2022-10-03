@@ -20,6 +20,15 @@ class BannerController extends BaseController
             return $this->sendError('Data empty', $result);
         }
 
-        return $this->sendResponse($arr_banner, 'success');
+        $data = [];
+        foreach ($arr_banner as $key) {
+            $nested['id']      = $key->id;
+            $nested['picture'] = env('APP_URL') . $key->picture;
+            $nested['url']     = $key->url;
+
+            array_push($data, $nested);
+        }
+
+        return $this->sendResponse($data, 'success');
     }
 }

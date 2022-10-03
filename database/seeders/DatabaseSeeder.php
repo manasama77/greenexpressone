@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('banners')->insert([
             [
-                'picture'    => env('APP_URL') . '1.png',
+                'picture'    => 'img/slider/1.jpg',
                 'url'        => '#',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
                 'deleted_at' => null,
             ],
             [
-                'picture'    => env('APP_URL') . '2.png',
+                'picture'    => 'img/slider/2.jpg',
                 'url'        => '#',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
                 'deleted_at' => null,
             ],
             [
-                'picture'    => env('APP_URL') . '3.png',
+                'picture'    => 'img/slider/3.jpg',
                 'url'        => '#',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
