@@ -1,11 +1,14 @@
 // global variable
-const site_url = $('#site_url').val();
+let site_url = $('#base').val();
+let from_type = 'airport'
+let from_area_id = null
 
 $(window).on("load", function () {
     $('.preloader').fadeOut("slow");
 });
 
 $(document).ready(function () {
+
     // navbar shrink
     $(window).on("scroll", function () {
         if ($(this).scrollTop() > 90) {
@@ -15,103 +18,10 @@ $(document).ready(function () {
         }
     });
 
-    $('#from_id').on('click', e => {
-        $('#modal_from').modal('show')
-    })
-
-
-    // video popup
-    const videoSrc = $('#player-1').attr('src');
-
-    $('.video-play-btn, .video-popup-close').on('click', function (e) {
-        if ($('.video-popup').hasClass("open")) {
-            $('.video-popup').removeClass("open");
-            $('#player-1').attr('src', "");
-        } else {
-            $('.video-popup').addClass("open");
-
-            if ($('#player-1').attr('src') == "") {
-                $('#player-1').attr('src', videoSrc);
-            }
-        }
-    });
-
-    // owl carousel
-    $('.team-carousel').owlCarousel({
-        loop: false,
-        margin: 300,
-        padding: 300,
-        autoplay: false,
-        autoplayHoverPause: true,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 2,
-            }
-        }
-    });
-
-    $('.timeline-carousel').owlCarousel({
-        loop: false,
-        margin: 0,
-        autoplay: false,
-        autoplayHoverPause: true,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 3,
-            }
-        }
-    });
-
-    $('.timeline-carousel').owlCarousel({
-        loop: false,
-        margin: 0,
-        autoplay: false,
-        autoplayHoverPause: true,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 4,
-            }
-        }
-    });
-
-    $('.as-seen-carousel').owlCarousel({
-        loop: true,
-        margin: 20,
-        autoplay: true,
-        autoplayHoverPause: true,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 2,
-            },
-            1000: {
-                items: 4,
-            }
-        }
+    // Slick
+    $('#slick_slider').slick({
+        infinite: true,
+        dots: true,
     });
 
     // page scrollit
@@ -137,64 +47,78 @@ $(document).ready(function () {
         }
 
         updateIcon();
-
     });
 
-    $('#form_guestbook').on('submit', function (e) {
-        e.preventDefault();
+    initData()
 
-        $.ajax({
-            url: site_url + 'guestbook/add',
-            method: 'post',
-            dataType: 'json',
-            data: $('#form_guestbook').serialize(),
-            beforeSend: function () {
-                $.blockUI();
-            }
-        }).always(function () {
-            $.unblockUI();
-        }).fail(function (e) {
-            console.log(e);
-        }).done(function (e) {
-            if (e.code == 500) {
-                //error
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'warning',
-                    title: `Proses submit Guestbook gagal, silahkan coba lagi`,
-                    showConfirmButton: false,
-                    timer: 3000,
-                });
-            } else if (e.code == 200) {
-                // success
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `Proses submit Guestbook berhasil, team kita akan membaca pesan dari kamu.`,
-                    showConfirmButton: false,
-                    timer: 3000,
-                }).then(function () {
-                    window.location.reload();
-                });
-            } else {
-                //error unknown
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: `Unknown request`,
-                    showConfirmButton: false,
-                    timer: 3000,
-                }).then(function () {
-                    window.location.reload();
-                });
-            }
-        });
-    });
+    $('input[name=from_type]').on('change', e => {
+        from_type = $('input[name=from_type]:checked').val();
+        getFromToList()
+    })
 
+    $('#from_area_id').on('change', e => {
+        from_area_id = parseInt($('#from_area_id').val())
+    })
 });
 
-function showModalTokenDetail() {
-    $('#poincoin_token_detail').modal('show');
+function initData() {
+    from_type = $('input[name=from_type]:checked').val();
+    getFromList()
+    getToList()
+}
+
+function getFromList() {
+    $.ajax({
+        url: `${site_url}api/get_list_from_departure`,
+        method: 'get',
+        dataType: 'json',
+        data: {
+            from_type
+        },
+        beforeSend: () => {
+            $('#from_area_id').html('<option value=""></option>').prop('disabled', true)
+        }
+    }).fail(e => {
+        console.log(e.responseText)
+    }).done(e => {
+        console.log(e)
+        let data = e.data
+        let htmlnya = '<option value=""></option>';
+
+        data.forEach(x => {
+            let id = x.id
+            let name = x.name
+            htmlnya += `<option value="${id}">${name}</option>`
+        })
+        $('#from_area_id').html(htmlnya).prop('disabled', false)
+    })
+}
+
+function getToList() {
+    $.ajax({
+        url: `${site_url}api/get_list_to_destination`,
+        method: 'get',
+        dataType: 'json',
+        data: {
+            from_type
+        },
+        beforeSend: () => {
+            $('#to_area_id').html('<option value=""></option>').prop('disabled', true)
+        }
+    }).fail(e => {
+        console.log(e.responseText)
+    }).done(e => {
+        console.log(e)
+        let data = e.data
+        let htmlnya = '<option value=""></option>';
+
+        data.forEach(x => {
+            let id = x.id
+            let name = x.name
+            htmlnya += `<option value="${id}">${name}</option>`
+        })
+        $('#to_area_id').html(htmlnya).prop('disabled', false)
+    })
 }
 
 function toggleTheme() {

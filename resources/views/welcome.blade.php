@@ -78,14 +78,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div id="slick_slider" class="shadow">
-                        @foreach ($banners as $banner)
-                            <div>
-                                <img src="{{ $banner->picture }}" alt="" loading="eager"
-                                    onClick="window.location.replace('{{ $banner->url }}')">
-                            </div>
-                        @endforeach
-                    </div>
+                    <x-banner :banners=$banners></x-banner>
                 </div>
             </div>
         </div>
@@ -102,15 +95,47 @@
                         <div class="card-body">
                             <h5 class="text-center font-weight-bold mb-4">Airport Shuttle & Charter Booking</h5>
                             <form id="form_booking">
-                                <div class="form-group">
-                                    <label for="from_id" class="form-text font-weight-bold">From/Departure</label>
-                                    <input type="text" class="form-control" id="from_id" name="from_id"
-                                        placeholder="Choose From/Departure" required readonly />
+                                <div class="form-group text-center">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="from_type" id="airport"
+                                            value="airport" checked>
+                                        <label class="form-check-label" for="airport">Airport</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="from_type" id="district"
+                                            value="district">
+                                        <label class="form-check-label" for="district">District</label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="to_id" class="form-text font-weight-bold">To/Arrival</label>
-                                    <input type="text" class="form-control" id="to_id" name="to_id"
-                                        placeholder="Choose To/Arrival" required readonly />
+                                    <label for="from_area_id" class="form-text font-weight-bold">From/Departure</label>
+                                    <select class="form-control select2" id="from_area_id" name="from_area_id"
+                                        data-placeholder="From/Departure" required disabled>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="from_sub_area_id" class="form-text font-weight-bold">Sub
+                                        From/Departure</label>
+                                    <select class="form-control select2" id="from_sub_area_id"
+                                        name="from_sub_area_id" disabled>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="to_area_id" class="form-text font-weight-bold">To/Arrival</label>
+                                    <select class="form-control select2" id="to_area_id" name="to_area_id"
+                                        data-placeholder="To/Arrival" required disabled>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="to_sub_area_id" class="form-text font-weight-bold">Sub
+                                        To/Arrival</label>
+                                    <select class="form-control select2" id="to_sub_area_id" name="to_sub_area_id"
+                                        disabled>
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                                 <div class="form-group text-center">
                                     <div class="form-check form-check-inline">
@@ -131,11 +156,6 @@
                                         name="date_departure" placeholder="Outward Journey" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="date_return" class="form-text font-weight-bold">Return journey</label>
-                                    <input type="date" class="form-control" id="date_return" name="date_return"
-                                        placeholder="Return journey" required readonly />
-                                </div>
-                                <div class="form-group">
                                     <label for="passanger_adult" class="form-text font-weight-bold">Adult
                                         Passangers</label>
                                     <div class="input-group">
@@ -152,8 +172,8 @@
                                         Passangers</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control" id="passanger_baby"
-                                            name="passanger_baby" placeholder="Adult Passangers" min="1"
-                                            max="9" value="1" required />
+                                            name="passanger_baby" placeholder="Adult Passangers" min="0"
+                                            max="9" value="0" required />
                                         <div class="input-group-append bg-light">
                                             <span class="input-group-text">Baby
                                         </div>
@@ -506,28 +526,7 @@
     </div>
     <!-- video popup end -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal_from" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">From/Departure</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <input type="hidden" id="site_url" value="#" />
+    <input type="text" id="base" value="{{ env('APP_URL') }}" />
 
     <!-- jquery js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -558,22 +557,3 @@
 </body>
 
 </html>
-<script>
-    $(document).ready(() => {
-        // const dari = document.querySelector('#dari')
-        // const dariChoice = new Choices(dari)
-
-        // const ke = document.querySelector('#ke')
-        // const keChoice = new Choices(ke)
-
-        // const penumpang = document.querySelector('#penumpang')
-        // const penumpangChoice = new Choices(penumpang)
-
-        $("#tanggal_berangkat").flatpickr();
-
-        $('#slick_slider').slick({
-            infinite: true,
-            dots: true,
-        });
-    })
-</script>

@@ -984,4 +984,8 @@ ul {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+section#booking .form-control[readonly] {
+  background-color: white;
+}
+
 /*# sourceMappingURL=welcome.css.map */
