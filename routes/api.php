@@ -40,10 +40,11 @@ Route::controller(BookingController::class)->group(function () {
     Route::get('/get_list_to_destination', 'get_list_to_destination');
     Route::post('/get_schedule_shuttles', 'get_schedule_shuttles');
     Route::post('/get_avail_charter', 'get_avail_charter');
+    Route::post('/booking_history', 'show');
+    Route::post('/booking', 'index');
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/booking', 'index');
-        Route::post('/booking_history', 'show');
+        //
     });
 });
 

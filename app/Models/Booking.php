@@ -6,10 +6,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
-    use HasFactory, HasApiTokens, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +33,10 @@ class Booking extends Model
         'vehicle_number',
         'datetime_departure',
         'schedule_type',
-        'user_id',
+        'customer_phone',
+        'customer_name',
+        'passanger_phone',
+        'passanger_name',
         'qty_adult',
         'qty_baby',
         'special_request',

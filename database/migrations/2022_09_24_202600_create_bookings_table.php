@@ -29,7 +29,11 @@ return new class extends Migration
             $table->string('vehicle_number');
             $table->dateTime('datetime_departure');
             $table->enum('schedule_type', ['shuttle', 'charter']);
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('customer_phone');
+            $table->string('customer_name');
+            $table->string('passanger_phone');
+            $table->string('passanger_name');
             $table->integer('qty_adult');
             $table->integer('qty_baby');
             $table->boolean('special_request')->default(false);

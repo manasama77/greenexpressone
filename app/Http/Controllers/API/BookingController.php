@@ -40,6 +40,10 @@ class BookingController extends BaseController
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
+                'customer_phone'          => 'required|min:3|max:50',
+                'customer_name'           => 'required|min:3|max:255',
+                'passanger_phone'         => 'required|min:3|max:50',
+                'passanger_name'          => 'required|min:3|max:255',
             ],
             [
                 'exists' => ':attribute not found',
@@ -74,12 +78,15 @@ class BookingController extends BaseController
             }
         }
 
-        $user_id        = Auth::user()->id;
-        $total_person   = $request->qty_adult + $request->qty_baby;
-        $promo_price    = 0;
-        $voucher_id     = null;
-        $discount_type  = null;
-        $discount_value = 0;
+        $customer_phone  = $request->customer_phone;
+        $customer_name   = $request->customer_name;
+        $passanger_phone = $request->passanger_phone;
+        $passanger_name  = $request->passanger_name;
+        $total_person    = $request->qty_adult + $request->qty_baby;
+        $promo_price     = 0;
+        $voucher_id      = null;
+        $discount_type   = null;
+        $discount_value  = 0;
 
         // voucher & promo price
         if ($request->voucher_code) {
@@ -273,7 +280,10 @@ class BookingController extends BaseController
         $booking->vehicle_number            = $schedules->vehicle_number;
         $booking->datetime_departure        = $request->date_departure . " " . $schedules->time_departure;
         $booking->schedule_type             = $request->schedule_type;
-        $booking->user_id                   = $user_id;
+        $booking->customer_phone            = $customer_phone;
+        $booking->customer_name             = $customer_name;
+        $booking->passanger_phone           = $passanger_phone;
+        $booking->passanger_name            = $passanger_name;
         $booking->qty_adult                 = $qty_adult;
         $booking->qty_baby                  = $qty_baby;
         $booking->special_request           = $request->special_request;
@@ -294,7 +304,7 @@ class BookingController extends BaseController
         $booking->save();
 
         $booking_id = $booking->id;
-        $res = Booking::where('id', $booking_id)->first();
+        $res        = Booking::where('id', $booking_id)->first();
 
         $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
         if ($request->schedule_type == "charter") {
@@ -321,7 +331,10 @@ class BookingController extends BaseController
             'vehicle_number'            => $res->vehicle_number,
             'datetime_departure'        => $datetime_departure,
             'schedule_type'             => $res->schedule_type,
-            'user_id'                   => $res->user_id,
+            'customer_phone'            => $res->customer_phone,
+            'customer_name'             => $res->customer_name,
+            'passanger_phone'           => $res->passanger_phone,
+            'passanger_name'            => $res->passanger_name,
             'qty_adult'                 => (int) $res->qty_adult,
             'qty_baby'                  => (int) $res->qty_baby,
             'special_request'           => $res->special_request,
@@ -350,9 +363,9 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'from_date'      => 'required|date',
-                'to_date'        => 'required|date',
-                'booking_status' => 'required|in:pending,active,expired',
+                'from_date' => 'required|date',
+                'to_date'   => 'required|date',
+                'phone'     => 'required',
             ],
             [
                 'in' => ':attribute only accept value :values'
@@ -370,15 +383,17 @@ class BookingController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $user_id        = Auth::user()->id;
-        $from_date      = $request->from_date;
-        $to_date        = $request->to_date;
-        $booking_status = $request->booking_status;
+        $phone     = $request->phone;
+        $from_date = $request->from_date;
+        $to_date   = $request->to_date;
 
-        $bookings = Booking::whereRaw(
-            "user_id = ? AND booking_status = ? AND DATE(datetime_departure) >= ? AND DATE(datetime_departure) <= ?",
-            [$user_id, $booking_status, $from_date, $to_date]
-        )->get();
+        $bookings = Booking::whereDate('datetime_departure', '>=', $from_date)->whereDate('datetime_departure', '<=', $to_date)->where(function ($query) use ($phone) {
+            $query->where('customer_phone', '=', $phone)->orWhere('passanger_phone', '=', $phone);
+        })->get();
+
+        if ($bookings->count() == 0) {
+            return $this->sendError("Data not found", null);
+        }
 
         return $this->sendResponse($bookings, 'success');
     }
