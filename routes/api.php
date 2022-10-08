@@ -32,6 +32,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::get('/banner', [BannerController::class, 'index']);
+Route::get('/banner/{id}', [BannerController::class, 'show']);
 
 Route::controller(BookingController::class)->group(function () {
     Route::get('/check_booking_number', 'check_booking_number');
