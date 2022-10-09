@@ -33,14 +33,10 @@
                                             @foreach ($master_areas as $master_area)
                                                 <tr>
                                                     <td>
-                                                        <form
-                                                            action="{{ route('admin.master_area.edit', $master_area->id) }}"
-                                                            method="GET">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-info btn-sm">
-                                                                <i class="fas fa-pencil fa-fw"></i>
-                                                            </button>
-                                                        </form>
+                                                        <a href="{{ route('admin.master_area.edit', $master_area->id) }}"
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-pencil fa-fw"></i>
+                                                        </a>
                                                         <button type="button" class="btn btn-danger btn-sm"
                                                             id="delete_{{ $master_area->id }}"
                                                             onclick="deleteData('{{ $master_area->id }}')">

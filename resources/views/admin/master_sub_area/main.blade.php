@@ -24,31 +24,28 @@
                                         <thead>
                                             <tr>
                                                 <th><i class="fas fa-cogs"></i></th>
-                                                <th>Picture</th>
-                                                <th>URL</th>
+                                                <th>Master Area</th>
+                                                <th>Master Sub Area</th>
                                                 <th>Active</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($banners as $banner)
+                                            @foreach ($master_sub_areas as $master_sub_area)
                                                 <tr>
                                                     <td>
-                                                        <a href="{{ route('admin.banner.edit', $banner->id) }}"
+                                                        <a href="{{ route('admin.master_sub_area.edit', $master_sub_area->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fas fa-pencil fa-fw"></i>
                                                         </a>
                                                         <button type="button" class="btn btn-danger btn-sm"
-                                                            id="delete_{{ $banner->id }}"
-                                                            onclick="deleteData('{{ $banner->id }}')">
+                                                            id="delete_{{ $master_sub_area->id }}"
+                                                            onclick="deleteData('{{ $master_sub_area->id }}')">
                                                             <i class="fas fa-trash fa-fw"></i>
                                                         </button>
                                                     </td>
-                                                    <td>
-                                                        <img src="{{ URL::to($banner->picture) }}" alt=""
-                                                            class="img-thumbnail" />
-                                                    </td>
-                                                    <td>{{ $banner->url }}</td>
-                                                    <td>{{ $banner->is_active ? 'Active' : 'Inactive' }}</td>
+                                                    <td>{{ $master_sub_area->master_area->name }}</td>
+                                                    <td>{{ $master_sub_area->name }}</td>
+                                                    <td>{{ $master_sub_area->is_active ? 'Active' : 'Inactive' }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -77,17 +74,24 @@
                                         </div>
                                     </div>
                                 @endif
-                                <form id="form_add" method="POST" action="/admin/banner" enctype="multipart/form-data">
+                                <form id="form_add" method="POST" action="/admin/master_sub_area">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="picture">Picture</label>
-                                        <input type="file" class="form-control" id="picture" name="picture"
-                                            accept="image/*" required />
+                                        <label for="master_area_id">Master Area</label>
+                                        <select class="form-control" id="master_area_id" name="master_area_id" required>
+                                            <option value=""></option>
+                                            @foreach ($master_areas as $master_area)
+                                                <option value="{{ $master_area->id }}">
+                                                    ({{ ucfirst($master_area->area_type) }})
+                                                    - {{ $master_area->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="url">URL</label>
-                                        <input type="text" class="form-control" id="url" name="url"
-                                            value="{{ old('url') }}" required />
+                                        <label for="name">Master Sub Area Name</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            minlength="3" maxlength="100" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="is_active">Active</label>
@@ -140,7 +144,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `/admin/banner/delete/${id}`,
+                        url: `/admin/master_sub_area/delete/${id}`,
                         type: 'DELETE',
                         dataType: 'json',
                         data: {

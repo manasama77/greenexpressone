@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\MasterAreaController;
+use App\Http\Controllers\MasterSubAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,10 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/master_area/edit/{id}', [MasterAreaController::class, 'edit'])->name('admin.master_area.edit')->middleware('admin');
     Route::put('/master_area/update/{id}', [MasterAreaController::class, 'update'])->name('admin.master_area.update')->middleware('admin');
     Route::delete('/master_area/delete/{id}', [MasterAreaController::class, 'delete'])->name('admin.master_area.delete')->middleware('admin');
+
+    Route::get('/master_sub_area', [MasterSubAreaController::class, 'index'])->name('admin.master_sub_area')->middleware('admin');
+    Route::post('/master_sub_area', [MasterSubAreaController::class, 'store'])->name('admin.master_sub_area.store')->middleware('admin');
+    Route::get('/master_sub_area/edit/{id}', [MasterSubAreaController::class, 'edit'])->name('admin.master_sub_area.edit')->middleware('admin');
+    Route::put('/master_sub_area/update/{id}', [MasterSubAreaController::class, 'update'])->name('admin.master_sub_area.update')->middleware('admin');
+    Route::delete('/master_sub_area/delete/{id}', [MasterSubAreaController::class, 'delete'])->name('admin.master_sub_area.delete')->middleware('admin');
 });
