@@ -35,6 +35,12 @@
                     <i data-feather="image"></i><span class="menu-title text-truncate" data-i18n="banner">Banner</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/master_area">
+                    <i data-feather="map"></i><span class="menu-title text-truncate" data-i18n="master area">Master
+                        Area</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
