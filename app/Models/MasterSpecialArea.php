@@ -22,4 +22,9 @@ class MasterSpecialArea extends Model
         'is_active',
         'notes',
     ];
+
+    public function master_sub_area()
+    {
+        return $this->belongsTo(MasterSubArea::class);
+    }
 }

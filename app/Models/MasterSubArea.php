@@ -32,4 +32,9 @@ class MasterSubArea extends Model
     {
         return $this->belongsTo(MasterArea::class);
     }
+
+    public function master_special_area()
+    {
+        return $this->hasMany(MasterSpecialArea::class);
+    }
 }
