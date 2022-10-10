@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\MasterAreaController;
 use App\Http\Controllers\MasterSpecialAreaController;
 use App\Http\Controllers\MasterSubAreaController;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,7 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/master_special_area/edit/{id}', [MasterSpecialAreaController::class, 'edit'])->name('admin.master_special_area.edit')->middleware('admin');
     Route::put('/master_special_area/update/{id}', [MasterSpecialAreaController::class, 'update'])->name('admin.master_special_area.update')->middleware('admin');
     Route::delete('/master_special_area/delete/{id}', [MasterSpecialAreaController::class, 'delete'])->name('admin.master_special_area.delete')->middleware('admin');
+
+    Route::get('/pages', [PagesController::class, 'index'])->name('admin.pages')->middleware('admin');
+    Route::put('/pages/update/{id}', [PagesController::class, 'update'])->name('admin.pages.update')->middleware('admin');
 });

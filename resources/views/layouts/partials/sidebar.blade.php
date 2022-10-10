@@ -56,6 +56,12 @@
                         Area</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/pages">
+                    <i data-feather="file-text"></i><span class="menu-title text-truncate"
+                        data-i18n="master Special">Pages</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

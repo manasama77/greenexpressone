@@ -9,6 +9,8 @@ class Page extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'page_title',
