@@ -36,32 +36,52 @@
                                     </div>
                                 @endif
                                 <form id="form_add" method="POST"
-                                    action="{{ route('admin.master_area.update', $master_area->id) }}">
+                                    action="{{ route('admin.voucher.update', $voucher->id) }}">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group mt-2">
-                                        <label for="name">Master Area Name</label>
+                                    <div class="form-group">
+                                        <label for="name">Voucher Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                            minlength="3" maxlength="100" value="{{ old('name') ?? $master_area->name }}"
+                                            value="{{ old('name') ?? $voucher->name }}" minlength="3" maxlength="100"
                                             required />
                                     </div>
                                     <div class="form-group">
-                                        <label for="area_type">Area Type</label>
-                                        <select class="form-control" id="area_type" name="area_type" required>
-                                            <option value="departure"
-                                                {{ $master_area->area_type == 'departure' ? 'selected' : null }}>
-                                                Departure</option>
-                                            <option value="arrival"
-                                                {{ $master_area->area_type == 'arrival' ? 'selected' : null }}>
-                                                Arrival</option>
+                                        <label for="code">Voucher Code</label>
+                                        <input type="text" class="form-control" id="code" name="code"
+                                            value="{{ old('code') ?? $voucher->code }}" minlength="3" maxlength="100"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date_start">Date Start</label>
+                                        <input type="date" class="form-control" id="date_start" name="date_start"
+                                            value="{{ old('date_start') ?? $voucher->date_start }}" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date_expired">Date Expired</label>
+                                        <input type="date" class="form-control" id="date_expired" name="date_expired"
+                                            value="{{ old('date_expired') ?? $voucher->date_expired }}" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discount_type">Discount Type</label>
+                                        <select class="form-control" id="discount_type" name="discount_type" required>
+                                            <option {{ $voucher->discount_type == 'percentage' ? 'selected' : null }}
+                                                value="percentage">Percentage</option>
+                                            <option {{ $voucher->discount_type == 'value' ? 'selected' : null }}
+                                                value="value">Value</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discount_value">Discount Value</label>
+                                        <input type="number" class="form-control" id="discount_value" name="discount_value"
+                                            value="{{ old('discount_value') ?? $voucher->discount_value }}" min="0.01"
+                                            max="9999.99" step="0.01" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="is_active">Active</label>
                                         <select class="form-control" id="is_active" name="is_active" required>
-                                            <option value="1" {{ $master_area->is_active == '1' ? 'selected' : null }}>
+                                            <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="1">
                                                 Active</option>
-                                            <option value="0" {{ $master_area->is_active == '0' ? 'selected' : null }}>
+                                            <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="0">
                                                 Inactive</option>
                                         </select>
                                     </div>
@@ -69,7 +89,7 @@
                                         <button type="submit" class="btn btn-primary btn-block">
                                             <i class="fas fa-save fa-fw"></i> Save
                                         </button>
-                                        <a href="{{ route('admin.master_area') }}" class="btn btn-secondary btn-block">
+                                        <a href="{{ route('admin.voucher') }}" class="btn btn-secondary btn-block">
                                             <i class="fas fa-backward fa-fw"></i> Back
                                         </a>
                                     </div>

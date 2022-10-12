@@ -9,6 +9,7 @@ use App\Http\Controllers\MasterAreaController;
 use App\Http\Controllers\MasterSpecialAreaController;
 use App\Http\Controllers\MasterSubAreaController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,10 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
 
     Route::get('/pages', [PagesController::class, 'index'])->name('admin.pages')->middleware('admin');
     Route::put('/pages/update/{id}', [PagesController::class, 'update'])->name('admin.pages.update')->middleware('admin');
+
+    Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher')->middleware('admin');
+    Route::post('/voucher', [VoucherController::class, 'store'])->name('admin.voucher.store')->middleware('admin');
+    Route::get('/voucher/edit/{id}', [VoucherController::class, 'edit'])->name('admin.voucher.edit')->middleware('admin');
+    Route::put('/voucher/update/{id}', [VoucherController::class, 'update'])->name('admin.voucher.update')->middleware('admin');
+    Route::delete('/voucher/delete/{id}', [VoucherController::class, 'delete'])->name('admin.voucher.delete')->middleware('admin');
 });

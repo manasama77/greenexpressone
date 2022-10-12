@@ -55,7 +55,7 @@
                                         <label for="name">Master Sub Area Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             minlength="3" maxlength="100"
-                                            value="{{ old('url') ?? $master_sub_area->name }}" required />
+                                            value="{{ old('name') ?? $master_sub_area->name }}" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="is_active">Active</label>

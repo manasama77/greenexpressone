@@ -62,6 +62,12 @@
                         data-i18n="master Special">Pages</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/voucher">
+                    <i data-feather="percent"></i><span class="menu-title text-truncate"
+                        data-i18n="master Special">Voucher</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

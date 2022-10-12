@@ -20,7 +20,7 @@ class VoucherController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'voucher_code'           => 'required|exists:vouchers,code',
+                'voucher_code' => 'required|exists:vouchers,code',
             ],
             [
                 'exists' => ':attribute not found',
