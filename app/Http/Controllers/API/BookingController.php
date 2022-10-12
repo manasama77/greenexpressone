@@ -807,4 +807,43 @@ class BookingController extends BaseController
 
         return $result;
     }
+
+    public function get_special_area(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'master_sub_area_id' => 'required',
+            ],
+        );
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $master_sub_areas = MasterSubArea::where('id', $request->master_sub_area_id)->where('is_active', true)->first();
+        if (!$master_sub_areas) {
+            return $this->sendError('Master Sub Area Not Found', null);
+        }
+
+        $master_special_areas = MasterSpecialArea::where('master_sub_area_id', $request->master_sub_area_id)->where('is_active', true)->first();
+        if (!$master_special_areas) {
+            return $this->sendError('Master Special Area Not Found', null);
+        }
+
+        $data = [
+            'id'                 => $master_special_areas->id,
+            'first_person_price' => $master_special_areas->first_person_price,
+            'extra_person_price' => $master_special_areas->extra_person_price,
+        ];
+
+        return $this->sendResponse($data, 'success');
+    }
 }

@@ -38,6 +38,7 @@ Route::controller(BookingController::class)->group(function () {
     Route::get('/check_booking_number', 'check_booking_number');
     Route::get('/get_list_from_departure', 'get_list_from_departure');
     Route::get('/get_list_to_destination', 'get_list_to_destination');
+    Route::get('/get_special_area', 'get_special_area');
     Route::post('/get_schedule_shuttles', 'get_schedule_shuttles');
     Route::post('/get_avail_charter', 'get_avail_charter');
     Route::post('/booking_history', 'show');
