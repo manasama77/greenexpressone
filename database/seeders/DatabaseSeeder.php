@@ -593,6 +593,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $charter                          = new Charter();
+        $charter->from_type               = 'airport';
         $charter->from_master_area_id     = 1;
         $charter->from_master_sub_area_id = null;
         $charter->to_master_area_id       = 2;
@@ -607,6 +608,7 @@ class DatabaseSeeder extends Seeder
         $charter->save();
 
         $charter                          = new Charter();
+        $charter->from_type               = 'airport';
         $charter->from_master_area_id     = 1;
         $charter->from_master_sub_area_id = null;
         $charter->to_master_area_id       = 2;
@@ -621,8 +623,9 @@ class DatabaseSeeder extends Seeder
         $charter->save();
 
         $charter                          = new Charter();
-        $charter->from_master_area_id     = 7;
-        $charter->from_master_sub_area_id = 2;
+        $charter->from_type               = 'district';
+        $charter->from_master_area_id     = 2;
+        $charter->from_master_sub_area_id = 7;
         $charter->to_master_area_id       = 1;
         $charter->to_master_sub_area_id   = null;
         $charter->vehicle_name            = 'Avanza 1';
@@ -635,8 +638,9 @@ class DatabaseSeeder extends Seeder
         $charter->save();
 
         $charter                          = new Charter();
-        $charter->from_master_area_id     = 8;
-        $charter->from_master_sub_area_id = 2;
+        $charter->from_type               = 'district';
+        $charter->from_master_area_id     = 2;
+        $charter->from_master_sub_area_id = 8;
         $charter->to_master_area_id       = 1;
         $charter->to_master_sub_area_id   = null;
         $charter->vehicle_name            = 'Avanza 2';

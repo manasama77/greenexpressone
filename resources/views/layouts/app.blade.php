@@ -30,6 +30,7 @@
         href="{{ $base_url }}app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css"
         href="{{ $base_url }}app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -105,6 +106,10 @@
     <script src="{{ $base_url }}app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
     <script src="{{ $base_url }}app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
     <script src="{{ $base_url }}app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"
+        integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->

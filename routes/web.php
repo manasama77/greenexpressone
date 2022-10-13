@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\CharterController;
 use App\Http\Controllers\MasterAreaController;
 use App\Http\Controllers\MasterSpecialAreaController;
 use App\Http\Controllers\MasterSubAreaController;
@@ -63,4 +64,11 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/voucher/edit/{id}', [VoucherController::class, 'edit'])->name('admin.voucher.edit')->middleware('admin');
     Route::put('/voucher/update/{id}', [VoucherController::class, 'update'])->name('admin.voucher.update')->middleware('admin');
     Route::delete('/voucher/delete/{id}', [VoucherController::class, 'delete'])->name('admin.voucher.delete')->middleware('admin');
+
+    Route::get('/charter', [CharterController::class, 'index'])->name('admin.charter')->middleware('admin');
+    Route::get('/charter/add', [CharterController::class, 'add'])->name('admin.charter.add')->middleware('admin');
+    Route::post('/charter', [CharterController::class, 'store'])->name('admin.charter.store')->middleware('admin');
+    Route::get('/charter/edit/{id}', [CharterController::class, 'edit'])->name('admin.charter.edit')->middleware('admin');
+    Route::put('/charter/update/{id}', [CharterController::class, 'update'])->name('admin.charter.update')->middleware('admin');
+    Route::delete('/charter/delete/{id}', [CharterController::class, 'delete'])->name('admin.charter.delete')->middleware('admin');
 });

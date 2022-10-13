@@ -68,6 +68,12 @@
                         data-i18n="master Special">Voucher</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/charter">
+                    <i class="fas fa-bus"></i><span class="menu-title text-truncate"
+                        data-i18n="master Special">Charters</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
