@@ -846,4 +846,50 @@ class BookingController extends BaseController
 
         return $this->sendResponse($data, 'success');
     }
+
+    public function get_list_sub_area(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'master_area_id' => 'required|exists:master_sub_areas,master_area_id',
+            ],
+        );
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $master_area_id = $request->master_area_id;
+
+        $master_sub_areas = MasterSubArea::where([
+            'master_area_id' => $master_area_id,
+            'is_active'      => true,
+        ])->orderBy('name', 'asc')->get();
+
+        if ($master_sub_areas->count() == 0) {
+            return $this->sendError('Data Empty', null);
+        }
+
+        $data = [];
+        foreach ($master_sub_areas as $key_area) {
+            $id_area   = $key_area->id;
+            $name_area = $key_area->name;
+
+            $nested = [
+                'id'       => $id_area,
+                'name'     => $name_area,
+            ];
+            array_push($data, $nested);
+        }
+
+        return $this->sendResponse($data, 'success');
+    }
 }

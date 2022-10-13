@@ -15,27 +15,32 @@
             </div>
             <div class="content-body">
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 offset-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul class="pb-0">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                @endif
-                                <form id="form_add" method="POST" action="/admin/charter">
-                                    @csrf
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="pb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <form id="form_add" method="POST" action="/admin/charter">
+                    @csrf
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">From Type</label>
                                         <select class="form-control" id="from_type" name="from_type" required>
@@ -75,6 +80,12 @@
                                             <option value=""></option>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
                                     <div class="form-group">
                                         <label for="vehicle_name">Vehicle Name</label>
                                         <input type="text" class="form-control" id="vehicle_name" name="vehicle_name"
@@ -111,20 +122,23 @@
                                             <option value="0">Not Available</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-save fa-fw"></i> Save
-                                        </button>
-                                        <a href="/admin/charter" class="btn btn-secondary btn-block">
-                                            <i class="fas fa-backward fa-fw"></i> Back to list
-                                        </a>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-save fa-fw"></i> Save
+                                </button>
+                                <a href="/admin/charter" class="btn btn-secondary btn-block">
+                                    <i class="fas fa-backward fa-fw"></i> Back to list
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -134,26 +148,48 @@
     <script>
         $(document).ready(() => {
             $('#from_master_area_id').select2({
-                allowclear: true
+                allowClear: true
             })
 
             $('#from_master_sub_area_id').select2({
-                allowclear: true
+                allowClear: true
             })
 
             $('#to_master_area_id').select2({
-                allowclear: true
+                allowClear: true
             })
 
             $('#to_master_sub_area_id').select2({
-                allowclear: true
+                allowClear: true
             })
 
             $('#from_type').on('change', e => {
                 e.preventDefault();
                 if ($('#from_type').val()) {
                     getFromList()
-                    getToList()
+                } else {
+                    $('#from_master_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#to_master_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                }
+            })
+
+            $('#from_master_area_id').on('change', e => {
+                if ($('#from_type').val() == "district" && $('#from_master_area_id').val()) {
+                    let master_area_id = $('#from_master_area_id').val()
+                    getSubArea(master_area_id, '#from_master_sub_area_id')
+                } else {
+                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                }
+            })
+
+            $('#to_master_area_id').on('change', e => {
+                if ($('#from_type').val() == "airport" && $('#to_master_area_id').val()) {
+                    let master_area_id = $('#to_master_area_id').val()
+                    getSubArea(master_area_id, '#to_master_sub_area_id')
+                } else {
+                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
                 }
             })
         })
@@ -168,6 +204,7 @@
                 },
                 beforeSend: () => {
                     $('#from_master_area_id').html('<option value=""></option>').prop('disabled', true)
+                    $('#from_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
                 }
             }).fail(e => {
                 console.log(e.responseText)
@@ -179,9 +216,12 @@
                 data.forEach(x => {
                     let id = x.id
                     let name = x.name
+                    let sub_area = x.sub_area
                     htmlnya += `<option value="${id}">${name}</option>`
                 })
                 $('#from_master_area_id').html(htmlnya).prop('disabled', false)
+
+                getToList()
             })
         }
 
@@ -195,6 +235,7 @@
                 },
                 beforeSend: () => {
                     $('#to_master_area_id').html('<option value=""></option>').prop('disabled', true)
+                    $('#to_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
                 }
             }).fail(e => {
                 console.log(e.responseText)
@@ -209,6 +250,33 @@
                     htmlnya += `<option value="${id}">${name}</option>`
                 })
                 $('#to_master_area_id').html(htmlnya).prop('disabled', false)
+            })
+        }
+
+        function getSubArea(master_area_id, selector) {
+            $.ajax({
+                url: `{{ $base_url }}api/get_list_sub_area`,
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    master_area_id
+                },
+                beforeSend: () => {
+                    $(`${selector}`).html('<option value=""></option>').prop('disabled', true)
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                let data = e.data
+                let htmlnya = '<option value=""></option>';
+
+                data.forEach(x => {
+                    let id = x.id
+                    let name = x.name
+                    htmlnya += `<option value="${id}">${name}</option>`
+                })
+                $(`${selector}`).html(htmlnya).prop('disabled', false)
             })
         }
     </script>
