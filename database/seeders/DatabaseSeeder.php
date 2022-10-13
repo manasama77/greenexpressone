@@ -600,7 +600,7 @@ class DatabaseSeeder extends Seeder
         $charter->to_master_sub_area_id   = 7;
         $charter->vehicle_name            = 'Avanza 1';
         $charter->vehicle_number          = 'B 1234 CCD';
-        $charter->photo                   = null;
+        $charter->photo                   = 'img/vehicle/default.png';
         $charter->price                   = 100;
         $charter->is_available            = true;
         $charter->driver_contact          = '+62123456789';
@@ -615,7 +615,7 @@ class DatabaseSeeder extends Seeder
         $charter->to_master_sub_area_id   = 8;
         $charter->vehicle_name            = 'Avanza 2';
         $charter->vehicle_number          = 'B 9876 CCD';
-        $charter->photo                   = null;
+        $charter->photo                   = 'img/vehicle/default.png';
         $charter->price                   = 100;
         $charter->is_available            = true;
         $charter->driver_contact          = '+62123456789';
@@ -630,7 +630,7 @@ class DatabaseSeeder extends Seeder
         $charter->to_master_sub_area_id   = null;
         $charter->vehicle_name            = 'Avanza 1';
         $charter->vehicle_number          = 'B 1234 CCD';
-        $charter->photo                   = null;
+        $charter->photo                   = 'img/vehicle/default.png';
         $charter->price                   = 100;
         $charter->is_available            = true;
         $charter->driver_contact          = '+62123456789';
@@ -645,7 +645,7 @@ class DatabaseSeeder extends Seeder
         $charter->to_master_sub_area_id   = null;
         $charter->vehicle_name            = 'Avanza 2';
         $charter->vehicle_number          = 'B 9876 CCD';
-        $charter->photo                   = null;
+        $charter->photo                   = 'img/vehicle/default.png';
         $charter->price                   = 100;
         $charter->is_available            = true;
         $charter->driver_contact          = '+62123456789';

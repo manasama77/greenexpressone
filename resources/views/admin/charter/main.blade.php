@@ -52,12 +52,12 @@
                                                             <i class="fas fa-trash fa-fw"></i>
                                                         </button>
                                                     </td>
+                                                    <td><img src="{{ $charter['photo'] }}" alt=""></td>
                                                     <td>{{ $charter['from_type'] }}</td>
                                                     <td>{{ $charter['from_area'] }}</td>
                                                     <td>{{ $charter['to_area'] }}</td>
                                                     <td>{{ $charter['vehicle_name'] }}</td>
                                                     <td>{{ $charter['vehicle_number'] }}</td>
-                                                    <td><img src="{{ $charter['photo'] }}" alt=""></td>
                                                     <td>{{ number_format($charter['price'], 2) }}</td>
                                                     <td>{{ $charter['driver_contact'] }}</td>
                                                     <td>{{ nl2br($charter['notes']) }}</td>

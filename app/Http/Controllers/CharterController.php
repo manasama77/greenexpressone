@@ -109,19 +109,30 @@ class CharterController extends Controller
                 ->withInput();
         }
 
-
         $validated = $validator->validated();
-        dd($validated);
 
-        $exec                 = new Charter();
-        $exec->name           = $request->name;
-        $exec->code           = $request->code;
-        $exec->date_start     = $request->date_start;
-        $exec->date_expired   = $request->date_expired;
-        $exec->discount_type  = $request->discount_type;
-        $exec->discount_value = $request->discount_value;
-        $exec->is_active      = $request->is_active;
+        $photo = $request->file('photo');
+        $filePath = 'img/vehicle/default.png';
+        if ($photo) {
+            $fileName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('img/vehicle/'), $fileName);
+            $filePath = 'img/vehicle/' . $fileName;
+        }
+
+        $exec                          = new Charter();
+        $exec->from_type               = $request->from_type;
+        $exec->from_master_area_id     = $request->from_master_area_id;
+        $exec->from_master_sub_area_id = ($request->from_master_sub_area_id) ?? null;
+        $exec->to_master_area_id       = $request->to_master_area_id;
+        $exec->to_master_sub_area_id   = ($request->to_master_sub_area_id) ?? null;
+        $exec->vehicle_name            = $request->vehicle_name;
+        $exec->vehicle_number          = $request->vehicle_number;
+        $exec->is_available            = $request->is_available;
+        $exec->photo                   = $filePath;
+        $exec->price                   = $request->price;
+        $exec->driver_contact          = $request->driver_contact;
+        $exec->notes                   = $request->notes;
         $exec->save();
-        return redirect()->route('admin.voucher')->with('success', 'Create successfully.');
+        return redirect()->route('admin.charter')->with('success', 'Create successfully.');
     }
 }

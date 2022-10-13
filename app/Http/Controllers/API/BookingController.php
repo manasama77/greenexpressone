@@ -739,7 +739,30 @@ class BookingController extends BaseController
             return $this->sendError('Data Empty', null);
         }
 
-        return $this->sendResponse($schedules, 'success');
+        $data = [];
+        foreach ($schedules as $key) {
+            $nested['id']                        = $key->id;
+            $nested['from_type']                 = $key->from_type;
+            $nested['from_master_area_id']       = $key->from_master_area_id;
+            $nested['from_master_area_name']     = ($key->from_master_area_id) ? MasterArea::where('id', $key->from_master_area_id)->first()->name : null;
+            $nested['from_master_sub_area_id']   = $key->from_master_sub_area_id;
+            $nested['from_master_sub_area_name'] = ($key->from_master_sub_area_id) ? MasterSubArea::where('id', $key->from_master_sub_area_id)->first()->name : null;
+            $nested['to_master_area_id']         = $key->to_master_area_id;
+            $nested['to_master_area_name']       = ($key->to_master_area_id) ? MasterArea::where('id', $key->to_master_area_id)->first()->name : null;
+            $nested['to_master_sub_area_id']     = $key->to_master_sub_area_id;
+            $nested['to_master_sub_area_name']   = ($key->to_master_sub_area_id) ? MasterSubArea::where('id', $key->to_master_sub_area_id)->first()->name : null;
+            $nested['vehicle_name']              = $key->vehicle_name;
+            $nested['vehicle_number']            = $key->vehicle_number;
+            $nested['is_available']              = $key->is_available;
+            $nested['photo']                     = env('APP_URL') . $key->photo;
+            $nested['price']                     = $key->price;
+            $nested['driver_contact']            = $key->driver_contact;
+            $nested['notes']                     = $key->notes;
+
+            array_push($data, $nested);
+        }
+
+        return $this->sendResponse($data, 'success');
     }
 
     private function generate_booking_number()

@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <form id="form_add" method="POST" action="/admin/charter">
+                <form id="form_add" method="POST" action="/admin/charter" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
@@ -108,8 +108,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="driver_contact">Driver Contact</label>
-                                        <input type="text" class="form-control" id="driver_contact" name="driver_contact"
-                                            value="{{ old('driver_contact') }}" minlength="3" />
+                                        <input type="text" class="form-control" id="driver_contact"
+                                            name="driver_contact" value="{{ old('driver_contact') }}" minlength="3" />
                                     </div>
                                     <div class="form-group">
                                         <label for="notes">Notes</label>
