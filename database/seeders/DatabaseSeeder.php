@@ -520,6 +520,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 23; $i += 3) {
             $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
             $data = [
+                'from_type'               => 'airport',
                 'from_master_area_id'     => 1,
                 'from_master_sub_area_id' => null,
                 'to_master_area_id'       => 2,
@@ -528,7 +529,7 @@ class DatabaseSeeder extends Seeder
                 'vehicle_number'          => 'B 1234 CCD',
                 'time_departure'          => $dt->format("H:00:00"),
                 'is_active'               => true,
-                'photo'                   => null,
+                'photo'                   => 'img/vehicle/default.png',
                 'price'                   => 25,
                 'driver_contact'          => '+62123456789',
                 'notes'                   => 'Lorem ipsum dolor sit amet.',
@@ -544,6 +545,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 23; $i += 3) {
             $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
             $data = [
+                'from_type'               => 'district',
                 'from_master_area_id'     => 2,
                 'from_master_sub_area_id' => 7,
                 'to_master_area_id'       => 1,
@@ -552,7 +554,7 @@ class DatabaseSeeder extends Seeder
                 'vehicle_number'          => 'B 9876 CCD',
                 'time_departure'          => $dt->format("H:00:00"),
                 'is_active'               => true,
-                'photo'                   => null,
+                'photo'                   => 'img/vehicle/default.png',
                 'price'                   => 25,
                 'driver_contact'          => '+62123456789',
                 'notes'                   => 'Lorem ipsum dolor sit amet.',

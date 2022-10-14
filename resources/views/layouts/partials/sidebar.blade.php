@@ -74,6 +74,12 @@
                         data-i18n="master Special">Charters</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/shuttle">
+                    <i class="fas fa-truck-plane"></i><span class="menu-title text-truncate"
+                        data-i18n="master Special">Shuttle</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

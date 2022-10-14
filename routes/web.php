@@ -10,6 +10,7 @@ use App\Http\Controllers\MasterAreaController;
 use App\Http\Controllers\MasterSpecialAreaController;
 use App\Http\Controllers\MasterSubAreaController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ShuttleController;
 use App\Http\Controllers\VoucherController;
 
 /*
@@ -71,4 +72,11 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/charter/edit/{id}', [CharterController::class, 'edit'])->name('admin.charter.edit')->middleware('admin');
     Route::put('/charter/update/{id}', [CharterController::class, 'update'])->name('admin.charter.update')->middleware('admin');
     Route::delete('/charter/delete/{id}', [CharterController::class, 'delete'])->name('admin.charter.delete')->middleware('admin');
+
+    Route::get('/shuttle', [ShuttleController::class, 'index'])->name('admin.shuttle')->middleware('admin');
+    Route::get('/shuttle/add', [ShuttleController::class, 'add'])->name('admin.shuttle.add')->middleware('admin');
+    Route::post('/shuttle', [ShuttleController::class, 'store'])->name('admin.shuttle.store')->middleware('admin');
+    Route::get('/shuttle/edit/{id}', [ShuttleController::class, 'edit'])->name('admin.shuttle.edit')->middleware('admin');
+    Route::put('/shuttle/update/{id}', [ShuttleController::class, 'update'])->name('admin.shuttle.update')->middleware('admin');
+    Route::delete('/shuttle/delete/{id}', [ShuttleController::class, 'delete'])->name('admin.shuttle.delete')->middleware('admin');
 });

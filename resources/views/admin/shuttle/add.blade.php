@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <form id="form_add" method="POST" action="/admin/charter" enctype="multipart/form-data">
+                <form id="form_add" method="POST" action="/admin/shuttle" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
@@ -44,7 +44,7 @@
                                     <div class="form-group">
                                         <label for="name">From Type</label>
                                         <select class="form-control" id="from_type" name="from_type" required>
-                                            <option value=""></option>
+                                            <option value="" selected></option>
                                             <option value="airport">Airport</option>
                                             <option value="district">District</option>
                                         </select>
@@ -97,9 +97,26 @@
                                             value="{{ old('vehicle_number') }}" minlength="3" required />
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Price</label>
+                                        <label for="time_departure">Time Departure</label>
+                                        <input type="time" class="form-control" id="time_departure" name="time_departure"
+                                            value="{{ old('time_departure') }}" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="luggage_price">Luggage Price</label>
+                                        <input type="number" class="form-control" id="luggage_price" name="luggage_price"
+                                            value="{{ old('luggage_price') }}" min="0" max="9999.99" step="0.01"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Rent Price</label>
                                         <input type="number" class="form-control" id="price" name="price"
                                             value="{{ old('price') }}" min="0.01" max="9999.99" step="0.01"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="total_seat">Total Seat</label>
+                                        <input type="number" class="form-control" id="total_seat" name="total_seat"
+                                            value="{{ old('total_seat') }}" min="1" max="100" step="1"
                                             required />
                                     </div>
                                     <div class="form-group">
@@ -117,10 +134,10 @@
                                         <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="is_available">Available</label>
-                                        <select class="form-control" id="is_available" name="is_available" required>
-                                            <option value="1">Available</option>
-                                            <option value="0">Not Available</option>
+                                        <label for="is_active">Active</label>
+                                        <select class="form-control" id="is_active" name="is_active" required>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
                                         </select>
                                     </div>
                                 </div>
@@ -133,7 +150,7 @@
                                 <button type="submit" class="btn btn-primary btn-block">
                                     <i class="fas fa-save fa-fw"></i> Save
                                 </button>
-                                <a href="/admin/charter" class="btn btn-secondary btn-block">
+                                <a href="/admin/shuttle" class="btn btn-secondary btn-block">
                                     <i class="fas fa-backward fa-fw"></i> Back to list
                                 </a>
                             </div>

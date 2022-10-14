@@ -637,6 +637,7 @@ class BookingController extends BaseController
 
         $schedules = ScheduleShuttle::select([
             'schedule_shuttles.id',
+            'schedule_shuttles.from_type',
             'from_master_area.name as from_master_area_name',
             'from_master_sub_area.name as from_master_sub_area_name',
             'to_master_area.name as to_master_area_name',
@@ -683,6 +684,7 @@ class BookingController extends BaseController
             }
 
             $nested['id']                        = $key->id;
+            $nested['from_type']                 = $key->from_type;
             $nested['from_master_area_name']     = $key->from_master_area_name;
             $nested['from_master_sub_area_name'] = $key->from_master_sub_area_name;
             $nested['to_master_area_name']       = $key->to_master_area_name;
