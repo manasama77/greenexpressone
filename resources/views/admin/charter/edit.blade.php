@@ -15,89 +15,134 @@
             </div>
             <div class="content-body">
                 <div class="row">
-                    <div class="col-sm-12 col-md-4 offset-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title">Edit Data</h1>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul class="pb-0">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                @if ($message = Session::get('success'))
-                                    <div class="alert alert-success">
-                                        <div class="alert-body">
-                                            {{ $message }}
-                                        </div>
-                                    </div>
-                                @endif
-                                <form id="form_add" method="POST"
-                                    action="{{ route('admin.voucher.update', $voucher->id) }}">
-                                    @csrf
-                                    @method('PUT')
+                    <div class="col-12">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="pb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <div class="alert-body">
+                                    {{ $message }}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <form id="form_add" method="POST" action="{{ url('/admin/charter/update', $charters->id) }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Voucher Name</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            value="{{ old('name') ?? $voucher->name }}" minlength="3" maxlength="100"
-                                            required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="code">Voucher Code</label>
-                                        <input type="text" class="form-control" id="code" name="code"
-                                            value="{{ old('code') ?? $voucher->code }}" minlength="3" maxlength="100"
-                                            required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date_start">Date Start</label>
-                                        <input type="date" class="form-control" id="date_start" name="date_start"
-                                            value="{{ old('date_start') ?? $voucher->date_start }}" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date_expired">Date Expired</label>
-                                        <input type="date" class="form-control" id="date_expired" name="date_expired"
-                                            value="{{ old('date_expired') ?? $voucher->date_expired }}" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="discount_type">Discount Type</label>
-                                        <select class="form-control" id="discount_type" name="discount_type" required>
-                                            <option {{ $voucher->discount_type == 'percentage' ? 'selected' : null }}
-                                                value="percentage">Percentage</option>
-                                            <option {{ $voucher->discount_type == 'value' ? 'selected' : null }}
-                                                value="value">Value</option>
+                                        <label for="name">From Type</label>
+                                        <select class="form-control" id="from_type" name="from_type" required>
+                                            <option value=""></option>
+                                            <option value="airport">Airport</option>
+                                            <option value="district">District</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="discount_value">Discount Value</label>
-                                        <input type="number" class="form-control" id="discount_value" name="discount_value"
-                                            value="{{ old('discount_value') ?? $voucher->discount_value }}" min="0.01"
-                                            max="9999.99" step="0.01" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="is_active">Active</label>
-                                        <select class="form-control" id="is_active" name="is_active" required>
-                                            <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="1">
-                                                Active</option>
-                                            <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="0">
-                                                Inactive</option>
+                                        <label for="from_master_area_id">From Master Area</label>
+                                        <select class="form-control select2" id="from_master_area_id"
+                                            name="from_master_area_id" data-placeholder="Select From Master Area" required
+                                            disabled>
+                                            <option value=""></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-save fa-fw"></i> Save
-                                        </button>
-                                        <a href="{{ route('admin.voucher') }}" class="btn btn-secondary btn-block">
-                                            <i class="fas fa-backward fa-fw"></i> Back
-                                        </a>
+                                        <label for="from_master_sub_area_id">From Master Sub Area</label>
+                                        <select class="form-control select2" id="from_master_sub_area_id"
+                                            name="from_master_sub_area_id" data-placeholder="Select From Master Sub Area"
+                                            required disabled>
+                                            <option value=""></option>
+                                        </select>
                                     </div>
-                                </form>
+                                    <div class="form-group">
+                                        <label for="to_master_area_id">To Master Area</label>
+                                        <select class="form-control select2" id="to_master_area_id" name="to_master_area_id"
+                                            data-placeholder="Select To Master Area" required disabled>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="to_master_sub_area_id">To Master Sub Area</label>
+                                        <select class="form-control select2" id="to_master_sub_area_id"
+                                            name="to_master_sub_area_id" data-placeholder="Select To Master Sub Area"
+                                            required disabled>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="vehicle_name">Vehicle Name</label>
+                                        <input type="text" class="form-control" id="vehicle_name" name="vehicle_name"
+                                            value="{{ $charters->vehicle_name }}" minlength="3" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicle_number">Vehicle Number</label>
+                                        <input type="text" class="form-control" id="vehicle_number" name="vehicle_number"
+                                            value="{{ $charters->vehicle_name }}" minlength="3" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Price</label>
+                                        <input type="number" class="form-control" id="price" name="price"
+                                            value="{{ $charters->price }}" min="0.01" max="9999.99" step="0.01"
+                                            required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="photo">Photo</label>
+                                        <input type="file" class="form-control" id="photo" name="photo"
+                                            accept="image/*" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="driver_contact">Driver Contact</label>
+                                        <input type="text" class="form-control" id="driver_contact"
+                                            name="driver_contact" value="{{ $charters->driver_contact }}"
+                                            minlength="3" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="notes">Notes</label>
+                                        <textarea class="form-control" id="notes" name="notes">{{ $charters->notes }}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="is_available">Available</label>
+                                        <select class="form-control" id="is_available" name="is_available" required>
+                                            <option value="1">Available</option>
+                                            <option value="0">Not Available</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fas fa-save fa-fw"></i> Save
+                                </button>
+                                <a href="/admin/charter" class="btn btn-secondary btn-block">
+                                    <i class="fas fa-backward fa-fw"></i> Back to list
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
             </div>
         </div>
@@ -106,6 +151,161 @@
 
 @section('script')
     <script>
-        $(document).ready(() => {})
+        $(document).ready(() => {
+            $('#from_master_area_id').select2({
+                allowClear: true
+            })
+
+            $('#from_master_sub_area_id').select2({
+                allowClear: true
+            })
+
+            $('#to_master_area_id').select2({
+                allowClear: true
+            })
+
+            $('#to_master_sub_area_id').select2({
+                allowClear: true
+            })
+
+            $('#from_type').on('change', e => {
+                e.preventDefault();
+                if ($('#from_type').val()) {
+                    getFromList()
+                } else {
+                    $('#from_master_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#to_master_area_id').val(null).trigger('change').prop('disabled', true)
+                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                }
+            })
+
+            $('#from_master_area_id').on('change', e => {
+                if ($('#from_type').val() == "district" && $('#from_master_area_id').val()) {
+                    let master_area_id = $('#from_master_area_id').val()
+                    getSubArea(master_area_id, '#from_master_sub_area_id')
+                } else {
+                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                }
+            })
+
+            $('#to_master_area_id').on('change', e => {
+                if ($('#from_type').val() == "airport" && $('#to_master_area_id').val()) {
+                    let master_area_id = $('#to_master_area_id').val()
+                    getSubArea(master_area_id, '#to_master_sub_area_id')
+                } else {
+                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
+                }
+            })
+
+            initData()
+        })
+
+        function initData() {
+            $.blockUI()
+            $('#from_type').val('{{ $charters->from_type }}').trigger('change')
+            $('#is_available').val('{{ $charters->is_available }}').trigger('change')
+            setTimeout(() => {
+                $('#from_master_area_id').val('{{ $charters->from_master_area_id }}').trigger('change')
+                setTimeout(() => {
+                    $('#to_master_area_id').val('{{ $charters->to_master_area_id }}').trigger('change')
+                    setTimeout(() => {
+                        $('#from_master_sub_area_id').val(
+                            '{{ $charters->from_master_sub_area_id }}').trigger(
+                            'change')
+                        $('#to_master_sub_area_id').val('{{ $charters->to_master_sub_area_id }}')
+                            .trigger(
+                                'change')
+                        $.unblockUI()
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+        function getFromList() {
+            $.ajax({
+                url: `{{ $base_url }}api/get_list_from_departure`,
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    from_type: $('#from_type').val()
+                },
+                beforeSend: () => {
+                    $('#from_master_area_id').html('<option value=""></option>').prop('disabled', true)
+                    $('#from_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                let data = e.data
+                let htmlnya = '<option value=""></option>';
+
+                data.forEach(x => {
+                    let id = x.id
+                    let name = x.name
+                    let sub_area = x.sub_area
+                    htmlnya += `<option value="${id}">${name}</option>`
+                })
+                $('#from_master_area_id').html(htmlnya).prop('disabled', false)
+
+                getToList()
+            })
+        }
+
+        function getToList() {
+            $.ajax({
+                url: `{{ $base_url }}api/get_list_to_destination`,
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    from_type: $('#from_type').val()
+                },
+                beforeSend: () => {
+                    $('#to_master_area_id').html('<option value=""></option>').prop('disabled', true)
+                    $('#to_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                let data = e.data
+                let htmlnya = '<option value=""></option>';
+
+                data.forEach(x => {
+                    let id = x.id
+                    let name = x.name
+                    htmlnya += `<option value="${id}">${name}</option>`
+                })
+                $('#to_master_area_id').html(htmlnya).prop('disabled', false)
+            })
+        }
+
+        function getSubArea(master_area_id, selector) {
+            $.ajax({
+                url: `{{ $base_url }}api/get_list_sub_area`,
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    master_area_id
+                },
+                beforeSend: () => {
+                    $(`${selector}`).html('<option value=""></option>').prop('disabled', true)
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                let data = e.data
+                let htmlnya = '<option value=""></option>';
+
+                data.forEach(x => {
+                    let id = x.id
+                    let name = x.name
+                    htmlnya += `<option value="${id}">${name}</option>`
+                })
+                $(`${selector}`).html(htmlnya).prop('disabled', false)
+            })
+        }
     </script>
 @endsection

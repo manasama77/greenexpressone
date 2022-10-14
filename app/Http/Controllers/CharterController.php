@@ -135,4 +135,71 @@ class CharterController extends Controller
         $exec->save();
         return redirect()->route('admin.charter')->with('success', 'Create successfully.');
     }
+
+    public function edit($id)
+    {
+        $charters = Charter::where('id', $id)->first();
+        $data = [
+            'page_title'     => 'Edit Charter',
+            'base_url'       => env('APP_URL'),
+            'app_name'       => env('APP_NAME'),
+            'app_name_short' => env('APP_NAME_ABBR'),
+            'charters'       => $charters,
+        ];
+        return view('admin.charter.edit')->with($data);
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate(
+            [
+                'from_type'               => 'required',
+                'from_master_area_id'     => 'required',
+                'from_master_sub_area_id' => 'exclude_if:from_type,airport|required',
+                'to_master_area_id'       => 'required',
+                'to_master_sub_area_id'   => 'exclude_if:from_type,district|required',
+                'vehicle_name'            => 'required',
+                'vehicle_number'          => 'required',
+                'is_available'            => 'required|in:1,0',
+                'photo'                   => 'nullable',
+                'price'                   => 'required',
+                'driver_contact'          => 'nullable',
+                'notes'                   => 'nullable',
+            ]
+        );
+
+        $photo = $request->file('photo');
+
+        $filePath = Charter::where('id', $id)->first()->photo;
+        if ($photo) {
+            $fileName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('img/vehicle/'), $fileName);
+            $filePath = 'img/vehicle/' . $fileName;
+        }
+
+        $exec                          = Charter::find($id);
+        $exec->from_type               = $request->from_type;
+        $exec->from_master_area_id     = $request->from_master_area_id;
+        $exec->from_master_sub_area_id = ($request->from_master_sub_area_id) ?? null;
+        $exec->to_master_area_id       = $request->to_master_area_id;
+        $exec->to_master_sub_area_id   = ($request->to_master_sub_area_id) ?? null;
+        $exec->vehicle_name            = $request->vehicle_name;
+        $exec->vehicle_number          = $request->vehicle_number;
+        $exec->is_available            = $request->is_available;
+        $exec->photo                   = $filePath;
+        $exec->price                   = $request->price;
+        $exec->driver_contact          = $request->driver_contact;
+        $exec->notes                   = $request->notes;
+        $exec->save();
+
+        return redirect()->route('admin.charter')->with('success', 'Update successfully.');
+    }
+
+    public function delete($id)
+    {
+        Charter::find($id)->delete();
+        return response()->json([
+            'message' => 'Record deleted successfully!'
+        ], 200);
+    }
 }

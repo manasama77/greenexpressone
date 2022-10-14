@@ -25,17 +25,17 @@
                                     <table class="table table-bordered datatables">
                                         <thead>
                                             <tr>
-                                                <th><i class="fas fa-cogs"></i></th>
+                                                <th class="text-center"><i class="fas fa-cogs"></i></th>
                                                 <th style="min-width: 120px;">Photo</th>
-                                                <th style="min-width: 150px;">From Type</th>
-                                                <th style="min-width: 150px;">From Area</th>
-                                                <th style="min-width: 100px;">To Area</th>
-                                                <th style="min-width: 100px;">Vehicle Name</th>
-                                                <th style="min-width: 100px;">Vehicle Number</th>
+                                                <th style="min-width: 100px;">From Type</th>
+                                                <th style="min-width: 300px;">From Area</th>
+                                                <th style="min-width: 300px;">To Area</th>
+                                                <th style="min-width: 150px;">Vehicle Name</th>
+                                                <th style="min-width: 120px;">Vehicle Number</th>
                                                 <th style="min-width: 120px;">Price</th>
                                                 <th style="min-width: 120px;">Driver Contact</th>
                                                 <th style="min-width: 120px;">Notes</th>
-                                                <th style="min-width: 120px;">Available</th>
+                                                <th style="min-width: 200px;">Available</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,7 +52,8 @@
                                                             <i class="fas fa-trash fa-fw"></i>
                                                         </button>
                                                     </td>
-                                                    <td><img src="{{ $charter['photo'] }}" alt=""></td>
+                                                    <td><img src="/{{ $charter['photo'] }}" alt=""
+                                                            class="img-thumbnail"></td>
                                                     <td>{{ $charter['from_type'] }}</td>
                                                     <td>{{ $charter['from_area'] }}</td>
                                                     <td>{{ $charter['to_area'] }}</td>
@@ -84,10 +85,10 @@
             $('.datatables').DataTable({
                 scrollX: true,
                 order: [
-                    [3, 'asc']
+                    [2, 'asc']
                 ],
                 columnDefs: [{
-                    targets: [0],
+                    targets: [0, 1],
                     orderable: false,
                 }]
             })
