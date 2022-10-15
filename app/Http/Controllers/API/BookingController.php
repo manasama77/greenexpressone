@@ -917,4 +917,35 @@ class BookingController extends BaseController
 
         return $this->sendResponse($data, 'success');
     }
+
+    public function reschedule(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required|exists:bookings,id',
+                'datetime_departure' => 'required|date|date_format:"Y-m-d H:i:s"',
+            ],
+        );
+
+        if ($validator->fails()) {
+            $errors        = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $id                 = $request->id;
+        $datetime_departure = $request->datetime_departure;
+
+        $exec = Booking::find($id);
+        $exec->datetime_departure = $datetime_departure;
+        $exec->save();
+
+        return $this->sendResponse($exec, 'success');
+    }
 }

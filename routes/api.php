@@ -48,6 +48,10 @@ Route::controller(BookingController::class)->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         //
     });
+
+    Route::middleware('admin')->group(function () {
+        Route::post('/booking/reschedule', 'reschedule');
+    });
 });
 
 Route::controller(VoucherController::class)->group(function () {

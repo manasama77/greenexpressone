@@ -77,7 +77,13 @@
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="/admin/shuttle">
                     <i class="fas fa-truck-plane"></i><span class="menu-title text-truncate"
-                        data-i18n="master Special">Shuttle</span>
+                        data-i18n="master Special">Shuttles</span>
+                </a>
+            </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/booking">
+                    <i data-feather="bookmark"></i><span class="menu-title text-truncate"
+                        data-i18n="booking">Bookings</span>
                 </a>
             </li>
         </ul>
