@@ -86,6 +86,11 @@
                         data-i18n="booking">Bookings</span>
                 </a>
             </li>
+            <li class=" nav-item">
+                <a class="d-flex align-items-center" href="/admin/admin">
+                    <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="admin">Admins</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'name'       => 'Admin',
             'username'   => 'admin',
             'password'   => Hash::make('admin'),
-            'photo'      => null,
+            'photo'      => 'img/admin_pp/default.jpg',
             'email'      => Str::random(10) . '@gmail.com',
             'role'       => 'super admin',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

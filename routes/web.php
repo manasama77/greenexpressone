@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CharterController;
 use App\Http\Controllers\MasterAreaController;
@@ -87,4 +88,11 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     // Route::get('/booking/edit/{id}', [BookingController::class, 'edit'])->name('admin.booking.edit')->middleware('admin');
     // Route::put('/booking/update/{id}', [BookingController::class, 'update'])->name('admin.booking.update')->middleware('admin');
     Route::delete('/booking/delete/{id}', [BookingController::class, 'delete'])->name('admin.booking.delete')->middleware('admin');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.admin')->middleware('admin');
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.admin.store')->middleware('admin');
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit')->middleware('admin');
+    Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update')->middleware('admin');
+    Route::post('/admin/reset_password/{id}', [AdminController::class, 'reset_password'])->name('admin.admin.reset_password')->middleware('admin');
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.admin.delete')->middleware('admin');
 });
