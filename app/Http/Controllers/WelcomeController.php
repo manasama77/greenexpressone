@@ -18,6 +18,15 @@ class WelcomeController extends Controller
             'app_name' => env('APP_NAME'),
             'banners'  => $banners,
         ];
-        return view('welcome', $data);
+        return view('home', $data);
+    }
+
+    public function search()
+    {
+        $data = [
+            'title'    => env('APP_NAME'),
+            'app_name' => env('APP_NAME'),
+        ];
+        return view('search', $data);
     }
 }

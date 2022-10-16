@@ -27,6 +27,7 @@ use App\Http\Controllers\VoucherController;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/search', [WelcomeController::class, 'search'])->name('search');
 
 Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'index'])->name('admin.login');
