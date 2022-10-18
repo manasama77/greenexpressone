@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\MasterArea;
 use App\Models\MasterSubArea;
+use App\Models\ScheduleShuttle;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -21,11 +22,12 @@ class WelcomeController extends Controller
         return view('home', $data);
     }
 
-    public function search()
+    public function search(Request $request)
     {
         $data = [
             'title'    => env('APP_NAME'),
             'app_name' => env('APP_NAME'),
+            'request'  => $request,
         ];
         return view('search', $data);
     }

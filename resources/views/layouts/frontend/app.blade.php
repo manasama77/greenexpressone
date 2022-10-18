@@ -50,7 +50,7 @@
     </div> --}}
     <!-- toggle theme end -->
 
-    <input type="text" id="base" value="{{ env('APP_URL') }}" />
+    <input type="hidden" id="base" value="{{ env('APP_URL') }}" />
 
     <!-- jquery js -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"

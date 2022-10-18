@@ -65,9 +65,11 @@
                                 </div>
                                 <div class="form-group text-center">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="booking_type" id="shuttle"
+                                        <input {{ $request->booking_type == 'shuttle' ? 'checked' : null }}
+                                            class="form-check-input" type="radio" name="booking_type" id="shuttle"
                                             value="shuttle" checked>
-                                        <label class="form-check-label" for="shuttle">Shuttle</label>
+                                        <label {{ $request->booking_type == 'charter' ? 'checked' : null }}
+                                            class="form-check-label" for="shuttle">Shuttle</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="booking_type" id="charter"
@@ -79,15 +81,16 @@
                                     <label for="date_departure" class="form-text font-weight-bold">Outward
                                         journey</label>
                                     <input type="date" class="form-control" id="date_departure" name="date_departure"
-                                        placeholder="Outward Journey" required />
+                                        value="{{ $request->date_departure }}" placeholder="Outward Journey" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="passanger_adult" class="form-text font-weight-bold">Adult
                                         Passangers</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control" id="passanger_adult"
-                                            name="passanger_adult" placeholder="Adult Passangers" min="1"
-                                            max="9" value="1" required />
+                                            name="passanger_adult" value="{{ $request->passanger_adult }}"
+                                            placeholder="Adult Passangers" min="1" max="9" value="1"
+                                            required />
                                         <div class="input-group-append bg-light">
                                             <span class="input-group-text">Adult
                                         </div>
@@ -98,8 +101,9 @@
                                         Passangers</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control" id="passanger_baby"
-                                            name="passanger_baby" placeholder="Adult Passangers" min="0"
-                                            max="9" value="0" required />
+                                            name="passanger_baby" value="{{ $request->passanger_baby }}"
+                                            placeholder="Adult Passangers" min="0" max="9" value="0"
+                                            required />
                                         <div class="input-group-append bg-light">
                                             <span class="input-group-text">Baby
                                         </div>
@@ -119,85 +123,8 @@
                         <div class="card-body">
                             <div class="section-title">
                                 <h1>Shuttle bus to and from the main America airports</h1>
+                                <div id="list_jadwal"></div>
                             </div>
-                            <div class="booking-text">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium mollitia eum
-                                    ducimus
-                                    accusamus, nisi repellat distinctio iusto deleniti, saepe, nobis ex reprehenderit?
-                                    Pariatur
-                                    cupiditate consequatur unde exercitationem, sit a adipisci molestias labore,
-                                    officiis
-                                    repudiandae esse voluptate eveniet magni laborum vel. Labore magni modi sit fugiat
-                                    neque!
-                                    Quo eligendi corporis in, repudiandae molestias dignissimos eum recusandae officiis,
-                                    atque
-                                    incidunt hic? Optio possimus ut laudantium accusamus reprehenderit dolorem mollitia
-                                    sed
-                                    aliquam explicabo corrupti? Quisquam nisi vitae, quod quibusdam libero quas quidem
-                                    molestiae. Aspernatur ad fuga itaque. Amet enim recusandae blanditiis aliquid
-                                    tenetur natus
-                                    fugiat, distinctio quae! Sit sapiente a corrupti praesentium ea in ipsam cupiditate
-                                    dolor
-                                    atque, at saepe soluta reiciendis vel qui eligendi dignissimos repudiandae nemo
-                                    ipsa, modi,
-                                    exercitationem ullam quasi? Architecto similique, quasi, tempore placeat, laudantium
-                                    minus
-                                    sapiente vel laborum tempora fuga eligendi alias velit qui maxime molestiae labore
-                                    omnis
-                                    quia! Alias corporis pariatur quae minima? Iste, ex tempore nulla perferendis nisi
-                                    explicabo
-                                    incidunt illo aliquam accusantium unde dolorem possimus harum est ipsam tenetur
-                                    corporis
-                                    neque, magnam laudantium obcaecati atque suscipit. Ea obcaecati cumque deserunt
-                                    alias
-                                    officiis, esse ipsum quibusdam accusantium suscipit nihil saepe aliquam eaque maxime
-                                    veniam
-                                    magni minus soluta ullam aliquid? Iure aperiam, itaque dolores consectetur qui
-                                    saepe.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="profile" class="profile section-padding" data-scroll-index="2">
-        <div class="container">
-            <div class="section-title">
-                <h1>Our Services</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/Picture2.png"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <p class="card-text">Whether you’re a business traveller, a couple, a big group of friends
-                                or family
-                                travelling with lots of luggage, by reserving your airport shuttle or private car you
-                                can have the reassurance and security that you’ll be picked up on time and taken
-                                straight to your home, hotel or attraction</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/green.jpg" class="card-img-top"
-                            alt="">
-                        <div class="card-body">
-                            <p class="card-text">We drive safely and follow all rules of the road to ensure you have a
-                                safe and
-                                pleasurable trip</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/istockphoto-1206670377-640x640-1-300x169.jpg"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <p class="card-text">Passenger Pick Up And Drop Off Services</p>
                         </div>
                     </div>
                 </div>
@@ -233,16 +160,21 @@
 @section('vitamin')
     <script>
         // global variable
-
-        let from_type = 'airport'
-        let from_area_id = null
+        let from_type = ('{{ $request->from_type }}') ?? null;
+        let from_master_area_id = ('{{ $request->from_master_area_id }}') ?? null;
+        let from_master_sub_area_id = ('{{ $request->from_master_sub_area_id }}') ?? null;
+        let to_master_area_id = ('{{ $request->to_master_area_id }}') ?? null;
+        let to_master_sub_area_id = ('{{ $request->to_master_sub_area_id }}') ?? null;
+        let booking_type = ('{{ $request->booking_type }}') ?? null;
+        let date_departure = ('{{ $request->date_departure }}') ?? null;
+        let passanger_adult = ('{{ $request->passanger_adult }}') ?? null;
+        let passanger_baby = ('{{ $request->passanger_baby }}') ?? null;
+        let list_jadwal_container = $('#list_jadwal_container').val()
 
         $(document).ready(function() {
             $('.select2').select2({
                 allowClear: true,
             })
-
-            initData()
 
             $('#from_type').on('change', e => {
                 e.preventDefault();
@@ -275,10 +207,131 @@
                     $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
                 }
             })
+
+            initData()
         });
 
         function initData() {
-            getFromList()
+            $.blockUI()
+            if (from_type && from_master_area_id && to_master_area_id && booking_type && date_departure &&
+                passanger_adult) {
+                $('#from_type').val(from_type)
+
+                $.ajax({
+                    url: `${base_url}api/get_list_from_departure`,
+                    method: 'get',
+                    dataType: 'json',
+                    data: {
+                        from_type: $('#from_type').val()
+                    },
+                    beforeSend: () => {
+                        $('#from_master_area_id').html('<option value=""></option>').prop('disabled', true)
+                        $('#from_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
+                    }
+                }).fail(e => {
+                    console.log(e.responseText)
+                }).done(e => {
+                    let data = e.data
+                    let htmlnya = '<option value=""></option>';
+
+                    data.forEach(x => {
+                        let id = x.id
+                        let name = x.name
+                        let sub_area = x.sub_area
+                        htmlnya += `<option value="${id}">${name}</option>`
+                    })
+                    $('#from_master_area_id').html(htmlnya).prop('disabled', false)
+                    $('#from_master_area_id').val(from_master_area_id)
+
+                    $.ajax({
+                        url: `${base_url}api/get_list_sub_area`,
+                        method: 'get',
+                        dataType: 'json',
+                        data: {
+                            master_area_id: $("#from_master_area_id").val()
+                        },
+                        beforeSend: () => {
+                            $(`#from_master_sub_area_id`).html('<option value=""></option>').prop(
+                                'disabled', true)
+                        }
+                    }).fail(e => {
+                        console.log(e.responseText)
+                    }).done(e => {
+                        let data = e.data
+                        let htmlnya = '<option value=""></option>';
+
+                        data.forEach(x => {
+                            let id = x.id
+                            let name = x.name
+                            htmlnya += `<option value="${id}">${name}</option>`
+                        })
+                        $(`#from_master_sub_area_id`).html(htmlnya).prop('disabled', false)
+                        $('#from_master_sub_area_id').val(from_master_sub_area_id)
+
+                        $.ajax({
+                            url: `${base_url}api/get_list_to_destination`,
+                            method: 'get',
+                            dataType: 'json',
+                            data: {
+                                from_type: $('#from_type').val()
+                            },
+                            beforeSend: () => {
+                                $('#to_master_area_id').html('<option value=""></option>').prop(
+                                    'disabled', true)
+                                $('#to_master_sub_area_id').html('<option value=""></option>')
+                                    .prop('disabled', true)
+                            }
+                        }).fail(e => {
+                            console.log(e.responseText)
+                        }).done(e => {
+                            let data = e.data
+                            let htmlnya = '<option value=""></option>';
+
+                            data.forEach(x => {
+                                let id = x.id
+                                let name = x.name
+                                htmlnya += `<option value="${id}">${name}</option>`
+                            })
+                            $('#to_master_area_id').html(htmlnya).prop('disabled', false)
+                            $('#to_master_area_id').val(to_master_area_id)
+
+                            $.ajax({
+                                url: `${base_url}api/get_list_sub_area`,
+                                method: 'get',
+                                dataType: 'json',
+                                data: {
+                                    master_area_id: $('#to_master_area_id').val()
+                                },
+                                beforeSend: () => {
+                                    $(`#to_master_sub_area_id`).html(
+                                            '<option value=""></option>')
+                                        .prop('disabled', true)
+                                }
+                            }).fail(e => {
+                                console.log(e.responseText)
+                            }).always(e => {
+                                $.unblockUI()
+                            }).done(e => {
+                                let data = e.data
+                                let htmlnya = '<option value=""></option>';
+
+                                data.forEach(x => {
+                                    let id = x.id
+                                    let name = x.name
+                                    htmlnya +=
+                                        `<option value="${id}">${name}</option>`
+                                })
+                                $(`#to_master_sub_area_id`).html(htmlnya).prop('disabled',
+                                    false)
+                                $(`#to_master_sub_area_id`).val(to_master_sub_area_id)
+
+                                getScheduleShuttle()
+                            })
+                        })
+                    })
+                })
+            }
+            // getFromList()
         }
 
         function getFromList() {
@@ -341,6 +394,33 @@
         }
 
         function getSubArea(master_area_id, selector) {
+            $.ajax({
+                url: `${base_url}api/get_list_sub_area`,
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    master_area_id
+                },
+                beforeSend: () => {
+                    $(`${selector}`).html('<option value=""></option>').prop('disabled', true)
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                let data = e.data
+                let htmlnya = '<option value=""></option>';
+
+                data.forEach(x => {
+                    let id = x.id
+                    let name = x.name
+                    htmlnya += `<option value="${id}">${name}</option>`
+                })
+                $(`${selector}`).html(htmlnya).prop('disabled', false)
+            })
+        }
+
+        function getScheduleShuttle() {
             $.ajax({
                 url: `${base_url}api/get_list_sub_area`,
                 method: 'get',
