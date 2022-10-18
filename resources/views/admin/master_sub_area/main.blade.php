@@ -24,8 +24,8 @@
                                         <thead>
                                             <tr>
                                                 <th><i class="fas fa-cogs"></i></th>
-                                                <th>Master Area</th>
-                                                <th>Master Sub Area</th>
+                                                <th>Main Area</th>
+                                                <th>Sub Area</th>
                                                 <th>Active</th>
                                             </tr>
                                         </thead>
@@ -77,7 +77,7 @@
                                 <form id="form_add" method="POST" action="/admin/master_sub_area">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="master_area_id">Master Area</label>
+                                        <label for="master_area_id">Main Area</label>
                                         <select class="form-control" id="master_area_id" name="master_area_id" required>
                                             <option value=""></option>
                                             @foreach ($master_areas as $master_area)
@@ -89,7 +89,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Master Sub Area Name</label>
+                                        <label for="name">Sub Area Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             minlength="3" maxlength="100" required />
                                     </div>

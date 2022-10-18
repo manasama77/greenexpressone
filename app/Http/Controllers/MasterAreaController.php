@@ -13,7 +13,7 @@ class MasterAreaController extends Controller
     {
         $master_areas = MasterArea::get();
         $data = [
-            'page_title'     => 'Master Area',
+            'page_title'     => 'Main Area',
             'base_url'       => env('APP_URL'),
             'app_name'       => env('APP_NAME'),
             'app_name_short' => env('APP_NAME_ABBR'),
@@ -28,7 +28,7 @@ class MasterAreaController extends Controller
             $request->all(),
             [
                 'name'      => 'required|min:3|max:100',
-                'area_type' => 'required|in:departure,arrival',
+                'area_type' => 'required|in:airport,city',
                 'is_active' => 'required|in:1,0',
             ]
         );
@@ -51,7 +51,7 @@ class MasterAreaController extends Controller
 
     public function edit($id)
     {
-        $page_title     = "Edit Master Area";
+        $page_title     = "Edit Main Area";
         $base_url       = env('APP_URL');
         $app_name       = env('APP_NAME');
         $app_name_short = env('APP_NAME_ABBR');
@@ -65,7 +65,7 @@ class MasterAreaController extends Controller
         $request->validate(
             [
                 'name'      => 'required|min:3|max:100',
-                'area_type' => 'required|in:departure,arrival',
+                'area_type' => 'required|in:airport,city',
                 'is_active' => 'required|in:1,0',
             ]
         );

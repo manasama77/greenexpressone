@@ -40,7 +40,7 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group mt-2">
-                                        <label for="name">Master Area Name</label>
+                                        <label for="name">Area Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             minlength="3" maxlength="100" value="{{ old('name') ?? $master_area->name }}"
                                             required />
@@ -48,12 +48,12 @@
                                     <div class="form-group">
                                         <label for="area_type">Area Type</label>
                                         <select class="form-control" id="area_type" name="area_type" required>
-                                            <option value="departure"
-                                                {{ $master_area->area_type == 'departure' ? 'selected' : null }}>
-                                                Departure</option>
-                                            <option value="arrival"
-                                                {{ $master_area->area_type == 'arrival' ? 'selected' : null }}>
-                                                Arrival</option>
+                                            <option value="airport"
+                                                {{ $master_area->area_type == 'airport' ? 'selected' : null }}>
+                                                Airport</option>
+                                            <option value="city"
+                                                {{ $master_area->area_type == 'city' ? 'selected' : null }}>
+                                                City</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

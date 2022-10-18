@@ -16,7 +16,7 @@ class MasterSubAreaController extends Controller
         $master_areas     = MasterArea::get();
 
         $data = [
-            'page_title'       => 'Master Sub Area',
+            'page_title'       => 'Sub Area',
             'base_url'         => env('APP_URL'),
             'app_name'         => env('APP_NAME'),
             'app_name_short'   => env('APP_NAME_ABBR'),
@@ -55,7 +55,7 @@ class MasterSubAreaController extends Controller
 
     public function edit($id)
     {
-        $page_title      = "Edit Master Sub Area";
+        $page_title      = "Edit Sub Area";
         $base_url        = env('APP_URL');
         $app_name        = env('APP_NAME');
         $app_name_short  = env('APP_NAME_ABBR');

@@ -16,14 +16,15 @@ class MasterSpecialAreaController extends Controller
         $master_sub_areas     = MasterSubArea::select([
             'master_sub_areas.id',
             'master_sub_areas.name',
+            'master_areas.area_type',
+            'master_areas.name as main_area',
         ])
             ->leftJoin('master_areas', 'master_areas.id', '=', 'master_sub_areas.master_area_id')
-            ->where('master_areas.area_type', '=', 'arrival')
             ->where('master_sub_areas.is_active', '=', 1)
             ->get();
 
         $data = [
-            'page_title'           => 'Master Special Area',
+            'page_title'           => 'Special Area',
             'base_url'             => env('APP_URL'),
             'app_name'             => env('APP_NAME'),
             'app_name_short'       => env('APP_NAME_ABBR'),
@@ -39,6 +40,7 @@ class MasterSpecialAreaController extends Controller
             $request->all(),
             [
                 'master_sub_area_id' => 'required|exists:master_sub_areas,id',
+                'regional_name'      => 'required|min:3|max:100',
                 'first_person_price' => 'required|numeric|between:0.01,9999.99',
                 'extra_person_price' => 'required|numeric|between:0.01,9999.99',
                 'is_active'          => 'required|in:1,0',
@@ -54,22 +56,21 @@ class MasterSpecialAreaController extends Controller
 
         $validated = $validator->validated();
 
-        MasterSpecialArea::updateOrCreate(
-            ['master_sub_area_id' => $request->master_sub_area_id],
-            [
-                'first_person_price' => (float) $request->first_person_price,
-                'extra_person_price' => (float) $request->extra_person_price,
-                'is_active'          => (bool) $request->is_active,
-                'notes'              => (bool) $request->notes,
-            ]
-        );
+        $exec                     = new MasterSpecialArea();
+        $exec->master_sub_area_id = $request->master_sub_area_id;
+        $exec->regional_name      = $request->regional_name;
+        $exec->first_person_price = (float) $request->first_person_price;
+        $exec->extra_person_price = (float) $request->extra_person_price;
+        $exec->is_active          = (bool) $request->is_active;
+        $exec->notes              = $request->notes;
+        $exec->save();
 
         return redirect()->route('admin.master_special_area')->with('success', 'Create successfully.');
     }
 
     public function edit($id)
     {
-        $page_title          = "Edit Master Special Area";
+        $page_title          = "Edit Special Area";
         $base_url            = env('APP_URL');
         $app_name            = env('APP_NAME');
         $app_name_short      = env('APP_NAME_ABBR');
@@ -77,9 +78,10 @@ class MasterSpecialAreaController extends Controller
         $master_sub_areas    = MasterSubArea::select([
             'master_sub_areas.id',
             'master_sub_areas.name',
+            'master_areas.area_type',
+            'master_areas.name as main_area',
         ])
             ->leftJoin('master_areas', 'master_areas.id', '=', 'master_sub_areas.master_area_id')
-            ->where('master_areas.area_type', '=', 'arrival')
             ->where('master_sub_areas.is_active', '=', 1)
             ->get();
 
@@ -91,6 +93,7 @@ class MasterSpecialAreaController extends Controller
         $request->validate(
             [
                 'master_sub_area_id' => 'required|exists:master_sub_areas,id',
+                'regional_name'      => 'required|min:3|max:100',
                 'first_person_price' => 'required|numeric|between:0.01,9999.99',
                 'extra_person_price' => 'required|numeric|between:0.01,9999.99',
                 'is_active'          => 'required|in:1,0',

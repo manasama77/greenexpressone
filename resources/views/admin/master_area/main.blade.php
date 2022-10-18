@@ -24,7 +24,7 @@
                                         <thead>
                                             <tr>
                                                 <th><i class="fas fa-cogs"></i></th>
-                                                <th>Master Area Name</th>
+                                                <th>Area Name</th>
                                                 <th>Area Type</th>
                                                 <th>Active</th>
                                             </tr>
@@ -77,15 +77,15 @@
                                 <form id="form_add" method="POST" action="/admin/master_area">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="name">Master Area Name</label>
+                                        <label for="name">Area Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             minlength="3" maxlength="100" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="area_type">Area Type</label>
                                         <select class="form-control" id="area_type" name="area_type" required>
-                                            <option value="departure">Departure</option>
-                                            <option value="arrival">Arrival</option>
+                                            <option value="airport">Airport</option>
+                                            <option value="city">City</option>
                                         </select>
                                     </div>
                                     <div class="form-group">

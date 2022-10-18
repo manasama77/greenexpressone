@@ -40,17 +40,24 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
-                                        <label for="master_sub_area_id">Master Sub Area</label>
+                                        <label for="master_sub_area_id">Sub Area</label>
                                         <select class="form-control" id="master_sub_area_id" name="master_sub_area_id"
                                             required>
                                             <option value=""></option>
                                             @foreach ($master_sub_areas as $master_sub_area)
                                                 <option
                                                     {{ $master_sub_area->id == $master_special_area->master_sub_area_id ? 'selected' : null }}
-                                                    value="{{ $master_sub_area->id }}">{{ $master_sub_area->name }}
+                                                    value="{{ $master_sub_area->id }}">{{ $master_sub_area->main_area }} -
+                                                    {{ $master_sub_area->name }}
                                                 </option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regional_name">Regional Name</label>
+                                        <input type="text" class="form-control" id="regional_name" name="regional_name"
+                                            value="{{ $master_special_area->regional_name }}" minlength="3" maxlength="100"
+                                            required />
                                     </div>
                                     <div class="form-group">
                                         <label for="first_person_price">First Person Price</label>
@@ -61,8 +68,9 @@
                                     <div class="form-group">
                                         <label for="extra_person_price">Extra Person Price</label>
                                         <input type="number" class="form-control" id="extra_person_price"
-                                            name="extra_person_price" value="{{ $master_special_area->extra_person_price }}"
-                                            min="0.01" maxlength="9999.99" step="0.01" required />
+                                            name="extra_person_price"
+                                            value="{{ $master_special_area->extra_person_price }}" min="0.01"
+                                            maxlength="9999.99" step="0.01" required />
                                     </div>
                                     <div class="form-group">
                                         <label for="is_active">Active</label>

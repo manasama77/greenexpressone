@@ -17,6 +17,7 @@ class MasterSpecialArea extends Model
      */
     protected $fillable = [
         'master_sub_area_id',
+        'regional_name',
         'first_person_price',
         'extra_person_price',
         'is_active',

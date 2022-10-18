@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('master_areas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('area_type', ['departure', 'arrival']);
+            $table->enum('area_type', ['airport', 'city']);
             $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();

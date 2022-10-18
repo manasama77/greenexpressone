@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         DB::table('master_areas')->insert([
             [
                 'name'       => 'Jakarta - Bandara Internasional Soekarno-Hatta',
-                'area_type'  => 'departure',
+                'area_type'  => 'airport',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'       => 'Jakarta Utara',
-                'area_type'  => 'arrival',
+                'area_type'  => 'city',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'       => 'Jakarta Timur',
-                'area_type'  => 'arrival',
+                'area_type'  => 'city',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'       => 'Jakarta Selatan',
-                'area_type'  => 'arrival',
+                'area_type'  => 'city',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'       => 'Jakarta Barat',
-                'area_type'  => 'arrival',
+                'area_type'  => 'city',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'       => 'Jakarta Pusat',
-                'area_type'  => 'arrival',
+                'area_type'  => 'city',
                 'is_active'  => true,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -490,27 +490,94 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        for ($i = 7; $i <= 47; $i++) {
-            DB::table('master_special_areas')->insert([
-                [
-                    'master_sub_area_id' => $i,
-                    'first_person_price' => 10,
-                    'extra_person_price' => 5,
-                    'is_active'          => true,
-                    'notes'              => null,
-                    'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                    'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
-                    'deleted_at'         => null,
-                ],
-            ]);
-        }
+        DB::table('master_special_areas')->insert([
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Kali Baru",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Cilincing",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Samper Barat",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Samper Timur",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Sukapura",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Rorotan",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+            [
+                'master_sub_area_id' => 7,
+                'regional_name'        => "Marunda",
+                'first_person_price' => 10,
+                'extra_person_price' => 5,
+                'is_active'          => true,
+                'notes'              => null,
+                'created_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'         => Carbon::now()->format('Y-m-d H:i:s'),
+                'deleted_at'         => null,
+            ],
+        ]);
 
         DB::table('pages')->insert([
             [
+                'slug'         => 'privacy',
                 'page_title'   => 'Privacy',
                 'page_content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, provident.'
             ],
             [
+                'slug'         => 'term-and-condition',
                 'page_title'   => 'Term and Condition',
                 'page_content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores recusandae exercitationem ipsa ab amet! Sed tempore maxime officiis possimus molestiae!'
             ]
@@ -545,7 +612,7 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 23; $i += 3) {
             $dt = Carbon::createFromFormat('H:i:s', '00:00:00')->addHours($i);
             $data = [
-                'from_type'               => 'district',
+                'from_type'               => 'city',
                 'from_master_area_id'     => 2,
                 'from_master_sub_area_id' => 7,
                 'to_master_area_id'       => 1,
@@ -625,7 +692,7 @@ class DatabaseSeeder extends Seeder
         $charter->save();
 
         $charter                          = new Charter();
-        $charter->from_type               = 'district';
+        $charter->from_type               = 'city';
         $charter->from_master_area_id     = 2;
         $charter->from_master_sub_area_id = 7;
         $charter->to_master_area_id       = 1;
@@ -640,7 +707,7 @@ class DatabaseSeeder extends Seeder
         $charter->save();
 
         $charter                          = new Charter();
-        $charter->from_type               = 'district';
+        $charter->from_type               = 'city';
         $charter->from_master_area_id     = 2;
         $charter->from_master_sub_area_id = 8;
         $charter->to_master_area_id       = 1;

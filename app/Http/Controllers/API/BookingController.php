@@ -455,9 +455,9 @@ class BookingController extends BaseController
         $keyword   = ($request->keyword) ?? null;
 
         if ($from_type == "airport") {
-            $area_type = "departure";
+            $area_type = "airport";
         } else {
-            $area_type = "arrival";
+            $area_type = "city";
         }
 
         $master_areas = MasterArea::with('master_sub_area')->where([

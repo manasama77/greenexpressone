@@ -39,7 +39,7 @@
                                     action="{{ route('admin.master_sub_area.update', $master_sub_area->id) }}">
                                     @csrf
                                     @method('PUT')
-                                    <label for="master_area_id">Master Area</label>
+                                    <label for="master_area_id">Main Area</label>
                                     <select class="form-control" id="master_area_id" name="master_area_id" required>
                                         <option value=""></option>
                                         @foreach ($master_areas as $master_area)
@@ -52,7 +52,7 @@
                                         @endforeach
                                     </select>
                                     <div class="form-group mt-2">
-                                        <label for="name">Master Sub Area Name</label>
+                                        <label for="name">Sub Area Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             minlength="3" maxlength="100"
                                             value="{{ old('name') ?? $master_sub_area->name }}" required />

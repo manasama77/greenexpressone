@@ -24,7 +24,8 @@
                                         <thead>
                                             <tr>
                                                 <th><i class="fas fa-cogs"></i></th>
-                                                <th>Master Sub Area</th>
+                                                <th>Sub Area</th>
+                                                <th>Region Name</th>
                                                 <th>First Person Price</th>
                                                 <th>Extra Person Price</th>
                                                 <th>Active</th>
@@ -45,6 +46,7 @@
                                                         </button>
                                                     </td>
                                                     <td>{{ $master_special_area->master_sub_area->name }}</td>
+                                                    <td>{{ $master_special_area->regional_name }}
                                                     <td>{{ number_format($master_special_area->first_person_price, 2) }}
                                                     </td>
                                                     <td>{{ number_format($master_special_area->extra_person_price, 2) }}
@@ -81,26 +83,32 @@
                                 <form id="form_add" method="POST" action="/admin/master_special_area">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="master_sub_area_id">Master Sub Area</label>
+                                        <label for="master_sub_area_id">Sub Area</label>
                                         <select class="form-control" id="master_sub_area_id" name="master_sub_area_id"
-                                            required>
+                                            data-placeholder="Select Sub Area" required>
                                             <option value=""></option>
                                             @foreach ($master_sub_areas as $master_sub_area)
-                                                <option value="{{ $master_sub_area->id }}">{{ $master_sub_area->name }}
+                                                <option value="{{ $master_sub_area->id }}">
+                                                    {{ $master_sub_area->main_area }} - {{ $master_sub_area->name }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="regional_name">Regional Name</label>
+                                        <input type="text" class="form-control" id="regional_name" name="regional_name"
+                                            minlength="3" maxlength="100" required />
+                                    </div>
+                                    <div class="form-group">
                                         <label for="first_person_price">First Person Price</label>
                                         <input type="number" class="form-control" id="first_person_price"
-                                            name="first_person_price" min="0.01" maxlength="9999.99" step="0.01"
+                                            name="first_person_price" min="0.01" max="9999.99" step="0.01"
                                             required />
                                     </div>
                                     <div class="form-group">
                                         <label for="extra_person_price">Extra Person Price</label>
                                         <input type="number" class="form-control" id="extra_person_price"
-                                            name="extra_person_price" min="0.01" maxlength="9999.99" step="0.01"
+                                            name="extra_person_price" min="0.01" max="9999.99" step="0.01"
                                             required />
                                     </div>
                                     <div class="form-group">
@@ -139,6 +147,10 @@
                     targets: [0],
                     orderable: false,
                 }]
+            })
+
+            $('#master_sub_area_id').select2({
+                allowClear: true
             })
         })
 
