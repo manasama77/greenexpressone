@@ -92,7 +92,7 @@ class CharterController extends Controller
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'exclude_if:from_type,airport|required',
                 'to_master_area_id'       => 'required',
-                'to_master_sub_area_id'   => 'exclude_if:from_type,district|required',
+                'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
                 'is_available'            => 'required|in:1,0',
@@ -100,7 +100,7 @@ class CharterController extends Controller
                 'price'                   => 'required',
                 'driver_contact'          => 'nullable',
                 'notes'                   => 'nullable',
-            ]
+            ],
         );
 
         if ($validator->fails()) {
@@ -157,7 +157,7 @@ class CharterController extends Controller
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'exclude_if:from_type,airport|required',
                 'to_master_area_id'       => 'required',
-                'to_master_sub_area_id'   => 'exclude_if:from_type,district|required',
+                'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
                 'is_available'            => 'required|in:1,0',

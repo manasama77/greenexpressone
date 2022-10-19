@@ -46,37 +46,37 @@
                                         <select class="form-control" id="from_type" name="from_type" required>
                                             <option value=""></option>
                                             <option value="airport">Airport</option>
-                                            <option value="district">District</option>
+                                            <option value="city">City</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="from_master_area_id">From Master Area</label>
+                                        <label for="from_master_area_id">From Main Area</label>
                                         <select class="form-control select2" id="from_master_area_id"
-                                            name="from_master_area_id" data-placeholder="Select From Master Area" required
+                                            name="from_master_area_id" data-placeholder="Select From Main Area" required
                                             disabled>
                                             <option value=""></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="from_master_sub_area_id">From Master Sub Area</label>
+                                        <label for="from_master_sub_area_id">From Sub Area</label>
                                         <select class="form-control select2" id="from_master_sub_area_id"
-                                            name="from_master_sub_area_id" data-placeholder="Select From Master Sub Area"
-                                            required disabled>
+                                            name="from_master_sub_area_id" data-placeholder="Select From Sub Area" required
+                                            disabled>
                                             <option value=""></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="to_master_area_id">To Master Area</label>
+                                        <label for="to_master_area_id">To Main Area</label>
                                         <select class="form-control select2" id="to_master_area_id" name="to_master_area_id"
-                                            data-placeholder="Select To Master Area" required disabled>
+                                            data-placeholder="Select To Main Area" required disabled>
                                             <option value=""></option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="to_master_sub_area_id">To Master Sub Area</label>
+                                        <label for="to_master_sub_area_id">To Sub Area</label>
                                         <select class="form-control select2" id="to_master_sub_area_id"
-                                            name="to_master_sub_area_id" data-placeholder="Select To Master Sub Area"
-                                            required disabled>
+                                            name="to_master_sub_area_id" data-placeholder="Select To Sub Area" required
+                                            disabled>
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -123,19 +123,15 @@
                                             <option value="0">Not Available</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            <i class="fas fa-save fa-fw"></i> Save
+                                        </button>
+                                        <a href="/admin/charter" class="btn btn-secondary btn-block">
+                                            <i class="fas fa-backward fa-fw"></i> Back to list
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    <i class="fas fa-save fa-fw"></i> Save
-                                </button>
-                                <a href="/admin/charter" class="btn btn-secondary btn-block">
-                                    <i class="fas fa-backward fa-fw"></i> Back to list
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -178,7 +174,7 @@
             })
 
             $('#from_master_area_id').on('change', e => {
-                if ($('#from_type').val() == "district" && $('#from_master_area_id').val()) {
+                if ($('#from_type').val() == "city" && $('#from_master_area_id').val()) {
                     let master_area_id = $('#from_master_area_id').val()
                     getSubArea(master_area_id, '#from_master_sub_area_id')
                 } else {
@@ -211,7 +207,6 @@
             }).fail(e => {
                 console.log(e.responseText)
             }).done(e => {
-                console.log(e)
                 let data = e.data
                 let htmlnya = '<option value=""></option>';
 
@@ -233,7 +228,7 @@
                 method: 'get',
                 dataType: 'json',
                 data: {
-                    from_type: $('#from_type').val()
+                    from_type: ($('#from_type').val() == "airport") ? "city" : "airport"
                 },
                 beforeSend: () => {
                     $('#to_master_area_id').html('<option value=""></option>').prop('disabled', true)

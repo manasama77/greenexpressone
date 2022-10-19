@@ -432,7 +432,7 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'from_type' => 'required|in:airport,district',
+                'from_type' => 'required|in:airport,city',
                 'keyword'   => 'nullable',
             ],
             [
@@ -454,15 +454,9 @@ class BookingController extends BaseController
         $from_type = $request->from_type;
         $keyword   = ($request->keyword) ?? null;
 
-        if ($from_type == "airport") {
-            $area_type = "airport";
-        } else {
-            $area_type = "city";
-        }
-
         $master_areas = MasterArea::with('master_sub_area')->where([
             'is_active' => true,
-            'area_type' => $area_type,
+            'area_type' => $from_type,
         ])->orderBy('name', 'asc');
 
         if ($keyword) {
@@ -523,7 +517,7 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'from_type' => 'required|in:airport,district',
+                'from_type' => 'required|in:airport,city',
                 'keyword'   => 'nullable',
             ],
             [
@@ -545,15 +539,9 @@ class BookingController extends BaseController
         $from_type = $request->from_type;
         $keyword   = ($request->keyword) ?? null;
 
-        if ($from_type == "airport") {
-            $area_type = "arrival";
-        } else {
-            $area_type = "departure";
-        }
-
         $master_areas = MasterArea::with('master_sub_area')->where([
             'is_active' => true,
-            'area_type' => $area_type,
+            'area_type' => $from_type,
         ])->orderBy('name', 'asc');
 
         if ($keyword) {
