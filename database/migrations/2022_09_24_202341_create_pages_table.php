@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->default('');
             $table->string('page_title')->default('');
-            $table->string('page_content')->default('');
+            $table->longText('page_content')->default('');
         });
     }
 

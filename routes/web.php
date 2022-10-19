@@ -61,7 +61,11 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::delete('/master_special_area/delete/{id}', [MasterSpecialAreaController::class, 'delete'])->name('admin.master_special_area.delete')->middleware('admin');
 
     Route::get('/pages', [PagesController::class, 'index'])->name('admin.pages')->middleware('admin');
+    Route::get('/pages/add', [PagesController::class, 'add'])->name('admin.pages.add')->middleware('admin');
+    Route::post('/pages/store', [PagesController::class, 'store'])->name('admin.pages.store')->middleware('admin');
+    Route::get('/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit')->middleware('admin');
     Route::put('/pages/update/{id}', [PagesController::class, 'update'])->name('admin.pages.update')->middleware('admin');
+    Route::delete('/pages/delete/{id}', [PagesController::class, 'delete'])->name('admin.voucher.delete')->middleware('admin');
 
     Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher')->middleware('admin');
     Route::post('/voucher', [VoucherController::class, 'store'])->name('admin.voucher.store')->middleware('admin');

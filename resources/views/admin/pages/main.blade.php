@@ -14,62 +14,51 @@
                 </div>
             </div>
             <div class="content-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="pb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <div class="alert-body">
-                            {{ $message }}
-                        </div>
-                    </div>
-                @endif
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title">Edit Data Privacy</h1>
-                                <form id="form_add" method="POST" action="{{ route('admin.pages.update', 1) }}">
-                                    @csrf
-                                    @method('PUT')
-                                    <label for="page_content_privacy">Privacy</label>
-                                    <textarea class="form-control" id="page_content_privacy" name="page_content" required>{{ $pages_privacy->page_content }}</textarea>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-save fa-fw"></i> Save
-                                        </button>
-                                        <a href="{{ route('admin.master_area') }}" class="btn btn-secondary btn-block">
-                                            <i class="fas fa-backward fa-fw"></i> Back
-                                        </a>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h1 class="card-title">Data</h1>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title">Edit Data Term & Condition</h1>
-                                <form id="form_add" method="POST" action="{{ route('admin.pages.update', 2) }}">
-                                    @csrf
-                                    @method('PUT')
-                                    <label for="page_content_privacy">Term & Condition</label>
-                                    <textarea class="form-control" id="page_content_privacy" name="page_content" required>{{ $pages_tnc->page_content }}</textarea>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">
-                                            <i class="fas fa-save fa-fw"></i> Save
-                                        </button>
-                                        <a href="{{ route('admin.master_area') }}" class="btn btn-secondary btn-block">
-                                            <i class="fas fa-backward fa-fw"></i> Back
-                                        </a>
+                                    <div>
+                                        <a href="/admin/pages/add" class="btn btn-primary"><i class="fas fa-plus"></i> Add
+                                            New Data</a>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered datatables">
+                                        <thead>
+                                            <tr>
+                                                <th><i class="fas fa-cogs"></i></th>
+                                                <th style="min-width: 150px;">Slug</th>
+                                                <th style="min-width: 100px;">Page Title</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($pages as $page)
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ route('admin.pages.edit', $page->id) }}"
+                                                            class="btn btn-info btn-sm">
+                                                            <i class="fas fa-pencil fa-fw"></i>
+                                                        </a>
+                                                        @if (!in_array($page->id, [1, 2]))
+                                                            <button type="button" class="btn btn-danger btn-sm"
+                                                                id="delete_{{ $page->id }}"
+                                                                onclick="deleteData('{{ $page->id }}')">
+                                                                <i class="fas fa-trash fa-fw"></i>
+                                                            </button>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $page->slug }}</td>
+                                                    <td>{{ $page->page_title }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,6 +71,59 @@
 
 @section('script')
     <script>
-        $(document).ready(() => {})
+        const token = $("meta[name='csrf-token']").attr("content");
+
+        $(document).ready(() => {
+            $('.datatables').DataTable({
+                order: [
+                    [1, 'asc']
+                ],
+                columnDefs: [{
+                    targets: [0],
+                    orderable: false,
+                }]
+            })
+        })
+
+        function deleteData(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/admin/pages/delete/${id}`,
+                        type: 'DELETE',
+                        dataType: 'json',
+                        data: {
+                            "id": id,
+                            "_token": token,
+                        },
+                        beforeSend: () => {
+                            $(`#delete_${id}`).prop('disabled', true)
+                        }
+                    }).fail(e => {
+                        console.log(e.responseText)
+                        $(`#delete_${id}`).prop('disabled', false)
+                    }).done(e => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: e.message,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            toast: true
+                        }).then(() => {
+                            window.location.reload()
+                        })
+                    })
+                }
+            })
+        }
     </script>
 @endsection
