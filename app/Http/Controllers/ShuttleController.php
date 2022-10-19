@@ -99,10 +99,10 @@ class ShuttleController extends Controller
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'exclude_if:from_type,airport|required',
                 'to_master_area_id'       => 'required',
-                'to_master_sub_area_id'   => 'exclude_if:from_type,district|required',
+                'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
-                'time_departure'          => 'required|date_format:H:i:s',
+                'time_departure'          => 'required|date_format:H:i',
                 'price'                   => 'required',
                 'luggage_price'           => 'required',
                 'total_seat'              => 'required',
@@ -114,7 +114,7 @@ class ShuttleController extends Controller
         );
 
         if ($validator->fails()) {
-            return redirect('/admin/charter/add')
+            return redirect('/admin/shuttle/add')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -153,7 +153,7 @@ class ShuttleController extends Controller
     {
         $shuttles = ScheduleShuttle::where('id', $id)->first();
         $data = [
-            'page_title'     => 'Edit Charter',
+            'page_title'     => 'Edit Shuttle',
             'base_url'       => env('APP_URL'),
             'app_name'       => env('APP_NAME'),
             'app_name_short' => env('APP_NAME_ABBR'),
@@ -170,10 +170,10 @@ class ShuttleController extends Controller
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'exclude_if:from_type,airport|required',
                 'to_master_area_id'       => 'required',
-                'to_master_sub_area_id'   => 'exclude_if:from_type,district|required',
+                'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
-                'time_departure'          => 'required|date_format:H:i:s',
+                'time_departure'          => 'required|date_format:H:i',
                 'price'                   => 'required',
                 'luggage_price'           => 'required',
                 'total_seat'              => 'required',
