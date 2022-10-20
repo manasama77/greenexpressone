@@ -53,9 +53,10 @@ namespace App\Models{
  * @property int $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Banner newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Banner newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Banner onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Banner query()
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDeletedAt($value)
@@ -64,6 +65,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|Banner withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Banner withoutTrashed()
  */
 	class Banner extends \Eloquent {}
 }
@@ -88,13 +91,19 @@ namespace App\Models{
  * @property string $datetime_departure
  * @property string $schedule_type
  * @property int $user_id
+ * @property string $customer_phone
+ * @property string $customer_name
+ * @property string $passanger_phone
+ * @property string $passanger_name
  * @property int $qty_adult
  * @property int $qty_baby
- * @property int $special_request
  * @property string|null $flight_number
  * @property string|null $notes
  * @property int $luggage_qty
  * @property string $luggage_price
+ * @property int $special_request
+ * @property int|null $special_area_id
+ * @property string|null $regional_name
  * @property string $extra_price
  * @property int|null $voucher_id
  * @property string $promo_price
@@ -107,18 +116,21 @@ namespace App\Models{
  * @property string $total_payment
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|Booking newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Booking newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Booking onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Booking query()
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBasePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCustomerName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCustomerPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereDatetimeDeparture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereExtraPrice($value)
@@ -131,14 +143,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereLuggagePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereLuggageQty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePassangerName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePassangerPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePromoPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereQtyAdult($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereQtyBaby($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereRegionalName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereScheduleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereScheduleType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSpecialAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSpecialRequest($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterAreaName($value)
@@ -151,6 +167,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereVehicleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereVehicleNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereVoucherId($value)
+ * @method static \Illuminate\Database\Query\Builder|Booking withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Booking withoutTrashed()
  */
 	class Booking extends \Eloquent {}
 }
@@ -181,6 +199,7 @@ namespace App\Models{
  * App\Models\Charter
  *
  * @property int $id
+ * @property string $from_type
  * @property string $from_master_area_id
  * @property string|null $from_master_sub_area_id
  * @property string $to_master_area_id
@@ -194,15 +213,17 @@ namespace App\Models{
  * @property string|null $notes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Charter newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Charter newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Charter onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Charter query()
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereDriverContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereFromMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereFromMasterSubAreaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Charter whereFromType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereIsAvailable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereNotes($value)
@@ -213,6 +234,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereVehicleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Charter whereVehicleNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|Charter withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Charter withoutTrashed()
  */
 	class Charter extends \Eloquent {}
 }
@@ -227,11 +250,12 @@ namespace App\Models{
  * @property int $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\MasterSubArea[] $master_sub_area
  * @property-read int|null $master_sub_area_count
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea newQuery()
+ * @method static \Illuminate\Database\Query\Builder|MasterArea onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea query()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea whereAreaType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea whereCreatedAt($value)
@@ -240,6 +264,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterArea whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|MasterArea withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|MasterArea withoutTrashed()
  */
 	class MasterArea extends \Eloquent {}
 }
@@ -250,15 +276,18 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $master_sub_area_id
+ * @property string $regional_name
  * @property string $first_person_price
  * @property string $extra_person_price
  * @property int $is_active
  * @property string|null $notes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\MasterSubArea $master_sub_area
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea newQuery()
+ * @method static \Illuminate\Database\Query\Builder|MasterSpecialArea onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea query()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereDeletedAt($value)
@@ -268,7 +297,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereMasterSubAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereRegionalName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSpecialArea whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|MasterSpecialArea withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|MasterSpecialArea withoutTrashed()
  */
 	class MasterSpecialArea extends \Eloquent {}
 }
@@ -283,10 +315,13 @@ namespace App\Models{
  * @property int $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\MasterArea $master_area
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\MasterSpecialArea[] $master_special_area
+ * @property-read int|null $master_special_area_count
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea newQuery()
+ * @method static \Illuminate\Database\Query\Builder|MasterSubArea onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea query()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea whereDeletedAt($value)
@@ -295,6 +330,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea whereMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MasterSubArea whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|MasterSubArea withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|MasterSubArea withoutTrashed()
  */
 	class MasterSubArea extends \Eloquent {}
 }
@@ -304,6 +341,7 @@ namespace App\Models{
  * App\Models\Page
  *
  * @property int $id
+ * @property string $slug
  * @property string $page_title
  * @property string $page_content
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
@@ -312,6 +350,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page wherePageContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page wherePageTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
  */
 	class Page extends \Eloquent {}
 }
@@ -321,6 +360,7 @@ namespace App\Models{
  * App\Models\ScheduleShuttle
  *
  * @property int $id
+ * @property string $from_type
  * @property string $from_master_area_id
  * @property string|null $from_master_sub_area_id
  * @property string $to_master_area_id
@@ -337,15 +377,17 @@ namespace App\Models{
  * @property string $luggage_price
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle newQuery()
+ * @method static \Illuminate\Database\Query\Builder|ScheduleShuttle onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle query()
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereDriverContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereFromMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereFromMasterSubAreaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereFromType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereLuggagePrice($value)
@@ -359,6 +401,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereVehicleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ScheduleShuttle whereVehicleNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|ScheduleShuttle withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|ScheduleShuttle withoutTrashed()
  */
 	class ScheduleShuttle extends \Eloquent {}
 }
@@ -413,9 +457,10 @@ namespace App\Models{
  * @property int $is_active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Voucher onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCreatedAt($value)
@@ -428,6 +473,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Voucher withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Voucher withoutTrashed()
  */
 	class Voucher extends \Eloquent {}
 }

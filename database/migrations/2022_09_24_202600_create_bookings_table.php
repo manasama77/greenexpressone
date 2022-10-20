@@ -32,6 +32,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('customer_phone');
             $table->string('customer_name');
+            $table->string('customer_email');
             $table->string('passanger_phone');
             $table->string('passanger_name');
             $table->integer('qty_adult');

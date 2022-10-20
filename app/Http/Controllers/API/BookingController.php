@@ -14,6 +14,7 @@ use App\Http\Controllers\API\BaseController;
 use App\Models\BookingSequence;
 use App\Models\Charter;
 use App\Models\ScheduleShuttle;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -36,12 +37,15 @@ class BookingController extends BaseController
                 'qty_adult'               => 'required|integer|min_digits:0',
                 'qty_baby'                => 'required|integer|min_digits:0',
                 'special_request'         => 'required|boolean',
+                'special_area_id'         => 'integer|required_if:special_request,1',
                 'luggage_qty'             => 'required|integer|min_digits:0',
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
                 'customer_phone'          => 'required|min:3|max:50',
                 'customer_name'           => 'required|min:3|max:255',
+                'customer_email'          => 'required|min:3|max:100|email:rfc,dns',
+                'customer_password'       => 'required|min:4|max:50',
                 'passanger_phone'         => 'required|min:3|max:50',
                 'passanger_name'          => 'required|min:3|max:255',
             ],
@@ -71,22 +75,70 @@ class BookingController extends BaseController
                 if (!$request->to_master_sub_area_id) {
                     return $this->sendError("to_master_sub_area_id is required", null);
                 }
+
+                $special_area_id = $request->special_area_id;
+                $special_areas = MasterSpecialArea::where([
+                    'id'                 => $special_area_id,
+                    'master_sub_area_id' => $request->to_master_sub_area_id,
+                ])->first();
+                if (!$special_areas) {
+                    return $this->sendError("Special Area Not Found", null);
+                }
             } else {
                 if (!$request->from_master_sub_area_id) {
                     return $this->sendError("from_master_sub_area_id is required", null);
                 }
+
+                $special_area_id = $request->special_area_id;
+                $special_areas = MasterSpecialArea::where([
+                    'id'                 => $special_area_id,
+                    'master_sub_area_id' => $request->from_master_sub_area_id,
+                ])->first();
+                if (!$special_areas) {
+                    return $this->sendError("Special Area Not Found", null);
+                }
             }
         }
 
-        $customer_phone  = $request->customer_phone;
-        $customer_name   = $request->customer_name;
-        $passanger_phone = $request->passanger_phone;
-        $passanger_name  = $request->passanger_name;
-        $total_person    = $request->qty_adult + $request->qty_baby;
-        $promo_price     = 0;
-        $voucher_id      = null;
-        $discount_type   = null;
-        $discount_value  = 0;
+        $user_id           = null;
+        $customer_phone    = $request->customer_phone;
+        $customer_password = $request->customer_password;
+        $customer_name     = $request->customer_name;
+        $customer_email    = $request->customer_email;
+        $passanger_phone   = $request->passanger_phone;
+        $passanger_name    = $request->passanger_name;
+        $total_person      = $request->qty_adult + $request->qty_baby;
+        $promo_price       = 0;
+        $voucher_id        = null;
+        $discount_type     = null;
+        $discount_value    = 0;
+
+        // check user registered or not
+        $check_users = User::where([
+            'phone' => $customer_phone,
+        ])->first();
+        if ($check_users) {
+            // user telah terdaftar
+            if (!password_verify($customer_password, $check_users->password)) {
+                return $this->sendError("Wrong password, please try again", null);
+            }
+
+            $user_id = $check_users->id;
+            User::where(['id', $check_users->id])->update([
+                'name'  => $customer_name,
+                'email' => $customer_email,
+            ]);
+        } else {
+            // register user baru
+            $register_user           = new User();
+            $register_user->name     = $customer_name;
+            $register_user->phone    = $customer_phone;
+            $register_user->password = bcrypt($customer_password);
+            $register_user->email    = $customer_email;
+            $register_user->photo    = 'img/user_pp/default.jpg';
+            $register_user->save();
+            $user_id = $register_user->id;
+        }
 
         // voucher & promo price
         if ($request->voucher_code) {
@@ -140,15 +192,12 @@ class BookingController extends BaseController
                 $extra_prices = MasterSpecialArea::select([
                     'first_person_price',
                     'extra_person_price'
-                ])->where('is_active', true);
+                ])->where([
+                    'is_active' => true,
+                    'id'        => $request->special_area_id,
+                ])->get();
 
-                if ($request->from_type == "airport") {
-                    $extra_prices->where('master_sub_area_id', $request->to_master_sub_area_id);
-                } else {
-                    $extra_prices->where('master_sub_area_id', $request->from_master_sub_area_id);
-                }
-
-                foreach ($extra_prices->get() as $key) {
+                foreach ($extra_prices as $key) {
                     $first_person_price = (float) $key->first_person_price;
                     $extra_person_price = (float) $key->extra_person_price;
 
@@ -216,6 +265,7 @@ class BookingController extends BaseController
 
         $from_master_sub_area_name = null;
         $to_master_sub_area_name   = null;
+        $regional_name             = null;
 
         if ($schedules->from_master_area_id != $request->from_master_area_id) {
             return $this->sendError('from_master_area_id schedule did not match', null);
@@ -263,8 +313,11 @@ class BookingController extends BaseController
             $from_master_sub_area_name = $from_sub->name;
         }
 
-        $booking_number = $this->generate_booking_number();
+        if ($request->special_request && $request->special_area_id) {
+            $regional_name = MasterSpecialArea::where('id', $request->special_area_id)->first()->regional_name;
+        }
 
+        $booking_number                     = $this->generate_booking_number();
         $booking                            = new Booking();
         $booking->booking_number            = $booking_number;
         $booking->schedule_id               = $request->schedule_id;
@@ -280,17 +333,21 @@ class BookingController extends BaseController
         $booking->vehicle_number            = $schedules->vehicle_number;
         $booking->datetime_departure        = $request->date_departure . " " . $schedules->time_departure;
         $booking->schedule_type             = $request->schedule_type;
+        $booking->user_id                   = $user_id;
         $booking->customer_phone            = $customer_phone;
         $booking->customer_name             = $customer_name;
+        $booking->customer_email            = $customer_email;
         $booking->passanger_phone           = $passanger_phone;
         $booking->passanger_name            = $passanger_name;
         $booking->qty_adult                 = $qty_adult;
         $booking->qty_baby                  = $qty_baby;
-        $booking->special_request           = $request->special_request;
         $booking->flight_number             = ($request->flight_number) ?? null;
         $booking->notes                     = ($request->notes) ?? null;
         $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
         $booking->luggage_price             = $luggage_price;
+        $booking->special_request           = $request->special_request;
+        $booking->special_area_id           = $request->special_area_id;
+        $booking->regional_name             = $regional_name;
         $booking->extra_price               = $extra_price;
         $booking->voucher_id                = $voucher_id;
         $booking->promo_price               = $promo_price;
@@ -302,50 +359,52 @@ class BookingController extends BaseController
         $booking->payment_token             = null;
         $booking->total_payment             = $total_price;
         $booking->save();
-
         $booking_id = $booking->id;
         $res        = Booking::where('id', $booking_id)->first();
 
         $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
         if ($request->schedule_type == "charter") {
-            $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
-
+            $datetime_departure     = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
             $charters               = Charter::find($request->schedule_id);
             $charters->is_available = false;
             $charters->save();
         }
 
         $result = [
-            'id'                        => $res->id,
+            'id'                        => (int) $res->id,
             'booking_number'            => $res->booking_number,
-            'schedule_id'               => $res->schedule_id,
-            'from_master_area_id'       => $res->from_master_area_id,
+            'schedule_id'               => (int) $res->schedule_id,
+            'from_master_area_id'       => (int) $res->from_master_area_id,
             'from_master_area_name'     => $res->from_master_area_name,
-            'from_master_sub_area_id'   => $res->from_master_sub_area_id,
+            'from_master_sub_area_id'   => (int) $res->from_master_sub_area_id,
             'from_master_sub_area_name' => $res->from_master_sub_area_name,
-            'to_master_area_id'         => $res->to_master_area_id,
+            'to_master_area_id'         => (int) $res->to_master_area_id,
             'to_master_area_name'       => $res->to_master_area_name,
-            'to_master_sub_area_id'     => $res->to_master_sub_area_id,
+            'to_master_sub_area_id'     => (int) $res->to_master_sub_area_id,
             'to_master_sub_area_name'   => $res->to_master_sub_area_name,
             'vehicle_name'              => $res->vehicle_name,
             'vehicle_number'            => $res->vehicle_number,
             'datetime_departure'        => $datetime_departure,
             'schedule_type'             => $res->schedule_type,
+            'user_id'                   => (int) $res->user_id,
             'customer_phone'            => $res->customer_phone,
             'customer_name'             => $res->customer_name,
+            'customer_email'            => $res->customer_email,
             'passanger_phone'           => $res->passanger_phone,
             'passanger_name'            => $res->passanger_name,
             'qty_adult'                 => (int) $res->qty_adult,
             'qty_baby'                  => (int) $res->qty_baby,
-            'special_request'           => $res->special_request,
             'flight_number'             => $res->flight_number,
             'notes'                     => $res->notes,
             'luggage_qty'               => (int) $res->luggage_qty,
             'luggage_price'             => (float) $res->luggage_price,
+            'special_request'           => $res->special_request,
+            'special_area_id'           => (int) $res->special_area_id,
+            'regional_name'             => $res->regional_name,
             'extra_price'               => (float) $res->extra_price,
+            'base_price'                => (float) $res->base_price,
             'voucher_id'                => $res->voucher_id,
             'promo_price'               => (float) $res->promo_price,
-            'base_price'                => (float) $res->base_price,
             'total_price'               => (float) $res->total_price,
             'booking_status'            => $res->booking_status,
             'payment_status'            => $res->payment_status,

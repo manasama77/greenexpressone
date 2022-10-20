@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingShuttleController;
 use App\Http\Controllers\CharterController;
 use App\Http\Controllers\MasterAreaController;
 use App\Http\Controllers\MasterSpecialAreaController;
@@ -87,7 +88,7 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::put('/shuttle/update/{id}', [ShuttleController::class, 'update'])->name('admin.shuttle.update')->middleware('admin');
     Route::delete('/shuttle/delete/{id}', [ShuttleController::class, 'delete'])->name('admin.shuttle.delete')->middleware('admin');
 
-    Route::get('/booking', [BookingController::class, 'index'])->name('admin.booking')->middleware('admin');
+    Route::get('/booking/shuttle', [BookingShuttleController::class, 'index'])->name('admin.booking.shuttle')->middleware('admin');
     // Route::get('/booking/add', [BookingController::class, 'add'])->name('admin.booking.add')->middleware('admin');
     // Route::post('/booking', [BookingController::class, 'store'])->name('admin.booking.store')->middleware('admin');
     // Route::get('/booking/edit/{id}', [BookingController::class, 'edit'])->name('admin.booking.edit')->middleware('admin');
