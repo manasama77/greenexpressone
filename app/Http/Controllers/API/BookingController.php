@@ -27,18 +27,18 @@ class BookingController extends BaseController
             $request->all(),
             [
                 'schedule_type'           => 'required|in:shuttle,charter',
-                'from_type'               => 'required|in:airport,district',
+                'from_type'               => 'required|in:airport,city',
                 'schedule_id'             => 'required|integer',
                 'date_departure'          => 'required|date|after_or_equal:today|date_format:Y-m-d',
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id'       => 'required',
                 'to_master_sub_area_id'   => 'nullable',
-                'qty_adult'               => 'required|integer|min_digits:0',
+                'qty_adult'               => 'required|integer|min_digits:1',
                 'qty_baby'                => 'required|integer|min_digits:0',
-                'special_request'         => 'required|boolean',
+                'special_request'         => 'required_if:schedule_type,shuttle|boolean',
                 'special_area_id'         => 'integer|required_if:special_request,1',
-                'luggage_qty'             => 'required|integer|min_digits:0',
+                'luggage_qty'             => 'required_if:schedule_type,shuttle|integer|min_digits:0',
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
@@ -124,7 +124,7 @@ class BookingController extends BaseController
             }
 
             $user_id = $check_users->id;
-            User::where(['id', $check_users->id])->update([
+            User::where(['id' => $check_users->id])->update([
                 'name'  => $customer_name,
                 'email' => $customer_email,
             ]);
@@ -345,8 +345,8 @@ class BookingController extends BaseController
         $booking->notes                     = ($request->notes) ?? null;
         $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
         $booking->luggage_price             = $luggage_price;
-        $booking->special_request           = $request->special_request;
-        $booking->special_area_id           = $request->special_area_id;
+        $booking->special_request           = ($request->special_request) ?? false;
+        $booking->special_area_id           = ($request->special_area_id) ?? null;
         $booking->regional_name             = $regional_name;
         $booking->extra_price               = $extra_price;
         $booking->voucher_id                = $voucher_id;
@@ -398,8 +398,8 @@ class BookingController extends BaseController
             'notes'                     => $res->notes,
             'luggage_qty'               => (int) $res->luggage_qty,
             'luggage_price'             => (float) $res->luggage_price,
-            'special_request'           => $res->special_request,
-            'special_area_id'           => (int) $res->special_area_id,
+            'special_request'           => ($res->special_request) ?? null,
+            'special_area_id'           => ((int) $res->special_area_id) ?? null,
             'regional_name'             => $res->regional_name,
             'extra_price'               => (float) $res->extra_price,
             'base_price'                => (float) $res->base_price,
