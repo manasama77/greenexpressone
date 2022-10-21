@@ -182,7 +182,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `/admin/booking/shuttle/delete/${id}`,
+                        url: `/admin/booking/charter/delete/${id}`,
                         type: 'DELETE',
                         dataType: 'json',
                         data: {

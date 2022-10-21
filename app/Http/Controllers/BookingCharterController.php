@@ -7,14 +7,13 @@ use App\Models\Charter;
 use App\Models\Voucher;
 use Illuminate\Http\Request;
 use App\Models\ScheduleShuttle;
-use App\Http\Controllers\Controller;
 
-class BookingShuttleController extends Controller
+class BookingCharterController extends Controller
 {
     public function index()
     {
         $bookings = Booking::where([
-            'schedule_type' => 'shuttle'
+            'schedule_type' => 'charter'
         ])->orderBy('booking_status', 'desc')->get();
 
         $data = [];
@@ -126,13 +125,13 @@ class BookingShuttleController extends Controller
         }
 
         $data = [
-            'page_title'     => 'Booking Shuttle',
+            'page_title'     => 'Booking Charter',
             'base_url'       => env('APP_URL'),
             'app_name'       => env('APP_NAME'),
             'app_name_short' => env('APP_NAME_ABBR'),
             'bookings'       => $data,
         ];
-        return view('admin.booking_shuttle.main')->with($data);
+        return view('admin.booking_charter.main')->with($data);
     }
 
     public function delete($id)
