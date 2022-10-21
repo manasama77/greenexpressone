@@ -14,6 +14,7 @@ use App\Http\Controllers\MasterSpecialAreaController;
 use App\Http\Controllers\MasterSubAreaController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ShuttleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
 
 /*
@@ -100,4 +101,11 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update')->middleware('admin');
     Route::post('/admin/reset_password/{id}', [AdminController::class, 'reset_password'])->name('admin.admin.reset_password')->middleware('admin');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.admin.delete')->middleware('admin');
+
+    Route::get('/user', [UserController::class, 'index'])->name('admin.user')->middleware('admin');
+    Route::post('/user', [UserController::class, 'store'])->name('admin.user.store')->middleware('admin');
+    Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit')->middleware('admin');
+    Route::put('/user/update/{id}', [UserController::class, 'update'])->name('admin.user.update')->middleware('admin');
+    Route::post('/user/reset_password/{id}', [UserController::class, 'reset_password'])->name('admin.user.reset_password')->middleware('admin');
+    Route::delete('/user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete')->middleware('admin');
 });
