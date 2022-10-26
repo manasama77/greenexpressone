@@ -10,6 +10,7 @@
     <title>{{ $title }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- owl carousel css -->
     <link rel="stylesheet" href="css/owl.carousel.min.css" />
     <!-- font awesome icons -->
@@ -79,6 +80,12 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         let base_url = $('#base').val();
 
         $(window).on("load", function() {

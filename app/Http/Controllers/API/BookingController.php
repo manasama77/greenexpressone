@@ -661,6 +661,7 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
+                'from_type'               => 'required|in:airport,city',
                 'date_booking'            => 'required|date',
                 'qty_adult'               => 'required|integer|min_digits:0',
                 'qty_baby'                => 'required|integer|min_digits:0',
@@ -708,13 +709,23 @@ class BookingController extends BaseController
             ->leftJoin('master_sub_areas as from_master_sub_area', 'from_master_sub_area.id', '=', 'schedule_shuttles.from_master_sub_area_id')
             ->leftJoin('master_areas as to_master_area', 'to_master_area.id', '=', 'schedule_shuttles.to_master_area_id')
             ->leftJoin('master_sub_areas as to_master_sub_area', 'to_master_sub_area.id', '=', 'schedule_shuttles.to_master_sub_area_id')
-            ->where([
-                'schedule_shuttles.is_active'               => true,
+            ->where('schedule_shuttles.time_departure', '>=', Carbon::now()->format('H:i:s'))
+            ->where('schedule_shuttles.is_active', true);
+
+        if ($request->from_type == "airport") {
+            $schedules->where([
+                'schedule_shuttles.from_master_area_id'     => $request->from_master_area_id,
+                'schedule_shuttles.to_master_area_id'       => $request->to_master_area_id,
+                'schedule_shuttles.to_master_sub_area_id'   => $request->to_master_sub_area_id,
+            ]);
+        } else {
+            $schedules->where([
                 'schedule_shuttles.from_master_area_id'     => $request->from_master_area_id,
                 'schedule_shuttles.from_master_sub_area_id' => $request->from_master_sub_area_id,
                 'schedule_shuttles.to_master_area_id'       => $request->to_master_area_id,
-                'schedule_shuttles.to_master_sub_area_id'   => $request->to_master_sub_area_id,
-            ])->where('time_departure', '>=', Carbon::now()->format('H:i:s'))->get();
+            ]);
+        }
+        $schedules = $schedules->get();
 
         if ($schedules->count() == 0) {
             return $this->sendError('Data Empty', null, 200);
@@ -758,6 +769,7 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
+                'from_type'               => 'required|in:airport,city',
                 'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id'       => 'required',
@@ -776,13 +788,22 @@ class BookingController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $schedules = Charter::where([
-            'is_available'            => true,
-            'from_master_area_id'     => $request->from_master_area_id,
-            'from_master_sub_area_id' => $request->from_master_sub_area_id,
-            'to_master_area_id'       => $request->to_master_area_id,
-            'to_master_sub_area_id'   => $request->to_master_sub_area_id,
-        ])->get();
+        $schedules = Charter::where('is_available', true);
+
+        if ($request->from_type == "airport") {
+            $schedules->where([
+                'from_master_area_id'     => $request->from_master_area_id,
+                'to_master_area_id'       => $request->to_master_area_id,
+                'to_master_sub_area_id'   => $request->to_master_sub_area_id,
+            ]);
+        } else {
+            $schedules->where([
+                'from_master_area_id'     => $request->from_master_area_id,
+                'from_master_sub_area_id' => $request->from_master_sub_area_id,
+                'to_master_area_id'       => $request->to_master_area_id,
+            ]);
+        }
+        $schedules = $schedules->get();
 
         if ($schedules->count() == 0) {
             return $this->sendError('Data Empty', null);

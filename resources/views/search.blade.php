@@ -18,10 +18,10 @@
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h5 class="text-center font-weight-bold mb-4">Airport Shuttle & Charter Booking</h5>
-                            <form id="form_booking" action="{{ route('search') }}" method="get">
+                            <form id="form_booking">
                                 <div class="form-group">
                                     <label for="from_type" class="form-text font-weight-bold">From Type</label>
-                                    <select class="form-control select2" id="from_type" name="from_type"
+                                    <select class="form-control select2 w-100" id="from_type" name="from_type"
                                         data-placeholder="From Type" required>
                                         <option value="airport">Airport</option>
                                         <option value="district">District</option>
@@ -30,15 +30,15 @@
                                 <div class="form-group">
                                     <label for="from_master_area_id"
                                         class="form-text font-weight-bold">From/Departure</label>
-                                    <select class="form-control select2" id="from_master_area_id" name="from_master_area_id"
-                                        data-placeholder="From/Departure" required disabled>
+                                    <select class="form-control select2 w-100" id="from_master_area_id"
+                                        name="from_master_area_id" data-placeholder="From/Departure" required disabled>
                                         <option value=""></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="from_master_sub_area_id" class="form-text font-weight-bold">Sub
                                         From/Departure</label>
-                                    <select class="form-control select2" id="from_master_sub_area_id"
+                                    <select class="form-control select2 w-100" id="from_master_sub_area_id"
                                         name="from_master_sub_area_id"
                                         data-placeholder="Sub
                                         From/Departure"
@@ -48,15 +48,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="to_master_area_id" class="form-text font-weight-bold">To/Arrival</label>
-                                    <select class="form-control select2" id="to_master_area_id" name="to_master_area_id"
-                                        data-placeholder="To/Arrival" required disabled>
+                                    <select class="form-control select2 w-100" id="to_master_area_id"
+                                        name="to_master_area_id" data-placeholder="To/Arrival" required disabled>
                                         <option value=""></option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="to_master_sub_area_id" class="form-text font-weight-bold">Sub
                                         To/Arrival</label>
-                                    <select class="form-control select2" id="to_master_sub_area_id"
+                                    <select class="form-control select2 w-100" id="to_master_sub_area_id"
                                         name="to_master_sub_area_id"
                                         data-placeholder="Sub
                                         To/Arrival" disabled>
@@ -122,8 +122,9 @@
                     <div class="card card-semi shadow">
                         <div class="card-body">
                             <div class="section-title">
-                                <h1>Shuttle bus to and from the main America airports</h1>
-                                <div id="list_jadwal"></div>
+                                <h1>Schedue List</h1>
+                                <div class="row" id="list_jadwal">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -159,292 +160,15 @@
 @endsection
 @section('vitamin')
     <script>
-        // global variable
-        let from_type = ('{{ $request->from_type }}') ?? null;
-        let from_master_area_id = ('{{ $request->from_master_area_id }}') ?? null;
-        let from_master_sub_area_id = ('{{ $request->from_master_sub_area_id }}') ?? null;
-        let to_master_area_id = ('{{ $request->to_master_area_id }}') ?? null;
-        let to_master_sub_area_id = ('{{ $request->to_master_sub_area_id }}') ?? null;
-        let booking_type = ('{{ $request->booking_type }}') ?? null;
-        let date_departure = ('{{ $request->date_departure }}') ?? null;
-        let passanger_adult = ('{{ $request->passanger_adult }}') ?? null;
-        let passanger_baby = ('{{ $request->passanger_baby }}') ?? null;
-        let list_jadwal_container = $('#list_jadwal_container').val()
-
-        $(document).ready(function() {
-            $('.select2').select2({
-                allowClear: true,
-            })
-
-            $('#from_type').on('change', e => {
-                e.preventDefault();
-                if ($('#from_type').val()) {
-                    getFromList()
-                } else {
-                    $('#from_master_area_id').val(null).trigger('change').prop('disabled', true)
-                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
-                    $('#to_master_area_id').val(null).trigger('change').prop('disabled', true)
-                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
-                }
-            })
-
-            $('#from_master_area_id').on('change', e => {
-                if ($('#from_master_area_id').val()) {
-                    console.log("a")
-                    let master_area_id = $('#from_master_area_id').val()
-                    getSubArea(master_area_id, '#from_master_sub_area_id')
-                } else {
-                    console.log("b")
-                    $('#from_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
-                }
-            })
-
-            $('#to_master_area_id').on('change', e => {
-                if ($('#to_master_area_id').val()) {
-                    let master_area_id = $('#to_master_area_id').val()
-                    getSubArea(master_area_id, '#to_master_sub_area_id')
-                } else {
-                    $('#to_master_sub_area_id').val(null).trigger('change').prop('disabled', true)
-                }
-            })
-
-            initData()
-        });
-
-        function initData() {
-            $.blockUI()
-            if (from_type && from_master_area_id && to_master_area_id && booking_type && date_departure &&
-                passanger_adult) {
-                $('#from_type').val(from_type)
-
-                $.ajax({
-                    url: `${base_url}api/get_list_from_departure`,
-                    method: 'get',
-                    dataType: 'json',
-                    data: {
-                        from_type: $('#from_type').val()
-                    },
-                    beforeSend: () => {
-                        $('#from_master_area_id').html('<option value=""></option>').prop('disabled', true)
-                        $('#from_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
-                    }
-                }).fail(e => {
-                    console.log(e.responseText)
-                }).done(e => {
-                    let data = e.data
-                    let htmlnya = '<option value=""></option>';
-
-                    data.forEach(x => {
-                        let id = x.id
-                        let name = x.name
-                        let sub_area = x.sub_area
-                        htmlnya += `<option value="${id}">${name}</option>`
-                    })
-                    $('#from_master_area_id').html(htmlnya).prop('disabled', false)
-                    $('#from_master_area_id').val(from_master_area_id)
-
-                    $.ajax({
-                        url: `${base_url}api/get_list_sub_area`,
-                        method: 'get',
-                        dataType: 'json',
-                        data: {
-                            master_area_id: $("#from_master_area_id").val()
-                        },
-                        beforeSend: () => {
-                            $(`#from_master_sub_area_id`).html('<option value=""></option>').prop(
-                                'disabled', true)
-                        }
-                    }).fail(e => {
-                        console.log(e.responseText)
-                    }).done(e => {
-                        let data = e.data
-                        let htmlnya = '<option value=""></option>';
-
-                        data.forEach(x => {
-                            let id = x.id
-                            let name = x.name
-                            htmlnya += `<option value="${id}">${name}</option>`
-                        })
-                        $(`#from_master_sub_area_id`).html(htmlnya).prop('disabled', false)
-                        $('#from_master_sub_area_id').val(from_master_sub_area_id)
-
-                        $.ajax({
-                            url: `${base_url}api/get_list_to_destination`,
-                            method: 'get',
-                            dataType: 'json',
-                            data: {
-                                from_type: $('#from_type').val()
-                            },
-                            beforeSend: () => {
-                                $('#to_master_area_id').html('<option value=""></option>').prop(
-                                    'disabled', true)
-                                $('#to_master_sub_area_id').html('<option value=""></option>')
-                                    .prop('disabled', true)
-                            }
-                        }).fail(e => {
-                            console.log(e.responseText)
-                        }).done(e => {
-                            let data = e.data
-                            let htmlnya = '<option value=""></option>';
-
-                            data.forEach(x => {
-                                let id = x.id
-                                let name = x.name
-                                htmlnya += `<option value="${id}">${name}</option>`
-                            })
-                            $('#to_master_area_id').html(htmlnya).prop('disabled', false)
-                            $('#to_master_area_id').val(to_master_area_id)
-
-                            $.ajax({
-                                url: `${base_url}api/get_list_sub_area`,
-                                method: 'get',
-                                dataType: 'json',
-                                data: {
-                                    master_area_id: $('#to_master_area_id').val()
-                                },
-                                beforeSend: () => {
-                                    $(`#to_master_sub_area_id`).html(
-                                            '<option value=""></option>')
-                                        .prop('disabled', true)
-                                }
-                            }).fail(e => {
-                                console.log(e.responseText)
-                            }).always(e => {
-                                $.unblockUI()
-                            }).done(e => {
-                                let data = e.data
-                                let htmlnya = '<option value=""></option>';
-
-                                data.forEach(x => {
-                                    let id = x.id
-                                    let name = x.name
-                                    htmlnya +=
-                                        `<option value="${id}">${name}</option>`
-                                })
-                                $(`#to_master_sub_area_id`).html(htmlnya).prop('disabled',
-                                    false)
-                                $(`#to_master_sub_area_id`).val(to_master_sub_area_id)
-
-                                getScheduleShuttle()
-                            })
-                        })
-                    })
-                })
-            }
-            // getFromList()
-        }
-
-        function getFromList() {
-            $.ajax({
-                url: `${base_url}api/get_list_from_departure`,
-                method: 'get',
-                dataType: 'json',
-                data: {
-                    from_type: $('#from_type').val()
-                },
-                beforeSend: () => {
-                    $('#from_master_area_id').html('<option value=""></option>').prop('disabled', true)
-                    $('#from_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
-                }
-            }).fail(e => {
-                console.log(e.responseText)
-            }).done(e => {
-                console.log(e)
-                let data = e.data
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach(x => {
-                    let id = x.id
-                    let name = x.name
-                    let sub_area = x.sub_area
-                    htmlnya += `<option value="${id}">${name}</option>`
-                })
-                $('#from_master_area_id').html(htmlnya).prop('disabled', false)
-
-                getToList()
-            })
-        }
-
-        function getToList() {
-            $.ajax({
-                url: `${base_url}api/get_list_to_destination`,
-                method: 'get',
-                dataType: 'json',
-                data: {
-                    from_type: $('#from_type').val()
-                },
-                beforeSend: () => {
-                    $('#to_master_area_id').html('<option value=""></option>').prop('disabled', true)
-                    $('#to_master_sub_area_id').html('<option value=""></option>').prop('disabled', true)
-                }
-            }).fail(e => {
-                console.log(e.responseText)
-            }).done(e => {
-                console.log(e)
-                let data = e.data
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach(x => {
-                    let id = x.id
-                    let name = x.name
-                    htmlnya += `<option value="${id}">${name}</option>`
-                })
-                $('#to_master_area_id').html(htmlnya).prop('disabled', false)
-            })
-        }
-
-        function getSubArea(master_area_id, selector) {
-            $.ajax({
-                url: `${base_url}api/get_list_sub_area`,
-                method: 'get',
-                dataType: 'json',
-                data: {
-                    master_area_id
-                },
-                beforeSend: () => {
-                    $(`${selector}`).html('<option value=""></option>').prop('disabled', true)
-                }
-            }).fail(e => {
-                console.log(e.responseText)
-            }).done(e => {
-                console.log(e)
-                let data = e.data
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach(x => {
-                    let id = x.id
-                    let name = x.name
-                    htmlnya += `<option value="${id}">${name}</option>`
-                })
-                $(`${selector}`).html(htmlnya).prop('disabled', false)
-            })
-        }
-
-        function getScheduleShuttle() {
-            $.ajax({
-                url: `${base_url}api/get_list_sub_area`,
-                method: 'get',
-                dataType: 'json',
-                data: {
-                    master_area_id
-                },
-                beforeSend: () => {
-                    $(`${selector}`).html('<option value=""></option>').prop('disabled', true)
-                }
-            }).fail(e => {
-                console.log(e.responseText)
-            }).done(e => {
-                console.log(e)
-                let data = e.data
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach(x => {
-                    let id = x.id
-                    let name = x.name
-                    htmlnya += `<option value="${id}">${name}</option>`
-                })
-                $(`${selector}`).html(htmlnya).prop('disabled', false)
-            })
-        }
+        let from_type = @json($request->from_type);
+        let from_master_area_id = @json($request->from_master_area_id);
+        let from_master_sub_area_id = @json($request->from_master_sub_area_id);
+        let to_master_area_id = @json($request->to_master_area_id);
+        let to_master_sub_area_id = @json($request->to_master_sub_area_id);
+        let booking_type = @json($request->booking_type);
+        let date_departure = @json($request->date_departure);
+        let passanger_adult = @json($request->passanger_adult);
+        let passanger_baby = @json($request->passanger_baby);
     </script>
+    <script src="/js/booking.js"></script>
 @endsection
