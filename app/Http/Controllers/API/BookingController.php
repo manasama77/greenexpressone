@@ -912,6 +912,7 @@ class BookingController extends BaseController
 
         $data = [
             'id'                 => $master_special_areas->id,
+            'regional_name'      => $master_special_areas->regional_name,
             'first_person_price' => $master_special_areas->first_person_price,
             'extra_person_price' => $master_special_areas->extra_person_price,
         ];
