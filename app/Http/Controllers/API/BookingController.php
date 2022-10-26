@@ -905,19 +905,12 @@ class BookingController extends BaseController
             return $this->sendError('Master Sub Area Not Found', null);
         }
 
-        $master_special_areas = MasterSpecialArea::where('master_sub_area_id', $request->master_sub_area_id)->where('is_active', true)->first();
-        if (!$master_special_areas) {
+        $master_special_areas = MasterSpecialArea::where('master_sub_area_id', $request->master_sub_area_id)->where('is_active', true)->get();
+        if ($master_special_areas->count() == 0) {
             return $this->sendError('Master Special Area Not Found', null);
         }
 
-        $data = [
-            'id'                 => $master_special_areas->id,
-            'regional_name'      => $master_special_areas->regional_name,
-            'first_person_price' => $master_special_areas->first_person_price,
-            'extra_person_price' => $master_special_areas->extra_person_price,
-        ];
-
-        return $this->sendResponse($data, 'success');
+        return $this->sendResponse($master_special_areas, 'success');
     }
 
     public function get_list_sub_area(Request $request)
