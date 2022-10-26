@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\BookingController;
+use App\Http\Controllers\API\PagesController;
 use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\VoucherController;
 
@@ -33,6 +34,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::get('/banner', [BannerController::class, 'index']);
 Route::get('/banner/{id}', [BannerController::class, 'show']);
+
+Route::get('/pages', [PagesController::class, 'index']);
 
 Route::controller(BookingController::class)->group(function () {
     Route::get('/check_booking_number', 'check_booking_number');
