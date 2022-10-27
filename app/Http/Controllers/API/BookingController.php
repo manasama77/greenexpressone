@@ -709,7 +709,6 @@ class BookingController extends BaseController
             ->leftJoin('master_sub_areas as from_master_sub_area', 'from_master_sub_area.id', '=', 'schedule_shuttles.from_master_sub_area_id')
             ->leftJoin('master_areas as to_master_area', 'to_master_area.id', '=', 'schedule_shuttles.to_master_area_id')
             ->leftJoin('master_sub_areas as to_master_sub_area', 'to_master_sub_area.id', '=', 'schedule_shuttles.to_master_sub_area_id')
-            ->where('schedule_shuttles.time_departure', '>=', Carbon::now()->format('H:i:s'))
             ->where('schedule_shuttles.is_active', true);
 
         if ($request->from_type == "airport") {
@@ -725,6 +724,11 @@ class BookingController extends BaseController
                 'schedule_shuttles.to_master_area_id'       => $request->to_master_area_id,
             ]);
         }
+
+        if ($request->date_booking == Carbon::now()->format('Y-m-d')) {
+            $schedules->where('schedule_shuttles.time_departure', '>=', Carbon::now()->format('H:i:s'));
+        }
+
         $schedules = $schedules->get();
 
         if ($schedules->count() == 0) {

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\MasterArea;
-use App\Models\MasterSubArea;
-use App\Models\ScheduleShuttle;
 use Illuminate\Http\Request;
+use App\Models\MasterSubArea;
+use Illuminate\Support\Carbon;
+use App\Models\ScheduleShuttle;
 
 class WelcomeController extends Controller
 {

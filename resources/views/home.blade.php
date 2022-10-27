@@ -18,7 +18,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h5 class="text-center font-weight-bold mb-4">Airport Shuttle & Charter Booking</h5>
-                            <form id="form_booking" action="{{ route('search') }}" method="get">
+                            <form action="{{ route('search') }}" method="get">
                                 <div class="form-group">
                                     <label for="from_type" class="form-text font-weight-bold">From Type</label>
                                     <select class="form-control select2" id="from_type" name="from_type"
@@ -231,5 +231,8 @@
     </section>
 @endsection
 @section('vitamin')
+    <script>
+        let booking_type = null;
+    </script>
     <script src="/js/booking.js"></script>
 @endsection

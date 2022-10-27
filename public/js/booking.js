@@ -333,16 +333,17 @@ function searchSchedule() {
                     let luggage_price = el.luggage_price;
                     let total_seat_used = el.total_seat_used;
                     let is_available = el.is_available;
+                    let available_seat = total_seat - total_seat_used;
 
                     let disabled = ``;
                     if (is_available == false) {
                         disabled = `disabled`;
                     }
 
-                    let button_booking = `<a href="#" class="btn btn-primary ${disabled}">Booking</a>`;
+                    let button_booking = `<button type="button" class="btn btn-primary ${disabled}" onclick="Booking(${id})">Booking</button>`;
 
                     htmlnya += /*html*/ `
-                        <div class="col-12">
+                        <div class="col-12 my-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
@@ -362,7 +363,7 @@ function searchSchedule() {
                                             <p class="card-text">${notes}</p>
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">${vehicle_name} - ${vehicle_number}</li>
-                                                <li class="list-group-item">Total Seat ${total_seat}</li>
+                                                <li class="list-group-item">Available Seat ${available_seat}</li>
                                                 <li class="list-group-item">Rent Price $${price}</li>
                                                 <li class="list-group-item">Luggage Price $${luggage_price}</li>
                                                 <li class="list-group-item">Time Departure ${time_departure}</li>
@@ -378,4 +379,8 @@ function searchSchedule() {
                 $("#list_jadwal").html(htmlnya);
             }
         });
+}
+
+function Booking(id) {
+    //
 }
