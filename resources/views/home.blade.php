@@ -4,7 +4,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <x-banner :banners=$banners></x-banner>
+                    @include('Components.Banner')
+                    {{-- <x-banner :banners=$banners></x-banner> --}}
                 </div>
             </div>
         </div>
