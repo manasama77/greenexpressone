@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\BookingCharterController;
 use App\Http\Controllers\BookingShuttleController;
 use App\Http\Controllers\CharterController;
@@ -76,6 +77,12 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/pages/edit/{id}', [PagesController::class, 'edit'])->name('admin.pages.edit')->middleware('admin');
     Route::put('/pages/update/{id}', [PagesController::class, 'update'])->name('admin.pages.update')->middleware('admin');
     Route::delete('/pages/delete/{id}', [PagesController::class, 'delete'])->name('admin.voucher.delete')->middleware('admin');
+
+    Route::get('/agent', [AgentController::class, 'index'])->name('admin.agent')->middleware('admin');
+    Route::post('/agent', [AgentController::class, 'store'])->name('admin.agent.store')->middleware('admin');
+    Route::get('/agent/edit/{id}', [AgentController::class, 'edit'])->name('admin.agent.edit')->middleware('admin');
+    Route::put('/agent/update/{id}', [AgentController::class, 'update'])->name('admin.agent.update')->middleware('admin');
+    Route::delete('/agent/delete/{id}', [AgentController::class, 'delete'])->name('admin.agent.delete')->middleware('admin');
 
     Route::get('/voucher', [VoucherController::class, 'index'])->name('admin.voucher')->middleware('admin');
     Route::post('/voucher', [VoucherController::class, 'store'])->name('admin.voucher.store')->middleware('admin');

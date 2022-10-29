@@ -24,36 +24,26 @@
                                         <thead>
                                             <tr>
                                                 <th><i class="fas fa-cogs"></i></th>
-                                                <th style="min-width: 150px;">Voucher Name</th>
-                                                <th style="min-width: 100px;">Code</th>
-                                                <th style="min-width: 100px;">Date Start</th>
-                                                <th style="min-width: 100px;">Date Expired</th>
-                                                <th style="min-width: 120px;">Discount Type</th>
-                                                <th style="min-width: 120px;">Discount Value</th>
-                                                <th>Active</th>
+                                                <th style="min-width: 150px;">Agent Name</th>
+                                                <th style="min-width: 100px;">Password</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($vouchers as $voucher)
+                                            @foreach ($agents as $agent)
                                                 <tr>
                                                     <td>
-                                                        <a href="{{ route('admin.voucher.edit', $voucher->id) }}"
+                                                        <a href="{{ route('admin.agent.edit', $agent->id) }}"
                                                             class="btn btn-info btn-sm">
                                                             <i class="fas fa-pencil fa-fw"></i>
                                                         </a>
                                                         <button type="button" class="btn btn-danger btn-sm"
-                                                            id="delete_{{ $voucher->id }}"
-                                                            onclick="deleteData('{{ $voucher->id }}')">
+                                                            id="delete_{{ $agent->id }}"
+                                                            onclick="deleteData('{{ $agent->id }}')">
                                                             <i class="fas fa-trash fa-fw"></i>
                                                         </button>
                                                     </td>
-                                                    <td>{{ $voucher->name }}</td>
-                                                    <td>{{ $voucher->code }}</td>
-                                                    <td>{{ $voucher->date_start }}</td>
-                                                    <td>{{ $voucher->date_expired }}</td>
-                                                    <td class="text-capitalize">{{ $voucher->discount_type }}</td>
-                                                    <td>{{ number_format($voucher->discount_value, 2) }}</td>
-                                                    <td>{{ $voucher->is_active ? 'Active' : 'Inactive' }}</td>
+                                                    <td>{{ $agent->name }}</td>
+                                                    <td>{{ $agent->password }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -82,56 +72,17 @@
                                         </div>
                                     </div>
                                 @endif
-                                <form id="form_add" method="POST" action="/admin/voucher">
+                                <form id="form_add" method="POST" action="/admin/agent">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="agent_id">Agent</label>
-                                        <select class="form-control" id="agent_id" name="agent_id" required>
-                                            <option value=""></option>
-                                            @foreach ($agents as $agent)
-                                                <option value="{{ $agent->id }}">{{ $agent->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Voucher Name</label>
+                                        <label for="name">Agent Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             value="{{ old('name') }}" minlength="3" maxlength="100" required />
                                     </div>
                                     <div class="form-group">
-                                        <label for="code">Voucher Code</label>
-                                        <input type="text" class="form-control" id="code" name="code"
-                                            value="{{ old('code') }}" minlength="3" maxlength="100" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date_start">Date Start</label>
-                                        <input type="date" class="form-control" id="date_start" name="date_start"
-                                            value="{{ old('date_start') }}" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date_expired">Date Expired</label>
-                                        <input type="date" class="form-control" id="date_expired" name="date_expired"
-                                            value="{{ old('date_expired') }}" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="discount_type">Discount Type</label>
-                                        <select class="form-control" id="discount_type" name="discount_type" required>
-                                            <option value="percentage">Percentage</option>
-                                            <option value="value">Value</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="discount_value">Discount Value</label>
-                                        <input type="number" class="form-control" id="discount_value" name="discount_value"
-                                            value="{{ old('discount_value') }}" min="0.01" max="9999.99"
-                                            step="0.01" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="is_active">Active</label>
-                                        <select class="form-control" id="is_active" name="is_active" required>
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
-                                        </select>
+                                        <label for="password">Password</label>
+                                        <input type="text" class="form-control" id="password" name="password"
+                                            value="{{ old('password') }}" minlength="3" maxlength="100" required />
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">
@@ -156,7 +107,7 @@
         $(document).ready(() => {
             $('.datatables').DataTable({
                 order: [
-                    [3, 'asc']
+                    [1, 'asc']
                 ],
                 columnDefs: [{
                     targets: [0],
@@ -177,7 +128,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `/admin/voucher/delete/${id}`,
+                        url: `/admin/agent/delete/${id}`,
                         type: 'DELETE',
                         dataType: 'json',
                         data: {

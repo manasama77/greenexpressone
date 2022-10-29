@@ -40,6 +40,16 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
+                                        <label for="agent_id">Agent</label>
+                                        <select class="form-control" id="agent_id" name="agent_id" required>
+                                            <option value=""></option>
+                                            @foreach ($agents as $agent)
+                                                <option {{ $voucher->agent_id == $agent->id ? 'selected' : '' }}
+                                                    value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="name">Voucher Name</label>
                                         <input type="text" class="form-control" id="name" name="name"
                                             value="{{ old('name') ?? $voucher->name }}" minlength="3" maxlength="100"
@@ -81,7 +91,7 @@
                                         <select class="form-control" id="is_active" name="is_active" required>
                                             <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="1">
                                                 Active</option>
-                                            <option {{ $voucher->is_active == '1' ? 'selected' : null }} value="0">
+                                            <option {{ $voucher->is_active == '0' ? 'selected' : null }} value="0">
                                                 Inactive</option>
                                         </select>
                                     </div>

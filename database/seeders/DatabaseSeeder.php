@@ -634,10 +634,22 @@ class DatabaseSeeder extends Seeder
             DB::table('schedule_shuttles')->insert($data);
         }
 
+        DB::table('agents')->insert([
+            [
+                'name'     => 'Agent 1',
+                'password' => 'agent1',
+            ],
+            [
+                'name'     => 'Agent 2',
+                'password' => 'agent2',
+            ],
+        ]);
+
         DB::table('vouchers')->insert([
             [
-                'name'           => 'Discount 10%',
-                'code'           => 'promo10%',
+                'agent_id'       => 1,
+                'name'           => 'Agent 1 Discount 10%',
+                'code'           => 'agent1',
                 'date_start'     => '2022-09-01',
                 'date_expired'   => '2022-10-31',
                 'discount_type'  => 'percentage',
@@ -648,8 +660,9 @@ class DatabaseSeeder extends Seeder
                 'deleted_at'     => null,
             ],
             [
-                'name'           => 'Media Social Promo',
-                'code'           => 'medsos',
+                'agent_id'       => 2,
+                'name'           => 'Agent 2 Discount $5',
+                'code'           => 'agent2',
                 'date_start'     => '2022-09-01',
                 'date_expired'   => '2022-10-31',
                 'discount_type'  => 'value',
