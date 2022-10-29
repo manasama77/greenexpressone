@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('customer_email');
             $table->integer('qty_adult');
             $table->integer('qty_baby');
+            $table->decimal('base_price', 19, 2)->default(0);
+            $table->decimal('total_base_price', 19, 2)->default(0);
             $table->string('flight_number')->nullable();
             $table->longText('notes')->nullable();
             $table->integer('luggage_qty')->default(0);
@@ -45,7 +47,8 @@ return new class extends Migration
             $table->decimal('extra_price', 19, 2)->default(0);
             $table->foreignId('voucher_id')->nullable(true)->constrained('vouchers')->nullOnDelete()->cascadeOnUpdate();
             $table->decimal('promo_price', 19, 2)->default(0);
-            $table->decimal('base_price', 19, 2)->default(0);
+            $table->decimal('sub_total_price', 19, 2)->default(0);
+            $table->decimal('fee_price', 19, 2)->default(0);
             $table->decimal('total_price', 19, 2)->default(0);
             $table->enum('booking_status', ['pending', 'active', 'expired']);
             $table->enum('payment_status', ['waiting', 'paid', 'failed']);

@@ -47,7 +47,7 @@ class BookingController extends BaseController
                 'customer_name'           => 'required|min:3|max:255',
                 'customer_email'          => 'required|min:3|max:100|email:rfc,dns',
                 'customer_password'       => 'required|min:4|max:50',
-                'passanger'           => 'required|array',
+                'passanger'               => 'required|array',
             ],
             [
                 'exists' => ':attribute not found',
@@ -106,7 +106,14 @@ class BookingController extends BaseController
         $customer_name     = $request->customer_name;
         $customer_email    = $request->customer_email;
         $total_person      = $request->qty_adult + $request->qty_baby;
+        $base_price        = 0;
+        $total_base_price  = 0;
+        $luggage_price     = 0;
+        $extra_price       = 0;
         $promo_price       = 0;
+        $sub_total_price   = 0;
+        $fee_price         = 0;
+        $total_price       = 0;
         $voucher_id        = null;
         $discount_type     = null;
         $discount_value    = 0;
@@ -185,7 +192,6 @@ class BookingController extends BaseController
             $luggage_base_price = (float) $schedules->luggage_price;
             $luggage_price      = $luggage_base_price * $request->luggage_qty;
 
-            $extra_price = 0;
             if ($request->special_request) {
                 $extra_prices = MasterSpecialArea::select([
                     'first_person_price',
@@ -207,17 +213,18 @@ class BookingController extends BaseController
                 }
             }
 
-            $base_price  = $total_person * $schedules->price;
-            $total_price = $base_price + $luggage_price + $extra_price;
+            $base_price       = $schedules->price;
+            $total_base_price = $total_person * $schedules->price;
+            $sub_total_price  = $total_base_price + $luggage_price + $extra_price;
 
             if ($voucher_id) {
                 if ($discount_type == "percentage") {
-                    $promo_price = ($total_price * $discount_value) / 100;
+                    $promo_price = ($sub_total_price * $discount_value) / 100;
                 } else {
-                    $promo_price = $total_price - $discount_value;
+                    $promo_price = $discount_value;
                 }
 
-                $total_price = $total_price - $promo_price;
+                $sub_total_price = $sub_total_price - $promo_price;
             }
 
             $qty_adult = $request->qty_adult;
@@ -242,19 +249,23 @@ class BookingController extends BaseController
                 return $this->sendError('Charter data not found, please try again', null);
             }
 
-            $luggage_price = 0;
-            $extra_price   = 0;
-            $base_price    = $schedules->price;
-            $total_price   = $base_price;
+            $base_price        = $schedules->price;
+            $total_base_price  = $schedules->price;
+            $luggage_price     = 0;
+            $extra_price       = 0;
+            $promo_price       = 0;
+            $sub_total_price   = $base_price;
+            $fee_price         = 0;
+            $total_price       = 0;
 
             if ($voucher_id) {
                 if ($discount_type == "percentage") {
-                    $promo_price = ($total_price * $discount_value) / 100;
+                    $promo_price = ($sub_total_price * $discount_value) / 100;
                 } else {
-                    $promo_price = $total_price - $discount_value;
+                    $promo_price = $discount_value;
                 }
 
-                $total_price = $total_price - $promo_price;
+                $sub_total_price = $sub_total_price - $promo_price;
             }
 
             $qty_adult = 0;
@@ -315,6 +326,9 @@ class BookingController extends BaseController
             $regional_name = MasterSpecialArea::where('id', $request->special_area_id)->first()->regional_name;
         }
 
+        $fee_price   = ($sub_total_price * 3) / 100;
+        $total_price = $sub_total_price + $fee_price;
+
         $booking_number                     = $this->generate_booking_number();
         $booking                            = new Booking();
         $booking->booking_number            = $booking_number;
@@ -337,6 +351,8 @@ class BookingController extends BaseController
         $booking->customer_email            = $customer_email;
         $booking->qty_adult                 = $qty_adult;
         $booking->qty_baby                  = $qty_baby;
+        $booking->base_price                = $base_price;
+        $booking->total_base_price          = $total_base_price;
         $booking->flight_number             = ($request->flight_number) ?? null;
         $booking->notes                     = ($request->notes) ?? null;
         $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
@@ -347,7 +363,8 @@ class BookingController extends BaseController
         $booking->extra_price               = $extra_price;
         $booking->voucher_id                = $voucher_id;
         $booking->promo_price               = $promo_price;
-        $booking->base_price                = $base_price;
+        $booking->sub_total_price           = $sub_total_price;
+        $booking->fee_price                 = $fee_price;
         $booking->total_price               = $total_price;
         $booking->booking_status            = 'pending';
         $booking->payment_status            = 'waiting';
@@ -369,9 +386,9 @@ class BookingController extends BaseController
 
         BookingCustomer::insert($data_customer);
 
-        $res        = Booking::where('id', $booking_id)->first();
-
+        $res                = Booking::where('id', $booking_id)->first();
         $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
+
         if ($request->schedule_type == "charter") {
             $datetime_departure     = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
             $charters               = Charter::find($request->schedule_id);
@@ -402,6 +419,8 @@ class BookingController extends BaseController
             'passanger'                 => $arr_passanger,
             'qty_adult'                 => (int) $res->qty_adult,
             'qty_baby'                  => (int) $res->qty_baby,
+            'base_price'                => (float) $res->base_price,
+            'total_base_price'          => (float) $res->total_base_price,
             'flight_number'             => $res->flight_number,
             'notes'                     => $res->notes,
             'luggage_qty'               => (int) $res->luggage_qty,
@@ -410,9 +429,10 @@ class BookingController extends BaseController
             'special_area_id'           => ((int) $res->special_area_id) ?? null,
             'regional_name'             => $res->regional_name,
             'extra_price'               => (float) $res->extra_price,
-            'base_price'                => (float) $res->base_price,
             'voucher_id'                => $res->voucher_id,
             'promo_price'               => (float) $res->promo_price,
+            'sub_total_price'           => (float) $res->sub_total_price,
+            'fee_price'                 => (float) $res->fee_price,
             'total_price'               => (float) $res->total_price,
             'booking_status'            => $res->booking_status,
             'payment_status'            => $res->payment_status,
