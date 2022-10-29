@@ -171,7 +171,7 @@
                                                 name="agent_password" placeholder="Agent Password"
                                                 autocomplete="new-password" />
                                         </td>
-                                        <td class="text-right text-danger font-weight-bold">
+                                        <td class="text-right text-warning font-weight-bold">
                                             <span id="voucher_price">$0</span>
                                             <input type="hidden" name="voucher_price" value="0" />
                                         </td>
@@ -372,7 +372,6 @@
         }
 
         function checkVoucher(voucher_code, agent_password) {
-            console.log("CC")
             $.ajax({
                 url: '/api/check_voucher',
                 method: 'get',
@@ -386,6 +385,10 @@
             }).done(e => {
                 console.log(e)
                 if (e.success === false) {
+                    $('#voucher_price').text('$0')
+                    $('input[name="voucher_price"]').val(0)
+                    generateGrandTotal()
+
                     return Swal.fire({
                         position: 'top-end',
                         icon: 'warning',
@@ -393,7 +396,7 @@
                         showConfirmButton: false,
                         toast: true,
                         timer: 3000,
-                    });
+                    })
                 }
 
                 let discount_type = e.data.discount_type
