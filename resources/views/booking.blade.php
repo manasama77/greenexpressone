@@ -61,7 +61,10 @@
                                             <select class="form-control" id="special_area_id" name="special_area_id">
                                                 <option value="">-</option>
                                                 @foreach ($special_areas as $s)
-                                                    <option value="{{ $s->id }}">{{ $s->regional_name }}</option>
+                                                    <option value="{{ $s->id }}"
+                                                        data-first_person_price="{{ $s->first_person_price }}"
+                                                        data-extra_person_price="{{ $s->extra_person_price }}">
+                                                        {{ $s->regional_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -70,7 +73,7 @@
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="luggage_qty"
                                                     name="luggage_qty" placeholder="Luggage Qty" value="0"
-                                                    min="0" max="99" required />
+                                                    min="0" max="50" required />
                                                 <div class="input-group-append">
                                                     <span class="input-group-text bg-dark text-white">Kg</span>
                                                 </div>
@@ -83,8 +86,8 @@
                                                 name="flight_number" placeholder="Flight Number" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="Notes" class="form-text font-weight-bold">Notes</label>
-                                            <textarea class="form-control" id="flight_number" name="flight_number" placeholder="Notes"></textarea>
+                                            <label for="notes" class="form-text font-weight-bold">Notes</label>
+                                            <textarea class="form-control" id="notes" name="notes" placeholder="Notes"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
@@ -94,7 +97,8 @@
                                                     class="form-text font-weight-bold">Passanger
                                                     Name {{ $i }}</label>
                                                 <input type="text" class="form-control"
-                                                    id="passanger_name_{{ $i }}" name="passanger_name[]"
+                                                    id="passanger_name_{{ $i }}"
+                                                    name="passanger_name[{{ $i }}]"
                                                     placeholder="Passanger Name" required />
                                             </div>
                                         @endfor
@@ -118,7 +122,7 @@
                             <p>Special Area: <span class="special_area_name">-</span></p>
                             <p>Date: {{ $date_time_departure }}</p>
                             <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Baby</p>
-                            <p>Luggage: <span class="luggage_qty"></span> Kg</p>
+                            <p>Luggage: <span class="luggage_qty">0</span> Kg</p>
                             <hr />
                             <table class="table table-borderless text-white">
                                 <tbody>
@@ -148,7 +152,7 @@
                                     <tr>
                                         <td>
                                             Luggage Price:<br />
-                                            <span class="luggage_qty"></span> Kg
+                                            <span class="luggage_qty">0</span> Kg
                                         </td>
                                         <td class="text-right">
                                             <span id="luggage_price">$0</span>
@@ -163,7 +167,7 @@
                                             <input type="text" class="form-control" id="voucher" name="voucher"
                                                 placeholder="Voucher" />
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-right text-danger font-weight-bold">
                                             <span id="voucher_price">$0</span>
                                             <input type="hidden" name="voucher_price" value="0" />
                                         </td>
@@ -239,4 +243,165 @@
     </section>
 @endsection
 @section('vitamin')
+    <script>
+        let subTotal = {{ $base_price_total }}
+        let serviceFee = {{ $service_fee }}
+        let grandTotal = {{ $gt }}
+
+        $(document).ready(() => {
+            $('#same_passanger').on('change', () => {
+                if ($('#same_passanger:checked').val()) {
+                    $('#passanger_name_1').attr('readonly', true).val($('#customer_name').val()).addClass(
+                        'bg-secondary text-white')
+                } else {
+                    $('#passanger_name_1').attr('readonly', false).val('').removeClass(
+                        'bg-secondary text-white')
+                }
+            })
+
+            $('#special_area_id').on('change', e => {
+                let special_area_id = $('#special_area_id :selected').val()
+                let special_area_name = $('#special_area_id :selected').text()
+                let first_person_price = $('#special_area_id :selected').data('first_person_price')
+                let extra_person_price = $('#special_area_id :selected').data('extra_person_price')
+                let passanger_total = $('input[name="passanger_total"]').val()
+                let passanger_first = 1
+                let passanger_extra = passanger_total - 1;
+                if (passanger_extra < 0) {
+                    passanger_extra = 0
+                }
+                let a = passanger_first * first_person_price
+                let b = passanger_extra * extra_person_price
+                let c = a + b
+                let cFormated = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(c)
+
+                if (special_area_id) {
+                    $('.special_area_name').text(special_area_name)
+                    $('#special_area_price').text(cFormated)
+                    $('input[name="special_area_price"]').val(c)
+                    generateGrandTotal()
+                } else {
+                    $('.special_area_name').text('-')
+                    $('#special_area_price').text('$0')
+                    $('input[name="special_area_price"]').val(0)
+                    generateGrandTotal()
+                }
+            })
+
+            $('#luggage_qty').on('change', e => {
+                let luggage_qty = parseFloat($('#luggage_qty').val())
+                let luggage_base_price = $('input[name="luggage_base_price"]').val()
+                let lp = luggage_qty * luggage_base_price
+                let lpFormated = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(lp)
+                $('.luggage_qty').text(luggage_qty)
+                $('.luggage_qty').text(luggage_qty)
+                $('input[name="luggage_price"]').val(lp)
+                $('#luggage_price').text(lpFormated)
+                generateGrandTotal()
+            })
+
+            var _changeInterval = null;
+            $('#voucher').on('keyup', e => {
+                clearInterval(_changeInterval)
+                _changeInterval = setInterval(function() {
+                    let voucher_code = $('#voucher').val()
+                    if (voucher_code.length > 0) {
+                        checkVoucher(voucher_code)
+                    } else {
+                        $('#voucher_price').text('$0')
+                        $('input[name="voucher_price"]').val(0)
+                        generateGrandTotal()
+                    }
+                    clearInterval(_changeInterval)
+                }, 1000);
+            })
+        })
+
+        function generateGrandTotal() {
+            let base_price_total = parseFloat($('input[name="base_price_total"]').val())
+            let special_area_price = parseFloat($('input[name="special_area_price"]').val())
+            let luggage_price = parseFloat($('input[name="luggage_price"]').val())
+            let voucher_price = parseFloat($('input[name="voucher_price"]').val())
+
+            let st = base_price_total + special_area_price + luggage_price - voucher_price
+            let stFormated = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(st)
+            subTotal = st
+            $('#sub_total').text(stFormated)
+            $('input[name="sub_total"]').val(subTotal)
+
+            let sf = (subTotal * 3) / 100
+            let sfFormated = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(sf)
+            serviceFee = sf
+            $('#service_fee').text(sfFormated)
+            $('input[name="service_fee"]').val(serviceFee)
+
+            let gt = st + sf
+            let gtFormated = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(gt)
+            grandTotal = gt
+            $('#grand_total').text(gtFormated)
+            $('input[name="grand_total"]').val(grandTotal)
+
+        }
+
+        function checkVoucher(voucher_code) {
+            $.ajax({
+                url: '/api/check_voucher',
+                method: 'get',
+                dataType: 'json',
+                data: {
+                    voucher_code
+                }
+            }).fail(e => {
+                console.log(e.responseText)
+            }).done(e => {
+                console.log(e)
+                if (e.success === false) {
+                    return Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: e.message,
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 3000,
+                    });
+                }
+
+                let discount_type = e.data.discount_type
+                let discount_value = parseFloat(e.data.discount_value)
+
+                let nilaiDiskon = 0
+                if (discount_type == "percentage") {
+                    nilaiDiskon = subTotal * discount_value
+                    console.log(nilaiDiskon)
+                } else if (discount_type == "value") {
+                    nilaiDiskon = discount_value
+                    console.log(nilaiDiskon)
+                }
+
+                let dcFormated = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(nilaiDiskon)
+
+                $('#voucher_price').text(dcFormated)
+                $('input[name="voucher_price"]').val(nilaiDiskon)
+                generateGrandTotal()
+            })
+        }
+    </script>
 @endsection

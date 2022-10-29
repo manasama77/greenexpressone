@@ -92,6 +92,10 @@
             $('.preloader').fadeOut("slow");
         });
 
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        }
+
         $(document).ready(function() {
 
             // navbar shrink
@@ -110,9 +114,9 @@
             });
 
             // page scrollit
-            $.scrollIt({
-                topOffset: -50
-            });
+            // $.scrollIt({
+            //     topOffset: -50
+            // });
 
             // navbar colapse
             $('.nav-link').on('click', function() {

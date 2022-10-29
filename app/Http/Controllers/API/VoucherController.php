@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
-use App\Models\Voucher;
 
 class VoucherController extends BaseController
 {
-    public function index()
-    {
-        //
-    }
-
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
@@ -38,7 +34,11 @@ class VoucherController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $vouchers = Voucher::where('code', $request->voucher_code)->get();
+        $vouchers = Voucher::where('code', $request->voucher_code)->whereRaw('CURDATE() between date_start and date_expired')->first();
+
+        if (!$vouchers) {
+            return $this->sendError("voucher code not founds", null);
+        }
 
         return $this->sendResponse($vouchers, 'success');
     }

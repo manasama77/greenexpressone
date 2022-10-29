@@ -58,7 +58,7 @@ Route::controller(BookingController::class)->group(function () {
 });
 
 Route::controller(VoucherController::class)->group(function () {
-    Route::get('/check_voucher', 'show');
+    Route::get('/check_voucher', 'index');
 });
 
 Route::controller(ProfileController::class)->group(function () {
