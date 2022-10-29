@@ -30,7 +30,8 @@
                                             <label for="customer_password" class="form-text font-weight-bold">Customer
                                                 Password</label>
                                             <input type="password" class="form-control" id="customer_password"
-                                                name="customer_password" placeholder="Customer Password" required />
+                                                name="customer_password" placeholder="Customer Password"
+                                                autocomplete="new-password" required />
                                         </div>
                                         <hr />
                                         <div class="form-group">
@@ -166,6 +167,9 @@
                                             Voucher:<br />
                                             <input type="text" class="form-control" id="voucher" name="voucher"
                                                 placeholder="Voucher" />
+                                            <input type="password" class="form-control" id="agent_password"
+                                                name="agent_password" placeholder="Agent Password"
+                                                autocomplete="new-password" />
                                         </td>
                                         <td class="text-right text-danger font-weight-bold">
                                             <span id="voucher_price">$0</span>
@@ -307,19 +311,28 @@
             })
 
             var _changeInterval = null;
-            $('#voucher').on('keyup', e => {
-                clearInterval(_changeInterval)
-                _changeInterval = setInterval(function() {
-                    let voucher_code = $('#voucher').val()
-                    if (voucher_code.length > 0) {
-                        checkVoucher(voucher_code)
-                    } else {
-                        $('#voucher_price').text('$0')
-                        $('input[name="voucher_price"]').val(0)
-                        generateGrandTotal()
-                    }
-                    clearInterval(_changeInterval)
-                }, 1000);
+            $('#voucher').on('change', e => {
+                let voucher_code = $('#voucher').val()
+                let agent_password = $('#agent_password').val()
+                if (voucher_code.length > 0 && agent_password.length > 0) {
+                    checkVoucher(voucher_code, agent_password)
+                } else {
+                    $('#voucher_price').text('$0')
+                    $('input[name="voucher_price"]').val(0)
+                    generateGrandTotal()
+                }
+            })
+
+            $('#agent_password').on('change', e => {
+                let voucher_code = $('#voucher').val()
+                let agent_password = $('#agent_password').val()
+                if (voucher_code.length > 0 && agent_password.length > 0) {
+                    checkVoucher(voucher_code, agent_password)
+                } else {
+                    $('#voucher_price').text('$0')
+                    $('input[name="voucher_price"]').val(0)
+                    generateGrandTotal()
+                }
             })
         })
 
@@ -358,13 +371,15 @@
 
         }
 
-        function checkVoucher(voucher_code) {
+        function checkVoucher(voucher_code, agent_password) {
+            console.log("CC")
             $.ajax({
                 url: '/api/check_voucher',
                 method: 'get',
                 dataType: 'json',
                 data: {
-                    voucher_code
+                    voucher_code: voucher_code,
+                    password: agent_password,
                 }
             }).fail(e => {
                 console.log(e.responseText)
@@ -386,11 +401,11 @@
 
                 let nilaiDiskon = 0
                 if (discount_type == "percentage") {
-                    nilaiDiskon = subTotal * discount_value
-                    console.log(nilaiDiskon)
+                    nilaiDiskon = (subTotal * discount_value) / 100
+                    console.log("discount", nilaiDiskon)
                 } else if (discount_type == "value") {
                     nilaiDiskon = discount_value
-                    console.log(nilaiDiskon)
+                    console.log("value", nilaiDiskon)
                 }
 
                 let dcFormated = new Intl.NumberFormat('en-US', {
