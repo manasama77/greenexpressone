@@ -37,8 +37,6 @@ class Booking extends Model
         'customer_phone',
         'customer_name',
         'customer_email',
-        'passanger_phone',
-        'passanger_name',
         'qty_adult',
         'qty_baby',
         'flight_number',

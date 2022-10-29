@@ -24,7 +24,7 @@
                                     <select class="form-control select2 w-100" id="from_type" name="from_type"
                                         data-placeholder="From Type" required>
                                         <option value="airport">Airport</option>
-                                        <option value="district">District</option>
+                                        <option value="city">City</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -160,6 +160,7 @@
 @endsection
 @section('vitamin')
     <script>
+        let csrf = @json(csrf_token());
         let from_type = @json($request->from_type);
         let from_master_area_id = @json($request->from_master_area_id);
         let from_master_sub_area_id = @json($request->from_master_sub_area_id);

@@ -30,6 +30,14 @@ use App\Http\Controllers\VoucherController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/search', [WelcomeController::class, 'search'])->name('search');
+Route::get('/booking', function () {
+    $data = [
+        'title'    => env('APP_NAME'),
+        'app_name' => env('APP_NAME'),
+    ];
+    return view('schedule_not_found', $data);
+});
+Route::post('/booking', [WelcomeController::class, 'booking'])->name('booking');
 
 Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'index'])->name('admin.login');

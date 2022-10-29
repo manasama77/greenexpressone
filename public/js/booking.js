@@ -279,6 +279,15 @@ function ajax_get_list_sub_area(selector_parent, selector_child) {
 }
 
 function searchSchedule() {
+    from_type = $("#from_type").val();
+    date_departure = $("#date_departure").val();
+    passanger_adult = $("#passanger_adult").val();
+    passanger_baby = $("#passanger_baby").val();
+    from_master_area_id = $("#from_master_area_id").val();
+    from_master_sub_area_id = $("#from_master_sub_area_id").val();
+    to_master_area_id = $("#to_master_area_id").val();
+    to_master_sub_area_id = $("#to_master_sub_area_id").val();
+
     $.ajax({
         url: `/api/get_schedule_shuttles`,
         method: "post",
@@ -310,7 +319,14 @@ function searchSchedule() {
             let data = e.data;
             if (success == false) {
                 $("#list_jadwal").html(
-                    `<div clas="col-12"><div class="text-center text-danger">${message}</div></div>`
+                    `
+                    <div class="col-12 text-center">
+                        <img src="/img/undraw_empty_re_opql.svg" alt="not found" style="width: 400px;" />
+                    </div>
+                    <div class="col-12 text-center text-danger">
+                        <h5 class="my-3 font-weight-bold">${message}</h5>
+                    </div>
+                    `
                 );
             } else {
                 data.forEach((el) => {
@@ -340,7 +356,22 @@ function searchSchedule() {
                         disabled = `disabled`;
                     }
 
-                    let button_booking = `<button type="button" class="btn btn-primary ${disabled}" onclick="Booking(${id})">Booking</button>`;
+                    let button_booking = /*html*/ `
+                    <form method="post" action="/booking">
+                        <input type="hidden" name="_token" value="${csrf}" />
+                        <input type="hidden" name="from_type" value="${from_type}" />
+                        <input type="hidden" name="from_master_area_id" value="${from_master_area_id}" />
+                        <input type="hidden" name="from_master_sub_area_id" value="${from_master_sub_area_id}" />
+                        <input type="hidden" name="to_master_area_id" value="${to_master_area_id}" />
+                        <input type="hidden" name="to_master_sub_area_id" value="${to_master_sub_area_id}" />
+                        <input type="hidden" name="booking_type" value="${booking_type}" />
+                        <input type="hidden" name="date_departure" value="${date_departure}" />
+                        <input type="hidden" name="passanger_adult" value="${passanger_adult}" />
+                        <input type="hidden" name="passanger_baby" value="${passanger_baby}" />
+                        <input type="hidden" name="schedule_id" value="${id}" />
+                        <button type="submit" class="btn btn-primary ${disabled}" onclick="PreBooking(${id})">Booking</button>
+                    </form>
+                    `;
 
                     htmlnya += /*html*/ `
                         <div class="col-12 my-3">
@@ -381,6 +412,4 @@ function searchSchedule() {
         });
 }
 
-function Booking(id) {
-    //
-}
+function PreBooking(id) {}

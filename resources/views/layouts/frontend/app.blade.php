@@ -32,9 +32,9 @@
 
 <body>
     <!-- preloader start -->
-    {{-- <div class="preloader">
+    <div class="preloader">
         <span></span>
-    </div> --}}
+    </div>
     <!-- preloader end -->
 
     @include('layouts.frontend.navbar')

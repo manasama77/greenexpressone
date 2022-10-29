@@ -11,6 +11,7 @@ use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
+use App\Models\BookingCustomer;
 use App\Models\BookingSequence;
 use App\Models\Charter;
 use App\Models\ScheduleShuttle;
@@ -46,8 +47,7 @@ class BookingController extends BaseController
                 'customer_name'           => 'required|min:3|max:255',
                 'customer_email'          => 'required|min:3|max:100|email:rfc,dns',
                 'customer_password'       => 'required|min:4|max:50',
-                'passanger_phone'         => 'required|min:3|max:50',
-                'passanger_name'          => 'required|min:3|max:255',
+                'passanger'           => 'required|array',
             ],
             [
                 'exists' => ':attribute not found',
@@ -105,8 +105,6 @@ class BookingController extends BaseController
         $customer_password = $request->customer_password;
         $customer_name     = $request->customer_name;
         $customer_email    = $request->customer_email;
-        $passanger_phone   = $request->passanger_phone;
-        $passanger_name    = $request->passanger_name;
         $total_person      = $request->qty_adult + $request->qty_baby;
         $promo_price       = 0;
         $voucher_id        = null;
@@ -337,8 +335,6 @@ class BookingController extends BaseController
         $booking->customer_phone            = $customer_phone;
         $booking->customer_name             = $customer_name;
         $booking->customer_email            = $customer_email;
-        $booking->passanger_phone           = $passanger_phone;
-        $booking->passanger_name            = $passanger_name;
         $booking->qty_adult                 = $qty_adult;
         $booking->qty_baby                  = $qty_baby;
         $booking->flight_number             = ($request->flight_number) ?? null;
@@ -360,6 +356,19 @@ class BookingController extends BaseController
         $booking->total_payment             = $total_price;
         $booking->save();
         $booking_id = $booking->id;
+
+        $data_customer = [];
+        $arr_passanger = $request->passanger;
+        for ($i = 0; $i < count($arr_passanger); $i++) {
+            $customer_name = $arr_passanger[$i];
+            array_push($data_customer, [
+                'booking_id'    => $booking_id,
+                'customer_name' => $customer_name,
+            ]);
+        }
+
+        BookingCustomer::insert($data_customer);
+
         $res        = Booking::where('id', $booking_id)->first();
 
         $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
@@ -390,8 +399,7 @@ class BookingController extends BaseController
             'customer_phone'            => $res->customer_phone,
             'customer_name'             => $res->customer_name,
             'customer_email'            => $res->customer_email,
-            'passanger_phone'           => $res->passanger_phone,
-            'passanger_name'            => $res->passanger_name,
+            'passanger'                 => $arr_passanger,
             'qty_adult'                 => (int) $res->qty_adult,
             'qty_baby'                  => (int) $res->qty_baby,
             'flight_number'             => $res->flight_number,

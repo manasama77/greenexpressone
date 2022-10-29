@@ -33,8 +33,6 @@ return new class extends Migration
             $table->string('customer_phone');
             $table->string('customer_name');
             $table->string('customer_email');
-            $table->string('passanger_phone');
-            $table->string('passanger_name');
             $table->integer('qty_adult');
             $table->integer('qty_baby');
             $table->string('flight_number')->nullable();
