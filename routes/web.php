@@ -40,7 +40,7 @@ Route::get('/booking', function () {
     return view('schedule_not_found', $data);
 });
 Route::post('/booking', [WelcomeController::class, 'booking'])->name('booking');
-Route::get('/booking/check/{encode}', [WelcomeController::class, 'booking_check'])->name('booking_check');
+Route::get('/booking/check', [WelcomeController::class, 'booking_check'])->name('booking_check');
 // Route::post('/booking/process', [WelcomeController::class, 'booking_process'])->name('booking.process');
 
 Route::prefix('admin')->middleware('prevent-back-history')->group(function () {

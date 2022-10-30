@@ -458,7 +458,7 @@
                         toast: true,
                         timer: 3000,
                     }).then(() => {
-                        window.location.replace(`/booking/check/${e.data.booking_number_encode}`);
+                        window.location.replace(`/booking/check?code=${e.data.booking_number_encode}`);
                     });
                 }
                 $.unblockUI()

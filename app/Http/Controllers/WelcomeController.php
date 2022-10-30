@@ -141,8 +141,9 @@ class WelcomeController extends Controller
         return view('booking', $data);
     }
 
-    public function booking_check($encode)
+    public function booking_check(Request $request)
     {
+        $encode = $request->code;
         $decode = urldecode($encode);
         $pages  = Page::get();
 

@@ -19,21 +19,18 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                 </li>
+                @foreach ($pages as $page)
+                    @if (!in_array($page->id, [1, 2]))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/page/{{ $page->slug }}">{{ $page->page_title }}</a>
+                        </li>
+                    @endif
+                @endforeach
                 <li class="nav-item">
-                    <a class="nav-link" href="/outlet">Outlet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/how-to-pay">How to Pay</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold btn btn-dark text-white px-2" href="/check-booking">
+                    <button type="button" class="nav-link font-weight-bold btn btn-dark text-white px-2 shadow"
+                        onclick="showModalCheck()">
                         <i class="fas fa-search fa-fw"></i> Check Booking
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link font-weight-bold btn btn-danger text-white px-2" href="/sign-in">
-                        <i class="fas fa-sign-in-alt fa-fw"></i> Sign In
-                    </a>
+                    </button>
                 </li>
             </ul>
         </div>

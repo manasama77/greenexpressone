@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12 my-3 text-center">
-                    <h1 class="text-center mt-5">Booking Info</h1>
+                    <h1 class="text-center mt-5">Booking Info - {{ $bookings->booking_number }}</h1>
                 </div>
                 <div class="col-12 mb-5">
                     <div class="card bg-success text-white shadow">

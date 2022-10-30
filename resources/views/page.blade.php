@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12 my-5">
                     <h1 class="mt-5">{{ $isis->page_title }}</h1>
-                    <p>{{ $isis->page_content }}</p>
+                    <p>{!! $isis->page_content !!}</p>
                 </div>
             </div>
         </div>
