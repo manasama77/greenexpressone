@@ -8,6 +8,7 @@ use App\Models\MasterArea;
 use App\Models\MasterSpecialArea;
 use Illuminate\Http\Request;
 use App\Models\MasterSubArea;
+use App\Models\Page;
 use Illuminate\Support\Carbon;
 use App\Models\ScheduleShuttle;
 
@@ -15,22 +16,47 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $banners   = Banner::where('is_active', true)->get();
+        $banners = Banner::where('is_active', true)->get();
+        $pages   = Page::get();
 
         $data = [
             'title'    => env('APP_NAME'),
             'app_name' => env('APP_NAME'),
             'banners'  => $banners,
+            'pages'    => $pages,
         ];
         return view('home', $data);
     }
 
+    public function page($slug)
+    {
+        $banners = Banner::where('is_active', true)->get();
+        $pages   = Page::get();
+        $isis    = Page::where('slug', $slug)->first();
+
+        $data = [
+            'title'    => env('APP_NAME'),
+            'app_name' => env('APP_NAME'),
+            'banners'  => $banners,
+            'pages'    => $pages,
+            'isis'     => $isis,
+        ];
+
+        if (!$isis) {
+            return view('page_not_found', $data);
+        }
+
+        return view('page', $data);
+    }
+
     public function search(Request $request)
     {
+        $pages   = Page::get();
         $data = [
             'title'    => env('APP_NAME'),
             'app_name' => env('APP_NAME'),
             'request'  => $request,
+            'pages'    => $pages,
         ];
         return view('search', $data);
     }
@@ -90,10 +116,13 @@ class WelcomeController extends Controller
         $base_price_total = number_format($base_price * $passanger_total, 2);
 
 
+        $pages   = Page::get();
+
         $data = [
             'title'               => env('APP_NAME'),
             'app_name'            => env('APP_NAME'),
             'request'             => $request,
+            'pages'               => $pages,
             'schedule'            => $schedule,
             'special_areas'       => $special_areas,
             'from_main_name'      => $from_main_name,
@@ -104,8 +133,8 @@ class WelcomeController extends Controller
             'passanger_adult'     => $passanger_adult,
             'passanger_baby'      => $passanger_baby,
             'passanger_total'     => $passanger_total,
-            'base_price_total'     => $base_price_total,
-            'luggage_price'     => $luggage_price,
+            'base_price_total'    => $base_price_total,
+            'luggage_price'       => $luggage_price,
         ];
         return view('booking', $data);
     }

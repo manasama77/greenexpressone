@@ -30,6 +30,7 @@ use App\Http\Controllers\VoucherController;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/page/{slug}', [WelcomeController::class, 'page']);
 Route::get('/search', [WelcomeController::class, 'search'])->name('search');
 Route::get('/booking', function () {
     $data = [

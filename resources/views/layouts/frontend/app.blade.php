@@ -12,13 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- owl carousel css -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/css/owl.carousel.min.css" />
     <!-- font awesome icons -->
-    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="/css/font-awesome.css" />
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
     <!-- main css -->
-    <link rel="stylesheet" href="css/welcome.css" />
+    <link rel="stylesheet" href="/css/welcome.css" />
     {{-- slick css --}}
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
@@ -41,6 +41,8 @@
 
     @yield('page_content')
 
+    @include('layouts.frontend.android')
+
     <!-- footer section start -->
     @include('layouts.frontend.footer')
     <!-- footer section end -->
@@ -61,15 +63,15 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <!-- bootstrap js -->
-    <script src="js/bootstrap4.6.0.min.js"></script>
+    <script src="/js/bootstrap4.6.0.min.js"></script>
     <!-- owl carousel js -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
     <!-- ScrollIt js -->
-    <script src="js/scrollIt.min.js"></script>
+    <script src="/js/scrollIt.min.js"></script>
     <!-- sweetalert2 -->
-    <script src="js/sweetalert2.all.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
     <!-- blockui -->
-    <script src="js/jquery.blockUI.js"></script>
+    <script src="/js/jquery.blockUI.js"></script>
     {{-- slick js --}}
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     {{-- choice js --}}

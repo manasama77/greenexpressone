@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -39,22 +40,22 @@ class PagesController extends Controller
         $validator  = Validator::make(
             $request->all(),
             [
-                'slug'         => 'required|alpha_dash|min:3|max:100|unique:pages,slug',
+                'slug'         => 'required|min:3|max:100|unique:pages,slug',
                 'page_title'   => 'required|min:3|max:100',
                 'page_content' => 'required|min:3',
             ]
         );
 
         if ($validator->fails()) {
-            return redirect('/admin/pages')
+            return redirect('/admin/pages/add')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $validated = $validator->validated();
+        // $validated = $validator->validated();
 
         $exec               = new Page();
-        $exec->slug         = $request->slug;
+        $exec->slug         = Str::slug($request->slug, '-');
         $exec->page_title   = $request->page_title;
         $exec->page_content = $request->page_content;
         $exec->save();
@@ -78,13 +79,14 @@ class PagesController extends Controller
     {
         $request->validate(
             [
-                'slug'         => 'required|alpha_dash|min:3|max:100|unique:pages,slug,' . $id,
+                'slug'         => 'required|min:3|max:100|unique:pages,slug,' . $id,
                 'page_title'   => 'required|min:3|max:100',
                 'page_content' => 'required|min:3',
             ]
         );
 
         $input = $request->all();
+        $input['slug'] = Str::slug($request->slug, '-');
 
         Page::find($id)->update($input);
         return redirect()->route('admin.pages')->with('success', 'Update successfully.');

@@ -690,7 +690,7 @@ class BookingController extends BaseController
             $request->all(),
             [
                 'from_type'               => 'required|in:airport,city',
-                'date_booking'            => 'required|date',
+                'date_booking'            => 'required|date|after_or_equal:today|date_format:Y-m-d',
                 'qty_adult'               => 'required|integer|min_digits:0',
                 'qty_baby'                => 'required|integer|min_digits:0',
                 'from_master_area_id'     => 'required',

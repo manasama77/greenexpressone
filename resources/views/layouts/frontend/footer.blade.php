@@ -12,15 +12,14 @@
             </div>
             <div class="col-md-6 col-lg-3">
                 <div class="footer-col">
-                    <h3>Apps</h3>
-                    <ul>
-                        <li>
-                            <a href="#member/signin">Sign in</a>
-                        </li>
-                        <li>
-                            <a href="#">Sign up</a>
-                        </li>
-                    </ul>
+                    <h3>Pages</h3>
+                    @foreach ($pages as $page)
+                        <ul>
+                            <li>
+                                <a href="/page/{{ $page->slug }}">{{ $page->page_title }}</a>
+                            </li>
+                        </ul>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
