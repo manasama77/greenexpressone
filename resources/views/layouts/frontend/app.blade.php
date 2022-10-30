@@ -169,6 +169,7 @@
                 icon: 'info',
                 title: `Coming Soon`,
                 showConfirmButton: false,
+                toast: true,
                 timer: 3000,
             });
         }

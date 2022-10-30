@@ -287,6 +287,7 @@ function searchSchedule() {
     from_master_sub_area_id = $("#from_master_sub_area_id").val();
     to_master_area_id = $("#to_master_area_id").val();
     to_master_sub_area_id = $("#to_master_sub_area_id").val();
+    special_area_id = $("#special_area_id").val();
 
     $.ajax({
         url: `/api/get_schedule_shuttles`,
@@ -368,6 +369,7 @@ function searchSchedule() {
                         <input type="hidden" name="date_departure" value="${date_departure}" />
                         <input type="hidden" name="passanger_adult" value="${passanger_adult}" />
                         <input type="hidden" name="passanger_baby" value="${passanger_baby}" />
+                        <input type="hidden" name="special_area_id" value="${special_area_id}" />
                         <input type="hidden" name="schedule_id" value="${id}" />
                         <button type="submit" class="btn btn-primary ${disabled}" onclick="PreBooking(${id})">Booking</button>
                     </form>

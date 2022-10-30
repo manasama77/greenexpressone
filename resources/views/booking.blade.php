@@ -11,13 +11,13 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-8 mb-5">
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <h5 class="text-center font-weight-bold mb-4">Order Data</h5>
-                            <form id="form_booking">
+        <form id="form_booking">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 mb-5">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <h5 class="text-center font-weight-bold mb-4">Order Data</h5>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
@@ -98,127 +98,127 @@
                                                     class="form-text font-weight-bold">Passanger
                                                     Name {{ $i }}</label>
                                                 <input type="text" class="form-control"
-                                                    id="passanger_name_{{ $i }}"
-                                                    name="passanger_name[{{ $i }}]"
+                                                    id="passanger_name_{{ $i }}" name="passanger_name[]"
                                                     placeholder="Passanger Name" required />
                                             </div>
                                         @endfor
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-primary btn-block" id="btn_save">
                                         <i class="fas fa-save fa-fw"></i> Booking
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-4 mb-5">
-                    <div class="card bg-success text-white">
-                        <div class="card-body">
-                            <h3>Departure Detail</h3>
-                            <p>From: {{ $from_main_name }} - {{ $from_sub_name }}</p>
-                            <p>To: {{ $to_main_name }} - {{ $to_sub_name }}</p>
-                            <p>Special Area: <span class="special_area_name">-</span></p>
-                            <p>Date: {{ $date_time_departure }}</p>
-                            <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Baby</p>
-                            <p>Luggage: <span class="luggage_qty">0</span> Kg</p>
-                            <hr />
-                            <table class="table table-borderless text-white">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Base Price:<br />
-                                            {{ $passanger_total }} Passanger
-                                            <input type="hidden" name="passanger_total"
-                                                value="{{ $passanger_total }}" />
-                                        </td>
-                                        <td class="text-right">
-                                            ${{ $base_price_total }}
-                                            <input type="hidden" name="base_price_total"
-                                                value="{{ $base_price_total }}" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Special Area Price:<br />
-                                            <span class="special_area_name">-</span>
-                                        </td>
-                                        <td class="text-right">
-                                            <span id="special_area_price">$0</span>
-                                            <input type="hidden" name="special_area_price" value="0" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Luggage Price:<br />
-                                            <span class="luggage_qty">0</span> Kg
-                                        </td>
-                                        <td class="text-right">
-                                            <span id="luggage_price">$0</span>
-                                            <input type="hidden" name="luggage_base_price"
-                                                value="{{ $luggage_price }}" />
-                                            <input type="hidden" name="luggage_price" value="0" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Voucher:<br />
-                                            <input type="text" class="form-control" id="voucher" name="voucher"
-                                                placeholder="Voucher" />
-                                            <input type="password" class="form-control" id="agent_password"
-                                                name="agent_password" placeholder="Agent Password"
-                                                autocomplete="new-password" />
-                                        </td>
-                                        <td class="text-right text-warning font-weight-bold">
-                                            <span id="voucher_price">$0</span>
-                                            <input type="hidden" name="voucher_price" value="0" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <hr />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Sub Total:
-                                        </td>
-                                        <td class="text-right">
-                                            <span id="sub_total">${{ $base_price_total }}</span>
-                                            <input type="hidden" name="sub_total" value="{{ $base_price_total }}" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Service Fee (3%):
-                                        </td>
-                                        <td class="text-right">
-                                            @php
-                                                $service_fee = ($base_price_total * 3) / 100;
-                                                $gt = $base_price_total + $service_fee;
-                                            @endphp
-                                            <span id="service_fee">${{ number_format($service_fee, 2) }}</span>
-                                            <input type="hidden" name="service_fee" value="{{ $service_fee }}" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Grand Total:
-                                        </td>
-                                        <td class="text-right">
-                                            <span id="grand_total">${{ number_format($gt, 2) }}</span>
-                                            <input type="hidden" name="grand_total" value="{{ $gt }}" />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-sm-12 col-md-4 mb-5">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <h3>Departure Detail</h3>
+                                <p>From: {{ $from_main_name }} - {{ $from_sub_name }}</p>
+                                <p>To: {{ $to_main_name }} - {{ $to_sub_name }}</p>
+                                <p>Special Area: <span class="special_area_name">-</span></p>
+                                <p>Date: {{ $date_time_departure }}</p>
+                                <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Baby</p>
+                                <p>Luggage: <span class="luggage_qty">0</span> Kg</p>
+                                <hr />
+                                <table class="table table-borderless text-white">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Base Price:<br />
+                                                {{ $passanger_total }} Passanger
+                                                <input type="hidden" name="passanger_total"
+                                                    value="{{ $passanger_total }}" />
+                                            </td>
+                                            <td class="text-right">
+                                                ${{ $base_price_total }}
+                                                <input type="hidden" name="base_price_total"
+                                                    value="{{ $base_price_total }}" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Special Area Price:<br />
+                                                <span class="special_area_name">-</span>
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="special_area_price">$0</span>
+                                                <input type="hidden" name="special_area_price" value="0" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Luggage Price:<br />
+                                                <span class="luggage_qty">0</span> Kg
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="luggage_price">$0</span>
+                                                <input type="hidden" name="luggage_base_price"
+                                                    value="{{ $luggage_price }}" />
+                                                <input type="hidden" name="luggage_price" value="0" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Voucher:<br />
+                                                <input type="text" class="form-control" id="voucher" name="voucher"
+                                                    placeholder="Voucher" />
+                                                <input type="password" class="form-control" id="agent_password"
+                                                    name="agent_password" placeholder="Agent Password"
+                                                    autocomplete="new-password" />
+                                            </td>
+                                            <td class="text-right text-warning font-weight-bold">
+                                                <span id="voucher_price">$0</span>
+                                                <input type="hidden" name="voucher_price" value="0" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <hr />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Sub Total:
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="sub_total">${{ $base_price_total }}</span>
+                                                <input type="hidden" name="sub_total"
+                                                    value="{{ $base_price_total }}" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Service Fee (3%):
+                                            </td>
+                                            <td class="text-right">
+                                                @php
+                                                    $service_fee = ($base_price_total * 3) / 100;
+                                                    $gt = $base_price_total + $service_fee;
+                                                @endphp
+                                                <span id="service_fee">${{ number_format($service_fee, 2) }}</span>
+                                                <input type="hidden" name="service_fee" value="{{ $service_fee }}" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Grand Total:
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="grand_total">${{ number_format($gt, 2) }}</span>
+                                                <input type="hidden" name="grand_total" value="{{ $gt }}" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 @endsection
 @section('vitamin')
@@ -285,7 +285,6 @@
                 generateGrandTotal()
             })
 
-            var _changeInterval = null;
             $('#voucher').on('change', e => {
                 let voucher_code = $('#voucher').val()
                 let agent_password = $('#agent_password').val()
@@ -308,6 +307,11 @@
                     $('input[name="voucher_price"]').val(0)
                     generateGrandTotal()
                 }
+            })
+
+            $('#form_booking').on('submit', e => {
+                e.preventDefault()
+                bookingNow()
             })
         })
 
@@ -358,7 +362,6 @@
             }).fail(e => {
                 console.log(e.responseText)
             }).done(e => {
-                console.log(e)
                 if (e.success === false) {
                     $('#voucher_price').text('$0')
                     $('input[name="voucher_price"]').val(0)
@@ -380,10 +383,8 @@
                 let nilaiDiskon = 0
                 if (discount_type == "percentage") {
                     nilaiDiskon = (subTotal * discount_value) / 100
-                    console.log("discount", nilaiDiskon)
                 } else if (discount_type == "value") {
                     nilaiDiskon = discount_value
-                    console.log("value", nilaiDiskon)
                 }
 
                 let dcFormated = new Intl.NumberFormat('en-US', {
@@ -394,6 +395,74 @@
                 $('#voucher_price').text(dcFormated)
                 $('input[name="voucher_price"]').val(nilaiDiskon)
                 generateGrandTotal()
+            })
+        }
+
+        function bookingNow() {
+            let arrPassanger = $("input[name='passanger_name[]']").map(function() {
+                return $(this).val();
+            }).get()
+
+            $.ajax({
+                url: '/api/booking',
+                method: 'post',
+                dataType: 'json',
+                data: {
+                    schedule_type: `{{ session('booking_type') }}`,
+                    from_type: `{{ session('from_type') }}`,
+                    schedule_id: `{{ session('schedule_id') }}`,
+                    date_departure: `{{ session('date_departure') }}`,
+                    from_master_area_id: `{{ session('from_master_area_id') }}`,
+                    from_master_sub_area_id: `{{ session('from_master_sub_area_id') }}`,
+                    to_master_area_id: `{{ session('to_master_area_id') }}`,
+                    to_master_sub_area_id: `{{ session('to_master_sub_area_id') }}`,
+                    qty_adult: `{{ session('passanger_adult') }}`,
+                    qty_baby: `{{ session('passanger_baby') }}`,
+                    special_request: ($('#special_area_id').val()) ? 1 : 0,
+                    special_area_id: $('#special_area_id').val(),
+                    luggage_qty: $('#luggage_qty').val(),
+                    flight_number: $('#flight_number').val(),
+                    notes: $('#notes').val(),
+                    voucher_code: $('#voucher').val(),
+                    agent_password: $('#agent_password').val(),
+                    customer_phone: $('#customer_phone').val(),
+                    customer_password: $('#customer_password').val(),
+                    customer_name: $('#customer_name').val(),
+                    customer_email: $('#customer_email').val(),
+                    passanger: arrPassanger
+                },
+                beforeSend: function() {
+                    $.blockUI()
+                    $('#btn_save').prop('disabled', true)
+                }
+            }).fail(e => {
+                $.unblockUI()
+                $('#btn_save').prop('disabled', false)
+                console.log(e.responseText)
+            }).done(e => {
+                if (e.success === false) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: e.message,
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 3000,
+                    });
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: e.message,
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 3000,
+                    }).then(() => {
+                        window.location.replace(`/booking/check/${e.data.booking_number_encode}`);
+                    });
+                }
+                $.unblockUI()
+                $('#btn_save').prop('disabled', false)
             })
         }
     </script>

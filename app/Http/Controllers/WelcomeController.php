@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Booking;
 use App\Models\Charter;
 use App\Models\MasterArea;
 use App\Models\MasterSpecialArea;
@@ -11,6 +12,7 @@ use App\Models\MasterSubArea;
 use App\Models\Page;
 use Illuminate\Support\Carbon;
 use App\Models\ScheduleShuttle;
+use App\Models\Voucher;
 
 class WelcomeController extends Controller
 {
@@ -137,5 +139,35 @@ class WelcomeController extends Controller
             'luggage_price'       => $luggage_price,
         ];
         return view('booking', $data);
+    }
+
+    public function booking_check($encode)
+    {
+        $decode = urldecode($encode);
+        $pages  = Page::get();
+
+        $bookings = Booking::where('booking_number', $decode)->first();
+
+        if (!$bookings) {
+            $data = [
+                'title'    => 'Booking Check',
+                'app_name' => env('APP_NAME'),
+                'pages'    => $pages,
+                'bookings' => $bookings,
+            ];
+            return view('booking_not_found', $data);
+        }
+
+        $vouchers = Voucher::where('id', $bookings->voucher_id)->first();
+
+        $data = [
+            'title'    => 'Booking Check',
+            'app_name' => env('APP_NAME'),
+            'pages'    => $pages,
+            'bookings' => $bookings,
+            'vouchers' => $vouchers,
+        ];
+
+        return view('check', $data);
     }
 }

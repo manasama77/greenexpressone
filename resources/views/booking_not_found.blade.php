@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12 my-5 text-center">
                     <img src="/img/undraw_empty_re_opql.svg" alt="Not Found" class="mx-auto" style="width: 400px;">
-                    <h1 class="text-center mt-5">Page Not Found</h1>
+                    <h1 class="text-center mt-5">Booking Info Not Found</h1>
                     <a href="/" class="btn btn-success">
                         <i class="fas fa-home fa-fw"></i> Back to Home
                     </a>

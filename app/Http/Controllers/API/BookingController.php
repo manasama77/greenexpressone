@@ -11,6 +11,7 @@ use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
+use App\Models\Agent;
 use App\Models\BookingCustomer;
 use App\Models\BookingSequence;
 use App\Models\Charter;
@@ -43,6 +44,7 @@ class BookingController extends BaseController
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
+                'agent_password'          => 'nullable',
                 'customer_phone'          => 'required|min:3|max:50',
                 'customer_name'           => 'required|min:3|max:255',
                 'customer_email'          => 'required|min:3|max:100|email:rfc,dns',
@@ -147,8 +149,13 @@ class BookingController extends BaseController
 
         // voucher & promo price
         if ($request->voucher_code) {
+            if (!$request->agent_password) {
+                return $this->sendError("Agent Password is required", null);
+            }
+
             $vouchers = Voucher::select([
                 'id',
+                'agent_id',
                 'discount_type',
                 'discount_value',
             ])->where([
@@ -158,6 +165,18 @@ class BookingController extends BaseController
 
             if (!$vouchers) {
                 return $this->sendError('Voucher not found', null);
+            }
+
+            $agents = Agent::where('id', $vouchers->agent_id)->first();
+
+            if (!$agents) {
+                return $this->sendError('Agent not found', null);
+            }
+
+            $agent_password = $agents->password;
+
+            if ($agent_password != $request->agent_password) {
+                return $this->sendError("Agent Password wrong, please try again", null);
             }
 
             $voucher_id     = $vouchers->id;
@@ -329,7 +348,9 @@ class BookingController extends BaseController
         $fee_price   = ($sub_total_price * 3) / 100;
         $total_price = $sub_total_price + $fee_price;
 
-        $booking_number                     = $this->generate_booking_number();
+        $booking_number        = $this->generate_booking_number();
+        $booking_number_encode = urlencode($booking_number);
+
         $booking                            = new Booking();
         $booking->booking_number            = $booking_number;
         $booking->schedule_id               = $request->schedule_id;
@@ -440,6 +461,7 @@ class BookingController extends BaseController
             'payment_token'             => $res->payment_token,
             'total_payment'             => (float) $res->total_payment,
             'created_at'                => Carbon::createFromFormat('Y-m-d H:i:s', $res->created_at)->format('Y-m-d H:i:s'),
+            'booking_number_encode'     => $booking_number_encode,
         ];
 
         return $this->sendResponse($result, 'success');
