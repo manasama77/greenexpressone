@@ -402,10 +402,12 @@ class BookingController extends BaseController
         $data_customer = [];
         $arr_passanger = $request->passanger;
         for ($i = 0; $i < count($arr_passanger); $i++) {
-            $customer_name = $arr_passanger[$i];
+            $customer_name = $arr_passanger[$i]['name'];
+            $customer_phone = $arr_passanger[$i]['phone'];
             array_push($data_customer, [
-                'booking_id'    => $booking_id,
-                'customer_name' => $customer_name,
+                'booking_id'     => $booking_id,
+                'customer_name'  => $customer_name,
+                'customer_phone' => $customer_phone,
             ]);
         }
 

@@ -101,6 +101,15 @@
                                                     id="passanger_name_{{ $i }}" name="passanger_name[]"
                                                     placeholder="Passanger Name" required />
                                             </div>
+                                            <div class="form-group">
+                                                <label for="passanger_phone_{{ $i }}"
+                                                    class="form-text font-weight-bold">Passanger
+                                                    Phone {{ $i }}</label>
+                                                <input type="text" class="form-control"
+                                                    id="passanger_phone_{{ $i }}" name="passanger_phone[]"
+                                                    placeholder="Passanger Phone" required />
+                                            </div>
+                                            <hr />
                                         @endfor
                                     </div>
                                 </div>
@@ -399,9 +408,20 @@
         }
 
         function bookingNow() {
-            let arrPassanger = $("input[name='passanger_name[]']").map(function() {
+            let arrPassangerName = $("input[name='passanger_name[]']").map(function() {
                 return $(this).val();
             }).get()
+
+            let arrPassangerPhone = $("input[name='passanger_phone[]']").map(function() {
+                return $(this).val();
+            }).get()
+
+            let arrPassanger = arrPassangerName.map((v, i) => {
+                return {
+                    name: v,
+                    phone: arrPassangerPhone[i],
+                }
+            })
 
             $.ajax({
                 url: '/api/booking',
@@ -449,6 +469,7 @@
                         toast: true,
                         timer: 3000,
                     });
+                    $('#btn_save').prop('disabled', false)
                 } else {
                     Swal.fire({
                         position: 'top-end',
@@ -462,7 +483,6 @@
                     });
                 }
                 $.unblockUI()
-                $('#btn_save').prop('disabled', false)
             })
         }
     </script>

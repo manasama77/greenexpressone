@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Booking::class);
             $table->string('customer_name');
+            $table->string('customer_phone');
             $table->timestamps();
         });
     }

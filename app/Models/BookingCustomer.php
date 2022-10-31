@@ -12,6 +12,7 @@ class BookingCustomer extends Model
     protected $fillable = [
         'booking_id',
         'customer_name',
+        'customer_phone',
     ];
 
     protected $hidden = [
