@@ -78,26 +78,30 @@ class BookingController extends BaseController
                     return $this->sendError("to_master_sub_area_id is required", null);
                 }
 
-                $special_area_id = $request->special_area_id;
-                $special_areas = MasterSpecialArea::where([
-                    'id'                 => $special_area_id,
-                    'master_sub_area_id' => $request->to_master_sub_area_id,
-                ])->first();
-                if (!$special_areas) {
-                    return $this->sendError("Special Area Not Found", null);
+                if ($request->special_request == 1) {
+                    $special_area_id = $request->special_area_id;
+                    $special_areas   = MasterSpecialArea::where([
+                        'id'                 => $special_area_id,
+                        'master_sub_area_id' => $request->to_master_sub_area_id,
+                    ])->first();
+                    if (!$special_areas) {
+                        return $this->sendError("Special Area Not Found", null);
+                    }
                 }
             } else {
                 if (!$request->from_master_sub_area_id) {
                     return $this->sendError("from_master_sub_area_id is required", null);
                 }
 
-                $special_area_id = $request->special_area_id;
-                $special_areas = MasterSpecialArea::where([
-                    'id'                 => $special_area_id,
-                    'master_sub_area_id' => $request->from_master_sub_area_id,
-                ])->first();
-                if (!$special_areas) {
-                    return $this->sendError("Special Area Not Found", null);
+                if ($request->special_request == 1) {
+                    $special_area_id = $request->special_area_id;
+                    $special_areas = MasterSpecialArea::where([
+                        'id'                 => $special_area_id,
+                        'master_sub_area_id' => $request->from_master_sub_area_id,
+                    ])->first();
+                    if (!$special_areas) {
+                        return $this->sendError("Special Area Not Found", null);
+                    }
                 }
             }
         }
