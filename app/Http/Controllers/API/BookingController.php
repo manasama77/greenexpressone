@@ -501,7 +501,7 @@ class BookingController extends BaseController
         $to_date   = $request->to_date;
 
         $bookings = Booking::whereDate('datetime_departure', '>=', $from_date)->whereDate('datetime_departure', '<=', $to_date)->where(function ($query) use ($phone) {
-            $query->where('customer_phone', '=', $phone)->orWhere('passanger_phone', '=', $phone);
+            $query->where('customer_phone', '=', $phone);
         })->get();
 
         if ($bookings->count() == 0) {
