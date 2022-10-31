@@ -38,7 +38,7 @@ class BookingController extends BaseController
                 'to_master_sub_area_id'   => 'nullable',
                 'qty_adult'               => 'required|integer|min_digits:1',
                 'qty_baby'                => 'required|integer|min_digits:0',
-                'special_request'         => 'required_if:schedule_type,shuttle|boolean',
+                'special_request'         => 'nullable|boolean',
                 'special_area_id'         => 'integer|required_if:special_request,1',
                 'luggage_qty'             => 'required_if:schedule_type,shuttle|integer|min_digits:0',
                 'flight_number'           => 'nullable',
