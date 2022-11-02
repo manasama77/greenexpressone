@@ -1,22 +1,23 @@
 <?php
 
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AdminLoginController;
-use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\CharterController;
+use App\Http\Controllers\ShuttleController;
+use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\MasterAreaController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\MasterSubAreaController;
 use App\Http\Controllers\BookingCharterController;
 use App\Http\Controllers\BookingShuttleController;
-use App\Http\Controllers\CharterController;
-use App\Http\Controllers\MasterAreaController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\MasterSpecialAreaController;
-use App\Http\Controllers\MasterSubAreaController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ShuttleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\VoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::get('/booking', function () {
     $data = [
         'title'    => env('APP_NAME'),
         'app_name' => env('APP_NAME'),
+        'pages'    => Page::get(),
     ];
     return view('schedule_not_found', $data);
 });

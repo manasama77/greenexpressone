@@ -383,7 +383,7 @@ function searchSchedule() {
                                         <div class="col-sm-12 col-md-4 text-center">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <img class="img-fluid" src="${base_url}${photo}" alt="">
+                                                    <img class="img-fluid" src="/${photo}" alt="">
                                                 </div>
                                                 <div class="col-12 mb-4">
                                                     ${button_booking}

@@ -65,6 +65,8 @@ class WelcomeController extends Controller
 
     public function booking(Request $request)
     {
+        $pages = Page::get();
+
         $from_type               = $request->from_type;
         $from_master_area_id     = $request->from_master_area_id;
         $from_master_sub_area_id = $request->from_master_sub_area_id;
@@ -98,17 +100,39 @@ class WelcomeController extends Controller
         }
 
         if (!$schedule) {
-            return view('schedule_not_found');
+            $data = [
+                'title'    => 'Booking Check',
+                'app_name' => env('APP_NAME'),
+                'pages'    => $pages,
+            ];
+            return view('schedule_not_found', $data);
         }
 
         if ($from_type == "airport") {
             $from_main_name = MasterArea::where('id', $from_master_area_id)->first()->name;
-            $from_sub_name = MasterSubArea::where('id', $from_master_sub_area_id)->first()->name;
-            $to_main_name = MasterArea::where('id', $to_master_area_id)->first()->name;
-            $to_sub_name = MasterSubArea::where('id', $to_master_sub_area_id)->first()->name;
+
+            $arr_master_sub_area = MasterSubArea::where('id', $from_master_sub_area_id)->first();
+            $from_sub_name       = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+
+            $to_main_name        = MasterArea::where('id', $to_master_area_id)->first()->name;
+            $to_sub_name         = MasterSubArea::where('id', $to_master_sub_area_id)->first()->name;
+
             $date_time_departure = Carbon::parse($date_departure . " " . $schedule->time_departure)->format('Y M d H:i');
-            $special_areas = MasterSpecialArea::where('is_active', true)->where('master_sub_area_id', $schedule->to_master_sub_area_id)->orderBy('regional_name', 'asc')->get();
+
+            $special_areas       = MasterSpecialArea::where('is_active', true)->where('master_sub_area_id', $schedule->to_master_sub_area_id)->orderBy('regional_name', 'asc')->get();
         } elseif ($from_type == "city") {
+            $from_main_name      = MasterArea::where('id', $from_master_area_id)->first()->name;
+
+            $arr_master_sub_area = MasterSubArea::where('id', $from_master_sub_area_id)->first();
+            $from_sub_name       = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+
+            $to_main_name        = MasterArea::where('id', $to_master_area_id)->first()->name;
+
+            $arr_master_sub_area = MasterSubArea::where('id', $to_master_sub_area_id)->first();
+            $to_sub_name         = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+
+            $date_time_departure = Carbon::parse($date_departure . " " . $schedule->time_departure)->format('Y M d H:i');
+
             $special_areas = MasterSpecialArea::where('is_active', true)->where('master_sub_area_id', $schedule->from_master_sub_area_id)->orderBy('regional_name', 'asc')->get();
         } else {
             $special_areas = collect([]);
@@ -116,9 +140,6 @@ class WelcomeController extends Controller
 
         $passanger_total = $passanger_adult + $passanger_baby;
         $base_price_total = number_format($base_price * $passanger_total, 2);
-
-
-        $pages   = Page::get();
 
         $data = [
             'title'               => env('APP_NAME'),
