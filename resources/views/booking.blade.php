@@ -125,6 +125,7 @@
                         <div class="card bg-success text-white">
                             <div class="card-body">
                                 <h3>Departure Detail</h3>
+                                <p class="text-capitalize">Booking Type: {{ $request->booking_type }}</p>
                                 <p>From: {{ $from_main_name }} - {{ $from_sub_name }}</p>
                                 <p>To: {{ $to_main_name }} - {{ $to_sub_name }}</p>
                                 <p>Special Area: <span class="special_area_name">-</span></p>

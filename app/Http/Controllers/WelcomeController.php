@@ -93,10 +93,12 @@ class WelcomeController extends Controller
 
         if ($booking_type == "shuttle") {
             $schedule = ScheduleShuttle::where('is_active', true)->where('id', $schedule_id)->first();
-            $base_price = $schedule->price;
+            $base_price    = $schedule->price;
             $luggage_price = $schedule->luggage_price;
         } else {
-            $schedule = Charter::where('is_active', true)->where('id', $schedule_id)->first();
+            $schedule = Charter::where('is_available', true)->where('id', $schedule_id)->first();
+            $base_price    = $schedule->price;
+            $luggage_price = 0;
         }
 
         if (!$schedule) {
