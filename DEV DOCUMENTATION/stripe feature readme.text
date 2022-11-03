@@ -1,0 +1,7 @@
+add this to the env
+
+STRIPE_KEY=pk_test_51LzErVArTqxehuhhOSqrNhPs1RrJ8g9TLUEzLTtfXok1lay1xndFAp3666cnrOPspSTwgA18KYtSmhI84zEfi1yM00AtEv5bkT
+STRIPE_SECRET=sk_test_51LzErVArTqxehuhhphEKEcYz8DvdH8Dw5qXx9Fa2CrmdZTN0hXQ7x9SXgesfK9a54JlbbaXDn925cvMWhv37bY2e00EKhcZUiD
+
+when merging folder vendor, composer.json & composer.lock must be overwritten with this branch, if stripe will scream error cause the vendor
+isn't updated yet

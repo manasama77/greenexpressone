@@ -45,6 +45,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Agent
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $password
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Voucher[] $voucher
+ * @property-read int|null $voucher_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Agent whereUpdatedAt($value)
+ */
+	class Agent extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Banner
  *
  * @property int $id
@@ -93,10 +116,11 @@ namespace App\Models{
  * @property int $user_id
  * @property string $customer_phone
  * @property string $customer_name
- * @property string $passanger_phone
- * @property string $passanger_name
+ * @property string $customer_email
  * @property int $qty_adult
  * @property int $qty_baby
+ * @property string $base_price
+ * @property string $total_base_price
  * @property string|null $flight_number
  * @property string|null $notes
  * @property int $luggage_qty
@@ -107,7 +131,8 @@ namespace App\Models{
  * @property string $extra_price
  * @property int|null $voucher_id
  * @property string $promo_price
- * @property string $base_price
+ * @property string $sub_total_price
+ * @property string $fee_price
  * @property string $total_price
  * @property string $booking_status
  * @property string $payment_status
@@ -129,11 +154,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereBookingStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCustomerEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCustomerName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereCustomerPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereDatetimeDeparture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereExtraPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereFeePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereFlightNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereFromMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereFromMasterAreaName($value)
@@ -143,8 +170,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereLuggagePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereLuggageQty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereNotes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePassangerName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePassangerPhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking wherePaymentToken($value)
@@ -156,10 +181,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereScheduleType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSpecialAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSpecialRequest($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereSubTotalPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterAreaName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterSubAreaId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereToMasterSubAreaName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Booking whereTotalBasePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereTotalPayment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereTotalPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Booking whereUpdatedAt($value)
@@ -171,6 +198,30 @@ namespace App\Models{
  * @method static \Illuminate\Database\Query\Builder|Booking withoutTrashed()
  */
 	class Booking extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\BookingCustomer
+ *
+ * @property int $id
+ * @property int $booking_id
+ * @property string $customer_name
+ * @property string $customer_phone
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Booking|null $booking
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer query()
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereBookingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereCustomerName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereCustomerPhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|BookingCustomer whereUpdatedAt($value)
+ */
+	class BookingCustomer extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -343,7 +394,7 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property string $page_title
- * @property string $page_content
+ * @property string|null $page_content
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page query()
@@ -420,7 +471,7 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -428,6 +479,7 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
@@ -439,6 +491,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent {}
 }
@@ -448,6 +502,7 @@ namespace App\Models{
  * App\Models\Voucher
  *
  * @property int $id
+ * @property int $agent_id
  * @property string $name
  * @property string $code
  * @property string $date_start
@@ -458,10 +513,12 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Agent|null $agent
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
  * @method static \Illuminate\Database\Query\Builder|Voucher onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereAgentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDateExpired($value)
