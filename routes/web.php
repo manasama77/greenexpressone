@@ -43,7 +43,8 @@ Route::get('/booking', function () {
 });
 Route::post('/booking', [WelcomeController::class, 'booking'])->name('booking');
 Route::get('/booking/check', [WelcomeController::class, 'booking_check'])->name('booking_check');
-// Route::post('/booking/process', [WelcomeController::class, 'booking_process'])->name('booking.process');
+Route::get('/booking/payment', [WelcomeController::class, 'booking_payment'])->name('booking.payment');
+Route::post('/booking/process', [WelcomeController::class, 'booking_process'])->name('booking.process');
 
 Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::get('/login', [AdminLoginController::class, 'index'])->name('admin.login');
