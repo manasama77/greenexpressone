@@ -4,7 +4,13 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12 mt-5">
-                    <h1 class="text-center mt-5">Booking Schedule</h1>
+                    <h1 class="text-center mt-5">
+                        @if ($request->booking_type == 'shuttle')
+                            Booking Shuttle
+                        @else
+                            Booking Charter
+                        @endif
+                    </h1>
                 </div>
             </div>
         </div>
@@ -29,9 +35,17 @@
                                         <div class="form-group">
                                             <label for="customer_password" class="form-text font-weight-bold">Customer
                                                 Password</label>
-                                            <input type="password" class="form-control" id="customer_password"
-                                                name="customer_password" placeholder="Customer Password"
-                                                autocomplete="new-password" required />
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="customer_password"
+                                                    name="customer_password" placeholder="Customer Password"
+                                                    autocomplete="new-password" required />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text bg-dark text-white" role="button"
+                                                        onclick="showPassword('#customer_password', '#customer_password_icon')">
+                                                        <i class="fas fa-eye" id="customer_password_icon"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr />
                                         <div class="form-group">
@@ -124,13 +138,13 @@
                     <div class="col-sm-12 col-md-4 mb-5">
                         <div class="card bg-success text-white">
                             <div class="card-body">
-                                <h3>Departure Detail</h3>
+                                <h3>Booking Detail</h3>
                                 <p class="text-capitalize">Booking Type: {{ $request->booking_type }}</p>
                                 <p>From: {{ $from_main_name }} - {{ $from_sub_name }}</p>
                                 <p>To: {{ $to_main_name }} - {{ $to_sub_name }}</p>
                                 <p>Special Area: <span class="special_area_name">-</span></p>
                                 <p>Date: {{ $date_time_departure }}</p>
-                                <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Baby</p>
+                                <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Child</p>
                                 <p>Luggage: <span class="luggage_qty">0</span> Kg</p>
                                 <hr />
                                 <table class="table table-borderless text-white">
@@ -175,9 +189,18 @@
                                                 Voucher:<br />
                                                 <input type="text" class="form-control" id="voucher" name="voucher"
                                                     placeholder="Voucher" />
-                                                <input type="password" class="form-control" id="agent_password"
-                                                    name="agent_password" placeholder="Agent Password"
-                                                    autocomplete="new-password" />
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="agent_password"
+                                                        name="agent_password" placeholder="Agent Password"
+                                                        autocomplete="new-password" />
+                                                    <div class="input-group-append" role="button"
+                                                        onclick="showPassword('#agent_password', '#agent_password_icon')">
+                                                        <span class="input-group-text bg-dark text-white">
+                                                            <i class="fas fa-eye" id="agent_password_icon"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
                                             </td>
                                             <td class="text-right text-warning font-weight-bold">
                                                 <span id="voucher_price">$0</span>
@@ -242,9 +265,25 @@
                 if ($('#same_passanger:checked').val()) {
                     $('#passanger_name_1').attr('readonly', true).val($('#customer_name').val()).addClass(
                         'bg-secondary text-white')
+                    $('#passanger_phone_1').attr('readonly', true).val($('#customer_name').val()).addClass(
+                        'bg-secondary text-white')
                 } else {
                     $('#passanger_name_1').attr('readonly', false).val('').removeClass(
                         'bg-secondary text-white')
+                    $('#passanger_phone_1').attr('readonly', false).val('').removeClass(
+                        'bg-secondary text-white')
+                }
+            })
+
+            $('#customer_phone').on('keyup', e => {
+                if ($('#same_passanger:checked').val()) {
+                    $('#passanger_phone_1').val($('#customer_phone').val())
+                }
+            })
+
+            $('#customer_name').on('keyup', e => {
+                if ($('#same_passanger:checked').val()) {
+                    $('#passanger_name_1').val($('#customer_name').val())
                 }
             })
 
@@ -485,6 +524,16 @@
                 }
                 $.unblockUI()
             })
+        }
+
+        function showPassword(target_input, target_icon) {
+            if ($(`${target_input}`).prop('type') == "password") {
+                $(`${target_input}`).prop('type', 'text')
+                $(`${target_icon}`).removeClass('fa-eye').addClass('fa-eye-slash')
+            } else {
+                $(`${target_input}`).prop('type', 'password')
+                $(`${target_icon}`).removeClass('fa-eye-slash').addClass('fa-eye')
+            }
         }
     </script>
 @endsection

@@ -70,28 +70,28 @@ class WelcomeController extends Controller
     {
         $pages = Page::get();
 
-        $from_type = $request->from_type;
-        $from_master_area_id = $request->from_master_area_id;
+        $from_type               = $request->from_type;
+        $from_master_area_id     = $request->from_master_area_id;
         $from_master_sub_area_id = $request->from_master_sub_area_id;
-        $to_master_area_id = $request->to_master_area_id;
-        $to_master_sub_area_id = $request->to_master_sub_area_id;
-        $booking_type = $request->booking_type;
-        $date_departure = $request->date_departure;
-        $passanger_adult = $request->passanger_adult;
-        $passanger_baby = $request->passanger_baby;
-        $schedule_id = $request->schedule_id;
+        $to_master_area_id       = $request->to_master_area_id;
+        $to_master_sub_area_id   = $request->to_master_sub_area_id;
+        $booking_type            = $request->booking_type;
+        $date_departure          = $request->date_departure;
+        $passanger_adult         = $request->passanger_adult;
+        $passanger_baby          = $request->passanger_baby;
+        $schedule_id             = $request->schedule_id;
 
         session([
-            'from_type' => $from_type,
-            'from_master_area_id' => $from_master_area_id,
+            'from_type'               => $from_type,
+            'from_master_area_id'     => $from_master_area_id,
             'from_master_sub_area_id' => $from_master_sub_area_id,
-            'to_master_area_id' => $to_master_area_id,
-            'to_master_sub_area_id' => $to_master_sub_area_id,
-            'booking_type' => $booking_type,
-            'date_departure' => $date_departure,
-            'passanger_adult' => $passanger_adult,
-            'passanger_baby' => $passanger_baby,
-            'schedule_id' => $schedule_id,
+            'to_master_area_id'       => $to_master_area_id,
+            'to_master_sub_area_id'   => $to_master_sub_area_id,
+            'booking_type'            => $booking_type,
+            'date_departure'          => $date_departure,
+            'passanger_adult'         => $passanger_adult,
+            'passanger_baby'          => $passanger_baby,
+            'schedule_id'             => $schedule_id,
         ]);
 
         if ($booking_type == "shuttle") {
@@ -147,27 +147,27 @@ class WelcomeController extends Controller
         $base_price_total = number_format($base_price * $passanger_total, 2);
 
         $data = [
-            'title' => env('APP_NAME'),
-            'app_name' => env('APP_NAME'),
-            'request' => $request,
-            'pages' => $pages,
-            'schedule' => $schedule,
-            'special_areas' => $special_areas,
-            'from_main_name' => $from_main_name,
-            'from_sub_name' => $from_sub_name,
-            'to_main_name' => $to_main_name,
-            'to_sub_name' => $to_sub_name,
+            'title'               => env('APP_NAME'),
+            'app_name'            => env('APP_NAME'),
+            'request'             => $request,
+            'pages'               => $pages,
+            'schedule'            => $schedule,
+            'special_areas'       => $special_areas,
+            'from_main_name'      => $from_main_name,
+            'from_sub_name'       => $from_sub_name,
+            'to_main_name'        => $to_main_name,
+            'to_sub_name'         => $to_sub_name,
             'date_time_departure' => $date_time_departure,
-            'passanger_adult' => $passanger_adult,
-            'passanger_baby' => $passanger_baby,
-            'passanger_total' => $passanger_total,
-            'base_price_total' => $base_price_total,
-            'luggage_price' => $luggage_price,
+            'passanger_adult'     => $passanger_adult,
+            'passanger_baby'      => $passanger_baby,
+            'passanger_total'     => $passanger_total,
+            'base_price_total'    => $base_price_total,
+            'luggage_price'       => $luggage_price,
         ];
         return view('booking', $data);
     }
 
-   // stripe logic starts here
+    // stripe logic starts here
     public function booking_check(Request $request)
     {
         $encode = $request->code;

@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="passanger_baby" class="form-text font-weight-bold">Baby
+                                    <label for="passanger_baby" class="form-text font-weight-bold">Child
                                         Passangers</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control" id="passanger_baby"
@@ -105,10 +105,10 @@
                                             placeholder="Adult Passangers" min="0" max="9" value="0"
                                             required />
                                         <div class="input-group-append bg-light">
-                                            <span class="input-group-text">Baby
+                                            <span class="input-group-text">Child
                                         </div>
                                         <small class="form-text text-muted">
-                                            Information on the age limit of children up to 8 years
+                                            Child is under 8 years old
                                         </small>
                                     </div>
                                 </div>

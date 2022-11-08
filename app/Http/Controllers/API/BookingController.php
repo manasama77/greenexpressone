@@ -47,7 +47,7 @@ class BookingController extends BaseController
                 'agent_password'          => 'nullable',
                 'customer_phone'          => 'required|min:3|max:50',
                 'customer_name'           => 'required|min:3|max:255',
-                'customer_email'          => 'required|min:3|max:100|email:rfc,dns',
+                'customer_email'          => 'nullable|min:3|max:100|email:rfc,dns',
                 'customer_password'       => 'required|min:4|max:50',
                 'passanger'               => 'required|array',
             ],
