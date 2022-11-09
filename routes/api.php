@@ -46,6 +46,7 @@ Route::controller(BookingController::class)->group(function () {
     Route::post('/get_avail_charter', 'get_avail_charter');
     Route::post('/booking_history', 'show');
     Route::post('/booking', 'index');
+    Route::post('/booking_update', 'booking_update');
     Route::get('/get_list_sub_area', 'get_list_sub_area');
 
     Route::middleware('auth:sanctum')->group(function () {
