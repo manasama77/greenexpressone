@@ -1,0 +1,4125 @@
+{
+	"info": {
+		"_postman_id": "1e1ea1ec-0a9e-41fe-b32e-fe6e214da46c",
+		"name": "[LOCAL] API Greenexpress one",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8377440"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "adam",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "adam.pm77@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "adamadam",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+6282114578976",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/register",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "adam",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "adam.pm77@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "adamadam",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}/api/register",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:37:47 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:37:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"The name field is required.\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Register berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "adam",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "adam.pm77@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "adamadam",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}/api/register",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:38:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:38:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"name\": \"adam\",\n        \"phone\": \"+6282114578976\",\n        \"photo\": null,\n        \"email\": \"adam.pm77@gmail.com\",\n        \"token\": \"1|mJuKiCPV1s1pgoEMaxOIoyCU3KxgLjvLvupkcj5X\"\n    },\n    \"message\": \"User register successfully.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "089696706315",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/login",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "adamadams",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}/api/login",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:40:03 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:40:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Unauthorized\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Login berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "adamadam",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}/api/login",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:40:32 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:40:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"adam\",\n        \"phone\": \"+6282114578976\",\n        \"photo\": null,\n        \"email\": \"adam.pm77@gmail.com\",\n        \"token\": \"2|NnW1JdvBdLTbgpkXLU3TnBtwpMUS7TFABZx2pJD1\"\n    },\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "4|yZUQKYUakbPgRx3L6ojcIuSoEPWArbQscDF4Lmqo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL}}/api/logout",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}/api/logout",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:58:51 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:58:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": null,\n    \"message\": \"logout success\"\n}"
+						},
+						{
+							"name": "Logout gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}/api/logout",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:59:25 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 14:59:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"data\": null,\n    \"message\": \"Unauthenticated.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Get list from departure",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/get_list_from_departure?from_type=airport&keyword=",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_list_from_departure"
+							],
+							"query": [
+								{
+									"key": "from_type",
+									"value": "airport"
+								},
+								{
+									"key": "keyword",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get list from departure berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}/api/get_list_from_departure?from_type=airport&keyword=",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"get_list_from_departure"
+									],
+									"query": [
+										{
+											"key": "from_type",
+											"value": "airport"
+										},
+										{
+											"key": "keyword",
+											"value": ""
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:07:19 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:07:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"sub_area\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Terminal 1A\",\n                    \"parent_id\": 1\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Terminal 1B\",\n                    \"parent_id\": 1\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"Terminal 2D\",\n                    \"parent_id\": 1\n                },\n                {\n                    \"id\": 4,\n                    \"name\": \"Terminal 2E\",\n                    \"parent_id\": 1\n                },\n                {\n                    \"id\": 5,\n                    \"name\": \"Terminal 2F\",\n                    \"parent_id\": 1\n                },\n                {\n                    \"id\": 6,\n                    \"name\": \"Terminal 3\",\n                    \"parent_id\": 1\n                }\n            ]\n        }\n    ],\n    \"message\": \"success\"\n}"
+						},
+						{
+							"name": "Get list from departure gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}/api/get_list_from_departure?from_type=airport&keyword=1234",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"get_list_from_departure"
+									],
+									"query": [
+										{
+											"key": "from_type",
+											"value": "airport"
+										},
+										{
+											"key": "keyword",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:07:45 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:07:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data Empty\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get list to destination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/get_list_to_destination?from_type=city&keyword=",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_list_to_destination"
+							],
+							"query": [
+								{
+									"key": "from_type",
+									"value": "city"
+								},
+								{
+									"key": "keyword",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get list to destination berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}/api/get_list_to_destination?from_type=airport",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"get_list_to_destination"
+									],
+									"query": [
+										{
+											"key": "from_type",
+											"value": "airport"
+										},
+										{
+											"key": "keyword",
+											"value": "Cilincing",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:11:37 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:11:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 5,\n            \"name\": \"Jakarta Barat\",\n            \"sub_area\": [\n                {\n                    \"id\": 32,\n                    \"name\": \"Cengkareng\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 33,\n                    \"name\": \"Grogol Petamburan\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 37,\n                    \"name\": \"Kalideres\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 36,\n                    \"name\": \"Kebon Jeruk\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 39,\n                    \"name\": \"Kembangan\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 38,\n                    \"name\": \"Palmerah\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 34,\n                    \"name\": \"Taman Sari\",\n                    \"parent_id\": 5\n                },\n                {\n                    \"id\": 35,\n                    \"name\": \"Tambora\",\n                    \"parent_id\": 5\n                }\n            ]\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Jakarta Pusat\",\n            \"sub_area\": [\n                {\n                    \"id\": 40,\n                    \"name\": \"Cempaka Putih\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 41,\n                    \"name\": \"Gambir\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 42,\n                    \"name\": \"Johar Baru\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 43,\n                    \"name\": \"Kemayoran\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 44,\n                    \"name\": \"Menteng\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 45,\n                    \"name\": \"Sawah Besar\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 46,\n                    \"name\": \"Senen\",\n                    \"parent_id\": 6\n                },\n                {\n                    \"id\": 47,\n                    \"name\": \"Tanah Abang\",\n                    \"parent_id\": 6\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Jakarta Selatan\",\n            \"sub_area\": [\n                {\n                    \"id\": 22,\n                    \"name\": \"Cilandak\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 23,\n                    \"name\": \"Jagakarsa\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 24,\n                    \"name\": \"Kebayoran baru\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 25,\n                    \"name\": \"Kebayoran Lama\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 26,\n                    \"name\": \"Mampang Prapatan\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 27,\n                    \"name\": \"Pancoran\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 28,\n                    \"name\": \"Pasar Minggu\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 29,\n                    \"name\": \"Pesanggrahan\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 30,\n                    \"name\": \"Setiabudi\",\n                    \"parent_id\": 4\n                },\n                {\n                    \"id\": 31,\n                    \"name\": \"Tebet\",\n                    \"parent_id\": 4\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Jakarta Timur\",\n            \"sub_area\": [\n                {\n                    \"id\": 13,\n                    \"name\": \"Cakung\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 14,\n                    \"name\": \"Cipayung\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 15,\n                    \"name\": \"Ciracas\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 16,\n                    \"name\": \"Duren Sawit\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 17,\n                    \"name\": \"Jatinegara\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 18,\n                    \"name\": \"Kramat Jati\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 19,\n                    \"name\": \"Makasar\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 20,\n                    \"name\": \"Pasar Rebo\",\n                    \"parent_id\": 3\n                },\n                {\n                    \"id\": 21,\n                    \"name\": \"Pulo Gadung\",\n                    \"parent_id\": 3\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Jakarta Utara\",\n            \"sub_area\": [\n                {\n                    \"id\": 7,\n                    \"name\": \"Cilincing\",\n                    \"parent_id\": 2\n                },\n                {\n                    \"id\": 8,\n                    \"name\": \"Kelapa Gading\",\n                    \"parent_id\": 2\n                },\n                {\n                    \"id\": 9,\n                    \"name\": \"Koja\",\n                    \"parent_id\": 2\n                },\n                {\n                    \"id\": 10,\n                    \"name\": \"Pademangan\",\n                    \"parent_id\": 2\n                },\n                {\n                    \"id\": 11,\n                    \"name\": \"Penjaringan\",\n                    \"parent_id\": 2\n                },\n                {\n                    \"id\": 12,\n                    \"name\": \"Tanjung Priok\",\n                    \"parent_id\": 2\n                }\n            ]\n        }\n    ],\n    \"message\": \"success\"\n}"
+						},
+						{
+							"name": "Get list to destination gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}/api/get_list_to_destination?from_type=airport&keyword=1234",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"get_list_to_destination"
+									],
+									"query": [
+										{
+											"key": "from_type",
+											"value": "airport"
+										},
+										{
+											"key": "keyword",
+											"value": "1234"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:11:53 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 17:11:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data Empty\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[UPDATED] Get schedule shuttles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from_type",
+									"value": "airport",
+									"type": "text"
+								},
+								{
+									"key": "date_booking",
+									"value": "2022-11-03",
+									"type": "text"
+								},
+								{
+									"key": "qty_adult",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "qty_baby",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "from_master_area_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "from_master_sub_area_id",
+									"value": "1",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "to_master_area_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "to_master_sub_area_id",
+									"value": "7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/get_schedule_shuttles",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_schedule_shuttles"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get schedule shuttles gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "date_booking",
+											"value": "2022-09-29",
+											"type": "text"
+										},
+										{
+											"key": "qty_adult",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "qty_baby",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/get_schedule_shuttles",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_schedule_shuttles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Oct 2022 16:50:27 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Oct 2022 16:50:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data Empty\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Get schedule shuttles berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from_type",
+											"value": "airport",
+											"type": "text"
+										},
+										{
+											"key": "date_booking",
+											"value": "2022-10-26",
+											"type": "text"
+										},
+										{
+											"key": "qty_adult",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "qty_baby",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "1",
+											"description": "required",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/get_schedule_shuttles",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_schedule_shuttles"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 15:37:58 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 15:37:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 8,\n            \"from_type\": \"airport\",\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_name\": null,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"time_departure\": \"23:59:00\",\n            \"photo\": \"img/vehicle/default.png\",\n            \"price\": 25,\n            \"driver_contact\": \"+62123456789\",\n            \"notes\": \"Lorem ipsum dolor sit amet.\",\n            \"total_seat\": 20,\n            \"luggage_price\": 5,\n            \"total_seat_used\": 0,\n            \"is_available\": true\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[UPDATED] Get avail charter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "from_type",
+									"value": "airport",
+									"type": "text"
+								},
+								{
+									"key": "from_master_area_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "from_master_sub_area_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "to_master_area_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "to_master_sub_area_id",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/get_avail_charter",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_avail_charter"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get avail charter gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "8",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/get_avail_charter",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_avail_charter"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 16:26:28 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 16:26:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data Empty\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Get avail charter berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "from_type",
+											"value": "airport",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "8",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/get_avail_charter",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_avail_charter"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 16:12:13 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 16:12:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 2,\n            \"from_type\": \"airport\",\n            \"from_master_area_id\": \"1\",\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": null,\n            \"from_master_sub_area_name\": null,\n            \"to_master_area_id\": \"2\",\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": \"8\",\n            \"to_master_sub_area_name\": \"Kelapa Gading\",\n            \"vehicle_name\": \"Avanza 2\",\n            \"vehicle_number\": \"B 9876 CCD\",\n            \"is_available\": 1,\n            \"photo\": \"http://127.0.0.1:8000/img/vehicle/default.png\",\n            \"price\": \"100.00\",\n            \"driver_contact\": \"+62123456789\",\n            \"notes\": \"Lorem ipsum dolor sit amet.\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Booking History",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "+628123456789",
+									"type": "text"
+								},
+								{
+									"key": "from_date",
+									"value": "2022-10-01",
+									"type": "text"
+								},
+								{
+									"key": "to_date",
+									"value": "2022-10-31",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{LOCAL}}api/booking_history",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"booking_history"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Booking History gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2022-09-01",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2022-09-30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking_history",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking_history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:44:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:44:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Booking History berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+628123456789",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2022-10-01",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2022-10-30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking_history",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking_history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:06:35 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:06:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"booking_number\": \"GEO220001\",\n            \"schedule_id\": 2,\n            \"from_master_area_id\": 1,\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": 1,\n            \"from_master_sub_area_name\": \"Terminal 1A\",\n            \"to_master_area_id\": 2,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": 7,\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"datetime_departure\": \"2022-10-09 04:00:00\",\n            \"schedule_type\": \"shuttle\",\n            \"customer_phone\": \"+628123456789\",\n            \"customer_name\": \"Abdel\",\n            \"passanger_phone\": \"+628987654321\",\n            \"passanger_name\": \"Temon\",\n            \"qty_adult\": 1,\n            \"qty_baby\": 0,\n            \"special_request\": 1,\n            \"flight_number\": null,\n            \"notes\": \"test\",\n            \"luggage_qty\": 1,\n            \"luggage_price\": \"5.00\",\n            \"extra_price\": \"10.00\",\n            \"voucher_id\": null,\n            \"promo_price\": \"0.00\",\n            \"base_price\": \"25.00\",\n            \"total_price\": \"40.00\",\n            \"booking_status\": \"pending\",\n            \"payment_status\": \"waiting\",\n            \"payment_method\": null,\n            \"payment_token\": null,\n            \"total_payment\": \"40.00\",\n            \"created_at\": \"2022-10-08T20:01:03.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"booking_number\": \"GEO220002\",\n            \"schedule_id\": 1,\n            \"from_master_area_id\": 1,\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": 3,\n            \"from_master_sub_area_name\": \"Terminal 2D\",\n            \"to_master_area_id\": 2,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": 7,\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"datetime_departure\": \"2022-10-09 00:00:00\",\n            \"schedule_type\": \"charter\",\n            \"customer_phone\": \"+628123456789\",\n            \"customer_name\": \"Abdel\",\n            \"passanger_phone\": \"+628987654321\",\n            \"passanger_name\": \"Temon\",\n            \"qty_adult\": 0,\n            \"qty_baby\": 0,\n            \"special_request\": 0,\n            \"flight_number\": null,\n            \"notes\": \"test\",\n            \"luggage_qty\": 0,\n            \"luggage_price\": \"0.00\",\n            \"extra_price\": \"0.00\",\n            \"voucher_id\": null,\n            \"promo_price\": \"0.00\",\n            \"base_price\": \"100.00\",\n            \"total_price\": \"100.00\",\n            \"booking_status\": \"pending\",\n            \"payment_status\": \"waiting\",\n            \"payment_method\": null,\n            \"payment_token\": null,\n            \"total_payment\": \"100.00\",\n            \"created_at\": \"2022-10-08T20:04:25.000000Z\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[new]Booking update status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "payment_status",
+									"value": "succeeded",
+									"type": "text"
+								},
+								{
+									"key": "payment_method",
+									"value": "card_1LzyA1ArTqxehuhhmuI7fopa",
+									"description": "from stripe response, look for object payment_method",
+									"type": "text"
+								},
+								{
+									"key": "payment_token",
+									"value": "ch_3LzyA2ArTqxehuhh0TLAcT6W",
+									"description": "from stripe response, look for object id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{LOCAL}}api/booking_update",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"booking_update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Booking History gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+6282114578976",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2022-09-01",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2022-09-30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking_history",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking_history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:44:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:44:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Booking History berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "phone",
+											"value": "+628123456789",
+											"type": "text"
+										},
+										{
+											"key": "from_date",
+											"value": "2022-10-01",
+											"type": "text"
+										},
+										{
+											"key": "to_date",
+											"value": "2022-10-30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking_history",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking_history"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:06:35 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:06:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"booking_number\": \"GEO220001\",\n            \"schedule_id\": 2,\n            \"from_master_area_id\": 1,\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": 1,\n            \"from_master_sub_area_name\": \"Terminal 1A\",\n            \"to_master_area_id\": 2,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": 7,\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"datetime_departure\": \"2022-10-09 04:00:00\",\n            \"schedule_type\": \"shuttle\",\n            \"customer_phone\": \"+628123456789\",\n            \"customer_name\": \"Abdel\",\n            \"passanger_phone\": \"+628987654321\",\n            \"passanger_name\": \"Temon\",\n            \"qty_adult\": 1,\n            \"qty_baby\": 0,\n            \"special_request\": 1,\n            \"flight_number\": null,\n            \"notes\": \"test\",\n            \"luggage_qty\": 1,\n            \"luggage_price\": \"5.00\",\n            \"extra_price\": \"10.00\",\n            \"voucher_id\": null,\n            \"promo_price\": \"0.00\",\n            \"base_price\": \"25.00\",\n            \"total_price\": \"40.00\",\n            \"booking_status\": \"pending\",\n            \"payment_status\": \"waiting\",\n            \"payment_method\": null,\n            \"payment_token\": null,\n            \"total_payment\": \"40.00\",\n            \"created_at\": \"2022-10-08T20:01:03.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"booking_number\": \"GEO220002\",\n            \"schedule_id\": 1,\n            \"from_master_area_id\": 1,\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": 3,\n            \"from_master_sub_area_name\": \"Terminal 2D\",\n            \"to_master_area_id\": 2,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": 7,\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"datetime_departure\": \"2022-10-09 00:00:00\",\n            \"schedule_type\": \"charter\",\n            \"customer_phone\": \"+628123456789\",\n            \"customer_name\": \"Abdel\",\n            \"passanger_phone\": \"+628987654321\",\n            \"passanger_name\": \"Temon\",\n            \"qty_adult\": 0,\n            \"qty_baby\": 0,\n            \"special_request\": 0,\n            \"flight_number\": null,\n            \"notes\": \"test\",\n            \"luggage_qty\": 0,\n            \"luggage_price\": \"0.00\",\n            \"extra_price\": \"0.00\",\n            \"voucher_id\": null,\n            \"promo_price\": \"0.00\",\n            \"base_price\": \"100.00\",\n            \"total_price\": \"100.00\",\n            \"booking_status\": \"pending\",\n            \"payment_status\": \"waiting\",\n            \"payment_method\": null,\n            \"payment_token\": null,\n            \"total_payment\": \"100.00\",\n            \"created_at\": \"2022-10-08T20:04:25.000000Z\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Check code booking",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}api/check_booking_number?booking_number=GEO220001",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"check_booking_number"
+							],
+							"query": [
+								{
+									"key": "booking_number",
+									"value": "GEO220001"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check code booking gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}api/check_booking_number?booking_number=GEO220004",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"check_booking_number"
+									],
+									"query": [
+										{
+											"key": "booking_number",
+											"value": "GEO220004"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:46:17 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 16:46:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"booking number GEO220004 not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Check code booking berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}api/check_booking_number?booking_number=GEO220001",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"check_booking_number"
+									],
+									"query": [
+										{
+											"key": "booking_number",
+											"value": "GEO220001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:02:25 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Oct 2022 20:02:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"booking_number\": \"GEO220001\",\n            \"schedule_id\": 2,\n            \"from_master_area_id\": 1,\n            \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n            \"from_master_sub_area_id\": 1,\n            \"from_master_sub_area_name\": \"Terminal 1A\",\n            \"to_master_area_id\": 2,\n            \"to_master_area_name\": \"Jakarta Utara\",\n            \"to_master_sub_area_id\": 7,\n            \"to_master_sub_area_name\": \"Cilincing\",\n            \"vehicle_name\": \"Avanza 1\",\n            \"vehicle_number\": \"B 1234 CCD\",\n            \"datetime_departure\": \"2022-10-09 04:00:00\",\n            \"schedule_type\": \"shuttle\",\n            \"customer_phone\": \"+628123456789\",\n            \"customer_name\": \"Abdel\",\n            \"passanger_phone\": \"+628987654321\",\n            \"passanger_name\": \"Temon\",\n            \"qty_adult\": 1,\n            \"qty_baby\": 0,\n            \"special_request\": 1,\n            \"flight_number\": null,\n            \"notes\": \"test\",\n            \"luggage_qty\": 1,\n            \"luggage_price\": \"5.00\",\n            \"extra_price\": \"10.00\",\n            \"voucher_id\": null,\n            \"promo_price\": \"0.00\",\n            \"base_price\": \"25.00\",\n            \"total_price\": \"40.00\",\n            \"booking_status\": \"pending\",\n            \"payment_status\": \"waiting\",\n            \"payment_method\": null,\n            \"payment_token\": null,\n            \"total_payment\": \"40.00\",\n            \"created_at\": \"2022-10-08T20:01:03.000000Z\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[UPDATED 2022-10-30] Booking shuttle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "schedule_type",
+									"value": "charter",
+									"type": "text"
+								},
+								{
+									"key": "from_type",
+									"value": "airport",
+									"type": "text"
+								},
+								{
+									"key": "schedule_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "date_departure",
+									"value": "2022-11-03",
+									"type": "text"
+								},
+								{
+									"key": "from_master_area_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "from_master_sub_area_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "to_master_area_id",
+									"value": "2",
+									"description": "main_area",
+									"type": "text"
+								},
+								{
+									"key": "to_master_sub_area_id",
+									"value": "7",
+									"description": "sub_area",
+									"type": "text"
+								},
+								{
+									"key": "qty_adult",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "qty_baby",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "special_request",
+									"value": "0",
+									"description": "if no special 0 else special 1",
+									"type": "text"
+								},
+								{
+									"key": "special_area_id",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "luggage_qty",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "flight_number",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "voucher_code",
+									"value": "agent1",
+									"type": "text"
+								},
+								{
+									"key": "agent_password",
+									"value": "agent1",
+									"type": "text"
+								},
+								{
+									"key": "customer_phone",
+									"value": "+628123456789",
+									"type": "text"
+								},
+								{
+									"key": "customer_password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "customer_name",
+									"value": "Abdel",
+									"type": "text"
+								},
+								{
+									"key": "customer_email",
+									"value": "adam.pm77@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "passanger[0][name]",
+									"value": "penumpang1",
+									"type": "text"
+								},
+								{
+									"key": "passanger[0][phone]",
+									"value": "+08123456789",
+									"type": "text"
+								},
+								{
+									"key": "passanger[1][name]",
+									"value": "penumpang2",
+									"type": "text"
+								},
+								{
+									"key": "passanger[1][phone]",
+									"value": "+081234567891",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/booking",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Booking shuttle gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "schedule_type",
+											"value": "shuttle",
+											"type": "text"
+										},
+										{
+											"key": "from_type",
+											"value": "airport",
+											"type": "text"
+										},
+										{
+											"key": "schedule_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_departure",
+											"value": "2022-10-21",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"description": "main_area",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "7",
+											"description": "sub_area",
+											"type": "text"
+										},
+										{
+											"key": "qty_adult",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "qty_baby",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "special_request",
+											"value": "1",
+											"description": "if no special 0 else special 1",
+											"type": "text"
+										},
+										{
+											"key": "special_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "luggage_qty",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "flight_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "voucher_code",
+											"value": "promo10%",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "customer_phone",
+											"value": "+628123456789",
+											"type": "text"
+										},
+										{
+											"key": "customer_password",
+											"value": "Apassword",
+											"type": "text"
+										},
+										{
+											"key": "customer_name",
+											"value": "Abdel",
+											"type": "text"
+										},
+										{
+											"key": "customer_email",
+											"value": "adam.pm77@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "passanger_phone",
+											"value": "+628987654321",
+											"type": "text"
+										},
+										{
+											"key": "passanger_name",
+											"value": "Temon",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:11:13 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:11:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Wrong password, please try again\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[UPDATED] Booking charter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "schedule_type",
+									"value": "charter",
+									"type": "text"
+								},
+								{
+									"key": "from_type",
+									"value": "airport",
+									"type": "text"
+								},
+								{
+									"key": "schedule_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "date_departure",
+									"value": "2022-10-31",
+									"type": "text"
+								},
+								{
+									"key": "from_master_area_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "from_master_sub_area_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "to_master_area_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "to_master_sub_area_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "qty_adult",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "qty_baby",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "flight_number",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "voucher_code",
+									"value": "promo10%",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "customer_phone",
+									"value": "+628123456789",
+									"type": "text"
+								},
+								{
+									"key": "customer_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "customer_name",
+									"value": "Abdel",
+									"type": "text"
+								},
+								{
+									"key": "customer_email",
+									"value": "adam.pm77@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "passanger[0]",
+									"value": "accc",
+									"type": "text"
+								},
+								{
+									"key": "passanger_name",
+									"value": "Temon",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}api/booking",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Booking charter berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "schedule_type",
+											"value": "charter",
+											"type": "text"
+										},
+										{
+											"key": "from_type",
+											"value": "airport",
+											"type": "text"
+										},
+										{
+											"key": "schedule_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_departure",
+											"value": "2022-10-21",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "qty_adult",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "qty_baby",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "flight_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "voucher_code",
+											"value": "promo10%",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "customer_phone",
+											"value": "+628123456789",
+											"type": "text"
+										},
+										{
+											"key": "customer_password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "customer_name",
+											"value": "Abdel",
+											"type": "text"
+										},
+										{
+											"key": "customer_email",
+											"value": "adam.pm77@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "passanger_phone",
+											"value": "+628987654321",
+											"type": "text"
+										},
+										{
+											"key": "passanger_name",
+											"value": "Temon",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:57:50 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:57:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"booking_number\": \"GEO220003\",\n        \"schedule_id\": 1,\n        \"from_master_area_id\": 1,\n        \"from_master_area_name\": \"Jakarta - Bandara Internasional Soekarno-Hatta\",\n        \"from_master_sub_area_id\": 0,\n        \"from_master_sub_area_name\": null,\n        \"to_master_area_id\": 2,\n        \"to_master_area_name\": \"Jakarta Utara\",\n        \"to_master_sub_area_id\": 7,\n        \"to_master_sub_area_name\": \"Cilincing\",\n        \"vehicle_name\": \"Avanza 1\",\n        \"vehicle_number\": \"B 1234 CCD\",\n        \"datetime_departure\": \"2022-10-21\",\n        \"schedule_type\": \"charter\",\n        \"user_id\": 1,\n        \"customer_phone\": \"+628123456789\",\n        \"customer_name\": \"Abdel\",\n        \"customer_email\": \"adam.pm77@gmail.com\",\n        \"passanger_phone\": \"+628987654321\",\n        \"passanger_name\": \"Temon\",\n        \"qty_adult\": 0,\n        \"qty_baby\": 0,\n        \"flight_number\": null,\n        \"notes\": \"test\",\n        \"luggage_qty\": 0,\n        \"luggage_price\": 0,\n        \"special_request\": 0,\n        \"special_area_id\": 0,\n        \"regional_name\": null,\n        \"extra_price\": 0,\n        \"base_price\": 100,\n        \"voucher_id\": null,\n        \"promo_price\": 0,\n        \"total_price\": 100,\n        \"booking_status\": \"pending\",\n        \"payment_status\": \"waiting\",\n        \"payment_method\": null,\n        \"payment_token\": null,\n        \"total_payment\": 100,\n        \"created_at\": \"2022-10-20 22:57:50\"\n    },\n    \"message\": \"success\"\n}"
+						},
+						{
+							"name": "Booking charter gagal",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "schedule_type",
+											"value": "charter",
+											"type": "text"
+										},
+										{
+											"key": "from_type",
+											"value": "airport",
+											"type": "text"
+										},
+										{
+											"key": "schedule_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "date_departure",
+											"value": "2022-10-21",
+											"type": "text"
+										},
+										{
+											"key": "from_master_area_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "from_master_sub_area_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "to_master_area_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "to_master_sub_area_id",
+											"value": "7",
+											"type": "text"
+										},
+										{
+											"key": "qty_adult",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "qty_baby",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "flight_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "notes",
+											"value": "test",
+											"type": "text"
+										},
+										{
+											"key": "voucher_code",
+											"value": "promo10%",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "customer_phone",
+											"value": "+628123456789",
+											"type": "text"
+										},
+										{
+											"key": "customer_password",
+											"value": "apassword",
+											"type": "text"
+										},
+										{
+											"key": "customer_name",
+											"value": "Abdel",
+											"type": "text"
+										},
+										{
+											"key": "customer_email",
+											"value": "adam.pm77@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "passanger_phone",
+											"value": "+628987654321",
+											"type": "text"
+										},
+										{
+											"key": "passanger_name",
+											"value": "Temon",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{LOCAL}}api/booking",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:58:50 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 Oct 2022 15:58:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Wrong password, please try again\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get special area",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/get_special_area?master_sub_area_id=7",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_special_area"
+							],
+							"query": [
+								{
+									"key": "master_sub_area_id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get special area gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/get_special_area?master_sub_area_id=1",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_special_area"
+									],
+									"query": [
+										{
+											"key": "master_sub_area_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Oct 2022 14:12:23 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Oct 2022 14:12:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Master Special Area Not Found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Get special area berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}api/get_special_area?master_sub_area_id=7",
+									"host": [
+										"{{base_url}}api"
+									],
+									"path": [
+										"get_special_area"
+									],
+									"query": [
+										{
+											"key": "master_sub_area_id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.1.11"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "60"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "59"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "content-length",
+									"value": "259"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "date",
+									"value": "Wed, 26 Oct 2022 06:49:56 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Kali Baru\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 2,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Cilincing\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 3,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Samper Barat\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 4,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Samper Timur\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 5,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Sukapura\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 6,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Rorotan\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 7,\n            \"master_sub_area_id\": \"7\",\n            \"regional_name\": \"Marunda\",\n            \"first_person_price\": \"10.00\",\n            \"extra_person_price\": \"5.00\",\n            \"is_active\": \"1\",\n            \"notes\": null,\n            \"created_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"updated_at\": \"2022-10-20T15:44:39.000000Z\",\n            \"deleted_at\": null\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "[NEW] Get list sub area",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/get_list_sub_area?master_area_id=1",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"get_list_sub_area"
+							],
+							"query": [
+								{
+									"key": "master_area_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get list sub area berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/get_list_sub_area?master_area_id=1",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_list_sub_area"
+									],
+									"query": [
+										{
+											"key": "master_area_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 15:51:47 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 15:51:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Terminal 1A\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Terminal 1B\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Terminal 2D\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Terminal 2E\"\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Terminal 2F\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Terminal 3\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						},
+						{
+							"name": "Get list sub area gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/get_list_sub_area?master_area_id=7",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"get_list_sub_area"
+									],
+									"query": [
+										{
+											"key": "master_area_id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 15:52:01 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 13 Oct 2022 15:52:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"The selected master area id is invalid.\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "[NEW] Check Voucher",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{LOCAL}}api/check_voucher?voucher_code=agent1&password=agent1",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"check_voucher"
+							],
+							"query": [
+								{
+									"key": "voucher_code",
+									"value": "agent1"
+								},
+								{
+									"key": "password",
+									"value": "agent1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check Voucher gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/check_voucher?voucher_code=medsoss",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"check_voucher"
+									],
+									"query": [
+										{
+											"key": "voucher_code",
+											"value": "medsoss"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Oct 2022 18:05:20 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Oct 2022 18:05:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"voucher code not found\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "Check Voucher berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/check_voucher?voucher_code=agent1&password=agent1",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"check_voucher"
+									],
+									"query": [
+										{
+											"key": "voucher_code",
+											"value": "agent1"
+										},
+										{
+											"key": "password",
+											"value": "agent1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Oct 2022 19:43:48 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 Oct 2022 19:43:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 1,\n        \"agent_id\": 1,\n        \"name\": \"Agent 1 Discount 10%\",\n        \"code\": \"agent1\",\n        \"date_start\": \"2022-09-01\",\n        \"date_expired\": \"2022-10-31\",\n        \"discount_type\": \"percentage\",\n        \"discount_value\": \"10.00\",\n        \"is_active\": 1,\n        \"agent\": {\n            \"id\": 1,\n            \"name\": \"Agent 1\"\n        }\n    },\n    \"message\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Utility",
+			"item": [
+				{
+					"name": "Banner",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCAL}}api/banner",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"banner"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Banner berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}/api/banner",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"banner"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 02:19:07 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 02:19:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "55"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"picture\": \"http://greenexpressone.my.id/1.png\",\n            \"url\": \"#\",\n            \"is_active\": 1\n        },\n        {\n            \"id\": 2,\n            \"picture\": \"http://greenexpressone.my.id/2.png\",\n            \"url\": \"#\",\n            \"is_active\": 1\n        },\n        {\n            \"id\": 3,\n            \"picture\": \"http://greenexpressone.my.id/3.png\",\n            \"url\": \"#\",\n            \"is_active\": 1\n        }\n    ],\n    \"message\": \"success\"\n}"
+						},
+						{
+							"name": "Banner gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}/api/banner",
+									"host": [
+										"{{LOCAL}}"
+									],
+									"path": [
+										"api",
+										"banner"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 13:54:58 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Sep 2022 13:54:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data empty\",\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|0zzjtzyV0rx8od0GgIkcxCDAvF2p9X4HX41FZTN4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}api/profile",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Profile gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}api/profile",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 15:16:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 15:16:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"data\": null,\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "Get Profile berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{LOCAL}}api/profile",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 15:16:57 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 15:16:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"adam\",\n        \"phone\": \"+6282114578976\",\n        \"photo\": null,\n        \"email\": \"adam.pm77@gmail.com\"\n    },\n    \"message\": \"success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|0zzjtzyV0rx8od0GgIkcxCDAvF2p9X4HX41FZTN4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Adam PMs",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "adam.pm77@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/Baboy/Pictures/ttd me.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{LOCAL}}api/profile",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "5|d6KeoLGpCXIeHfxFCCt2L3uUrTTyTqMpCgs2haa8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "adamadam",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "adamadam",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{LOCAL}}api/update_password",
+							"host": [
+								"{{LOCAL}}api"
+							],
+							"path": [
+								"update_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[NEW] Pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}api/pages?id=1",
+							"host": [
+								"{{base_url}}api"
+							],
+							"path": [
+								"pages"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "1 == privacy | 2 == term n condition"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Pages gagal",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/pages?id=3",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"pages"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "3",
+											"description": "1 == privacy | 2 == term n condition"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Oct 2022 09:52:56 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Oct 2022 09:52:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Data empty\",\n    \"data\": []\n}"
+						},
+						{
+							"name": "Pages berhasil",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{LOCAL}}api/pages?id=1",
+									"host": [
+										"{{LOCAL}}api"
+									],
+									"path": [
+										"pages"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "1 == privacy | 2 == term n condition"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Oct 2022 09:53:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 22 Oct 2022 09:53:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"slug\": \"privacy\",\n            \"page_title\": \"Privacy\",\n            \"page_content\": \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, provident.\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "LOCAL",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		},
+		{
+			"key": "LIVE",
+			"value": "https://greenexpressone.my.id",
+			"type": "string"
+		}
+	]
+}
