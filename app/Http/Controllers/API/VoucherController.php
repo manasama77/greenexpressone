@@ -17,7 +17,7 @@ class VoucherController extends BaseController
             $request->all(),
             [
                 'voucher_code' => 'required|exists:vouchers,code',
-                'password'     => 'required',
+                // 'password'     => 'required',
             ],
             [
                 'exists' => ':attribute not found',
@@ -35,16 +35,16 @@ class VoucherController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $vouchers = Voucher::with('agent')->where('code', $request->voucher_code)->whereRaw('CURDATE() between date_start and date_expired')->first();
+        $vouchers = Voucher::where('code', $request->voucher_code)->whereRaw('CURDATE() between date_start and date_expired')->first();
 
         if (!$vouchers) {
             return $this->sendError("voucher code not founds", null);
         }
 
-        $password = $vouchers->agent->password;
-        if ($request->password != $password) {
-            return $this->sendError("Password agent wrong", null);
-        }
+        // $password = $vouchers->agent->password;
+        // if ($request->password != $password) {
+        //     return $this->sendError("Password agent wrong", null);
+        // }
 
         return $this->sendResponse($vouchers, 'success');
     }

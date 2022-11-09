@@ -189,7 +189,7 @@
                                                 Voucher:<br />
                                                 <input type="text" class="form-control" id="voucher" name="voucher"
                                                     placeholder="Voucher" />
-                                                <div class="input-group">
+                                                {{-- <div class="input-group">
                                                     <input type="password" class="form-control" id="agent_password"
                                                         name="agent_password" placeholder="Agent Password"
                                                         autocomplete="new-password" />
@@ -200,7 +200,7 @@
                                                         </span>
                                                     </div>
 
-                                                </div>
+                                                </div> --}}
                                             </td>
                                             <td class="text-right text-warning font-weight-bold">
                                                 <span id="voucher_price">$0</span>
@@ -224,11 +224,11 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Payment Fee (3%):
+                                                Payment Fee (3.5% + $0.5):
                                             </td>
                                             <td class="text-right">
                                                 @php
-                                                    $service_fee = ($base_price_total * 3) / 100;
+                                                    $service_fee = ($base_price_total * 3.5) / 100 + 0.5;
                                                     $gt = $base_price_total + $service_fee;
                                                 @endphp
                                                 <span id="service_fee">${{ number_format($service_fee, 2) }}</span>
@@ -335,15 +335,7 @@
             })
 
             $('#voucher').on('change', e => {
-                let voucher_code = $('#voucher').val()
-                let agent_password = $('#agent_password').val()
-                if (voucher_code.length > 0 && agent_password.length > 0) {
-                    checkVoucher(voucher_code, agent_password)
-                } else {
-                    $('#voucher_price').text('$0')
-                    $('input[name="voucher_price"]').val(0)
-                    generateGrandTotal()
-                }
+                generateGrandTotal()
             })
 
             $('#agent_password').on('change', e => {
@@ -365,12 +357,60 @@
         })
 
         function generateGrandTotal() {
+            let voucher_code = $('#voucher').val()
+            if (voucher_code.length > 0) {
+                checkVoucher(voucher_code).fail(e => {
+                    console.log(e.responseText)
+                }).done(e => {
+                    console.log(e)
+                    if (e.success === false) {
+                        $('#voucher_price').text('$0')
+                        $('input[name="voucher_price"]').val(0)
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'warning',
+                            title: e.message,
+                            showConfirmButton: false,
+                            toast: true,
+                            timer: 3000,
+                        })
+                    } else {
+                        let discount_type = e.data.discount_type
+                        let discount_value = parseFloat(e.data.discount_value)
+
+                        let nilaiDiskon = 0
+                        if (discount_type == "percentage") {
+                            nilaiDiskon = (subTotal * discount_value) / 100
+                        } else if (discount_type == "value") {
+                            nilaiDiskon = discount_value
+                        }
+
+                        let dcFormated = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: 'USD'
+                        }).format(nilaiDiskon)
+
+                        $('#voucher_price').text(dcFormated)
+                        $('input[name="voucher_price"]').val(nilaiDiskon)
+                    }
+                    generateGrandTotalFinal()
+                })
+            } else {
+                $('#voucher_price').text('$0')
+                $('input[name="voucher_price"]').val(0)
+                generateGrandTotalFinal()
+            }
+        }
+
+        function generateGrandTotalFinal() {
             let base_price_total = parseFloat($('input[name="base_price_total"]').val())
             let special_area_price = parseFloat($('input[name="special_area_price"]').val())
             let luggage_price = parseFloat($('input[name="luggage_price"]').val())
             let voucher_price = parseFloat($('input[name="voucher_price"]').val())
 
             let st = base_price_total + special_area_price + luggage_price - voucher_price
+            console.log(st)
             let stFormated = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -379,7 +419,7 @@
             $('#sub_total').text(stFormated)
             $('input[name="sub_total"]').val(subTotal)
 
-            let sf = (subTotal * 3) / 100
+            let sf = ((subTotal * 3.5) / 100) + 0.5
             let sfFormated = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -396,54 +436,16 @@
             grandTotal = gt
             $('#grand_total').text(gtFormated)
             $('input[name="grand_total"]').val(grandTotal)
-
         }
 
-        function checkVoucher(voucher_code, agent_password) {
-            $.ajax({
+        function checkVoucher(voucher_code) {
+            return $.ajax({
                 url: '/api/check_voucher',
                 method: 'get',
                 dataType: 'json',
                 data: {
                     voucher_code: voucher_code,
-                    password: agent_password,
                 }
-            }).fail(e => {
-                console.log(e.responseText)
-            }).done(e => {
-                if (e.success === false) {
-                    $('#voucher_price').text('$0')
-                    $('input[name="voucher_price"]').val(0)
-                    generateGrandTotal()
-
-                    return Swal.fire({
-                        position: 'top-end',
-                        icon: 'warning',
-                        title: e.message,
-                        showConfirmButton: false,
-                        toast: true,
-                        timer: 3000,
-                    })
-                }
-
-                let discount_type = e.data.discount_type
-                let discount_value = parseFloat(e.data.discount_value)
-
-                let nilaiDiskon = 0
-                if (discount_type == "percentage") {
-                    nilaiDiskon = (subTotal * discount_value) / 100
-                } else if (discount_type == "value") {
-                    nilaiDiskon = discount_value
-                }
-
-                let dcFormated = new Intl.NumberFormat('en-US', {
-                    style: 'currency',
-                    currency: 'USD'
-                }).format(nilaiDiskon)
-
-                $('#voucher_price').text(dcFormated)
-                $('input[name="voucher_price"]').val(nilaiDiskon)
-                generateGrandTotal()
             })
         }
 
@@ -484,7 +486,7 @@
                     flight_number: $('#flight_number').val(),
                     notes: $('#notes').val(),
                     voucher_code: $('#voucher').val(),
-                    agent_password: $('#agent_password').val(),
+                    // agent_password: $('#agent_password').val(),
                     customer_phone: $('#customer_phone').val(),
                     customer_password: $('#customer_password').val(),
                     customer_name: $('#customer_name').val(),

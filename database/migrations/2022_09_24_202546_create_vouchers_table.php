@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Agent::class);
+            // $table->foreignIdFor(Agent::class);
             $table->string('name');
             $table->string('code');
             $table->date('date_start');

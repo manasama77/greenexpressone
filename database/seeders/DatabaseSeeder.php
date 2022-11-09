@@ -647,7 +647,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('vouchers')->insert([
             [
-                'agent_id'       => 1,
+                // 'agent_id'       => 1,
                 'name'           => 'Agent 1 Discount 10%',
                 'code'           => 'agent1',
                 'date_start'     => '2022-09-01',
@@ -660,7 +660,7 @@ class DatabaseSeeder extends Seeder
                 'deleted_at'     => null,
             ],
             [
-                'agent_id'       => 2,
+                // 'agent_id'       => 2,
                 'name'           => 'Agent 2 Discount $5',
                 'code'           => 'agent2',
                 'date_start'     => '2022-09-01',

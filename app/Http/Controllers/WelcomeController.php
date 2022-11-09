@@ -95,7 +95,7 @@ class WelcomeController extends Controller
         ]);
 
         if ($booking_type == "shuttle") {
-            $schedule = ScheduleShuttle::where('is_active', true)->where('id', $schedule_id)->first();
+            $schedule      = ScheduleShuttle::where('is_active', true)->where('id', $schedule_id)->first();
             $base_price    = $schedule->price;
             $luggage_price = $schedule->luggage_price;
         } else {
@@ -106,9 +106,9 @@ class WelcomeController extends Controller
 
         if (!$schedule) {
             $data = [
-                'title' => 'Booking Check',
+                'title'    => 'Booking Check',
                 'app_name' => env('APP_NAME'),
-                'pages' => $pages,
+                'pages'    => $pages,
             ];
             return view('schedule_not_found', $data);
         }
@@ -117,10 +117,10 @@ class WelcomeController extends Controller
             $from_main_name = MasterArea::where('id', $from_master_area_id)->first()->name;
 
             $arr_master_sub_area = MasterSubArea::where('id', $from_master_sub_area_id)->first();
-            $from_sub_name = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+            $from_sub_name       = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
 
             $to_main_name = MasterArea::where('id', $to_master_area_id)->first()->name;
-            $to_sub_name = MasterSubArea::where('id', $to_master_sub_area_id)->first()->name;
+            $to_sub_name  = MasterSubArea::where('id', $to_master_sub_area_id)->first()->name;
 
             $date_time_departure = Carbon::parse($date_departure . " " . $schedule->time_departure)->format('Y M d H:i');
 
@@ -129,12 +129,12 @@ class WelcomeController extends Controller
             $from_main_name = MasterArea::where('id', $from_master_area_id)->first()->name;
 
             $arr_master_sub_area = MasterSubArea::where('id', $from_master_sub_area_id)->first();
-            $from_sub_name = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+            $from_sub_name       = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
 
             $to_main_name = MasterArea::where('id', $to_master_area_id)->first()->name;
 
             $arr_master_sub_area = MasterSubArea::where('id', $to_master_sub_area_id)->first();
-            $to_sub_name = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
+            $to_sub_name         = ($arr_master_sub_area) ? $arr_master_sub_area->name : "";
 
             $date_time_departure = Carbon::parse($date_departure . " " . $schedule->time_departure)->format('Y M d H:i');
 
@@ -143,7 +143,7 @@ class WelcomeController extends Controller
             $special_areas = collect([]);
         }
 
-        $passanger_total = $passanger_adult + $passanger_baby;
+        $passanger_total  = $passanger_adult + $passanger_baby;
         $base_price_total = number_format($base_price * $passanger_total, 2);
 
         $data = [

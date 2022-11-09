@@ -17,7 +17,7 @@ class Voucher extends Model
      */
     protected $fillable = [
         'name',
-        'agent_id',
+        // 'agent_id',
         'code',
         'date_start',
         'date_expired',
@@ -32,8 +32,8 @@ class Voucher extends Model
         'deleted_at',
     ];
 
-    public function agent()
-    {
-        return $this->belongsTo(Agent::class);
-    }
+    // public function agent()
+    // {
+    //     return $this->belongsTo(Agent::class);
+    // }
 }

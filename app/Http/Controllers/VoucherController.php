@@ -13,7 +13,7 @@ class VoucherController extends Controller
     public function index()
     {
         $vouchers = Voucher::get();
-        $agents   = Agent::get();
+        // $agents   = Agent::get();
 
         $data = [
             'page_title'     => 'Voucher',
@@ -21,7 +21,7 @@ class VoucherController extends Controller
             'app_name'       => env('APP_NAME'),
             'app_name_short' => env('APP_NAME_ABBR'),
             'vouchers'       => $vouchers,
-            'agents'         => $agents,
+            // 'agents'         => $agents,
         ];
         return view('admin.voucher.main')->with($data);
     }
@@ -31,7 +31,7 @@ class VoucherController extends Controller
         $validator  = Validator::make(
             $request->all(),
             [
-                'agent_id'       => 'required|exists:agents,id',
+                // 'agent_id'       => 'required|exists:agents,id',
                 'name'           => 'required|min:3|max:100',
                 'code'           => 'required|min:3|max:100',
                 'date_start'     => 'required|date',
@@ -51,7 +51,7 @@ class VoucherController extends Controller
         $validated = $validator->validated();
 
         $exec                 = new Voucher();
-        $exec->agent_id       = $request->agent_id;
+        // $exec->agent_id       = $request->agent_id;
         $exec->name           = $request->name;
         $exec->code           = $request->code;
         $exec->date_start     = $request->date_start;
@@ -70,16 +70,16 @@ class VoucherController extends Controller
         $app_name       = env('APP_NAME');
         $app_name_short = env('APP_NAME_ABBR');
         $voucher        = Voucher::find($id);
-        $agents         = Agent::get();
+        // $agents         = Agent::get();
 
-        return view('admin.voucher.edit', compact('voucher', 'page_title', 'base_url', 'app_name', 'app_name_short', 'agents'));
+        return view('admin.voucher.edit', compact('voucher', 'page_title', 'base_url', 'app_name', 'app_name_short'));
     }
 
     public function update($id, Request $request)
     {
         $request->validate(
             [
-                'agent_id'       => 'required|exists:agents,id',
+                // 'agent_id'       => 'required|exists:agents,id',
                 'name'           => 'required|min:3|max:100',
                 'code'           => 'required|min:3|max:100',
                 'date_start'     => 'required|date',

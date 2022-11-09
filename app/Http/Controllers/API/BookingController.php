@@ -44,7 +44,7 @@ class BookingController extends BaseController
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
-                'agent_password'          => 'nullable',
+                // 'agent_password'          => 'nullable',
                 'customer_phone'          => 'required|min:3|max:50',
                 'customer_name'           => 'required|min:3|max:255',
                 'customer_email'          => 'nullable|min:3|max:100|email:rfc,dns',
@@ -153,13 +153,13 @@ class BookingController extends BaseController
 
         // voucher & promo price
         if ($request->voucher_code) {
-            if (!$request->agent_password) {
-                return $this->sendError("Agent Password is required", null);
-            }
+            // if (!$request->agent_password) {
+            //     return $this->sendError("Agent Password is required", null);
+            // }
 
             $vouchers = Voucher::select([
                 'id',
-                'agent_id',
+                // 'agent_id',
                 'discount_type',
                 'discount_value',
             ])->where([
@@ -171,17 +171,17 @@ class BookingController extends BaseController
                 return $this->sendError('Voucher not found', null);
             }
 
-            $agents = Agent::where('id', $vouchers->agent_id)->first();
+            // $agents = Agent::where('id', $vouchers->agent_id)->first();
 
-            if (!$agents) {
-                return $this->sendError('Agent not found', null);
-            }
+            // if (!$agents) {
+            //     return $this->sendError('Agent not found', null);
+            // }
 
-            $agent_password = $agents->password;
+            // $agent_password = $agents->password;
 
-            if ($agent_password != $request->agent_password) {
-                return $this->sendError("Agent Password wrong, please try again", null);
-            }
+            // if ($agent_password != $request->agent_password) {
+            //     return $this->sendError("Agent Password wrong, please try again", null);
+            // }
 
             $voucher_id     = $vouchers->id;
             $discount_type  = $vouchers->discount_type;
@@ -349,7 +349,7 @@ class BookingController extends BaseController
             $regional_name = MasterSpecialArea::where('id', $request->special_area_id)->first()->regional_name;
         }
 
-        $fee_price   = ($sub_total_price * 3) / 100;
+        $fee_price   = (($sub_total_price * 3.5) / 100) + 0.5;
         $total_price = $sub_total_price + $fee_price;
 
         $booking_number        = $this->generate_booking_number();

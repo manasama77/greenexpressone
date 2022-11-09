@@ -84,7 +84,7 @@
                                 @endif
                                 <form id="form_add" method="POST" action="/admin/voucher">
                                     @csrf
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="agent_id">Agent</label>
                                         <select class="form-control" id="agent_id" name="agent_id" required>
                                             <option value=""></option>
@@ -92,7 +92,7 @@
                                                 <option value="{{ $agent->id }}">{{ $agent->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="name">Voucher Name</label>
                                         <input type="text" class="form-control" id="name" name="name"

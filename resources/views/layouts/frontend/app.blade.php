@@ -74,7 +74,7 @@
     <input type="hidden" id="base" value="{{ env('APP_URL') }}" />
 
     <form method="get" action="/booking/check">
-        <div id="modal_check" class="modal" tabindex="-1" role="dialog">
+        <div id="modal_check" class="modal" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
