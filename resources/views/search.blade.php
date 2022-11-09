@@ -107,10 +107,10 @@
                                         <div class="input-group-append bg-light">
                                             <span class="input-group-text">Child
                                         </div>
-                                        <small class="form-text text-muted">
-                                            Child is under 8 years old
-                                        </small>
                                     </div>
+                                    <small class="form-text text-muted">
+                                        Child is under 8 years old
+                                    </small>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">
