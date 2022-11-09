@@ -265,7 +265,7 @@
                 if ($('#same_passanger:checked').val()) {
                     $('#passanger_name_1').attr('readonly', true).val($('#customer_name').val()).addClass(
                         'bg-secondary text-white')
-                    $('#passanger_phone_1').attr('readonly', true).val($('#customer_name').val()).addClass(
+                    $('#passanger_phone_1').attr('readonly', true).val($('#customer_phone').val()).addClass(
                         'bg-secondary text-white')
                 } else {
                     $('#passanger_name_1').attr('readonly', false).val('').removeClass(
