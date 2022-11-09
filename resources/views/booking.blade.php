@@ -224,7 +224,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Service Fee (3%):
+                                                Payment Fee (3%):
                                             </td>
                                             <td class="text-right">
                                                 @php
