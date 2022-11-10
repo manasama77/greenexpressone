@@ -11,7 +11,6 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy" />
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 mb-5">
@@ -132,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12" id="target_x">
                     <h1 class="text-center" style="color: #15B015;">Schedule List</h1>
                     <div id="list_jadwal"></div>
                 </div>

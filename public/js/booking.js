@@ -307,6 +307,17 @@ function searchSchedule() {
             $.blockUI();
         },
     })
+        .always(() => {
+            let el = document.getElementById("target_x");
+            let headerOffset = 100;
+            let elementPosition = el.getBoundingClientRect().top;
+            let offsetPosition =
+                elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+        })
         .fail((e) => {
             console.log(e.responseText);
             $.unblockUI();
