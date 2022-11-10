@@ -39,7 +39,7 @@
                                     action="{{ route('admin.voucher.update', $voucher->id) }}">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="agent_id">Agent</label>
                                         <select class="form-control" id="agent_id" name="agent_id" required>
                                             <option value=""></option>
@@ -48,7 +48,7 @@
                                                     value="{{ $agent->id }}">{{ $agent->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="name">Voucher Name</label>
                                         <input type="text" class="form-control" id="name" name="name"

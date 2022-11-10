@@ -1,4 +1,4 @@
-<section id="android" class="android section-padding" data-scroll-index="3">
+<section id="android" class="android section-padding">
     <div class="container py-5">
         <div class="row py-5">
             <div class="col-sm-6 text-white">

@@ -34,22 +34,22 @@ class BookingController extends BaseController
                 'date_departure' => 'required|date|after_or_equal:today|date_format:Y-m-d',
                 'from_master_area_id' => 'required',
                 'from_master_sub_area_id' => 'nullable',
-                'to_master_area_id' => 'required',
-                'to_master_sub_area_id' => 'nullable',
-                'qty_adult' => 'required|integer|min_digits:1',
-                'qty_baby' => 'required|integer|min_digits:0',
-                'special_request' => 'nullable|boolean',
-                'special_area_id' => 'required_if:special_request,1',
-                'luggage_qty' => 'required_if:schedule_type,shuttle|integer|min_digits:0',
-                'flight_number' => 'nullable',
-                'notes' => 'nullable',
-                'voucher_code' => 'nullable',
-                'agent_password' => 'nullable',
-                'customer_phone' => 'required|min:3|max:50',
-                'customer_name' => 'required|min:3|max:255',
-                'customer_email' => 'nullable|min:3|max:100|email:rfc,dns',
-                'customer_password' => 'required|min:4|max:50',
-                'passanger' => 'required|array',
+                'to_master_area_id'       => 'required',
+                'to_master_sub_area_id'   => 'nullable',
+                'qty_adult'               => 'required|integer|min_digits:1',
+                'qty_baby'                => 'required|integer|min_digits:0',
+                'special_request'         => 'nullable|boolean',
+                'special_area_id'         => 'required_if:special_request,1',
+                'luggage_qty'             => 'required_if:schedule_type,shuttle|integer|min_digits:0',
+                'flight_number'           => 'nullable',
+                'notes'                   => 'nullable',
+                'voucher_code'            => 'nullable',
+                // 'agent_password'          => 'nullable',
+                'customer_phone'          => 'required|min:3|max:50',
+                'customer_name'           => 'required|min:3|max:255',
+                'customer_email'          => 'nullable|min:3|max:100|email:rfc,dns',
+                'customer_password'       => 'required|min:4|max:50',
+                'passanger'               => 'required|array',
             ],
             [
                 'exists' => ':attribute not found',
@@ -153,13 +153,13 @@ class BookingController extends BaseController
 
         // voucher & promo price
         if ($request->voucher_code) {
-            if (!$request->agent_password) {
-                return $this->sendError("Agent Password is required", null);
-            }
+            // if (!$request->agent_password) {
+            //     return $this->sendError("Agent Password is required", null);
+            // }
 
             $vouchers = Voucher::select([
                 'id',
-                'agent_id',
+                // 'agent_id',
                 'discount_type',
                 'discount_value',
             ])->where([
@@ -171,17 +171,17 @@ class BookingController extends BaseController
                 return $this->sendError('Voucher not found', null);
             }
 
-            $agents = Agent::where('id', $vouchers->agent_id)->first();
+            // $agents = Agent::where('id', $vouchers->agent_id)->first();
 
-            if (!$agents) {
-                return $this->sendError('Agent not found', null);
-            }
+            // if (!$agents) {
+            //     return $this->sendError('Agent not found', null);
+            // }
 
-            $agent_password = $agents->password;
+            // $agent_password = $agents->password;
 
-            if ($agent_password != $request->agent_password) {
-                return $this->sendError("Agent Password wrong, please try again", null);
-            }
+            // if ($agent_password != $request->agent_password) {
+            //     return $this->sendError("Agent Password wrong, please try again", null);
+            // }
 
             $voucher_id = $vouchers->id;
             $discount_type = $vouchers->discount_type;
@@ -349,7 +349,7 @@ class BookingController extends BaseController
             $regional_name = MasterSpecialArea::where('id', $request->special_area_id)->first()->regional_name;
         }
 
-        $fee_price = ($sub_total_price * 3) / 100;
+        $fee_price   = (($sub_total_price * 3.5) / 100) + 0.5;
         $total_price = $sub_total_price + $fee_price;
 
         $booking_number = $this->generate_booking_number();

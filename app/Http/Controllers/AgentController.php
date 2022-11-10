@@ -18,7 +18,7 @@ class AgentController extends Controller
             'base_url'       => env('APP_URL'),
             'app_name'       => env('APP_NAME'),
             'app_name_short' => env('APP_NAME_ABBR'),
-            'agents'         => $agents,
+            // 'agents'         => $agents,
         ];
         return view('admin.agent.main')->with($data);
     }
