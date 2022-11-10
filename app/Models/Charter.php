@@ -31,4 +31,43 @@ class Charter extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    public function from_master_area(){
+        return $this->belongsTo(MasterArea::class,'from_master_area_id', 'id')->withDefault([
+            'id' => 0,
+            'name' => "",
+            'area_type' => "",
+            'is_active' => 0,
+        ]);
+    }
+
+    public function from_master_sub_area(){
+        return $this->belongsTo(MasterSubArea::class,'from_master_sub_area_id', 'id')->withDefault([
+            'id' => 0,
+            'master_area_id' => 0,
+            'name' => "",
+            'area_type' => "",
+            'is_active' => 0,
+        ]);
+    }
+
+
+    public function to_master_area(){
+        return $this->belongsTo(MasterArea::class,'to_master_area_id', 'id')->withDefault([
+            'id' => 0,
+            'name' => "",
+            'area_type' => "",
+            'is_active' => 0,
+        ]);
+    }
+
+    public function to_master_sub_area(){
+        return $this->belongsTo(MasterSubArea::class,'to_master_sub_area_id', 'id')->withDefault([
+            'id' => 0,
+            'master_area_id' => 0,
+            'name' => "",
+            'area_type' => "",
+            'is_active' => 0,
+        ]);
+    }
 }

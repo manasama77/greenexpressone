@@ -12,103 +12,113 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy" />
+        <img src="img/8493.jpg" class="bg" loading="lazy"/>
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-4 mb-5">
+                <div class="col-sm-12 col-md-12 mb-5">
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h5 class="text-center font-weight-bold mb-4">Airport Shuttle & Charter Booking</h5>
                             <form action="{{ route('search') }}" method="get">
-                                <div class="form-group">
-                                    <label for="from_type" class="form-text font-weight-bold">From Type</label>
-                                    <select class="form-control select2" id="from_type" name="from_type"
-                                        data-placeholder="From Type" required>
-                                        <option value="airport">Airport</option>
-                                        <option value="city">City</option>
-                                    </select>
+
+                                <div class="row">
+                                   <div class="col-sm-12">
+                                       <div class="row">
+                                           <div class="col-sm-3">
+                                               <div class="form-group">
+                                                   <label for="from_master_sub_area_id" class="form-text font-weight-bold">Departure</label>
+                                                   <select class="form-control select2" id="from_master_sub_area_id"
+                                                           name="from_master_sub_area_id"
+                                                           data-placeholder="Sub From/Departure"
+                                                           style="width: 100%;"
+                                                   >
+                                                       <option value=""></option>
+                                                       @foreach($master_area as $item)
+                                                           <optgroup label="{{$item->name}}">
+                                                               @foreach($item->master_sub_area as $subItem)
+                                                                   <option value="{{ $subItem->id }}" data-area-type="{{ $item->area_type }}" data-master-area-id="{{ $subItem->master_area_id }}">{{$subItem->name}}</option>
+                                                               @endforeach
+                                                           </optgroup>
+                                                       @endforeach
+                                                   </select>
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <div class="form-group">
+                                                   <label for="to_master_sub_area_id" class="form-text font-weight-bold">Arrival</label>
+                                                   <select class="form-control select2" id="to_master_sub_area_id"
+                                                           name="to_master_sub_area_id"
+                                                           data-placeholder="Sub To/Arrival" disabled
+                                                           style="width: 100%;"
+                                                   >
+                                                       <option value=""></option>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <div class="form-group">
+                                                   <label for="date_departure" class="form-text font-weight-bold">Outward
+                                                       journey</label>
+                                                   <input type="text" class="form-control form-control-sm" id="date_departure" name="date_departure"
+                                                          placeholder="Outward Journey" value="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" required/>
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-3">
+                                               <div class="form-group">
+                                                   <label class="form-text font-weight-bold">Type</label>
+                                                   <div class="form-check form-check-inline">
+                                                       <input class="form-check-input" type="radio" name="booking_type" id="shuttle"
+                                                              value="shuttle" checked>
+                                                       <label class="form-check-label" for="shuttle">Shuttle</label>
+                                                   </div>
+                                                   <div class="form-check form-check-inline">
+                                                       <input class="form-check-input" type="radio" name="booking_type" id="charter"
+                                                              value="charter">
+                                                       <label class="form-check-label" for="charter">Charter</label>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-6 passenger_adult_input">
+                                               <div class="form-group">
+                                                   <label for="passanger_adult" class="form-text font-weight-bold">Adult
+                                                       Passangers</label>
+                                                   <div class="input-group">
+                                                       <input type="number" class="form-control" id="passanger_adult"
+                                                              name="passanger_adult" placeholder="Adult Passangers" min="1"
+                                                              max="9" value="1" required/>
+                                                       <div class="input-group-append bg-light">
+                                                           <span class="input-group-text">Adult</span>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class="col-sm-6 passenger_baby_input">
+                                               <div class="form-group">
+                                                   <label for="passanger_baby" class="form-text font-weight-bold">Child
+                                                       Passangers</label>
+                                                   <div class="input-group">
+                                                       <input type="number" class="form-control" id="passanger_baby"
+                                                              name="passanger_baby" placeholder="Adult Passangers" min="0"
+                                                              aria-describedby="inputGroup-sizing-sm"
+                                                              max="9" value="0" required/>
+                                                       <div class="input-group-append bg-light" id="inputGroup-sizing-sm">
+                                                           <span class="input-group-text text-sm">Child</span>
+                                                       </div>
+                                                   </div>
+                                                   <small class="form-text text-muted">
+                                                       Child is under 8 years old
+                                                   </small>
+                                               </div>
+                                           </div>
+
+                                       </div>
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="from_master_area_id"
-                                        class="form-text font-weight-bold">From/Departure</label>
-                                    <select class="form-control select2" id="from_master_area_id" name="from_master_area_id"
-                                        data-placeholder="From/Departure" required disabled>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="from_master_sub_area_id" class="form-text font-weight-bold">Sub
-                                        From/Departure</label>
-                                    <select class="form-control select2" id="from_master_sub_area_id"
-                                        name="from_master_sub_area_id"
-                                        data-placeholder="Sub
-                                        From/Departure"
-                                        disabled>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="to_master_area_id" class="form-text font-weight-bold">To/Arrival</label>
-                                    <select class="form-control select2" id="to_master_area_id" name="to_master_area_id"
-                                        data-placeholder="To/Arrival" required disabled>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="to_master_sub_area_id" class="form-text font-weight-bold">Sub
-                                        To/Arrival</label>
-                                    <select class="form-control select2" id="to_master_sub_area_id"
-                                        name="to_master_sub_area_id"
-                                        data-placeholder="Sub
-                                        To/Arrival" disabled>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                                <div class="form-group text-center">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="booking_type" id="shuttle"
-                                            value="shuttle" checked>
-                                        <label class="form-check-label" for="shuttle">Shuttle</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="booking_type" id="charter"
-                                            value="charter">
-                                        <label class="form-check-label" for="charter">Charter</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="date_departure" class="form-text font-weight-bold">Outward
-                                        journey</label>
-                                    <input type="date" class="form-control" id="date_departure" name="date_departure"
-                                        placeholder="Outward Journey" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="passanger_adult" class="form-text font-weight-bold">Adult
-                                        Passangers</label>
-                                    <div class="input-group">
-                                        <input type="number" class="form-control" id="passanger_adult"
-                                            name="passanger_adult" placeholder="Adult Passangers" min="1"
-                                            max="9" value="1" required />
-                                        <div class="input-group-append bg-light">
-                                            <span class="input-group-text">Adult
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="passanger_baby" class="form-text font-weight-bold">Child
-                                        Passangers</label>
-                                    <div class="input-group">
-                                        <input type="number" class="form-control" id="passanger_baby"
-                                            name="passanger_baby" placeholder="Adult Passangers" min="0"
-                                            max="9" value="0" required />
-                                        <div class="input-group-append bg-light">
-                                            <span class="input-group-text">Child
-                                        </div>
-                                    </div>
-                                    <small class="form-text text-muted">
-                                        Child is under 8 years old
-                                    </small>
-                                </div>
+
+
+
+
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">
                                         <i class="fas fa-search fa-fw"></i> Search
@@ -118,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-8">
+                <div class="col-sm-12 col-md-12">
                     <div class="card card-semi shadow">
                         <div class="card-body">
                             <div class="section-title">
@@ -175,7 +185,7 @@
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
                         <img src="https://greenexpressone.com/wp-content/uploads/2022/04/Picture2.png"
-                            class="card-img-top" alt="">
+                             class="card-img-top" alt="">
                         <div class="card-body">
                             <p class="card-text">Whether you’re a business traveller, a couple, a big group of friends
                                 or family
@@ -188,7 +198,7 @@
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
                         <img src="https://greenexpressone.com/wp-content/uploads/2022/04/green.jpg" class="card-img-top"
-                            alt="">
+                             alt="">
                         <div class="card-body">
                             <p class="card-text">We drive safely and follow all rules of the road to ensure you have a
                                 safe and
@@ -198,7 +208,8 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/istockphoto-1206670377-640x640-1-300x169.jpg"
+                        <img
+                            src="https://greenexpressone.com/wp-content/uploads/2022/04/istockphoto-1206670377-640x640-1-300x169.jpg"
                             class="card-img-top" alt="">
                         <div class="card-body">
                             <p class="card-text">Passenger Pick Up And Drop Off Services</p>
@@ -213,5 +224,6 @@
     <script>
         let booking_type = null;
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/js/booking.js"></script>
 @endsection

@@ -58,6 +58,10 @@ Route::controller(BookingController::class)->group(function () {
     });
 });
 
+Route::group(['prefix' => 'booking_filter'], function () {
+    Route::get('/get_arrival_filter', [\App\Http\Controllers\API\BookingFilterController::class, 'get_arrival_filter']);
+});
+
 Route::controller(VoucherController::class)->group(function () {
     Route::get('/check_voucher', 'index');
 });
