@@ -371,36 +371,60 @@ function searchSchedule() {
                         <input type="hidden" name="passanger_baby" value="${passanger_baby}" />
                         <input type="hidden" name="special_area_id" value="${special_area_id}" />
                         <input type="hidden" name="schedule_id" value="${id}" />
-                        <button type="submit" class="btn btn-primary ${disabled}" onclick="PreBooking(${id})">Booking</button>
+                        <button type="submit" class="btn text-white bg-success h-100 fs-14 shadow br-button text-uppercase ${disabled}" onclick="PreBooking(${id})">Booking</button>
                     </form>
                     `;
 
                     htmlnya += /*html*/ `
-                        <div class="col-12 my-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-4 text-center">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <img class="img-fluid" src="/${photo}" alt="">
+                        <div class="card mb-3 shadow1 radius1 border-0">
+                            <div class="card-body shadow">
+                                <div class="row mx-0">
+                                    <div class="col-12 col-lg-8 px-lg-0">
+                                        <div class="d-table w-100">
+                                            <div class="d-table-row">
+                                                <div class="d-table-cell align-middle">
+                                                    <p class="disable-select pb-sm-0 mb-sm-0" style="padding-right:18px;"><img
+                                                            class="disable-select" draggable="false" src="/img/route.png"
+                                                            style="width:4px; height:35px;"> </p>
                                                 </div>
-                                                <div class="col-12 mb-4">
-                                                    ${button_booking}
+                                                <div class="d-table-cell align-middle pr-5">
+                                                    <p class="mb-2 font-weight-bold text-muted">${from_master_area_name} ${from_master_sub_area_name}
+                                                    </p>
+                                                    <p class="mb-0 font-weight-bold text-muted">${to_master_area_name} ${to_master_sub_area_name}</p>
+                                                </div>
+                                                <div class="d-table-cell align-middle pl-5">
+                                                    <p
+                                                        class="align-middle text-right text-lg-center font-weight-bold pb-0 mb-0 font-weight-bold">
+                                                        Time Departure
+                                                        <span class="text-danger font-weight-bold">${time_departure}</span>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-8">
-                                            <h5 style="font-size: 1rem; font-weight: 700;">From ${from_master_area_name} ${from_master_sub_area_name}</h5>
-                                            <h5 style="font-size: 1rem; font-weight: 700;">To ${to_master_area_name} ${to_master_sub_area_name}</h5>
-                                            <p class="card-text">${notes}</p>
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">${vehicle_name} - ${vehicle_number}</li>
-                                                <li class="list-group-item">Available Seat ${available_seat}</li>
-                                                <li class="list-group-item">Rent Price $${price}</li>
-                                                <li class="list-group-item">Luggage Price $${luggage_price}</li>
-                                                <li class="list-group-item">Time Departure ${time_departure}</li>
-                                            </ul>
+                                    </div>
+
+                                    <div class="col-4 col-lg-2 my-auto">
+                                        <div class="d-table mt-3 mt-lg-0">
+                                            <div class="d-table-row">
+                                                <div class="d-table-cell align-middle">
+                                                    <p class="pb-0 mb-0 text-muted"><span
+                                                            class="text-danger font-weight-bold">${available_seat}</span>
+                                                        seat</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-8 col-lg-2 px-lg-0 my-auto">
+                                        <div class="d-table ml-auto mt-3 mt-lg-0">
+                                            <div class="d-table-row">
+                                                <div class="d-table-cell">
+                                                    <p class="font-weight-bold pb-0 mb-0">$${price}</p>
+                                                </div>
+                                                <div class="d-table-cell pl-3">
+                                                    ${button_booking}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

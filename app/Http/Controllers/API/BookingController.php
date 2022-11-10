@@ -28,11 +28,11 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'schedule_type' => 'required|in:shuttle,charter',
-                'from_type' => 'required|in:airport,city',
-                'schedule_id' => 'required|integer',
-                'date_departure' => 'required|date|after_or_equal:today|date_format:Y-m-d',
-                'from_master_area_id' => 'required',
+                'schedule_type'           => 'required|in:shuttle,charter',
+                'from_type'               => 'required|in:airport,city',
+                'schedule_id'             => 'required|integer',
+                'date_departure'          => 'required|date|after_or_equal:today|date_format:Y-m-d',
+                'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id'       => 'required',
                 'to_master_sub_area_id'   => 'nullable',
@@ -44,7 +44,6 @@ class BookingController extends BaseController
                 'flight_number'           => 'nullable',
                 'notes'                   => 'nullable',
                 'voucher_code'            => 'nullable',
-                // 'agent_password'          => 'nullable',
                 'customer_phone'          => 'required|min:3|max:50',
                 'customer_name'           => 'required|min:3|max:255',
                 'customer_email'          => 'nullable|min:3|max:100|email:rfc,dns',
@@ -53,7 +52,7 @@ class BookingController extends BaseController
             ],
             [
                 'exists' => ':attribute not found',
-                'in' => ':attribute only accept value :values'
+                'in'     => ':attribute only accept value :values'
             ]
         );
 
@@ -106,23 +105,23 @@ class BookingController extends BaseController
             }
         }
 
-        $user_id = null;
-        $customer_phone = $request->customer_phone;
+        $user_id           = null;
+        $customer_phone    = $request->customer_phone;
         $customer_password = $request->customer_password;
-        $customer_name = $request->customer_name;
-        $customer_email = $request->customer_email;
-        $total_person = $request->qty_adult + $request->qty_baby;
-        $base_price = 0;
-        $total_base_price = 0;
-        $luggage_price = 0;
-        $extra_price = 0;
-        $promo_price = 0;
-        $sub_total_price = 0;
-        $fee_price = 0;
-        $total_price = 0;
-        $voucher_id = null;
-        $discount_type = null;
-        $discount_value = 0;
+        $customer_name     = $request->customer_name;
+        $customer_email    = $request->customer_email;
+        $total_person      = $request->qty_adult + $request->qty_baby;
+        $base_price        = 0;
+        $total_base_price  = 0;
+        $luggage_price     = 0;
+        $extra_price       = 0;
+        $promo_price       = 0;
+        $sub_total_price   = 0;
+        $fee_price         = 0;
+        $total_price       = 0;
+        $voucher_id        = null;
+        $discount_type     = null;
+        $discount_value    = 0;
 
         // check user registered or not
         $check_users = User::where([
@@ -516,7 +515,8 @@ class BookingController extends BaseController
     public function booking_update(Request $request)
     {
         $validator = Validator::make(
-            $request->all(), [
+            $request->all(),
+            [
                 'id' => 'required|numeric',
                 'payment_token' => 'required',
                 'payment_method' => 'required',
@@ -765,14 +765,14 @@ class BookingController extends BaseController
         $validator = Validator::make(
             $request->all(),
             [
-                'from_type' => 'required|in:airport,city',
-                'date_booking' => 'required|date|after_or_equal:today|date_format:Y-m-d',
-                'qty_adult' => 'required|integer|min_digits:0',
-                'qty_baby' => 'required|integer|min_digits:0',
-                'from_master_area_id' => 'required',
+                'from_type'               => 'required|in:airport,city',
+                'date_booking'            => 'required|date|after_or_equal:today|date_format:Y-m-d',
+                'qty_adult'               => 'required|integer|min_digits:0',
+                'qty_baby'                => 'required|integer|min_digits:0',
+                'from_master_area_id'     => 'required',
                 'from_master_sub_area_id' => 'nullable',
-                'to_master_area_id' => 'required',
-                'to_master_sub_area_id' => 'nullable',
+                'to_master_area_id'       => 'required',
+                'to_master_sub_area_id'   => 'nullable',
             ]
         );
 
