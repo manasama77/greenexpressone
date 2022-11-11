@@ -33,7 +33,7 @@ $(document).ready(function () {
             },
             success: function (res) {
                 let html = `<option value=""></option>`
-                res.forEach((x) => {
+                res.data.forEach((x) => {
                     html += `<optgroup label="${x.text}">`
                     x.children.forEach((y) => {
                         html += `<option value="${y.id}"  data-area-type="${y.area_type}" data-master-area-id="${y.master_area_id}">${y.name}</option>`;

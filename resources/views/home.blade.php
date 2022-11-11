@@ -30,7 +30,7 @@
                                                    <select class="form-control select2" id="from_master_sub_area_id"
                                                            name="from_master_sub_area_id"
                                                            data-placeholder="Sub From/Departure"
-                                                           style="width: 100%;"
+                                                           style="width: 100%;" required
                                                    >
                                                        <option value=""></option>
                                                        @foreach($master_area as $item)
@@ -49,7 +49,7 @@
                                                    <select class="form-control select2" id="to_master_sub_area_id"
                                                            name="to_master_sub_area_id"
                                                            data-placeholder="Sub To/Arrival" disabled
-                                                           style="width: 100%;"
+                                                           style="width: 100%;" required
                                                    >
                                                        <option value=""></option>
                                                    </select>

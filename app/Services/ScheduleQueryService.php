@@ -18,14 +18,14 @@ class ScheduleQueryService
         if ($from_sub_area->master_area->area_type == "airport") {
             $query->where([
                 'from_master_area_id' => $from_sub_area->master_area_id,
-                'to_master_area_id' => $to_sub_area->master_area_id,
+                'to_master_area_id' => $to_sub_area ? $to_sub_area->master_area_id : 0,
                 'to_master_sub_area_id' => $request->to_master_sub_area_id,
             ]);
         } else {
             $query->where([
                 'from_master_area_id' => $from_sub_area->master_area_id,
                 'from_master_sub_area_id' => $request->from_master_sub_area_id,
-                'to_master_area_id' => $to_sub_area->master_area_id,
+                'to_master_area_id' => $to_sub_area ? $to_sub_area->master_area_id : 0,
             ]);
         }
 
@@ -34,7 +34,7 @@ class ScheduleQueryService
             $query->whereRaw("time_departure >= '{$now}'");
         }
 
-        $data = $query->paginate(10);
+        $data = $query->paginate(4)->withQueryString();
 
         if ($request->booking_type !== 'charter') {
             $data->map(function ($item) use ($request) {
@@ -47,7 +47,6 @@ class ScheduleQueryService
                 return $item;
             });
         }
-
 
         return $data;
     }

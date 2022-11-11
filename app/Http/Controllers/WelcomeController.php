@@ -71,15 +71,14 @@ class WelcomeController extends Controller
 
         $sub_area = MasterSubArea::where('id', $request->to_master_sub_area_id)->first();
         $arrival_area = MasterArea::query()
-            ->where('id', $sub_area->master_area_id)
+            ->where('id', !empty($sub_area) ? $sub_area->master_area_id : 0)
             ->with(['master_sub_area' => function ($q) {
                 $q->where('is_active', '1');
             }])->where('is_active', '1')->get();
 
         $schedule = ScheduleQueryService::generate_data($request);
 
-        dd($request, $schedule);
-
+//        dd($schedule);
         $pages = Page::get();
         $data = [
             'title' => env('APP_NAME'),
@@ -87,6 +86,7 @@ class WelcomeController extends Controller
             'master_area' => $master_area,
             'arrival_area' => $arrival_area,
             'request' => $request,
+            'schedule' => $schedule,
             'pages' => $pages,
         ];
 
