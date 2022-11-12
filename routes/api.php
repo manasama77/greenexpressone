@@ -59,7 +59,8 @@ Route::controller(BookingController::class)->group(function () {
 });
 
 Route::group(['prefix' => 'booking_filter'], function () {
-    Route::get('/get_arrival_filter', [\App\Http\Controllers\API\BookingFilterController::class, 'get_arrival_filter']);
+    Route::post('/get_arrival_filter', [\App\Http\Controllers\API\BookingFilterController::class, 'get_arrival_filter']);
+    Route::post('/get_booking_schedule', [\App\Http\Controllers\API\BookingFilterController::class, 'get_booking_schedule']);
 });
 
 Route::controller(VoucherController::class)->group(function () {

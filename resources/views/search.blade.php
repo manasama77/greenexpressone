@@ -176,44 +176,53 @@
                                                     <div class="row">
                                                         <div class="col-sm-12 col-md-5">
                                                             <div class="row">
-                                                                <div class="col-sm-7 d-flex align-items-center justify-content-center flex-column">
+                                                                <div
+                                                                    class="col-sm-7 d-flex align-items-center justify-content-center flex-column">
                                                                     <h5
                                                                         style="font-size: 1rem; font-weight: 700;">From
                                                                         {{$item->from_master_area->name}}
                                                                         {{$item->from_master_sub_area->name}} <br>
                                                                         <br>
-                                                                        To {{$item->to_master_area->name}} {{$item->to_master_sub_area->name}}</h5>
+                                                                        To {{$item->to_master_area->name}} {{$item->to_master_sub_area->name}}
+                                                                    </h5>
                                                                 </div>
                                                                 <div
                                                                     class="col-sm-5 text-right d-flex align-items-center justify-content-end">
                                                                     <div>
-                                                                        <span
-                                                                            class="font-weight-bold">Time Departure : </span><br>
-                                                                        <h3 class="font-weight-bold text-danger">{{substr($item->time_departure,0,5)}}</h3>
+                                                                        @if($request->booking_type == 'shuttle')
+                                                                            <span
+                                                                                class="font-weight-bold">Time Departure : </span>
+                                                                            <br>
+                                                                            <h3 class="font-weight-bold text-danger">{{substr($item->time_departure,0,5)}}</h3>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-12 col-md-5 d-flex align-items-center">
                                                             <div class="row">
-                                                                <div class="col-sm-12 col-md-6 d-flex align-items-center">
+                                                                <div
+                                                                    class="col-sm-12 col-md-6 d-flex align-items-center">
                                                                     <div>
                                                                         <p> Vehicle data :<br>
                                                                             <span class="font-weight-bold">{{$item->vehicle_name}}
                                                                             -
                                                                             {{$item->vehicle_number}}</span> <br>
                                                                             Available Seat : <br>
-                                                                            <span class="font-weight-bold"> {{($item->total_seat -$item->seat_booked) > 0 ? $item->total_seat -$item->seat_booked : 0}}</span>
+                                                                            <span
+                                                                                class="font-weight-bold"> {{($item->total_seat -$item->seat_booked) > 0 ? $item->total_seat -$item->seat_booked : 0}}</span>
 
                                                                         </p>
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="col-sm-12 col-md-6 d-flex align-items-center">
+                                                                <div
+                                                                    class="col-sm-12 col-md-6 d-flex align-items-center">
                                                                     <div>
                                                                         <p> Prices : <br>
                                                                             Luggage Price :
-                                                                            <span class="font-weight-bold text-primary">${{$item->luggage_price}}</span> <br>
+                                                                            <span class="font-weight-bold text-primary">${{$item->luggage_price}}</span>
+                                                                            <br>
                                                                             Rent Price : <br>
                                                                             <span class="font-weight-bold text-primary">${{$item->price}}</span>
                                                                         </p>
@@ -270,7 +279,7 @@
                                     @endforelse
 
                                     <div class="col-sm-12 mt-2 d-flex justify-content-center">
-                                       <div> {{ $schedule->links() }}</div>
+                                        <div> {{ $schedule->links() }}</div>
                                     </div>
                                 </div>
                             </div>

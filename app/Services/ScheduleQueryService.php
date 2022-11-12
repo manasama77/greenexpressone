@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class ScheduleQueryService
 {
-    public static function generate_data($request)
+    public static function generate_data($request, $paginate = true)
     {
         $from_sub_area = MasterSubArea::where('id', $request->from_master_sub_area_id)->with('master_area')->first();
         $to_sub_area = MasterSubArea::where('id', $request->to_master_sub_area_id)->with('master_area')->first();
@@ -29,12 +29,16 @@ class ScheduleQueryService
             ]);
         }
 
-        if ($request->date_departure == Carbon::now()->format('Y-m-d') && $request->booking_type !== 'charter') {
+        if ($request->date_departure == Carbon::now()->format('Y-m-d') && $request->booking_type == 'shuttle') {
             $now = Carbon::now()->format('H:i:s');
             $query->whereRaw("time_departure >= '{$now}'");
         }
 
-        $data = $query->paginate(4)->withQueryString();
+        if ($paginate){
+            $data = $query->paginate(7)->withQueryString();
+        }else{
+            $data = $query->get();
+        }
 
         if ($request->booking_type !== 'charter') {
             $data->map(function ($item) use ($request) {

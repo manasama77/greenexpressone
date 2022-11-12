@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ShuttleScheduleResource;
 use App\Models\MasterArea;
+use App\Services\ScheduleQueryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class BookingFilterController extends BaseController
 {
@@ -32,5 +35,42 @@ class BookingFilterController extends BaseController
         }
 
         return $this->sendResponse($arr, 'Data founded');
+    }
+
+
+    public function get_booking_schedule(Request $request){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'booking_type' => 'required|in:shuttle,charter',
+                'from_master_sub_area_id' => 'required',
+                'to_master_sub_area_id' => 'required',
+                'date_departure' => 'required|date|after_or_equal:today|date_format:Y-m-d',
+                'qty_adult' => 'required|numeric',
+                'qty_baby' => 'required|numeric'
+            ],
+            [
+                'in' => ':attribute only accept value :values'
+            ]
+        );
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            $error_message = "";
+            foreach ($validator->failed() as $key => $val) {
+                if ($errors->first($key)) {
+                    $error_message = $errors->first($key);
+                }
+            }
+            return $this->sendError($error_message, null);
+        }
+
+        $schedule = ScheduleQueryService::generate_data($request, false);
+
+        if ($schedule->isEmpty()) {
+            return $this->sendError(null,'Schedule not found',200);
+        }
+
+        return $this->sendResponse(ShuttleScheduleResource::collection($schedule),'Schedule founded', 200);
     }
 }

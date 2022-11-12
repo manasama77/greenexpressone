@@ -21,7 +21,7 @@ $(document).ready(function () {
 
         $.ajax({
             url: `/api/booking_filter/get_arrival_filter`,
-            method: "get",
+            method: "post",
             dataType: "json",
             data: {
                 area_type: area_type,
