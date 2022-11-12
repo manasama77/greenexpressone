@@ -220,9 +220,12 @@
                                                                     class="col-sm-12 col-md-6 d-flex align-items-center">
                                                                     <div>
                                                                         <p> Prices : <br>
-                                                                            Luggage Price :
-                                                                            <span class="font-weight-bold text-primary">${{$item->luggage_price}}</span>
-                                                                            <br>
+                                                                            @if($request->booking_type == 'shuttle')
+                                                                                Luggage Price :
+                                                                                <span
+                                                                                    class="font-weight-bold text-primary">${{$item->luggage_price}}</span>
+                                                                                <br>
+                                                                            @endif
                                                                             Rent Price : <br>
                                                                             <span class="font-weight-bold text-primary">${{$item->price}}</span>
                                                                         </p>
