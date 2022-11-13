@@ -619,6 +619,7 @@ class ComposerStaticInit19bc7787e8b63ea9750b2496fc38c062
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Services\\StripeTransaction' => __DIR__ . '/../..' . '/app/Services/StripeTransaction.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Barryvdh\\LaravelIdeHelper\\Alias' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/Alias.php',
         'Barryvdh\\LaravelIdeHelper\\ClassMapGenerator' => __DIR__ . '/..' . '/barryvdh/laravel-ide-helper/src/ClassMapGenerator.php',
