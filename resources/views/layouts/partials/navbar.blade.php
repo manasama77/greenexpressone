@@ -23,14 +23,14 @@
                             height="40" width="40">
                     </span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user d-inline-block">
                     {{-- <a class="dropdown-item" href="page-profile.html">
                         <i class="mr-50" data-feather="user"></i>
                         Profile
                     </a> --}}
-                    <form method="POST" action="{{ route('admin.logout') }}" class="d-inline-block">
+                    <form method="POST" action="{{ route('admin.logout') }}" class="">
                         @csrf
-                        <button type="submit" class="dropdown-item">
+                        <button type="submit" class="dropdown-item w-100">
                             <i class="mr-50" data-feather="power"></i> Logout
                         </button>
                     </form>
