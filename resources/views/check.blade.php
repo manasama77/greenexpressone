@@ -22,11 +22,13 @@
                                         To: {{ $bookings->to_master_area_name }} {{ $bookings->to_master_sub_area_name }}
                                     </p>
                                     <p>Special Area: {{ $bookings->regional_name ?? '-' }}</p>
+                                    <p>Special Detail: {!! $bookings->special_area_detail ?? '-' !!}</p>
                                     <p>Date: {{ $bookings->datetime_departure }}</p>
                                     <p>Passanger: {{ $bookings->qty_adult }} Adult {{ $bookings->qty_baby }} Child
                                     </p>
                                     <p>Luggage: {{ $bookings->luggage_qty ?? '0' }} Kg</p>
                                     <p>Flight Number: {{ $bookings->flight_number }}</p>
+                                    <p>Flight Info: {{ $bookings->flight_info }}</p>
                                     <p>Notes: {{ $bookings->notes }}</p>
                                     <hr />
                                     <p class="text-capitalize">Booking Status: {{ $bookings->booking_status }}</p>

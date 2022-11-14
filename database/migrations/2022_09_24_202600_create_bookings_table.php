@@ -38,11 +38,13 @@ return new class extends Migration
             $table->decimal('base_price', 19, 2)->default(0);
             $table->decimal('total_base_price', 19, 2)->default(0);
             $table->string('flight_number')->nullable();
+            $table->string('flight_info')->nullable();
             $table->longText('notes')->nullable();
             $table->integer('luggage_qty')->default(0);
             $table->decimal('luggage_price', 19, 2)->default(0);
             $table->boolean('special_request')->default(false);
             $table->integer('special_area_id')->nullable();
+            $table->longText('special_area_detail')->nullable();
             $table->string('regional_name')->nullable();
             $table->decimal('extra_price', 19, 2)->default(0);
             $table->foreignId('voucher_id')->nullable(true)->constrained('vouchers')->nullOnDelete()->cascadeOnUpdate();
