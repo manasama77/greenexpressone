@@ -394,7 +394,7 @@ namespace App\Models{
  * @property int $id
  * @property string $slug
  * @property string $page_title
- * @property string|null $page_content
+ * @property string $page_content
  * @method static \Illuminate\Database\Eloquent\Builder|Page newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page query()
@@ -502,7 +502,6 @@ namespace App\Models{
  * App\Models\Voucher
  *
  * @property int $id
- * @property int $agent_id
  * @property string $name
  * @property string $code
  * @property string $date_start
@@ -513,12 +512,10 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Models\Agent|null $agent
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher newQuery()
  * @method static \Illuminate\Database\Query\Builder|Voucher onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher query()
- * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereAgentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Voucher whereDateExpired($value)

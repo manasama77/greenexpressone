@@ -84,6 +84,11 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="special_area_detail" class="form-text font-weight-bold">Special
+                                                Area Detail</label>
+                                            <textarea class="form-control" id="special_area_detail" name="special_area_detail" placeholder="Special Area Detail"></textarea>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="luggage_qty" class="form-text font-weight-bold">Luggage Qty</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="luggage_qty"
@@ -99,6 +104,12 @@
                                                 Number</label>
                                             <input type="text" class="form-control" id="flight_number"
                                                 name="flight_number" placeholder="Flight Number" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="flight_info" class="form-text font-weight-bold">Flight
+                                                Info</label>
+                                            <input type="text" class="form-control" id="flight_info"
+                                                name="flight_info" placeholder="Flight Number" />
                                         </div>
                                         <div class="form-group">
                                             <label for="notes" class="form-text font-weight-bold">Notes</label>
@@ -482,8 +493,10 @@
                     qty_baby: `{{ session('passanger_baby') }}`,
                     special_request: ($('#special_area_id').val()) ? 1 : 0,
                     special_area_id: $('#special_area_id').val(),
+                    special_area_detail: $('#special_area_detail').val(),
                     luggage_qty: $('#luggage_qty').val(),
                     flight_number: $('#flight_number').val(),
+                    flight_info: $('#flight_info').val(),
                     notes: $('#notes').val(),
                     voucher_code: $('#voucher').val(),
                     // agent_password: $('#agent_password').val(),

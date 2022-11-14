@@ -16,27 +16,26 @@
         rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/semi-dark-layout.css">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css"
-        href="{{ $base_url }}app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/plugins/forms/form-validation.css">
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}app-assets/css/pages/page-auth.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/page-auth.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ $base_url }}assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
 
     <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
@@ -78,8 +77,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="brand-logo">
-                                    <img src="{{ $base_url }}img/logo-green-express-one.png"
-                                        style="width: 80px;" />
+                                    <img src="/img/logo-green-express-one.png" style="width: 80px;" />
                                 </a>
 
                                 <h4 class="card-title mb-1 text-center">Admin Green Express One</h4>
@@ -146,20 +144,20 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{ $base_url }}app-assets/vendors/js/vendors.min.js"></script>
+    <script src="/app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ $base_url }}app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <script src="/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ $base_url }}app-assets/js/core/app-menu.js"></script>
-    <script src="{{ $base_url }}app-assets/js/core/app.js"></script>
+    <script src="/app-assets/js/core/app-menu.js"></script>
+    <script src="/app-assets/js/core/app.js"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{ $base_url }}app-assets/js/scripts/pages/page-auth-login.js"></script>
+    <script src="/app-assets/js/scripts/pages/page-auth-login.js"></script>
     <!-- END: Page JS-->
 
     <script>

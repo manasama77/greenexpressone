@@ -34,6 +34,7 @@
                                                 <th style="min-width: 300px;">To Area</th>
                                                 <th style="min-width: 100px;">Special Request</th>
                                                 <th style="min-width: 100px;">Regional Name</th>
+                                                <th style="min-width: 100px;">Special Request Detail</th>
                                                 <th style="min-width: 150px;">Vehicle Name</th>
                                                 <th style="min-width: 150px;">Vehicle Number</th>
                                                 <th style="min-width: 100px;">Customer Phone</th>
@@ -43,6 +44,7 @@
                                                 <th style="min-width: 100px;">Qty Adult</th>
                                                 <th style="min-width: 100px;">Qty Baby</th>
                                                 <th style="min-width: 100px;">Flight Number</th>
+                                                <th style="min-width: 100px;">Flight Info</th>
                                                 <th style="min-width: 120px;">Luggage Qty</th>
                                                 <th style="min-width: 120px;">Luggage Price</th>
                                                 <th style="min-width: 120px;">Extra Price</th>
@@ -77,6 +79,7 @@
                                                     <td>{{ $booking['to_area'] }}</td>
                                                     <td>{{ $booking['special_request'] }}</td>
                                                     <td>{{ $booking['regional_name'] }}</td>
+                                                    <td>{!! $booking['special_area_detail'] !!}</td>
                                                     <td>{{ $booking['vehicle_name'] }}</td>
                                                     <td>{{ $booking['vehicle_number'] }}</td>
                                                     <td>{{ $booking['customer_phone'] }}</td>
@@ -86,6 +89,7 @@
                                                     <td>{{ $booking['qty_adult'] }}</td>
                                                     <td>{{ $booking['qty_baby'] }}</td>
                                                     <td>{{ $booking['flight_number'] }}</td>
+                                                    <td>{{ $booking['flight_info'] }}</td>
                                                     <td>{{ number_format($booking['luggage_qty'], 2) }} Kg</td>
                                                     <td>{{ number_format($booking['luggage_price'], 2) }}</td>
                                                     <td>{{ number_format($booking['extra_price'], 2) }}</td>

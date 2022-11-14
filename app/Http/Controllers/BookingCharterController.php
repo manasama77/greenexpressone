@@ -41,7 +41,9 @@ class BookingCharterController extends Controller
             $qty_baby                  = $key->qty_baby;
             $special_request           = $key->special_request;
             $regional_name             = $key->regional_name;
+            $special_area_detail    = $key->special_area_detail;
             $flight_number             = $key->flight_number;
+            $flight_info               = $key->flight_info;
             $notes                     = $key->notes;
             $luggage_qty               = $key->luggage_qty;
             $luggage_price             = $key->luggage_price;
@@ -104,7 +106,9 @@ class BookingCharterController extends Controller
                 'qty_baby'                  => $qty_baby,
                 'special_request'           => ($special_request) ? "Yes" : "No",
                 'regional_name'             => $regional_name,
+                'special_area_detail'    => $special_area_detail,
                 'flight_number'             => $flight_number,
+                'flight_info'               => $flight_info,
                 'notes'                     => $notes,
                 'luggage_qty'               => $luggage_qty,
                 'luggage_price'             => $luggage_price,
