@@ -1,71 +1,131 @@
 // global variable
-from_type = from_type ?? "airport";
+// from_type = from_type ?? "";
+// booking type init
+booking_type = $("input[name=booking_type]").val();
+console.log(booking_type)
 
 $(document).ready(function () {
     $(".select2").select2({
         allowClear: true,
     });
 
-    initData();
+    $("#date_departure").flatpickr({
+        altInput: true,
+        altFormat: "d F Y",
+        dateFormat: "Y-m-d",
+    })
 
-    $("#from_type").on("change", (e) => {
-        e.preventDefault();
-        if ($("#from_type").val()) {
-            getFromList();
-        } else {
-            $("#from_master_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
-            $("#from_master_sub_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
-            $("#to_master_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
-            $("#to_master_sub_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
+    $("#from_master_sub_area_id").on("change", function (e) {
+        let master_area_id = $(this).find(":selected").data('master-area-id');
+        let area_type = $(this).find(":selected").data('area-type');
+
+        $.ajax({
+            url: `/api/booking_filter/get_arrival_filter`,
+            method: "post",
+            dataType: "json",
+            data: {
+                area_type: area_type,
+            },
+            beforeSend: function () {
+                $(`#to_master_sub_area_id`)
+                    .html(`<option value=""></option>`)
+                    .prop("disabled", true);
+            },
+            success: function (res) {
+                let html = `<option value=""></option>`
+                res.data.forEach((x) => {
+                    html += `<optgroup label="${x.text}">`
+                    x.children.forEach((y) => {
+                        html += `<option value="${y.id}"  data-area-type="${y.area_type}" data-master-area-id="${y.master_area_id}">${y.name}</option>`;
+                    })
+                    html += `</optgroup>`
+                });
+                $(`#to_master_sub_area_id`)
+                    .html(html)
+                    .prop("disabled", false);
+            },
+            error: function (err) {
+                console.log(err.responseJSON)
+            },
+            complete: function () {
+                //
+            }
+        });
+    })
+
+    $("input[name=booking_type]").on('change', function (e) {
+        booking_type = $(this).val()
+
+        if (booking_type !== 'shuttle'){
+            $('.passenger_adult_input').hide('fast')
+            $('.passenger_baby_input').hide('fast')
+        }else {
+            $('.passenger_adult_input').show('fast')
+            $('.passenger_baby_input').show('fast')
         }
-    });
+    })
 
-    $("#from_master_area_id").on("change", (e) => {
-        if ($("#from_master_area_id").val()) {
-            console.log("a");
-            let master_area_id = $("#from_master_area_id").val();
-            getSubArea("#from_master_area_id", "#from_master_sub_area_id");
-        } else {
-            $("#from_master_sub_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
-        }
-    });
 
-    $("#to_master_area_id").on("change", (e) => {
-        if ($("#to_master_area_id").val()) {
-            let master_area_id = $("#to_master_area_id").val();
-            getSubArea("#to_master_area_id", "#to_master_sub_area_id");
-        } else {
-            $("#to_master_sub_area_id")
-                .val(null)
-                .trigger("change")
-                .prop("disabled", true);
-        }
-    });
+    // initData();
 
-    $("#form_booking").on("submit", (e) => {
-        e.preventDefault();
-        searchSchedule();
-    });
+    // $("#from_type").on("change", (e) => {
+    //     e.preventDefault();
+    //     if ($("#from_type").val()) {
+    //         getFromList();
+    //     } else {
+    //         $("#from_master_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //         $("#from_master_sub_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //         $("#to_master_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //         $("#to_master_sub_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //     }
+    // });
+
+    // $("#from_master_area_id").on("change", (e) => {
+    //     if ($("#from_master_area_id").val()) {
+    //         console.log("a");
+    //         let master_area_id = $("#from_master_area_id").val();
+    //         getSubArea("#from_master_area_id", "#from_master_sub_area_id");
+    //     } else {
+    //         $("#from_master_sub_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //     }
+    // });
+
+    // $("#to_master_area_id").on("change", (e) => {
+    //     if ($("#to_master_area_id").val()) {
+    //         let master_area_id = $("#to_master_area_id").val();
+    //         getSubArea("#to_master_area_id", "#to_master_sub_area_id");
+    //     } else {
+    //         $("#to_master_sub_area_id")
+    //             .val(null)
+    //             .trigger("change")
+    //             .prop("disabled", true);
+    //     }
+    // });
+    //
+    // $("#form_booking").on("submit", (e) => {
+    //     e.preventDefault();
+    //     searchSchedule();
+    // });
 });
 
 function initData() {
     if (
-        from_type &&
+        // from_type &&
         from_master_area_id &&
         to_master_area_id &&
         booking_type &&
@@ -74,209 +134,209 @@ function initData() {
     ) {
         $("#from_type").val(from_type);
 
-        ajax_get_list_from_departure()
-            .fail((e) => {
-                console.log(e.responseText);
-            })
-            .done((e) => {
-                let data = e.data;
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach((x) => {
-                    let id = x.id;
-                    let name = x.name;
-                    let sub_area = x.sub_area;
-                    htmlnya += `<option value="${id}">${name}</option>`;
-                });
-                $("#from_master_area_id").html(htmlnya).prop("disabled", false);
-                $("#from_master_area_id").val(from_master_area_id);
-
-                ajax_get_list_sub_area(
-                    "#from_master_area_id",
-                    "#from_master_sub_area_id"
-                )
-                    .fail((e) => {
-                        console.log(e.responseText);
-                    })
-                    .done((e) => {
-                        let data = e.data;
-                        let htmlnya = '<option value=""></option>';
-
-                        data.forEach((x) => {
-                            let id = x.id;
-                            let name = x.name;
-                            htmlnya += `<option value="${id}">${name}</option>`;
-                        });
-                        $(`#from_master_sub_area_id`)
-                            .html(htmlnya)
-                            .prop("disabled", false);
-                        $("#from_master_sub_area_id").val(
-                            from_master_sub_area_id
-                        );
-                    });
-            });
-
-        ajax_get_list_to_destination()
-            .fail((e) => {
-                console.log(e.responseText);
-            })
-            .done((e) => {
-                let data = e.data;
-                let htmlnya = '<option value=""></option>';
-
-                data.forEach((x) => {
-                    let id = x.id;
-                    let name = x.name;
-                    htmlnya += `<option value="${id}">${name}</option>`;
-                });
-                $("#to_master_area_id").html(htmlnya).prop("disabled", false);
-                $("#to_master_area_id").val(to_master_area_id);
-
-                ajax_get_list_sub_area(
-                    "#to_master_area_id",
-                    "#to_master_sub_area_id"
-                )
-                    .fail((e) => {
-                        console.log(e.responseText);
-                    })
-                    .always((e) => {
-                        $.unblockUI();
-                    })
-                    .done((e) => {
-                        let data = e.data;
-                        let htmlnya = '<option value=""></option>';
-
-                        data.forEach((x) => {
-                            let id = x.id;
-                            let name = x.name;
-                            htmlnya += `<option value="${id}">${name}</option>`;
-                        });
-                        $(`#to_master_sub_area_id`)
-                            .html(htmlnya)
-                            .prop("disabled", false);
-                        $(`#to_master_sub_area_id`).val(to_master_sub_area_id);
-
-                        $("#form_booking").trigger("submit");
-                    });
-            });
+        // ajax_get_list_from_departure()
+        //     .fail((e) => {
+        //         console.log(e.responseText);
+        //     })
+        //     .done((e) => {
+        //         let data = e.data;
+        //         let htmlnya = '<option value=""></option>';
+        //
+        //         data.forEach((x) => {
+        //             let id = x.id;
+        //             let name = x.name;
+        //             let sub_area = x.sub_area;
+        //             htmlnya += `<option value="${id}">${name}</option>`;
+        //         });
+        //         $("#from_master_area_id").html(htmlnya).prop("disabled", false);
+        //         $("#from_master_area_id").val(from_master_area_id);
+        //
+        //         ajax_get_list_sub_area(
+        //             "#from_master_area_id",
+        //             "#from_master_sub_area_id"
+        //         )
+        //             .fail((e) => {
+        //                 console.log(e.responseText);
+        //             })
+        //             .done((e) => {
+        //                 let data = e.data;
+        //                 let htmlnya = '<option value=""></option>';
+        //
+        //                 data.forEach((x) => {
+        //                     let id = x.id;
+        //                     let name = x.name;
+        //                     htmlnya += `<option value="${id}">${name}</option>`;
+        //                 });
+        //                 $(`#from_master_sub_area_id`)
+        //                     .html(htmlnya)
+        //                     .prop("disabled", false);
+        //                 $("#from_master_sub_area_id").val(
+        //                     from_master_sub_area_id
+        //                 );
+        //             });
+        //     });
+        //
+        // ajax_get_list_to_destination()
+        //     .fail((e) => {
+        //         console.log(e.responseText);
+        //     })
+        //     .done((e) => {
+        //         let data = e.data;
+        //         let htmlnya = '<option value=""></option>';
+        //
+        //         data.forEach((x) => {
+        //             let id = x.id;
+        //             let name = x.name;
+        //             htmlnya += `<option value="${id}">${name}</option>`;
+        //         });
+        //         $("#to_master_area_id").html(htmlnya).prop("disabled", false);
+        //         $("#to_master_area_id").val(to_master_area_id);
+        //
+        //         ajax_get_list_sub_area(
+        //             "#to_master_area_id",
+        //             "#to_master_sub_area_id"
+        //         )
+        //             .fail((e) => {
+        //                 console.log(e.responseText);
+        //             })
+        //             .always((e) => {
+        //                 $.unblockUI();
+        //             })
+        //             .done((e) => {
+        //                 let data = e.data;
+        //                 let htmlnya = '<option value=""></option>';
+        //
+        //                 data.forEach((x) => {
+        //                     let id = x.id;
+        //                     let name = x.name;
+        //                     htmlnya += `<option value="${id}">${name}</option>`;
+        //                 });
+        //                 $(`#to_master_sub_area_id`)
+        //                     .html(htmlnya)
+        //                     .prop("disabled", false);
+        //                 $(`#to_master_sub_area_id`).val(to_master_sub_area_id);
+        //
+        //                 $("#form_booking").trigger("submit");
+        //             });
+        //     });
     } else {
-        getFromList();
+        // getFromList();
     }
 }
 
-function getFromList() {
-    ajax_get_list_from_departure()
-        .fail((e) => {
-            console.log(e.responseText);
-        })
-        .done((e) => {
-            console.log(e);
-            let data = e.data;
-            let htmlnya = '<option value=""></option>';
+// function getFromList() {
+//     ajax_get_list_from_departure()
+//         .fail((e) => {
+//             console.log(e.responseText);
+//         })
+//         .done((e) => {
+//             console.log(e);
+//             let data = e.data;
+//             let htmlnya = '<option value=""></option>';
+//
+//             data.forEach((x) => {
+//                 let id = x.id;
+//                 let name = x.name;
+//                 let sub_area = x.sub_area;
+//                 htmlnya += `<option value="${id}">${name}</option>`;
+//             });
+//             $("#from_master_area_id").html(htmlnya).prop("disabled", false);
+//
+//             getToList();
+//         });
+// }
 
-            data.forEach((x) => {
-                let id = x.id;
-                let name = x.name;
-                let sub_area = x.sub_area;
-                htmlnya += `<option value="${id}">${name}</option>`;
-            });
-            $("#from_master_area_id").html(htmlnya).prop("disabled", false);
+// function getToList() {
+//     ajax_get_list_to_destination()
+//         .fail((e) => {
+//             console.log(e.responseText);
+//         })
+//         .done((e) => {
+//             console.log(e);
+//             let data = e.data;
+//             let htmlnya = '<option value=""></option>';
+//
+//             data.forEach((x) => {
+//                 let id = x.id;
+//                 let name = x.name;
+//                 htmlnya += `<option value="${id}">${name}</option>`;
+//             });
+//             $("#to_master_area_id").html(htmlnya).prop("disabled", false);
+//         });
+// }
 
-            getToList();
-        });
-}
-
-function getToList() {
-    ajax_get_list_to_destination()
-        .fail((e) => {
-            console.log(e.responseText);
-        })
-        .done((e) => {
-            console.log(e);
-            let data = e.data;
-            let htmlnya = '<option value=""></option>';
-
-            data.forEach((x) => {
-                let id = x.id;
-                let name = x.name;
-                htmlnya += `<option value="${id}">${name}</option>`;
-            });
-            $("#to_master_area_id").html(htmlnya).prop("disabled", false);
-        });
-}
-
-function getSubArea(selector_parent, selector_child) {
-    ajax_get_list_sub_area(selector_parent, selector_child)
-        .fail((e) => {
-            console.log(e.responseText);
-        })
-        .done((e) => {
-            console.log(e);
-            let data = e.data;
-            let htmlnya = '<option value=""></option>';
-
-            data.forEach((x) => {
-                let id = x.id;
-                let name = x.name;
-                htmlnya += `<option value="${id}">${name}</option>`;
-            });
-            $(`${selector_child}`).html(htmlnya).prop("disabled", false);
-        });
-}
-
-function ajax_get_list_from_departure() {
-    return $.ajax({
-        url: `/api/get_list_from_departure`,
-        method: "get",
-        dataType: "json",
-        data: {
-            from_type: $("#from_type").val(),
-        },
-        beforeSend: () => {
-            $("#from_master_area_id")
-                .html('<option value=""></option>')
-                .prop("disabled", true);
-            $("#from_master_sub_area_id")
-                .html('<option value=""></option>')
-                .prop("disabled", true);
-        },
-    });
-}
-
-function ajax_get_list_to_destination() {
-    return $.ajax({
-        url: `/api/get_list_to_destination`,
-        method: "get",
-        dataType: "json",
-        data: {
-            from_type: $("#from_type").val() == "airport" ? "city" : "airport",
-        },
-        beforeSend: () => {
-            $("#to_master_area_id")
-                .html('<option value=""></option>')
-                .prop("disabled", true);
-            $("#to_master_sub_area_id")
-                .html('<option value=""></option>')
-                .prop("disabled", true);
-        },
-    });
-}
-
-function ajax_get_list_sub_area(selector_parent, selector_child) {
-    return $.ajax({
-        url: `/api/get_list_sub_area`,
-        method: "get",
-        dataType: "json",
-        data: {
-            master_area_id: $(selector_parent).val(),
-        },
-        beforeSend: () => {
-            $(selector_child)
-                .html('<option value=""></option>')
-                .prop("disabled", true);
-        },
-    });
-}
+// function getSubArea(selector_parent, selector_child) {
+//     ajax_get_list_sub_area(selector_parent, selector_child)
+//         .fail((e) => {
+//             console.log(e.responseText);
+//         })
+//         .done((e) => {
+//             console.log(e);
+//             let data = e.data;
+//             let htmlnya = '<option value=""></option>';
+//
+//             data.forEach((x) => {
+//                 let id = x.id;
+//                 let name = x.name;
+//                 htmlnya += `<option value="${id}">${name}</option>`;
+//             });
+//             $(`${selector_child}`).html(htmlnya).prop("disabled", false);
+//         });
+// }
+//
+// function ajax_get_list_from_departure() {
+//     return $.ajax({
+//         url: `/api/get_list_from_departure`,
+//         method: "get",
+//         dataType: "json",
+//         data: {
+//             from_type: $("#from_type").val(),
+//         },
+//         beforeSend: () => {
+//             $("#from_master_area_id")
+//                 .html('<option value=""></option>')
+//                 .prop("disabled", true);
+//             $("#from_master_sub_area_id")
+//                 .html('<option value=""></option>')
+//                 .prop("disabled", true);
+//         },
+//     });
+// }
+//
+// function ajax_get_list_to_destination() {
+//     return $.ajax({
+//         url: `/api/get_list_to_destination`,
+//         method: "get",
+//         dataType: "json",
+//         data: {
+//             from_type: $("#from_type").val() == "airport" ? "city" : "airport",
+//         },
+//         beforeSend: () => {
+//             $("#to_master_area_id")
+//                 .html('<option value=""></option>')
+//                 .prop("disabled", true);
+//             $("#to_master_sub_area_id")
+//                 .html('<option value=""></option>')
+//                 .prop("disabled", true);
+//         },
+//     });
+// }
+//
+// function ajax_get_list_sub_area(selector_parent, selector_child) {
+//     return $.ajax({
+//         url: `/api/get_list_sub_area`,
+//         method: "get",
+//         dataType: "json",
+//         data: {
+//             master_area_id: $(selector_parent).val(),
+//         },
+//         beforeSend: () => {
+//             $(selector_child)
+//                 .html('<option value=""></option>')
+//                 .prop("disabled", true);
+//         },
+//     });
+// }
 
 function searchSchedule() {
     from_type = $("#from_type").val();
@@ -449,4 +509,6 @@ function searchSchedule() {
         });
 }
 
-function PreBooking(id) {}
+function PreBooking(id) {
+
+}
