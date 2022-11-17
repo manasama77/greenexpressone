@@ -113,7 +113,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-sm-6 passenger_adult_input" {{$request->booking_type =='charter' ? 'style="display:none;"' : ""}}>
+                                                class="col-sm-6 passenger_adult_input" {{$request->booking_type =='charter' ? 'style=display:none;' : ""}}>
                                                 <div class="form-group">
                                                     <label for="passanger_adult" class="form-text font-weight-bold">Adult
                                                         Passangers</label>
@@ -129,7 +129,7 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="col-sm-6 passenger_baby_input" {{$request->booking_type =='charter' ? 'style="display:none;"' : ""}}>
+                                                class="col-sm-6 passenger_baby_input" {{$request->booking_type =='charter' ? 'style=display:none;' : ""}}>
                                                 <div class="form-group">
                                                     <label for="passanger_baby" class="form-text font-weight-bold">Child
                                                         Passangers</label>
@@ -202,31 +202,22 @@
                                                         <div class="col-sm-12 col-md-5 d-flex align-items-center">
                                                             <div class="row">
                                                                 <div
-                                                                    class="col-sm-12 col-md-6 d-flex align-items-center">
+                                                                    class="col-sm-12 col-md-12 d-flex align-items-center">
                                                                     <div>
-                                                                        <p> Vehicle data :<br>
+                                                                        <p> Vehicle data :
                                                                             <span class="font-weight-bold">{{$item->vehicle_name}}
                                                                             -
                                                                             {{$item->vehicle_number}}</span> <br>
-                                                                            Available Seat : <br>
+                                                                            Available Seat :
                                                                             <span
-                                                                                class="font-weight-bold"> {{($item->total_seat -$item->seat_booked) > 0 ? $item->total_seat -$item->seat_booked : 0}}</span>
-
-                                                                        </p>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-12 col-md-6 d-flex align-items-center">
-                                                                    <div>
-                                                                        <p> Prices : <br>
+                                                                                class="font-weight-bold"> {{($item->total_seat -$item->seat_booked) > 0 ? $item->total_seat -$item->seat_booked : 0}}</span> <br>
                                                                             @if($request->booking_type == 'shuttle')
-                                                                                Luggage Price :
+                                                                                Extra Luggage Price :
                                                                                 <span
                                                                                     class="font-weight-bold text-primary">${{$item->luggage_price}}</span>
                                                                                 <br>
                                                                             @endif
-                                                                            Rent Price : <br>
+                                                                            Ticket Price :
                                                                             <span class="font-weight-bold text-primary">${{$item->price}}</span>
                                                                         </p>
                                                                     </div>
