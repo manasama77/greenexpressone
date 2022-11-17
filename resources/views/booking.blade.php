@@ -1,4 +1,22 @@
 @extends('layouts.frontend.app')
+@section('gaya')
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"
+        integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .input-group>.select2-container--bootstrap {
+            width: auto;
+            flex: 1 1 auto;
+        }
+
+        .input-group>.select2-container--bootstrap .select2-selection--single {
+            height: 100%;
+            line-height: inherit;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+@endsection
 @section('page_content')
     <section id="home" class="home d-flex align-items-center" data-scroll-index="0">
         <div class="container">
@@ -18,7 +36,7 @@
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
         <form id="form_booking">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12 col-md-8 mb-5">
                         <div class="card shadow-lg">
@@ -27,10 +45,43 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
+                                            <label for="customer_name" class="form-text font-weight-bold">Customer
+                                                Name</label>
+                                            <input type="text" class="form-control" id="customer_name"
+                                                name="customer_name" placeholder="Customer Name" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1"
+                                                    id="same_passanger">
+                                                <label class="form-check-label" for="same_passanger">
+                                                    Customer order also passanger
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="customer_phone" class="form-text font-weight-bold">Customer
                                                 Phone</label>
-                                            <input type="tel" class="form-control" id="customer_phone"
-                                                name="customer_phone" placeholder="Customer Phone" required />
+                                            <div class="input-group">
+                                                {{-- <input type="text" class="form-control col-2" list="cc"
+                                                    id="customer_phone_country_code" name="customer_phone_country_code"
+                                                    placeholder="+1" required />
+                                                <datalist id="cc">
+                                                    @foreach ($country_codes as $country_code)
+                                                        <option value="{{ $country_code->code }}">
+                                                            {{ $country_code->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </datalist> --}}
+                                                <input type="tel" class="form-control" id="customer_phone"
+                                                    name="customer_phone" placeholder="Customer Phone" required />
+                                                <span class="text-muted font-italic">
+                                                    <small>
+                                                        put your phone or whatsapp number full with country code, ie :
+                                                        16765543563
+                                                    </small>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="customer_password" class="form-text font-weight-bold">Customer
@@ -49,25 +100,10 @@
                                         </div>
                                         <hr />
                                         <div class="form-group">
-                                            <label for="customer_name" class="form-text font-weight-bold">Customer
-                                                Name</label>
-                                            <input type="text" class="form-control" id="customer_name"
-                                                name="customer_name" placeholder="Customer Name" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="1"
-                                                    id="same_passanger">
-                                                <label class="form-check-label" for="same_passanger">
-                                                    Customer order also passanger
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="customer_email" class="form-text font-weight-bold">Customer
                                                 Email</label>
                                             <input type="email" class="form-control" id="customer_email"
-                                                name="customer_email" placeholder="Customer Email" required />
+                                                name="customer_email" placeholder="Customer Email" />
                                         </div>
                                         <hr />
                                         <div class="form-group">
@@ -84,12 +120,14 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="special_area_detail" class="form-text font-weight-bold">Special
-                                                Area Detail</label>
-                                            <textarea class="form-control" id="special_area_detail" name="special_area_detail" placeholder="Special Area Detail"></textarea>
+                                            <label for="special_area_detail" class="form-text font-weight-bold">Your
+                                                destination detail</label>
+                                            <textarea class="form-control" id="special_area_detail" name="special_area_detail"
+                                                placeholder="Write your detail destination place"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="luggage_qty" class="form-text font-weight-bold">Luggage Qty</label>
+                                            <label for="luggage_qty" class="form-text font-weight-bold">Luggage
+                                                Qty</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="luggage_qty"
                                                     name="luggage_qty" placeholder="Luggage Qty" value="0"
@@ -97,6 +135,12 @@
                                                 <div class="input-group-append">
                                                     <span class="input-group-text bg-dark text-white">Kg</span>
                                                 </div>
+                                                <span class="text-muted font-italic">
+                                                    <small>
+                                                        max dimension L+W+H=62. Extra baggage $10 each, fragile must confirm
+                                                        or will be rejected.
+                                                    </small>
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -108,12 +152,13 @@
                                         <div class="form-group">
                                             <label for="flight_info" class="form-text font-weight-bold">Flight
                                                 Info</label>
-                                            <input type="text" class="form-control" id="flight_info"
-                                                name="flight_info" placeholder="Flight Number" />
+                                            <textarea class="form-control" id="flight_info" name="flight_info"
+                                                placeholder="Flight info ie: inform us your arrival/departure time, or other info
+                                                "></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="notes" class="form-text font-weight-bold">Notes</label>
-                                            <textarea class="form-control" id="notes" name="notes" placeholder="Notes"></textarea>
+                                            <textarea class="form-control" id="notes" name="notes" placeholder="Put your other notes here"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
@@ -133,6 +178,12 @@
                                                 <input type="text" class="form-control"
                                                     id="passanger_phone_{{ $i }}" name="passanger_phone[]"
                                                     placeholder="Passanger Phone" required />
+                                                <span class="text-muted font-italic">
+                                                    <small>
+                                                        put your phone or whatsapp number full with country code, ie :
+                                                        16765543563
+                                                    </small>
+                                                </span>
                                             </div>
                                             <hr />
                                         @endfor
@@ -235,11 +286,11 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Payment Fee (3.5% + $0.5):
+                                                Payment Fee ({{ $pajak }}%):
                                             </td>
                                             <td class="text-right">
                                                 @php
-                                                    $service_fee = ($base_price_total * 3.5) / 100 + 0.5;
+                                                    $service_fee = ($base_price_total * $pajak) / 100;
                                                     $gt = $base_price_total + $service_fee;
                                                 @endphp
                                                 <span id="service_fee">${{ number_format($service_fee, 2) }}</span>
@@ -267,11 +318,16 @@
 @endsection
 @section('vitamin')
     <script>
+        $.fn.select2.defaults.set("theme", "bootstrap");
+
         let subTotal = {{ $base_price_total }}
+        let pajak = {{ $pajak }}
         let serviceFee = {{ $service_fee }}
         let grandTotal = {{ $gt }}
 
         $(document).ready(() => {
+            // $('#customer_phone_country_code').select2();
+
             $('#same_passanger').on('change', () => {
                 if ($('#same_passanger:checked').val()) {
                     $('#passanger_name_1').attr('readonly', true).val($('#customer_name').val()).addClass(
@@ -333,7 +389,12 @@
             $('#luggage_qty').on('change', e => {
                 let luggage_qty = parseFloat($('#luggage_qty').val())
                 let luggage_base_price = $('input[name="luggage_base_price"]').val()
-                let lp = luggage_qty * luggage_base_price
+
+                let lp = 0
+                if (luggage_qty > 20) {
+                    lp = Math.ceil(((luggage_qty - 20) / 20)) * luggage_base_price
+                }
+
                 let lpFormated = new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: 'USD'
@@ -421,7 +482,6 @@
             let voucher_price = parseFloat($('input[name="voucher_price"]').val())
 
             let st = base_price_total + special_area_price + luggage_price - voucher_price
-            console.log(st)
             let stFormated = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -430,7 +490,7 @@
             $('#sub_total').text(stFormated)
             $('input[name="sub_total"]').val(subTotal)
 
-            let sf = ((subTotal * 3.5) / 100) + 0.5
+            let sf = ((subTotal * pajak) / 100)
             let sfFormated = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'

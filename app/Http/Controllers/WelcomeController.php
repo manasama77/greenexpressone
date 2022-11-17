@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ShuttleScheduleResource;
 use App\Models\Banner;
 use App\Models\Booking;
 use App\Models\Charter;
@@ -17,7 +16,6 @@ use App\Models\Page;
 use Illuminate\Support\Carbon;
 use App\Models\ScheduleShuttle;
 use App\Models\Voucher;
-use Stripe;
 
 class WelcomeController extends Controller
 {
@@ -78,7 +76,7 @@ class WelcomeController extends Controller
 
         $schedule = ScheduleQueryService::generate_data($request);
 
-//        dd($schedule);
+        //        dd($schedule);
         $pages = Page::get();
         $data = [
             'title' => env('APP_NAME'),
@@ -173,23 +171,26 @@ class WelcomeController extends Controller
         $passanger_total = $passanger_adult + $passanger_baby;
         $base_price_total = number_format($base_price * $passanger_total, 2);
 
+        $pajak = env('PAJAK');
+
         $data = [
-            'title' => env('APP_NAME'),
-            'app_name' => env('APP_NAME'),
-            'request' => $request,
-            'pages' => $pages,
-            'schedule' => $schedule,
-            'special_areas' => $special_areas,
-            'from_main_name' => $from_main_name,
-            'from_sub_name' => $from_sub_name,
-            'to_main_name' => $to_main_name,
-            'to_sub_name' => $to_sub_name,
+            'title'               => env('APP_NAME'),
+            'app_name'            => env('APP_NAME'),
+            'request'             => $request,
+            'pages'               => $pages,
+            'schedule'            => $schedule,
+            'special_areas'       => $special_areas,
+            'from_main_name'      => $from_main_name,
+            'from_sub_name'       => $from_sub_name,
+            'to_main_name'        => $to_main_name,
+            'to_sub_name'         => $to_sub_name,
             'date_time_departure' => $date_time_departure,
-            'passanger_adult' => $passanger_adult,
-            'passanger_baby' => $passanger_baby,
-            'passanger_total' => $passanger_total,
-            'base_price_total' => $base_price_total,
-            'luggage_price' => $luggage_price,
+            'passanger_adult'     => $passanger_adult,
+            'passanger_baby'      => $passanger_baby,
+            'passanger_total'     => $passanger_total,
+            'base_price_total'    => $base_price_total,
+            'luggage_price'       => $luggage_price,
+            'pajak'               => $pajak,
         ];
         return view('booking', $data);
     }
@@ -271,9 +272,9 @@ class WelcomeController extends Controller
 
         $vouchers = Voucher::where('id', $bookings->voucher_id)->first();
 
-            $stripe = new StripeTransaction();
+        $stripe = new StripeTransaction();
 
-            $response = $stripe->create_intent($bookings);
+        $response = $stripe->create_intent($bookings);
 
         if ($response->status !== 'requires_payment_method') {
             try {
@@ -282,7 +283,7 @@ class WelcomeController extends Controller
                 abort(401);
             }
 
-             return redirect()->route("booking_check", ["code" => $decryptNumberBooking])->with("message", "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'><i class='fas fa-exclamation-triangle'></i> Something wrong happened, please contact the admin !</span> </div>");
+            return redirect()->route("booking_check", ["code" => $decryptNumberBooking])->with("message", "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'><i class='fas fa-exclamation-triangle'></i> Something wrong happened, please contact the admin !</span> </div>");
         }
 
         $data = [

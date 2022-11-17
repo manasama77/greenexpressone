@@ -38,7 +38,7 @@ return new class extends Migration
             $table->decimal('base_price', 19, 2)->default(0);
             $table->decimal('total_base_price', 19, 2)->default(0);
             $table->string('flight_number')->nullable();
-            $table->string('flight_info')->nullable();
+            $table->longText('flight_info')->nullable();
             $table->longText('notes')->nullable();
             $table->integer('luggage_qty')->default(0);
             $table->decimal('luggage_price', 19, 2)->default(0);
