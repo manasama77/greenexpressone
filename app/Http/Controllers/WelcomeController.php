@@ -257,6 +257,7 @@ class WelcomeController extends Controller
             return view('booking_not_found', $data);
         }
 
+
         if ($bookings->payment_status == 'paid' || $bookings->payment_status !== 'waiting') {
             $data = [
                 'title' => 'Booking Payment',
@@ -270,12 +271,29 @@ class WelcomeController extends Controller
 
         $vouchers = Voucher::where('id', $bookings->voucher_id)->first();
 
+            $stripe = new StripeTransaction();
+
+            $response = $stripe->create_intent($bookings);
+
+        if ($response->status !== 'requires_payment_method') {
+            try {
+                $decryptNumberBooking = \Crypt::decrypt($request->hcode);
+            } catch (DecryptException $e) {
+                abort(401);
+            }
+
+             return redirect()->route("booking_check", ["code" => $decryptNumberBooking])->with("message", "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'><i class='fas fa-exclamation-triangle'></i> Something wrong happened, please contact the admin !</span> </div>");
+        }
+
         $data = [
             'title' => 'Booking Payment',
             'app_name' => env('APP_NAME'),
             'pages' => $pages,
             'bookings' => $bookings,
             'vouchers' => $vouchers,
+            'hcode' => \Crypt::encrypt($decryptNumberBooking),
+            'client_secret' => $response->client_secret,
+            'intent_id' => $response->id
         ];
 
         return view('payment', $data);
@@ -283,7 +301,6 @@ class WelcomeController extends Controller
 
     public function booking_process(Request $request)
     {
-
         try {
             $decryptNumberBooking = \Crypt::decrypt($request->hcode);
         } catch (DecryptException $e) {
@@ -292,20 +309,19 @@ class WelcomeController extends Controller
 
         $bookings = Booking::where('booking_number', (string)$decryptNumberBooking)->first();
 
+        $stripe = new StripeTransaction();
+        $response = $stripe->retrive_payment_intent($request->intent_id);
+
+        if ($response->status !== 'succeeded') {
+            return redirect()->route("booking_check", ["code" => $decryptNumberBooking])->with("message", "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'><i class='fas fa-exclamation-triangle'></i> Payment has been processed !</span> </div>");
+        }
+
         if (!$bookings) {
             abort(404);
         }
 
         if ($bookings->payment_status == 'paid' || $bookings->payment_status !== 'waiting') {
             abort(404);
-        }
-
-        $stripe = new StripeTransaction();
-
-        $response = $stripe->charge($bookings, $request);
-
-        if ($response->status !== "succeeded") {
-            return redirect()->route("booking.payment", ["hcode" => $request->hcode])->with("message", "<div class='alert alert-success' role='alert'><span class='font-weight-bold'><i class='fas fa-exclamation-triangle'></i> {$response->falilure_code} : {$response->failure_message}</span> </div>");
         }
 
         Booking::where('id', $bookings->id)->update([

@@ -13,7 +13,7 @@
                                 <div class="col-sm-12 col-md-8">
                                     <h3>Process the Payment</h3>
                                     <div class="alert alert-warning" role="alert">
-                                        <span class="font-weight-bold">Accept Visa, Mastercard, American Express, Discover, Diners Club, JCB, and China UnionPay</span>
+                                        <span class="font-weight-bold">Accept Visa, Mastercard, American Express, Discover, Diners Club, JCB, Goggle Play & Appel Pay</span>
                                         payments from customers worldwide.
                                     </div>
                                     <form role="form" action="{{ route('booking.process') }}" method="post"
@@ -23,41 +23,11 @@
                                           id="payment-form">
 
                                         @csrf
-                                        <input type="hidden" name="hcode" value="{{request('hcode')}}">
-                                        <div class="form-group col-sm-12">
-                                            <label for="name">Name on card</label>
-                                            <input type="text" class="form-control required" id="name"
-                                                   placeholder="Name on card"
-                                                   autocomplete="off">
-                                        </div>
+                                        <input type="hidden" name="hcode" value="{{ $hcode }}">
+                                        <input type="hidden" name="intent_id" value="{{ $intent_id }}">
 
-                                        <div class="form-group col-sm-12">
-                                            <label for="card_number">Card number</label>
-                                            <input type="text" class="form-control required card_number"
-                                                   id="card_number" name="card_number"
-                                                   placeholder="Card Number" autocomplete="off">
-                                            <div>
-                                                <small class="type_card d-none"></small>
-                                            </div>
-                                        </div>
+                                        <div id="stripe-element" style="width: 100%;">
 
-                                        <div class="form-group col-sm-4">
-                                            <label for="cvc">CVC/CVV</label>
-                                            <input type="text" class="form-control required" id="cvc" name="cvc" maxlength="4"
-                                                   placeholder="e,g 415" autocomplete="off">
-                                        </div>
-
-                                        <div class="form-group col-sm-4">
-                                            <label for="expiry_month">Expiration Month</label>
-                                            <input type="text" class="form-control required" id="expiry_month"
-                                                   name="expiry_month" placeholder="MM" autocomplete="off" maxlength="2">
-                                        </div>
-
-                                        <div class="form-group col-sm-4">
-                                            <label for="expiry_year">Expiration Year</label>
-                                            <input type="text" class="form-control required" id="expiry_year" maxlength="2"
-                                                   name="expiry_year"
-                                                   placeholder="YYYY" autocomplete="off">
                                         </div>
 
                                         @if (session('message'))
@@ -65,14 +35,15 @@
                                         @endif
 
                                         <div class='form-row row'>
-                                            <div class='col-md-12 d-none error form-group'>
+                                            <div class='col-md-12 d-none error' style="width: 100%;">
                                                 <div class="alert alert-danger" role="alert">
                                                     Fix the errors before you begin.
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now
+
+                                        <button class="btn btn-primary btn-lg btn-block mt-2 btn-submit" type="submit">Pay Now
                                             ($ {{$bookings->total_price}})
                                         </button>
 
@@ -162,116 +133,69 @@
 @endsection
 @section('vitamin')
     {{-- manipulate dom and stripe logic   --}}
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.payform.js') }}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         $(document).ready(function () {
-            var $form = $("#payment-form");
-            $('#card_number').payform('formatCardNumber');
-            $('#cvc').payform('formatCardCVC');
-            $('#expiry_month').payform('formatNumeric');
-            $('#expiry_year').payform('formatNumeric');
+            const stripe = Stripe("{{ env("STRIPE_KEY") }}");
 
-            $("#card_number").on('keyup', function () {
-                let valid = $.payform.validateCardNumber($(this).val());
+            let elements;
 
-                if (valid) {
-                    $(this).removeClass('is-invalid')
-                    $(this).addClass('is-valid')
-                } else {
-                    $(this).addClass('is-invalid')
-                    $(this).removeClass('is-valid')
-                }
+            initialize();
 
-                let type = $.payform.parseCardType($(this).val());
+            document
+                .querySelector("#payment-form")
+                .addEventListener("submit", handleSubmit);
 
-                type ? $('.type_card').html(`Type : ${type}`).removeClass('d-none').addClass('text-success') : $('.type_card').addClass('d-none')
-            })
+            function initialize() {
+                elements = stripe.elements({clientSecret: "{{ $client_secret }}"});
 
-            $("#cvc").on('keyup', function () {
-                let valid = $.payform.validateCardCVC($(this).val())
-                if (valid) {
-                    $(this).removeClass('is-invalid')
-                    $(this).addClass('is-valid')
-                } else {
-                    $(this).addClass('is-invalid')
-                    $(this).removeClass('is-valid')
-                }
+                const paymentElement = elements.create("payment");
+                paymentElement.mount("#stripe-element");
+            }
 
-            })
-
-            $('#expiry_month').on('keyup', function(){
-                let valid =$.payform.validateCardExpiry($(this).val(), $('#expiry_year').val())
-                if (valid) {
-                    $(this).removeClass('is-invalid')
-                    $(this).addClass('is-valid')
-                } else {
-                    $(this).addClass('is-invalid')
-                    $(this).removeClass('is_valid')
-                }
-            })
-
-            $('#expiry_year').on('keyup', function(){
-                let valid =$.payform.validateCardExpiry($('#expiry_month').val(), $(this).val())
-                if (valid) {
-                    $(this).removeClass('is-invalid')
-                    $(this).addClass('is-valid')
-                    $('#expiry_month').removeClass('is-invalid')
-                    $('#expiry_month').addClass('is-valid')
-                } else {
-                    $(this).addClass('is-invalid')
-                    $(this).removeClass('is_valid')
-                    $('#expiry_month').addClass('is-invalid')
-                    $('#expiry_month').removeClass('is_valid')
-                }
-            })
-
-            $('form.validation').bind('submit', function (e) {
-                var $form = $(".validation"),
-                    inputVal = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'].join(', '),
-                    $inputs = $form.find('.required').find(inputVal),
-                    $errorStatus = $form.find('div.error'),
-                    valid = true;
-                $errorStatus.addClass('d-none');
-
-                $('input').removeClass('is_invalid');
-                $inputs.each(function (i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.addClass('is_invalid');
-                        $errorStatus.removeClass('d-none');
-                        e.preventDefault();
-                    }
+            async function handleSubmit(e) {
+                e.preventDefault();
+                $('.btn-submit').addClass('disabled')
+                const {setupIntent, error} = await stripe.confirmPayment({
+                    elements,
+                    confirmParams: {
+                        // Make sure to change this to your payment completion page
+                        return_url: "https://lolucant.com/public/checkout.html",
+                    },
+                    redirect: "if_required"
                 });
 
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('#card_number').val(),
-                        cvc: $('#cvc').val(),
-                        exp_month: $('#expiry_month').val(),
-                        exp_year: $('#expiry_year').val()
-                    }, stripeHandleResponse);
-                }
-
-            });
-
-            function stripeHandleResponse(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('d-none')
-                        .find('.alert')
-                        .text(response.error.message);
+                if (error) {
+                    if (error.type === "card_error" || error.type === "validation_error") {
+                       showMessage(error.message);
+                    } else {
+                       showMessage("Something wrong with this transaction.");
+                    }
                 } else {
-                    var token = response['id'];
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
+                    let form = document.getElementById('payment-form')
+                    form.submit()
+
                 }
+
+                $('.btn-submit').removeClass('disabled')
+
             }
+
+            function showMessage(messageText) {
+                const messageContainer = document.querySelector(".error");
+
+                messageContainer.classList.remove("d-none");
+                messageContainer.innerHTML = `<div class="alert alert-danger" role="alert">
+                                                    ${messageText}
+                                                </div>`;
+
+                setTimeout(function () {
+                    messageContainer.classList.add("d-none");
+                    messageText.innerHTML = "";
+                }, 4000);
+            }
+
+
         })
     </script>
 @endsection
