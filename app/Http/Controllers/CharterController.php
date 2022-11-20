@@ -95,6 +95,7 @@ class CharterController extends Controller
                 'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
+                'total_seat'              => 'required',
                 'is_available'            => 'required|in:1,0',
                 'photo'                   => 'nullable',
                 'price'                   => 'required',
@@ -108,8 +109,6 @@ class CharterController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        $validated = $validator->validated();
 
         $photo = $request->file('photo');
         $filePath = 'img/vehicle/default.png';
@@ -127,6 +126,7 @@ class CharterController extends Controller
         $exec->to_master_sub_area_id   = ($request->to_master_sub_area_id) ?? null;
         $exec->vehicle_name            = $request->vehicle_name;
         $exec->vehicle_number          = $request->vehicle_number;
+        $exec->total_seat              = $request->total_seat;
         $exec->is_available            = $request->is_available;
         $exec->photo                   = $filePath;
         $exec->price                   = $request->price;
@@ -160,6 +160,7 @@ class CharterController extends Controller
                 'to_master_sub_area_id'   => 'exclude_if:from_type,city|required',
                 'vehicle_name'            => 'required',
                 'vehicle_number'          => 'required',
+                'total_seat'              => 'required',
                 'is_available'            => 'required|in:1,0',
                 'photo'                   => 'nullable',
                 'price'                   => 'required',
@@ -185,6 +186,7 @@ class CharterController extends Controller
         $exec->to_master_sub_area_id   = ($request->to_master_sub_area_id) ?? null;
         $exec->vehicle_name            = $request->vehicle_name;
         $exec->vehicle_number          = $request->vehicle_number;
+        $exec->total_seat              = $request->total_seat;
         $exec->is_available            = $request->is_available;
         $exec->photo                   = $filePath;
         $exec->price                   = $request->price;

@@ -427,6 +427,10 @@ class BookingController extends BaseController
             $charters = Charter::find($request->schedule_id);
             $charters->is_available = false;
             $charters->save();
+        } else {
+            $shuttle             = ScheduleShuttle::find($request->schedule_id);
+            $shuttle->total_seat = $shuttle->total_seat - $qty_adult - $qty_baby;
+            $shuttle->save();
         }
 
         $result = [
