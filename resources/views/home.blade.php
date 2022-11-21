@@ -26,10 +26,10 @@
                                        <div class="row">
                                            <div class="col-sm-3">
                                                <div class="form-group">
-                                                   <label for="from_master_sub_area_id" class="form-text font-weight-bold">Departure</label>
+                                                   <label for="from_master_sub_area_id" class="form-text font-weight-bold">From</label>
                                                    <select class="form-control select2" id="from_master_sub_area_id"
                                                            name="from_master_sub_area_id"
-                                                           data-placeholder="Sub From/Departure"
+                                                           data-placeholder="Select from location"
                                                            style="width: 100%;" required
                                                    >
                                                        <option value=""></option>
@@ -45,10 +45,10 @@
                                            </div>
                                            <div class="col-sm-3">
                                                <div class="form-group">
-                                                   <label for="to_master_sub_area_id" class="form-text font-weight-bold">Arrival</label>
+                                                   <label for="to_master_sub_area_id" class="form-text font-weight-bold">To</label>
                                                    <select class="form-control select2" id="to_master_sub_area_id"
                                                            name="to_master_sub_area_id"
-                                                           data-placeholder="Sub To/Arrival" disabled
+                                                           data-placeholder="Select to location" disabled
                                                            style="width: 100%;" required
                                                    >
                                                        <option value=""></option>
@@ -57,10 +57,9 @@
                                            </div>
                                            <div class="col-sm-3">
                                                <div class="form-group">
-                                                   <label for="date_departure" class="form-text font-weight-bold">Outward
-                                                       journey</label>
+                                                   <label for="date_departure" class="form-text font-weight-bold">Departure date</label>
                                                    <input type="text" class="form-control form-control-sm" id="date_departure" name="date_departure"
-                                                          placeholder="Outward Journey" value="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" required/>
+                                                          placeholder="Departure date" value="{{ \Carbon\Carbon::now()->format("Y-m-d") }}" required/>
                                                </div>
                                            </div>
                                            <div class="col-sm-3">
@@ -106,7 +105,7 @@
                                                        </div>
                                                    </div>
                                                    <small class="form-text text-muted">
-                                                       Child is under 8 years old
+                                                       Child is up to 8 years old
                                                    </small>
                                                </div>
                                            </div>
