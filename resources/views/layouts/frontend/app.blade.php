@@ -49,6 +49,7 @@
     <meta name="msapplication-TileColor" content="#02E602">
     <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#02E602">
+    @yield('gaya')
 </head>
 
 <body>

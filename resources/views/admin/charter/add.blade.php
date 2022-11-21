@@ -113,6 +113,11 @@
                                             name="driver_contact" value="{{ old('driver_contact') }}" minlength="3" />
                                     </div>
                                     <div class="form-group">
+                                        <label for="total_seat">Total Seat</label>
+                                        <input type="number" class="form-control" id="total_seat" name="total_seat"
+                                            value="{{ old('total_seat') }}" min="1" max="99" />
+                                    </div>
+                                    <div class="form-group">
                                         <label for="notes">Notes</label>
                                         <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
                                     </div>

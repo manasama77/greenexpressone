@@ -214,7 +214,10 @@ class BookingController extends BaseController
             }
 
             $luggage_base_price = (float)$schedules->luggage_price;
-            $luggage_price = $luggage_base_price * $request->luggage_qty;
+
+            if ($request->luggage_qty > 20) {
+                $luggage_price = ceil((($request->luggage_qty - 20) / 20)) * $luggage_base_price;
+            }
 
             if ($request->special_request) {
                 $extra_prices = MasterSpecialArea::select([
@@ -350,7 +353,7 @@ class BookingController extends BaseController
             $regional_name = MasterSpecialArea::where('id', $request->special_area_id)->first()->regional_name;
         }
 
-        $fee_price   = (($sub_total_price * 3.5) / 100) + 0.5;
+        $fee_price   = (($sub_total_price * env('PAJAK')) / 100);
         $total_price = $sub_total_price + $fee_price;
 
         $booking_number = $this->generate_booking_number();
@@ -424,6 +427,10 @@ class BookingController extends BaseController
             $charters = Charter::find($request->schedule_id);
             $charters->is_available = false;
             $charters->save();
+        } else {
+            $shuttle             = ScheduleShuttle::find($request->schedule_id);
+            $shuttle->total_seat = $shuttle->total_seat - $qty_adult - $qty_baby;
+            $shuttle->save();
         }
 
         $result = [

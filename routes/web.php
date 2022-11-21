@@ -17,6 +17,7 @@ use App\Http\Controllers\BookingCharterController;
 use App\Http\Controllers\BookingShuttleController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\MasterSpecialAreaController;
 
 /*
@@ -130,3 +131,5 @@ Route::prefix('admin')->middleware('prevent-back-history')->group(function () {
     Route::post('/user/reset_password/{id}', [UserController::class, 'reset_password'])->name('admin.user.reset_password')->middleware('admin');
     Route::delete('/user/delete/{id}', [UserController::class, 'delete'])->name('admin.user.delete')->middleware('admin');
 });
+
+Route::get('/expired_booking', [CronJobController::class, 'expired_booking']);

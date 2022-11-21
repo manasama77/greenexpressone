@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\ScheduleShuttle;
 use App\Http\Controllers\Controller;
 
-class webBookingShuttleController extends Controller
+class BookingShuttleController extends Controller
 {
     public function index()
     {

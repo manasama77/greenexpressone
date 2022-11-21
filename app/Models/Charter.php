@@ -19,6 +19,7 @@ class Charter extends Model
         'to_master_sub_area_id',
         'vehicle_name',
         'vehicle_number',
+        'total_seat',
         'is_available',
         'photo',
         'price',
@@ -32,8 +33,9 @@ class Charter extends Model
         'deleted_at',
     ];
 
-    public function from_master_area(){
-        return $this->belongsTo(MasterArea::class,'from_master_area_id', 'id')->withDefault([
+    public function from_master_area()
+    {
+        return $this->belongsTo(MasterArea::class, 'from_master_area_id', 'id')->withDefault([
             'id' => 0,
             'name' => "",
             'area_type' => "",
@@ -41,8 +43,9 @@ class Charter extends Model
         ]);
     }
 
-    public function from_master_sub_area(){
-        return $this->belongsTo(MasterSubArea::class,'from_master_sub_area_id', 'id')->withDefault([
+    public function from_master_sub_area()
+    {
+        return $this->belongsTo(MasterSubArea::class, 'from_master_sub_area_id', 'id')->withDefault([
             'id' => 0,
             'master_area_id' => 0,
             'name' => "",
@@ -52,8 +55,9 @@ class Charter extends Model
     }
 
 
-    public function to_master_area(){
-        return $this->belongsTo(MasterArea::class,'to_master_area_id', 'id')->withDefault([
+    public function to_master_area()
+    {
+        return $this->belongsTo(MasterArea::class, 'to_master_area_id', 'id')->withDefault([
             'id' => 0,
             'name' => "",
             'area_type' => "",
@@ -61,8 +65,9 @@ class Charter extends Model
         ]);
     }
 
-    public function to_master_sub_area(){
-        return $this->belongsTo(MasterSubArea::class,'to_master_sub_area_id', 'id')->withDefault([
+    public function to_master_sub_area()
+    {
+        return $this->belongsTo(MasterSubArea::class, 'to_master_sub_area_id', 'id')->withDefault([
             'id' => 0,
             'master_area_id' => 0,
             'name' => "",

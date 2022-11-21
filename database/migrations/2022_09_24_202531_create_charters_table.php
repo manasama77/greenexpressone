@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('to_master_sub_area_id')->nullable();
             $table->string('vehicle_name');
             $table->string('vehicle_number');
+            $table->integer('total_seat');
             $table->boolean('is_available')->default(false);
             $table->string('photo')->nullable();
             $table->decimal('price', 19, 2);
