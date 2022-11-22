@@ -1,17 +1,35 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
-use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Charter;
+use Illuminate\Support\Carbon;
 use App\Models\ScheduleShuttle;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Console\Command;
 
-class CronJobController extends Controller
+class ExpiredCron extends Command
 {
-    public function expired_booking()
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'expired:cron';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Check Booking Expired';
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
     {
         $bookings = Booking::where('booking_status', '=', 'pending')->get();
         $now = Carbon::now();
@@ -46,5 +64,6 @@ class CronJobController extends Controller
                 }
             }
         }
+        return Command::SUCCESS;
     }
 }

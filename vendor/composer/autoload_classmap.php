@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\ExpiredCron' => $baseDir . '/app/Console/Commands/ExpiredCron.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\API\\AuthController' => $baseDir . '/app/Http/Controllers/API/AuthController.php',
@@ -26,6 +27,7 @@ return array(
     'App\\Http\\Controllers\\BookingShuttleController' => $baseDir . '/app/Http/Controllers/BookingShuttleController.php',
     'App\\Http\\Controllers\\CharterController' => $baseDir . '/app/Http/Controllers/CharterController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\CronJobController' => $baseDir . '/app/Http/Controllers/CronJobController.php',
     'App\\Http\\Controllers\\MasterAreaController' => $baseDir . '/app/Http/Controllers/MasterAreaController.php',
     'App\\Http\\Controllers\\MasterSpecialAreaController' => $baseDir . '/app/Http/Controllers/MasterSpecialAreaController.php',
     'App\\Http\\Controllers\\MasterSubAreaController' => $baseDir . '/app/Http/Controllers/MasterSubAreaController.php',
@@ -54,12 +56,12 @@ return array(
     'App\\Models\\BookingCustomer' => $baseDir . '/app/Models/BookingCustomer.php',
     'App\\Models\\BookingSequence' => $baseDir . '/app/Models/BookingSequence.php',
     'App\\Models\\Charter' => $baseDir . '/app/Models/Charter.php',
-    'App\\Models\\CountryCode' => $baseDir . '/app/Models/CountryCode.php',
     'App\\Models\\MasterArea' => $baseDir . '/app/Models/MasterArea.php',
     'App\\Models\\MasterSpecialArea' => $baseDir . '/app/Models/MasterSpecialArea.php',
     'App\\Models\\MasterSubArea' => $baseDir . '/app/Models/MasterSubArea.php',
     'App\\Models\\Page' => $baseDir . '/app/Models/Page.php',
     'App\\Models\\ScheduleShuttle' => $baseDir . '/app/Models/ScheduleShuttle.php',
+    'App\\Models\\Test' => $baseDir . '/app/Models/Test.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Voucher' => $baseDir . '/app/Models/Voucher.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

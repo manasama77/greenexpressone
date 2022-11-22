@@ -561,6 +561,7 @@ class ComposerStaticInit19bc7787e8b63ea9750b2496fc38c062
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\ExpiredCron' => __DIR__ . '/../..' . '/app/Console/Commands/ExpiredCron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\API\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/AuthController.php',
@@ -581,6 +582,7 @@ class ComposerStaticInit19bc7787e8b63ea9750b2496fc38c062
         'App\\Http\\Controllers\\BookingShuttleController' => __DIR__ . '/../..' . '/app/Http/Controllers/BookingShuttleController.php',
         'App\\Http\\Controllers\\CharterController' => __DIR__ . '/../..' . '/app/Http/Controllers/CharterController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CronJobController' => __DIR__ . '/../..' . '/app/Http/Controllers/CronJobController.php',
         'App\\Http\\Controllers\\MasterAreaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MasterAreaController.php',
         'App\\Http\\Controllers\\MasterSpecialAreaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MasterSpecialAreaController.php',
         'App\\Http\\Controllers\\MasterSubAreaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MasterSubAreaController.php',
@@ -609,12 +611,12 @@ class ComposerStaticInit19bc7787e8b63ea9750b2496fc38c062
         'App\\Models\\BookingCustomer' => __DIR__ . '/../..' . '/app/Models/BookingCustomer.php',
         'App\\Models\\BookingSequence' => __DIR__ . '/../..' . '/app/Models/BookingSequence.php',
         'App\\Models\\Charter' => __DIR__ . '/../..' . '/app/Models/Charter.php',
-        'App\\Models\\CountryCode' => __DIR__ . '/../..' . '/app/Models/CountryCode.php',
         'App\\Models\\MasterArea' => __DIR__ . '/../..' . '/app/Models/MasterArea.php',
         'App\\Models\\MasterSpecialArea' => __DIR__ . '/../..' . '/app/Models/MasterSpecialArea.php',
         'App\\Models\\MasterSubArea' => __DIR__ . '/../..' . '/app/Models/MasterSubArea.php',
         'App\\Models\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
         'App\\Models\\ScheduleShuttle' => __DIR__ . '/../..' . '/app/Models/ScheduleShuttle.php',
+        'App\\Models\\Test' => __DIR__ . '/../..' . '/app/Models/Test.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Voucher' => __DIR__ . '/../..' . '/app/Models/Voucher.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

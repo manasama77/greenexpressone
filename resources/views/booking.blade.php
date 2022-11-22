@@ -4,6 +4,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"
         integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/intl-tel-input-master/css/intlTelInput.css">
     <style>
         .input-group>.select2-container--bootstrap {
             width: auto;
@@ -73,7 +74,7 @@
                                                         </option>
                                                     @endforeach
                                                 </datalist> --}}
-                                                <input type="tel" class="form-control" id="customer_phone"
+                                                <input type="tel" class="" id="customer_phone"
                                                     name="customer_phone" placeholder="Customer Phone" required />
                                                 <span class="text-muted font-italic">
                                                     <small>
@@ -175,7 +176,7 @@
                                                 <label for="passanger_phone_{{ $i }}"
                                                     class="form-text font-weight-bold">Passanger
                                                     Phone {{ $i }}</label>
-                                                <input type="text" class="form-control"
+                                                <input type="tel" class="form-control"
                                                     id="passanger_phone_{{ $i }}" name="passanger_phone[]"
                                                     placeholder="Passanger Phone" required />
                                                 <span class="text-muted font-italic">
@@ -317,8 +318,34 @@
     </section>
 @endsection
 @section('vitamin')
+    <script src="/intl-tel-input-master/js/intlTelInput.js"></script>
     <script>
         $.fn.select2.defaults.set("theme", "bootstrap");
+
+        let option_tel = {
+            customContainer: "form-control",
+            // allowDropdown: true,
+            autoHideDialCode: false,
+            // autoPlaceholder: "off",
+            // dropdownContainer: document.body,
+            // excludeCountries: ["us"],
+            // formatOnDisplay: true,
+            // geoIpLookup: function(callback) {
+            //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+            //     var countryCode = (resp && resp.country) ? resp.country : "";
+            //     callback(countryCode);
+            //   });
+            // },
+            // hiddenInput: "full_number",
+            initialCountry: "auto",
+            // localizedCountries: { 'de': 'Deutschland' },
+            nationalMode: false,
+            // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+            // placeholderNumberType: "MOBILE",
+            // preferredCountries: ['cn', 'jp'],
+            separateDialCode: false,
+            utilsScript: "/intl-tel-input-master/js/utils.js",
+        }
 
         let subTotal = {{ $base_price_total }}
         let pajak = {{ $pajak }}
@@ -326,7 +353,10 @@
         let grandTotal = {{ $gt }}
 
         $(document).ready(() => {
-            // $('#customer_phone_country_code').select2();
+            let passanger_phone = document.querySelectorAll('input[type="tel"]');
+            for (i = 0; i < passanger_phone.length; i++) {
+                window.intlTelInput(passanger_phone[i], option_tel);
+            }
 
             $('#same_passanger').on('change', () => {
                 if ($('#same_passanger:checked').val()) {
