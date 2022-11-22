@@ -11,6 +11,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <link rel="stylesheet" href="/intl-tel-input-master/css/intlTelInput.css">
     <!-- owl carousel css -->
     <link rel="stylesheet" href="/css/owl.carousel.min.css" />
     <!-- font awesome icons -->
