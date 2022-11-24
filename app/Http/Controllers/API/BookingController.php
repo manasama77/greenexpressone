@@ -995,6 +995,8 @@ class BookingController extends BaseController
         $now = Carbon::now();
         $prefix = "GEO";
         $year = $now->format('y');
+        $month = $now->format('m');
+        $date = $now->format('d');
         $unique = 0;
 
         switch ($current_sequence) {
@@ -1012,7 +1014,7 @@ class BookingController extends BaseController
                 break;
         }
 
-        return $prefix . $year . $unique;
+        return $prefix . $year . $month . $date . $unique;
     }
 
     private function count_seat_avail($schedule_id, $total_seat, $total_person)
