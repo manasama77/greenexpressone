@@ -47,6 +47,8 @@
                                                 <th style="min-width: 100px;">Flight Info</th>
                                                 <th style="min-width: 120px;">Luggage Qty</th>
                                                 <th style="min-width: 120px;">Luggage Price</th>
+                                                <th style="min-width: 120px;">Overweight Luggage Qty</th>
+                                                <th style="min-width: 120px;">Overweight Luggage Price</th>
                                                 <th style="min-width: 120px;">Extra Price</th>
                                                 <th style="min-width: 120px;">Voucher</th>
                                                 <th style="min-width: 120px;">Promo Price</th>
@@ -92,6 +94,8 @@
                                                     <td>{{ $booking['flight_info'] }}</td>
                                                     <td>{{ number_format($booking['luggage_qty'], 2) }} Kg</td>
                                                     <td>{{ number_format($booking['luggage_price'], 2) }}</td>
+                                                    <td>{{ number_format($booking['overweight_luggage_qty'], 2) }} Kg</td>
+                                                    <td>{{ number_format($booking['overweight_luggage_price'], 2) }}</td>
                                                     <td>{{ number_format($booking['extra_price'], 2) }}</td>
                                                     <td>{{ $booking['voucher_name'] }}</td>
                                                     <td>{{ number_format($booking['promo_price'], 2) }}</td>
