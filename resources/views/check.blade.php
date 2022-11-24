@@ -27,6 +27,7 @@
                                     <p>Passanger: {{ $bookings->qty_adult }} Adult {{ $bookings->qty_baby }} Child
                                     </p>
                                     <p>Luggage: {{ $bookings->luggage_qty ?? '0' }} Kg</p>
+                                    <p>Luggage: {{ $bookings->overweight_luggage_qty ?? '0' }} Kg</p>
                                     <p>Flight Number: {{ $bookings->flight_number }}</p>
                                     <p>Flight Info: {{ $bookings->flight_info }}</p>
                                     <p>Notes: {{ $bookings->notes }}</p>
@@ -66,6 +67,15 @@
                                                 </td>
                                                 <td class="text-right">
                                                     ${{ $bookings->luggage_price ?? '0' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Overweight Luggage Price:<br />
+                                                    {{ $bookings->overweight_luggage_qty ?? '0' }} Kg
+                                                </td>
+                                                <td class="text-right">
+                                                    ${{ $bookings->overweight_luggage_price ?? '0' }}
                                                 </td>
                                             </tr>
                                             <tr>
