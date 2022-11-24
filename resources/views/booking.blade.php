@@ -133,14 +133,31 @@
                                                     name="luggage_qty" placeholder="Luggage Qty" value="0"
                                                     min="0" max="50" required />
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text bg-dark text-white">Kg</span>
+                                                    <span class="input-group-text bg-dark text-white">Pcs</span>
                                                 </div>
                                                 <span class="text-muted font-italic">
                                                     <small>
-                                                        max dimension L+W+H=62. Extra baggage $10 each, fragile must confirm
-                                                        or will be rejected.
+                                                        Max weight 50 lb each, max dimension L+W+H = 62 inch.<br />
+                                                        Hand carry bag max 1 piece, max<br />
+                                                        weight 15 lb, max dimension: 22"+14"+9"= 42".<br />
+                                                        Overweight baggage, oversized baggage $ 10 / each<br />
+                                                        Extra baggage $ 20 / each<br />
+                                                        Fragile baggage must be declared and confirmed or will be rejected
                                                     </small>
                                                 </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="overweight_luggage_qty"
+                                                class="form-text font-weight-bold">Overweight Luggage
+                                                Qty</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="overweight_luggage_qty"
+                                                    name="overweight_luggage_qty" placeholder="Overweight Luggage Qty"
+                                                    value="0" min="0" max="50" required />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text bg-dark text-white">Pcs</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -207,7 +224,8 @@
                                 <p>Special Area: <span class="special_area_name">-</span></p>
                                 <p>Date: {{ $date_time_departure }}</p>
                                 <p>Passanger: {{ $passanger_adult }} Adult {{ $passanger_baby }} Child</p>
-                                <p>Luggage: <span class="luggage_qty">0</span> Kg</p>
+                                <p>Luggage: <span class="luggage_qty">0</span> Pcs</p>
+                                <p>Overweight Luggage: <span class="overweight_luggage_qty">0</span> Pcs</p>
                                 <hr />
                                 <table class="table table-borderless text-white">
                                     <tbody>
@@ -237,13 +255,23 @@
                                         <tr>
                                             <td>
                                                 Luggage Price:<br />
-                                                <span class="luggage_qty">0</span> Kg
+                                                <span class="luggage_qty">0</span> Pcs
                                             </td>
                                             <td class="text-right">
                                                 <span id="luggage_price">$0</span>
                                                 <input type="hidden" name="luggage_base_price"
                                                     value="{{ $luggage_price }}" />
                                                 <input type="hidden" name="luggage_price" value="0" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Overweight Luggage Price:<br />
+                                                <span class="overweight_luggage_qty">0</span> Pcs
+                                            </td>
+                                            <td class="text-right">
+                                                <span id="overweight_luggage_price">$0</span>
+                                                <input type="hidden" name="overweight_luggage_price" value="0" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -336,7 +364,7 @@
             //   });
             // },
             // hiddenInput: "full_number",
-            initialCountry: "auto",
+            initialCountry: "US",
             // localizedCountries: { 'de': 'Deutschland' },
             nationalMode: false,
             // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
@@ -417,11 +445,16 @@
 
             $('#luggage_qty').on('change', e => {
                 let luggage_qty = parseFloat($('#luggage_qty').val())
-                let luggage_base_price = $('input[name="luggage_base_price"]').val()
+                // let luggage_base_price = $('input[name="luggage_base_price"]').val()
+                let luggage_base_price = 20
 
                 let lp = 0
-                if (luggage_qty > 20) {
-                    lp = Math.ceil(((luggage_qty - 20) / 20)) * luggage_base_price
+                // if (luggage_qty > 20) {
+                //     lp = Math.ceil(((luggage_qty - 20) / 20)) * luggage_base_price
+                // }
+
+                if (luggage_qty > 2) {
+                    lp = (luggage_qty - 2) * luggage_base_price
                 }
 
                 let lpFormated = new Intl.NumberFormat('en-US', {
@@ -429,9 +462,26 @@
                     currency: 'USD'
                 }).format(lp)
                 $('.luggage_qty').text(luggage_qty)
-                $('.luggage_qty').text(luggage_qty)
                 $('input[name="luggage_price"]').val(lp)
                 $('#luggage_price').text(lpFormated)
+                generateGrandTotal()
+            })
+
+            $('#overweight_luggage_qty').on('change', e => {
+                let overweight_luggage_qty = parseFloat($('#overweight_luggage_qty').val())
+                let overweight_luggage_base_price = 10
+
+                let olp = 0
+
+                olp = overweight_luggage_qty * overweight_luggage_base_price
+
+                let olpFormated = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD'
+                }).format(olp)
+                $('.overweight_luggage_qty').text(overweight_luggage_qty)
+                $('input[name="overweight_luggage_price"]').val(olp)
+                $('#overweight_luggage_price').text(olpFormated)
                 generateGrandTotal()
             })
 
@@ -508,9 +558,10 @@
             let base_price_total = parseFloat($('input[name="base_price_total"]').val())
             let special_area_price = parseFloat($('input[name="special_area_price"]').val())
             let luggage_price = parseFloat($('input[name="luggage_price"]').val())
+            let overweight_luggage_price = parseFloat($('input[name="overweight_luggage_price"]').val())
             let voucher_price = parseFloat($('input[name="voucher_price"]').val())
 
-            let st = base_price_total + special_area_price + luggage_price - voucher_price
+            let st = base_price_total + special_area_price + luggage_price + overweight_luggage_price - voucher_price
             let stFormated = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -584,6 +635,7 @@
                     special_area_id: $('#special_area_id').val(),
                     special_area_detail: $('#special_area_detail').val(),
                     luggage_qty: $('#luggage_qty').val(),
+                    overweight_luggage_qty: $('#overweight_luggage_qty').val(),
                     flight_number: $('#flight_number').val(),
                     flight_info: $('#flight_info').val(),
                     notes: $('#notes').val(),

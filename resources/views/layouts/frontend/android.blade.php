@@ -2,7 +2,7 @@
     <div class="container py-5">
         <div class="row py-5">
             <div class="col-sm-6 text-white">
-                <p><img src="/img/logo-green-express-one.png" class="img-fluid" width="200px"></p>
+                <p><img src="/img/logo-green-express-one.png" style="width: 200px"></p>
                 <h3 class="font-weight-bold">Instal juga aplikasi DayTrans di smartphone android kamu sekarang !
                 </h3>
                 <p>dapatkan kemudahan saat memesan tiket dimanapun kamu berada.</p>

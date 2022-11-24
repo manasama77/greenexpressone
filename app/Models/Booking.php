@@ -46,6 +46,8 @@ class Booking extends Model
         'notes',
         'luggage_qty',
         'luggage_price',
+        'overweight_luggage_qty',
+        'overweight_luggage_price',
         'special_request',
         'special_area_id',
         'special_area_detail',

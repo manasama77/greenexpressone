@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        Test::create();
+        // Test::create();
         $schedule->command('expired:cron')->everyMinute();
     }
 

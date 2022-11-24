@@ -42,6 +42,7 @@ class BookingController extends BaseController
                 'special_area_id'         => 'required_if:special_request,1',
                 'special_area_detail'     => 'nullable',
                 'luggage_qty'             => 'required_if:schedule_type,shuttle|integer|min_digits:0',
+                'overweight_luggage_qty'  => 'required_if:schedule_type,shuttle|integer|min_digits:0',
                 'flight_number'           => 'nullable',
                 'flight_info'             => 'nullable',
                 'notes'                   => 'nullable',
@@ -107,23 +108,24 @@ class BookingController extends BaseController
             }
         }
 
-        $user_id           = null;
-        $customer_phone    = $request->customer_phone;
-        $customer_password = $request->customer_password;
-        $customer_name     = $request->customer_name;
-        $customer_email    = $request->customer_email;
-        $total_person      = $request->qty_adult + $request->qty_baby;
-        $base_price        = 0;
-        $total_base_price  = 0;
-        $luggage_price     = 0;
-        $extra_price       = 0;
-        $promo_price       = 0;
-        $sub_total_price   = 0;
-        $fee_price         = 0;
-        $total_price       = 0;
-        $voucher_id        = null;
-        $discount_type     = null;
-        $discount_value    = 0;
+        $user_id                  = null;
+        $customer_phone           = $request->customer_phone;
+        $customer_password        = $request->customer_password;
+        $customer_name            = $request->customer_name;
+        $customer_email           = $request->customer_email;
+        $total_person             = $request->qty_adult + $request->qty_baby;
+        $base_price               = 0;
+        $total_base_price         = 0;
+        $luggage_price            = 0;
+        $overweight_luggage_price = 0;
+        $extra_price              = 0;
+        $promo_price              = 0;
+        $sub_total_price          = 0;
+        $fee_price                = 0;
+        $total_price              = 0;
+        $voucher_id               = null;
+        $discount_type            = null;
+        $discount_value           = 0;
 
         // check user registered or not
         $check_users = User::where([
@@ -213,11 +215,17 @@ class BookingController extends BaseController
                 return $this->sendError('No seat left', null);
             }
 
-            $luggage_base_price = (float)$schedules->luggage_price;
+            // $luggage_base_price = (float)$schedules->luggage_price;
+            $luggage_base_price            = 20;
+            $overweight_luggage_base_price = 10;
 
-            if ($request->luggage_qty > 20) {
-                $luggage_price = ceil((($request->luggage_qty - 20) / 20)) * $luggage_base_price;
+            // if ($request->luggage_qty > 20) {
+            //     $luggage_price = ceil((($request->luggage_qty - 20) / 20)) * $luggage_base_price;
+            // }
+            if ($request->luggage_qty > 2) {
+                $luggage_price = ($request->luggage_qty - 2) * $luggage_base_price;
             }
+            $overweight_luggage_price = $request->overweight_luggage_qty * $overweight_luggage_base_price;
 
             if ($request->special_request) {
                 $extra_prices = MasterSpecialArea::select([
@@ -240,9 +248,9 @@ class BookingController extends BaseController
                 }
             }
 
-            $base_price = $schedules->price;
+            $base_price       = $schedules->price;
             $total_base_price = $total_person * $schedules->price;
-            $sub_total_price = $total_base_price + $luggage_price + $extra_price;
+            $sub_total_price  = $total_base_price + $luggage_price + $overweight_luggage_price + $extra_price;
 
             if ($voucher_id) {
                 if ($discount_type == "percentage") {
@@ -276,14 +284,15 @@ class BookingController extends BaseController
                 return $this->sendError('Charter data not found, please try again', null);
             }
 
-            $base_price = $schedules->price;
-            $total_base_price = $schedules->price;
-            $luggage_price = 0;
-            $extra_price = 0;
-            $promo_price = 0;
-            $sub_total_price = $base_price;
-            $fee_price = 0;
-            $total_price = 0;
+            $base_price               = $schedules->price;
+            $total_base_price         = $schedules->price;
+            $luggage_price            = 0;
+            $overweight_luggage_price = 0;
+            $extra_price              = 0;
+            $promo_price              = 0;
+            $sub_total_price          = $base_price;
+            $fee_price                = 0;
+            $total_price              = 0;
 
             if ($voucher_id) {
                 if ($discount_type == "percentage") {
@@ -387,6 +396,8 @@ class BookingController extends BaseController
         $booking->notes                     = ($request->notes) ?? null;
         $booking->luggage_qty               = ($request->luggage_qty) ?? 0;
         $booking->luggage_price             = $luggage_price;
+        $booking->overweight_luggage_qty    = ($request->overweight_luggage_qty) ?? 0;
+        $booking->overweight_luggage_price  = $overweight_luggage_price;
         $booking->special_request           = ($request->special_request) ?? false;
         $booking->special_area_id           = ($request->special_area_id) ?? null;
         $booking->special_area_detail       = ($request->special_area_detail) ?? null;
@@ -463,6 +474,8 @@ class BookingController extends BaseController
             'notes'                     => $res->notes,
             'luggage_qty'               => (int)$res->luggage_qty,
             'luggage_price'             => (float)$res->luggage_price,
+            'overweight_luggage_qty'    => (int)$res->overweight_luggage_qty,
+            'overweight_luggage_price'  => (float)$res->overweight_luggage_price,
             'special_request'           => ($res->special_request) ?? null,
             'special_area_id'           => ((int)$res->special_area_id) ?? null,
             'special_area_detail'       => ((int)$res->special_area_detail) ?? null,

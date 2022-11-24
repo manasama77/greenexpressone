@@ -42,6 +42,8 @@ return new class extends Migration
             $table->longText('notes')->nullable();
             $table->integer('luggage_qty')->default(0);
             $table->decimal('luggage_price', 19, 2)->default(0);
+            $table->integer('overweight_luggage_qty')->default(0);
+            $table->decimal('overweight_luggage_price', 19, 2)->default(0);
             $table->boolean('special_request')->default(false);
             $table->integer('special_area_id')->nullable();
             $table->longText('special_area_detail')->nullable();
