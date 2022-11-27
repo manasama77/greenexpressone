@@ -39,7 +39,7 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <img src="{{ $base_url . $banner->picture }}" id="img_preview"
+                                    <img src="{{ asset($banner->picture) }}" id="img_preview"
                                         class="img-thumbnail mx-auto d-block" />
                                     <div class="form-group mt-2">
                                         <label for="picture">Picture</label>
