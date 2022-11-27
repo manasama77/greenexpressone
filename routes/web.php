@@ -4,7 +4,6 @@ use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AgentController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CharterController;
 use App\Http\Controllers\ShuttleController;

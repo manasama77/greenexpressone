@@ -4,7 +4,6 @@
         <a class="navbar-brand" href="/">
             <div class="navbar-brand-img">
                 <img src="/img/logo-green-express-one.png" alt="Logo {{ $app_name }}" class="img-logo">
-                GreenExpress
             </div>
         </a>
 
