@@ -82,7 +82,6 @@ class BannerController extends Controller
         $input = $request->all();
 
         if ($request->file('picture')) {
-            unlink($input['picture']);
             $fileName = time() . '.' . $request->picture->extension();
             $request->picture->move(public_path('img/slider/'), $fileName);
             $input['picture'] = 'img/slider/' . $fileName;
