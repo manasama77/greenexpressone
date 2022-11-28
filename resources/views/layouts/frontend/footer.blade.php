@@ -43,7 +43,7 @@
             <div class="col-lg-12 text-white">
                 <p class="copyright-text">
                 <div class="float-right d-none d-sm-block">
-                    Version 1.0.1
+<!--                    Version 1.0.1-->
                 </div>
                 <strong>Copyright &copy; 2022 <a href=" #" class="footer_link">{{ $app_name }}</a></strong>
                 </p>

@@ -59,7 +59,7 @@
                                                 @php
                                                     $passanger_total = $bookings->qty_adult + $bookings->qty_baby;
                                                 @endphp
-                                                {{ $passanger_total }} Passanger
+                                                {{ $passanger_total }} Passanger(s)
                                             </td>
                                             <td class="text-right">
                                                 ${{ $bookings->total_base_price }}
@@ -77,7 +77,7 @@
                                         <tr>
                                             <td>
                                                 Luggage Price:<br/>
-                                                {{ $bookings->luggage_qty ?? '0' }} Pcs
+                                                {{ $bookings->luggage_qty ?? '0' }} piece(s)
                                             </td>
                                             <td class="text-right">
                                                 ${{ $bookings->luggage_price ?? '0' }}

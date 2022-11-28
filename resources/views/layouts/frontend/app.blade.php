@@ -65,7 +65,7 @@
 
 @yield('page_content')
 
-@include('layouts.frontend.android')
+<!--@include('layouts.frontend.android')-->
 
 <!-- footer section start -->
 @include('layouts.frontend.footer')

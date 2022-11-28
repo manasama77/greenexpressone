@@ -232,7 +232,7 @@
                                         <tr>
                                             <td>
                                                 Base Price:<br />
-                                                {{ $passanger_total }} Passanger
+                                                {{ $passanger_total }} Passanger(s)
                                                 <input type="hidden" name="passanger_total"
                                                     value="{{ $passanger_total }}" />
                                             </td>
@@ -255,7 +255,7 @@
                                         <tr>
                                             <td>
                                                 Luggage Price:<br />
-                                                <span class="luggage_qty">0</span> Pcs
+                                                <span class="luggage_qty">0</span> piece(s)
                                             </td>
                                             <td class="text-right">
                                                 <span id="luggage_price">$0</span>
@@ -266,8 +266,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Overweight/Oversized Luggage Price:<br />
-                                                <span class="overweight_luggage_qty">0</span> Pcs
+                                                Overweight or Oversized Luggage Price:<br />
+                                                <span class="overweight_luggage_qty">0</span> piece(s)
                                             </td>
                                             <td class="text-right">
                                                 <span id="overweight_luggage_price">$0</span>

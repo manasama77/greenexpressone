@@ -1,14 +1,14 @@
 @extends('layouts.frontend.app')
 @section('gaya')
-    <style>
-        .slick-slide {
-            height: 500px;
-        }
-
-        .slick-slide img {
-            height: 500px;
-        }
-    </style>
+<!--    <style>-->
+<!--        .slick-slide {-->
+<!--            height: 500px;-->
+<!--        }-->
+<!---->
+<!--        .slick-slide img {-->
+<!--            height: 100%;-->
+<!--        }-->
+<!--    </style>-->
 @endsection
 @section('page_content')
     <section id="home" class="home d-flex align-items-center" data-scroll-index="0">
@@ -23,7 +23,7 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy" />
+<!--        <img src="img/8493.jpg" class="bg" loading="lazy" />-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 mb-5">
@@ -137,7 +137,7 @@
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">
-                                        <i class="fas fa-search fa-fw"></i> Search
+                                        <i class="fas fa-search fa-fw"></i> <strong>Search</strong>
                                     </button>
                                 </div>
                             </form>
@@ -148,42 +148,13 @@
                     <div class="card card-semi shadow">
                         <div class="card-body">
                             <div class="section-title">
-                                <h1>A licensed, Insired and Trusted Transportation Company.</h1>
+                                <h1><strong>A licensed, Insired and Trusted Transportation Company</strong></h1>
                             </div>
                             <div class="booking-text">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium mollitia eum
-                                    ducimus
-                                    accusamus, nisi repellat distinctio iusto deleniti, saepe, nobis ex reprehenderit?
-                                    Pariatur
-                                    cupiditate consequatur unde exercitationem, sit a adipisci molestias labore,
-                                    officiis
-                                    repudiandae esse voluptate eveniet magni laborum vel. Labore magni modi sit fugiat
-                                    neque!
-                                    Quo eligendi corporis in, repudiandae molestias dignissimos eum recusandae officiis,
-                                    atque
-                                    incidunt hic? Optio possimus ut laudantium accusamus reprehenderit dolorem mollitia
-                                    sed
-                                    aliquam explicabo corrupti? Quisquam nisi vitae, quod quibusdam libero quas quidem
-                                    molestiae. Aspernatur ad fuga itaque. Amet enim recusandae blanditiis aliquid
-                                    tenetur natus
-                                    fugiat, distinctio quae! Sit sapiente a corrupti praesentium ea in ipsam cupiditate
-                                    dolor
-                                    atque, at saepe soluta reiciendis vel qui eligendi dignissimos repudiandae nemo
-                                    ipsa, modi,
-                                    exercitationem ullam quasi? Architecto similique, quasi, tempore placeat, laudantium
-                                    minus
-                                    sapiente vel laborum tempora fuga eligendi alias velit qui maxime molestiae labore
-                                    omnis
-                                    quia! Alias corporis pariatur quae minima? Iste, ex tempore nulla perferendis nisi
-                                    explicabo
-                                    incidunt illo aliquam accusantium unde dolorem possimus harum est ipsam tenetur
-                                    corporis
-                                    neque, magnam laudantium obcaecati atque suscipit. Ea obcaecati cumque deserunt
-                                    alias
-                                    officiis, esse ipsum quibusdam accusantium suscipit nihil saepe aliquam eaque maxime
-                                    veniam
-                                    magni minus soluta ullam aliquid? Iure aperiam, itaque dolores consectetur qui
-                                    saepe.</p>
+                                <p>More than 15,000 hours driving time. More than 55,000 passengers (have been) served among others from Singapore Airlines, Emirates Airlines, Eva Airline and China Airlines</p>
+                            </div>
+                            <div class="booking-text">
+                                <p>Estimated travel time between Philadelphia and JFK Airport 3.5 hours consistently well maintained (more than 90% within the time frame)</p>
                             </div>
                         </div>
                     </div>
@@ -195,12 +166,12 @@
     <section id="profile" class="profile section-padding" data-scroll-index="2">
         <div class="container">
             <div class="section-title">
-                <h1>Our Services</h1>
+                <h1><strong>Our Services</strong></h1>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/Picture2.png"
+                        <img src="{{ asset('img/ontime.jpg') }}"
                             class="card-img-top" alt="">
                         <div class="card-body">
                             <p class="card-text">Whether you’re a business traveller, a couple, a big group of friends
@@ -213,7 +184,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/green.jpg" class="card-img-top"
+                        <img src="{{ asset('img/drive_safely.jpg') }}" class="card-img-top"
                             alt="">
                         <div class="card-body">
                             <p class="card-text">We drive safely and follow all rules of the road to ensure you have a
@@ -224,7 +195,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card card-shadow">
-                        <img src="https://greenexpressone.com/wp-content/uploads/2022/04/istockphoto-1206670377-640x640-1-300x169.jpg"
+                        <img src="{{ asset('img/passenger_pickup.jpg') }}"
                             class="card-img-top" alt="">
                         <div class="card-body">
                             <p class="card-text">Passenger Pick Up And Drop Off Services</p>
@@ -234,6 +205,9 @@
             </div>
         </div>
     </section>
+
+@include('layouts.frontend.android')
+
 @endsection
 @section('vitamin')
     <script>

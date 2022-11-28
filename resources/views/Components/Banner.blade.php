@@ -1,4 +1,4 @@
-<div id="slick_slider" class="shadow" style="margin-top: 70px;">
+<div id="slick_slider" class="shadow" style="margin-top: 0px;">
     @foreach ($banners as $banner)
         <div>
             <img src="{{ $banner->picture }}" alt="" loading="eager"

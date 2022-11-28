@@ -222,8 +222,8 @@ class BookingController extends BaseController
             // if ($request->luggage_qty > 20) {
             //     $luggage_price = ceil((($request->luggage_qty - 20) / 20)) * $luggage_base_price;
             // }
-            if ($request->luggage_qty > 2) {
-                $luggage_price = ($request->luggage_qty - 2) * $luggage_base_price;
+            if ($request->luggage_qty > (2*$total_person)) {
+                $luggage_price = ($request->luggage_qty - (2*$total_person)) * $luggage_base_price;
             }
             $overweight_luggage_price = $request->overweight_luggage_qty * $overweight_luggage_base_price;
 
