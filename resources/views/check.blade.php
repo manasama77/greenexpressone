@@ -21,13 +21,13 @@
                                     <p>
                                         To: {{ $bookings->to_master_area_name }} {{ $bookings->to_master_sub_area_name }}
                                     </p>
-                                    <p>Special Area: {{ $bookings->regional_name ?? '-' }}</p>
+                                    <p>Special request drop off option: {{ $bookings->regional_name ?? '-' }}</p>
                                     <p>Special Detail: {!! $bookings->special_area_detail ?? '-' !!}</p>
                                     <p>Date: {{ $bookings->datetime_departure }}</p>
                                     <p>Passanger: {{ $bookings->qty_adult }} Adult {{ $bookings->qty_baby }} Child
                                     </p>
-                                    <p>Luggage: {{ $bookings->luggage_qty ?? '0' }} Kg</p>
-                                    <p>Luggage: {{ $bookings->overweight_luggage_qty ?? '0' }} Kg</p>
+                                    <p>Luggage: {{ $bookings->luggage_qty ?? '0' }} Pcs</p>
+                                    <p>Overweight/Oversized Luggage: {{ $bookings->overweight_luggage_qty ?? '0' }} Pcs</p>
                                     <p>Flight Number: {{ $bookings->flight_number }}</p>
                                     <p>Flight Info: {{ $bookings->flight_info }}</p>
                                     <p>Notes: {{ $bookings->notes }}</p>
@@ -53,7 +53,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Special Area Price:<br />
+                                                    Special request drop off Price:<br />
                                                     {{ $bookings->regional_name }}
                                                 </td>
                                                 <td class="text-right">
@@ -63,7 +63,7 @@
                                             <tr>
                                                 <td>
                                                     Luggage Price:<br />
-                                                    {{ $bookings->luggage_qty ?? '0' }} Kg
+                                                    {{ $bookings->luggage_qty ?? '0' }} Pcs
                                                 </td>
                                                 <td class="text-right">
                                                     ${{ $bookings->luggage_price ?? '0' }}
@@ -71,8 +71,8 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Overweight Luggage Price:<br />
-                                                    {{ $bookings->overweight_luggage_qty ?? '0' }} Kg
+                                                    Overweight/Oversized Luggage Price:<br />
+                                                    {{ $bookings->overweight_luggage_qty ?? '0' }} Pcs
                                                 </td>
                                                 <td class="text-right">
                                                     ${{ $bookings->overweight_luggage_price ?? '0' }}

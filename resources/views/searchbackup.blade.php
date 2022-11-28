@@ -149,5 +149,5 @@
         let passanger_adult = @json($request->passanger_adult);
         let passanger_baby = @json($request->passanger_baby);
     </script>
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection

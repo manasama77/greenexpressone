@@ -131,7 +131,7 @@
                     <div class="card card-semi shadow">
                         <div class="card-body">
                             <div class="section-title">
-                                <h1>Shuttle bus to and from the main America airports</h1>
+                                <h1>A licensed, Insired and Trusted Transportation Company.</h1>
                             </div>
                             <div class="booking-text">
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium mollitia eum
@@ -224,5 +224,5 @@
         let booking_type = null;
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection

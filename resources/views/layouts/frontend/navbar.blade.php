@@ -3,8 +3,7 @@
         <!-- Brand -->
         <a class="navbar-brand" href="/">
             <div class="navbar-brand-img">
-                <img src="/img/logo-green-express-one.png" alt="Logo {{ $app_name }}" class="img-logo">
-                GreenExpress
+                <img src="{{ asset('img/logo-greenexpressone-300px.png') }}" alt="Logo {{ $app_name }}" class="img-logo">
             </div>
         </a>
 

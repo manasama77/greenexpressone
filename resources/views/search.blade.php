@@ -284,5 +284,5 @@
     </section>
 @endsection
 @section('vitamin')
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection
