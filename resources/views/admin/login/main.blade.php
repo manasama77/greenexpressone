@@ -77,7 +77,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="javascript:void(0);" class="brand-logo">
-                                    <img src="/img/logo-green-express-one.png" style="width: 80px;" />
+                                    <img src="{{ asset('js/booking.js') }}" style="width: 80px;" />
                                 </a>
 
                                 <h4 class="card-title mb-1 text-center">Admin Green Express One</h4>

@@ -24,7 +24,7 @@ class MasterSpecialAreaController extends Controller
             ->get();
 
         $data = [
-            'page_title'           => 'Special Area',
+            'page_title'           => 'Special request drop off',
             'base_url'             => env('APP_URL'),
             'app_name'             => env('APP_NAME'),
             'app_name_short'       => env('APP_NAME_ABBR'),
@@ -70,7 +70,7 @@ class MasterSpecialAreaController extends Controller
 
     public function edit($id)
     {
-        $page_title          = "Edit Special Area";
+        $page_title          = "Edit special request drop off";
         $base_url            = env('APP_URL');
         $app_name            = env('APP_NAME');
         $app_name_short      = env('APP_NAME_ABBR');

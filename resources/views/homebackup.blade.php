@@ -12,7 +12,7 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy" />
+<!--        <img src="img/8493.jpg" class="bg" loading="lazy" />-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-4 mb-5">
@@ -122,7 +122,7 @@
                     <div class="card card-semi shadow">
                         <div class="card-body">
                             <div class="section-title">
-                                <h1>Shuttle bus to and from the main America airports</h1>
+                                <h1>A licensed, Insired and Trusted Transportation Company.</h1>
                             </div>
                             <div class="booking-text">
                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium mollitia eum
@@ -213,5 +213,5 @@
     <script>
         let booking_type = null;
     </script>
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection

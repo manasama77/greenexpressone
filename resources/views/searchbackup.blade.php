@@ -11,7 +11,7 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy" />
+<!--        <img src="img/8493.jpg" class="bg" loading="lazy" />-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-4 mb-5">
@@ -149,5 +149,5 @@
         let passanger_adult = @json($request->passanger_adult);
         let passanger_baby = @json($request->passanger_baby);
     </script>
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection

@@ -11,7 +11,7 @@
     </section>
 
     <section id="booking" class="booking section-padding" data-scroll-index="1">
-        <img src="img/8493.jpg" class="bg" loading="lazy"/>
+<!--        <img src="img/8493.jpg" class="bg" loading="lazy"/>-->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 mb-5">
@@ -263,7 +263,7 @@
                                         </div>
                                     @empty
                                         <div class="col-12 text-center">
-                                            <img src="/img/undraw_empty_re_opql.svg" alt="not found"
+                                            <img src="{{ asset('img/undraw_empty_re_opql.svg') }}" alt="not found"
                                                  style="width: 400px;"/>
                                         </div>
                                         <div class="col-12 text-center text-danger">
@@ -284,5 +284,5 @@
     </section>
 @endsection
 @section('vitamin')
-    <script src="/js/booking.js"></script>
+    <script src="{{ asset('js/booking.js') }}"></script>
 @endsection

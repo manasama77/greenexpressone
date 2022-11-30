@@ -393,7 +393,7 @@ function searchSchedule() {
                 $("#list_jadwal").html(
                     `
                     <div class="col-12 text-center">
-                        <img src="/img/undraw_empty_re_opql.svg" alt="not found" style="width: 400px;" />
+                        <img src="{{ asset('img/undraw_empty_re_opql.svg') }}" alt="not found" style="width: 400px;" />
                     </div>
                     <div class="col-12 text-center text-danger">
                         <h5 class="my-3 font-weight-bold">${message}</h5>

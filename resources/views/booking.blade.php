@@ -140,8 +140,8 @@
                                                         Max weight 50 lb each, max dimension L+W+H = 62 inch.<br />
                                                         Hand carry bag max 1 piece, max<br />
                                                         weight 15 lb, max dimension: 22"+14"+9"= 42".<br />
-                                                        Overweight baggage, oversized baggage $ 10 / each<br />
-                                                        Extra baggage $ 20 / each<br />
+                                                        Overweight/oversized baggage $10 each<br />
+                                                        Extra baggage $20 each<br />
                                                         Fragile baggage must be declared and confirmed or will be rejected
                                                     </small>
                                                 </span>
@@ -149,11 +149,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="overweight_luggage_qty"
-                                                class="form-text font-weight-bold">Overweight Luggage
+                                                class="form-text font-weight-bold">Overweight/Oversized Luggage
                                                 Qty</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="overweight_luggage_qty"
-                                                    name="overweight_luggage_qty" placeholder="Overweight Luggage Qty"
+                                                    name="overweight_luggage_qty" placeholder="Overweight/Oversized Luggage Qty"
                                                     value="0" min="0" max="50" required />
                                                 <div class="input-group-append">
                                                     <span class="input-group-text bg-dark text-white">Pcs</span>
@@ -232,7 +232,7 @@
                                         <tr>
                                             <td>
                                                 Base Price:<br />
-                                                {{ $passanger_total }} Passanger
+                                                {{ $passanger_total }} Passanger(s)
                                                 <input type="hidden" name="passanger_total"
                                                     value="{{ $passanger_total }}" />
                                             </td>
@@ -244,7 +244,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Special Area Price:<br />
+                                                Special request drop off Price:<br />
                                                 <span class="special_area_name">-</span>
                                             </td>
                                             <td class="text-right">
@@ -255,7 +255,7 @@
                                         <tr>
                                             <td>
                                                 Luggage Price:<br />
-                                                <span class="luggage_qty">0</span> Pcs
+                                                <span class="luggage_qty">0</span> piece(s)
                                             </td>
                                             <td class="text-right">
                                                 <span id="luggage_price">$0</span>
@@ -266,8 +266,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Overweight Luggage Price:<br />
-                                                <span class="overweight_luggage_qty">0</span> Pcs
+                                                Overweight or Oversized Luggage Price:<br />
+                                                <span class="overweight_luggage_qty">0</span> piece(s)
                                             </td>
                                             <td class="text-right">
                                                 <span id="overweight_luggage_price">$0</span>

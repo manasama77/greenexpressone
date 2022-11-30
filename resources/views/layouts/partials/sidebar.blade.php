@@ -4,7 +4,7 @@
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="#">
                     <span class="brand-logo">
-                        <img src="/img/logo-green-express-one.png" alt="">
+                        <img src="{{ asset('js/booking.js') }}" alt="">
                     </span>
                     <h2 class="brand-text">{{ $app_name_short }}</h2>
                 </a>
@@ -45,7 +45,7 @@
             <li class=" nav-item">
                 <a class="d-flex align-items-center" href="/admin/master_special_area">
                     <i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Special Area">
-                        Special Area</span>
+                        Special request drop off</span>
                 </a>
             </li>
 

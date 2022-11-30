@@ -59,7 +59,7 @@
                                                 @php
                                                     $passanger_total = $bookings->qty_adult + $bookings->qty_baby;
                                                 @endphp
-                                                {{ $passanger_total }} Passanger
+                                                {{ $passanger_total }} Passanger(s)
                                             </td>
                                             <td class="text-right">
                                                 ${{ $bookings->total_base_price }}
@@ -67,7 +67,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Special Area Price:<br/>
+                                                Special request drop off Price:<br/>
                                                 {{ $bookings->regional_name }}
                                             </td>
                                             <td class="text-right">
@@ -77,7 +77,7 @@
                                         <tr>
                                             <td>
                                                 Luggage Price:<br/>
-                                                {{ $bookings->luggage_qty ?? '0' }} Kg
+                                                {{ $bookings->luggage_qty ?? '0' }} piece(s)
                                             </td>
                                             <td class="text-right">
                                                 ${{ $bookings->luggage_price ?? '0' }}
@@ -106,7 +106,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Service Fee (3%):
+                                                Service Fee (3.7%):
                                             </td>
                                             <td class="text-right">
                                                 ${{ $bookings->fee_price }}

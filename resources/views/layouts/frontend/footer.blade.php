@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-6 col-lg-4">
                 <div class="footer-col">
-                    <h3>About us</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nobis fugiat quidem doloribus
-                        placeat harum molestiae dolore provident aspernatur accusantium iusto quisquam ducimus
-                        expedita voluptas perspiciatis, impedit aliquid odio. Odit.
-                    </p>
+                    <h3>About Us</h3>
+                    <p>Green express, LCC</p>
+                    <p>A licensed, Insired and Trusted Transportation Company.</p>
+                    <p>US DOT 2839427</p>
+                    <p>MC 950729</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
@@ -43,7 +43,7 @@
             <div class="col-lg-12 text-white">
                 <p class="copyright-text">
                 <div class="float-right d-none d-sm-block">
-                    Version 1.0.0
+<!--                    Version 1.0.1-->
                 </div>
                 <strong>Copyright &copy; 2022 <a href=" #" class="footer_link">{{ $app_name }}</a></strong>
                 </p>
