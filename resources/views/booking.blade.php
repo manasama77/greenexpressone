@@ -106,19 +106,21 @@
                                                 name="customer_email" placeholder="Customer Email" />
                                         </div>
                                         <hr />
-                                        <div class="form-group">
-                                            <label for="special_area_id" class="form-text font-weight-bold">Special
-                                                Area</label>
-                                            <select class="form-control" id="special_area_id" name="special_area_id">
-                                                <option value="">-</option>
-                                                @foreach ($special_areas as $s)
-                                                    <option value="{{ $s->id }}"
-                                                        data-first_person_price="{{ $s->first_person_price }}"
-                                                        data-extra_person_price="{{ $s->extra_person_price }}">
-                                                        {{ $s->regional_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        @if ($request->from_type != 'city')
+                                            <div class="form-group">
+                                                <label for="special_area_id" class="form-text font-weight-bold">Special
+                                                    Area</label>
+                                                <select class="form-control" id="special_area_id" name="special_area_id">
+                                                    <option value="">-</option>
+                                                    @foreach ($special_areas as $s)
+                                                        <option value="{{ $s->id }}"
+                                                            data-first_person_price="{{ $s->first_person_price }}"
+                                                            data-extra_person_price="{{ $s->extra_person_price }}">
+                                                            {{ $s->regional_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
                                         <div class="form-group">
                                             <label for="special_area_detail" class="form-text font-weight-bold">Your
                                                 destination detail</label>
@@ -153,8 +155,9 @@
                                                 Qty</label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control" id="overweight_luggage_qty"
-                                                    name="overweight_luggage_qty" placeholder="Overweight/Oversized Luggage Qty"
-                                                    value="0" min="0" max="50" required />
+                                                    name="overweight_luggage_qty"
+                                                    placeholder="Overweight/Oversized Luggage Qty" value="0"
+                                                    min="0" max="50" required />
                                                 <div class="input-group-append">
                                                     <span class="input-group-text bg-dark text-white">Pcs</span>
                                                 </div>
