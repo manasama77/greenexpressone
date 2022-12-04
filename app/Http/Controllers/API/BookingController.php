@@ -210,7 +210,8 @@ class BookingController extends BaseController
                 return $this->sendError('Schedule not found, please try again', null);
             }
 
-            $can_book = $this->count_seat_avail($schedules->id, $schedules->total_seat, $total_person);
+            $can_book = $this->count_seat_avail($schedules->total_seat, $total_person);
+
             if ($can_book == false) {
                 return $this->sendError('No seat left', null);
             }
@@ -222,8 +223,8 @@ class BookingController extends BaseController
             // if ($request->luggage_qty > 20) {
             //     $luggage_price = ceil((($request->luggage_qty - 20) / 20)) * $luggage_base_price;
             // }
-            if ($request->luggage_qty > (2*$total_person)) {
-                $luggage_price = ($request->luggage_qty - (2*$total_person)) * $luggage_base_price;
+            if ($request->luggage_qty > (2 * $total_person)) {
+                $luggage_price = ($request->luggage_qty - (2 * $total_person)) * $luggage_base_price;
             }
             $overweight_luggage_price = $request->overweight_luggage_qty * $overweight_luggage_base_price;
 
@@ -1017,22 +1018,23 @@ class BookingController extends BaseController
         return $prefix . $year . $month . $date . $unique;
     }
 
-    private function count_seat_avail($schedule_id, $total_seat, $total_person)
+    private function count_seat_avail($total_seat, $total_person)
     {
-        $sum_seat_used = Booking::where([
-            'schedule_id' => $schedule_id,
-            'schedule_type' => 'shuttle',
-        ])
-            ->whereIn('booking_status', ['pending', 'active'])
-            ->whereIn('payment_status', ['waiting', 'paid'])
-            ->get();
+        // $sum_seat_used = Booking::where([
+        //     'schedule_id' => $schedule_id,
+        //     'schedule_type' => 'shuttle',
+        // ])
+        //     ->whereIn('booking_status', ['pending', 'active'])
+        //     ->whereIn('payment_status', ['waiting', 'paid'])
+        //     ->get();
 
-        $sum_qty_adult = $sum_seat_used->sum('qty_adult');
-        $sum_qty_baby = $sum_seat_used->sum('qty_baby');
+        // $sum_qty_adult = $sum_seat_used->sum('qty_adult');
+        // $sum_qty_baby = $sum_seat_used->sum('qty_baby');
 
-        $remaining_seat = $total_seat - $sum_qty_adult - $sum_qty_baby;
 
-        $result = ($remaining_seat >= $total_person) ? true : false;
+        // $remaining_seat = $total_seat;
+
+        $result = ($total_seat >= $total_person) ? true : false;
 
         return $result;
     }
