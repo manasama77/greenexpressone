@@ -54,8 +54,7 @@
                                     <div class="form-group">
                                         <label for="from_master_area_id">From Main Area</label>
                                         <select class="form-control select2" id="from_master_area_id"
-                                            name="from_master_area_id" data-placeholder="Select From Main Area" required
-                                            disabled>
+                                            name="from_master_area_id" data-placeholder="Select From Main Area" required>
                                             <option value=""></option>
                                         </select>
                                     </div>
@@ -206,6 +205,7 @@
             $.blockUI()
             $('#from_type').val('{{ $charters->from_type }}').trigger('change')
             $('#is_available').val('{{ $charters->is_available }}').trigger('change')
+
             setTimeout(() => {
                 $('#from_master_area_id').val('{{ $charters->from_master_area_id }}').trigger('change')
                 setTimeout(() => {
@@ -225,7 +225,7 @@
 
         function getFromList() {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_from_departure`,
+                url: `/api/get_list_from_departure`,
                 method: 'get',
                 dataType: 'json',
                 data: {
@@ -256,7 +256,7 @@
 
         function getToList() {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_to_destination`,
+                url: `/api/get_list_to_destination`,
                 method: 'get',
                 dataType: 'json',
                 data: {
@@ -284,7 +284,7 @@
 
         function getSubArea(master_area_id, selector) {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_sub_area`,
+                url: `/api/get_list_sub_area`,
                 method: 'get',
                 dataType: 'json',
                 data: {

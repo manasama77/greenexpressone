@@ -238,7 +238,7 @@
 
         function getFromList() {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_from_departure`,
+                url: `/api/get_list_from_departure`,
                 method: 'get',
                 dataType: 'json',
                 data: {
@@ -269,7 +269,7 @@
 
         function getToList() {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_to_destination`,
+                url: `/api/get_list_to_destination`,
                 method: 'get',
                 dataType: 'json',
                 data: {
@@ -297,7 +297,7 @@
 
         function getSubArea(master_area_id, selector) {
             $.ajax({
-                url: `{{ $base_url }}api/get_list_sub_area`,
+                url: `/api/get_list_sub_area`,
                 method: 'get',
                 dataType: 'json',
                 data: {

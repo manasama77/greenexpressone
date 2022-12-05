@@ -139,6 +139,7 @@ class CharterController extends Controller
     public function edit($id)
     {
         $charters = Charter::where('id', $id)->first();
+
         $data = [
             'page_title'     => 'Edit Charter',
             'base_url'       => env('APP_URL'),

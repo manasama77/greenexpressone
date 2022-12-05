@@ -433,10 +433,10 @@ class BookingController extends BaseController
         $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d H:i:s');
 
         if ($request->schedule_type == "charter") {
-            $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
-            $charters = Charter::find($request->schedule_id);
-            $charters->is_available = false;
-            $charters->save();
+            // $datetime_departure = Carbon::createFromFormat('Y-m-d H:i:s', $res->datetime_departure)->format('Y-m-d');
+            // $charters = Charter::find($request->schedule_id);
+            // $charters->is_available = false;
+            // $charters->save();
         } else {
             $shuttle             = ScheduleShuttle::find($request->schedule_id);
             $shuttle->total_seat = $shuttle->total_seat - $qty_adult - $qty_baby;
@@ -922,7 +922,7 @@ class BookingController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $schedules = Charter::whereRaw(DB::raw("
+        $schedules = Charter::where('is_available', '=', 1)->whereRaw(DB::raw("
         charters.id NOT IN (
             SELECT
                 bookings.schedule_id
