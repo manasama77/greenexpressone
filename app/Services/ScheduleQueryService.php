@@ -34,9 +34,9 @@ class ScheduleQueryService
             $query->whereRaw("time_departure >= '{$now}'");
         }
 
-        if ($paginate){
+        if ($paginate) {
             $data = $query->paginate(7)->withQueryString();
-        }else{
+        } else {
             $data = $query->get();
         }
 

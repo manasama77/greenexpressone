@@ -47,7 +47,7 @@ class ExpiredCron extends Command
 
             echo $current->diffInMinutes($now) . "<br />";
 
-            if ($current->diffInMinutes($now) >= 30) {
+            if ($current->diffInMinutes($now) >= 10) {
                 $exec                 = Booking::find($id);
                 $exec->booking_status = "expired";
                 $exec->payment_status = "failed";

@@ -11,7 +11,6 @@ use App\Models\MasterSpecialArea;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
-use App\Models\Agent;
 use App\Models\BookingCustomer;
 use App\Models\BookingSequence;
 use App\Models\Charter;
@@ -19,7 +18,6 @@ use App\Models\ScheduleShuttle;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Auth;
 
 class BookingController extends BaseController
 {
@@ -909,6 +907,7 @@ class BookingController extends BaseController
                 'from_master_sub_area_id' => 'nullable',
                 'to_master_area_id' => 'required',
                 'to_master_sub_area_id' => 'nullable',
+                'date_reserve' => 'required|date|after_or_equal:today|date_format:Y-m-d',
             ]
         );
 
@@ -923,7 +922,18 @@ class BookingController extends BaseController
             return $this->sendError($error_message, null);
         }
 
-        $schedules = Charter::where('is_available', true);
+        $schedules = Charter::whereRaw(DB::raw("
+        charters.id NOT IN (
+            SELECT
+                bookings.schedule_id
+            FROM
+                bookings
+            WHERE
+                bookings.schedule_type = 'charter'
+            AND DATE ( bookings.datetime_departure ) = '$request->date_reserve'
+            AND bookings.payment_status != 'failed'
+        )
+        "));
 
         if ($request->from_type == "airport") {
             $schedules->where([
@@ -939,6 +949,7 @@ class BookingController extends BaseController
             ]);
         }
         $schedules = $schedules->get();
+        // return response()->json($schedules->toSql());
 
         if ($schedules->count() == 0) {
             return $this->sendError('Data Empty', null);
