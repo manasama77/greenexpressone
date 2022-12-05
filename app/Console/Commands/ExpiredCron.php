@@ -58,9 +58,9 @@ class ExpiredCron extends Command
                     $ss->total_seat = $ss->total_seat + $qty_adult + $qty_baby;
                     $ss->save();
                 } else {
-                    $ss               = Charter::find($schedule_id);
-                    $ss->is_available = true;
-                    $ss->save();
+                    // $ss               = Charter::find($schedule_id);
+                    // $ss->is_available = true;
+                    // $ss->save();
                 }
             }
         }
