@@ -74,7 +74,8 @@
                                                     @endforeach
                                                 </datalist> --}}
                                                 <input type="tel" class="" id="customer_phone"
-                                                    name="customer_phone" placeholder="Customer Phone" required />
+                                                    name="customer_phone" placeholder="Customer Phone"
+                                                    onkeypress="return onlyNumberKey(event)" required />
                                                 <span class="text-muted font-italic">
                                                     <small>
                                                         put your phone or whatsapp number full with country code, ie :
@@ -354,7 +355,7 @@
 
         let option_tel = {
             customContainer: "form-control",
-            // allowDropdown: true,
+            allowDropdown: true,
             autoHideDialCode: false,
             // autoPlaceholder: "off",
             // dropdownContainer: document.body,
@@ -382,11 +383,14 @@
         let serviceFee = {{ $service_fee }}
         let grandTotal = {{ $gt }}
 
+        let xxx = []
+
+        let passanger_phone = document.querySelectorAll('input[type="tel"]');
+        for (i = 0; i < passanger_phone.length; i++) {
+            xxx[i] = window.intlTelInput(passanger_phone[i], option_tel);
+        }
+
         $(document).ready(() => {
-            let passanger_phone = document.querySelectorAll('input[type="tel"]');
-            for (i = 0; i < passanger_phone.length; i++) {
-                window.intlTelInput(passanger_phone[i], option_tel);
-            }
 
             $('#same_passanger').on('change', () => {
                 if ($('#same_passanger:checked').val()) {
@@ -608,9 +612,24 @@
                 return $(this).val();
             }).get()
 
-            let arrPassangerPhone = $("input[name='passanger_phone[]']").map(function() {
-                return $(this).val();
-            }).get()
+            let arrPassangerPhone = [];
+            xxx.forEach(function(i, k) {
+                if (xxx[k].isValidNumber()) {
+                    if (xxx[k] != 0) {
+                        arrPassangerPhone.push(xxx[k].getNumber())
+                    }
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: `${xxx[k].getNumber()} Invalid Phone Number`,
+                        showConfirmButton: false,
+                        toast: true,
+                        timer: 3000,
+                    });
+                    throw new Error(`${xxx[k].getNumber()} Invalid Phone Number`);
+                }
+            })
 
             let arrPassanger = arrPassangerName.map((v, i) => {
                 return {
@@ -618,6 +637,9 @@
                     phone: arrPassangerPhone[i],
                 }
             })
+
+            // validasi
+
 
             $.ajax({
                 url: '/api/booking',
@@ -693,6 +715,14 @@
                 $(`${target_input}`).prop('type', 'password')
                 $(`${target_icon}`).removeClass('fa-eye-slash').addClass('fa-eye')
             }
+        }
+
+        function onlyNumberKey(evt) {
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                return false;
+            return true;
         }
     </script>
 @endsection
