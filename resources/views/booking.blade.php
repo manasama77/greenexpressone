@@ -198,7 +198,8 @@
                                                     Phone {{ $i }}</label>
                                                 <input type="tel" class="form-control"
                                                     id="passanger_phone_{{ $i }}" name="passanger_phone[]"
-                                                    placeholder="Passanger Phone" required />
+                                                    placeholder="Passanger Phone" onkeypress="return onlyNumberKey(event)"
+                                                    required />
                                                 <span class="text-muted font-italic">
                                                     <small>
                                                         put your phone or whatsapp number full with country code, ie :
